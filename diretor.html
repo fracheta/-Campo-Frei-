@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1565c0" />
+  <title>Área do Diretor · Frei Graciano Droessler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       Reset & Tokens
+       ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:          #ffffff;
+      --white-soft:     #f7fbfe;
+
+      --azul-bebe-50:   #eaf5fb;
+      --azul-bebe-100:  #d3ecf8;
+      --azul-bebe-200:  #b8e0f5;
+      --azul-bebe-300:  #8ecbee;
+
+      --azul-escuro:    #1565c0;
+      --azul-escuro-2:  #0d47a1;
+
+      --ink:            #0f1e35;
+      --ink-soft:       #475569;
+      --ink-mute:       #94a3b8;
+
+      --danger:         #dc2626;
+
+      --shadow-sm: 0 1px 2px rgba(15, 30, 53, 0.06);
+      --shadow-md: 0 10px 30px -10px rgba(21, 101, 192, 0.18);
+      --shadow-lg: 0 30px 60px -20px rgba(21, 101, 192, 0.25);
+      --ring: 0 0 0 4px rgba(184, 224, 245, 0.55);
+
+      --radius-card: 24px;
+      --radius-pill: 14px;
+
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--ink);
+      background-color: var(--white-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 20px;
+      overflow-x: hidden;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* =========================================================
+       Fundo decorativo
+       ========================================================= */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      background:
+        radial-gradient(1200px 600px at 15% 10%, #ffffff 0%, transparent 60%),
+        radial-gradient(900px 500px at 85% 90%, var(--azul-bebe-50) 0%, transparent 55%),
+        linear-gradient(160deg, #ffffff 0%, var(--azul-bebe-50) 55%, #eaf5fb 100%);
+    }
+
+    .bg-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.55;
+      pointer-events: none;
+    }
+    .bg-glow-1 {
+      width: 480px; height: 480px;
+      top: -160px; left: -140px;
+      background: radial-gradient(circle, var(--azul-bebe-200) 0%, transparent 70%);
+      animation: float 14s ease-in-out infinite;
+    }
+    .bg-glow-2 {
+      width: 560px; height: 560px;
+      bottom: -220px; right: -160px;
+      background: radial-gradient(circle, var(--azul-bebe-100) 0%, transparent 70%);
+      animation: float 18s ease-in-out infinite reverse;
+    }
+    .bg-grain {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(21, 101, 192, 0.05) 1px, transparent 1px);
+      background-size: 22px 22px;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+      -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+      opacity: 0.6;
+    }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50%      { transform: translate(20px, -20px) scale(1.05); }
+    }
+
+    /* =========================================================
+       Voltar
+       ========================================================= */
+    .back-link {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--azul-bebe-100);
+      border-radius: 999px;
+      color: var(--azul-escuro);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+    .back-link:hover {
+      transform: translateX(-3px);
+      background: var(--white);
+      border-color: var(--azul-bebe-200);
+      box-shadow: var(--shadow-md);
+    }
+    .back-link svg { width: 16px; height: 16px; }
+
+    /* =========================================================
+       Estrutura das telas
+       ========================================================= */
+    .screen {
+      width: 100%;
+      max-width: 460px;
+      display: none;
+      animation: card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .screen.active { display: block; }
+
+    #panel-screen { max-width: 1040px; }
+
+    @keyframes card-in {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* =========================================================
+       Cartão base
+       ========================================================= */
+    .card {
+      position: relative;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(24px) saturate(150%);
+      -webkit-backdrop-filter: blur(24px) saturate(150%);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-card);
+      padding: 40px 36px 32px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 12%; right: 12%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--azul-escuro), transparent);
+      border-radius: 0 0 4px 4px;
+      opacity: 0.75;
+    }
+
+    /* =========================================================
+       Cabeçalho interno
+       ========================================================= */
+    .card-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: linear-gradient(135deg, var(--azul-bebe-50), var(--azul-bebe-100));
+      border: 1px solid var(--azul-bebe-100);
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--azul-escuro);
+    }
+    .badge svg { width: 14px; height: 14px; }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.45rem, 3.4vw, 1.85rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      background: linear-gradient(135deg, var(--ink) 0%, var(--azul-escuro-2) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .card-subtitle {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      max-width: 340px;
+      line-height: 1.5;
+    }
+
+    /* =========================================================
+       Formulário
+       ========================================================= */
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-wrap svg.input-icon {
+      position: absolute;
+      left: 16px;
+      width: 18px;
+      height: 18px;
+      color: var(--ink-mute);
+      pointer-events: none;
+      transition: color 0.3s ease;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 14px 16px 14px 46px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--ink);
+      background: var(--white);
+      border: 1.5px solid var(--azul-bebe-100);
+      border-radius: var(--radius-pill);
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    }
+    .field input::placeholder { color: var(--ink-mute); }
+
+    .field input:focus {
+      border-color: var(--azul-escuro);
+      box-shadow: var(--ring);
+      background: var(--white);
+    }
+    .input-wrap:focus-within svg.input-icon { color: var(--azul-escuro); }
+
+    .toggle-pass {
+      position: absolute;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      background: transparent;
+      border: none;
+      border-radius: 50%;
+      color: var(--ink-mute);
+      cursor: pointer;
+      transition: color 0.25s ease, background 0.25s ease;
+    }
+    .toggle-pass:hover {
+      color: var(--azul-escuro);
+      background: var(--azul-bebe-50);
+    }
+    .toggle-pass svg { width: 18px; height: 18px; }
+
+    .form-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+    }
+    .form-row label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink-soft);
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .form-row input[type="checkbox"] {
+      width: 16px; height: 16px;
+      accent-color: var(--azul-escuro);
+      cursor: pointer;
+    }
+    .form-row a {
+      color: var(--azul-escuro);
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+    .form-row a:hover { color: var(--azul-escuro-2); text-decoration: underline; }
+
+    .btn-primary {
+      width: 100%;
+      padding: 15px 20px;
+      font-family: inherit;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--azul-escuro), var(--azul-escuro-2));
+      border: none;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.3s ease, filter 0.25s ease;
+      box-shadow: 0 10px 24px -8px rgba(21, 101, 192, 0.55);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px -8px rgba(21, 101, 192, 0.65);
+      filter: brightness(1.05);
+    }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:focus-visible { outline: none; box-shadow: var(--ring), 0 10px 24px -8px rgba(21, 101, 192, 0.55); }
+    .btn-primary svg { width: 18px; height: 18px; }
+
+    /* erro */
+    .error-msg {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 12px;
+      color: var(--danger);
+      font-size: 0.82rem;
+      font-weight: 500;
+      animation: shake 0.35s ease;
+    }
+    .error-msg.show { display: flex; }
+    .error-msg svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25%      { transform: translateX(-6px); }
+      75%      { transform: translateX(6px); }
+    }
+
+    .card-footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      border-top: 1px solid var(--azul-bebe-100);
+      padding-top: 16px;
+    }
+    .card-footer strong { color: var(--azul-escuro); }
+
+    /* =========================================================
+       PAINEL DO DIRETOR
+       ========================================================= */
+    #panel-screen .card {
+      padding: 32px 32px 24px;
+      gap: 24px;
+    }
+
+    .panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--azul-bebe-100);
+    }
+
+    .panel-user {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--azul-escuro), var(--azul-escuro-2));
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+      box-shadow: 0 8px 20px -6px rgba(21, 101, 192, 0.55);
+      position: relative;
+    }
+    .avatar::after {
+      content: "";
+      position: absolute;
+      bottom: -2px; right: -2px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 2.5px solid var(--white);
+    }
+
+    .panel-user-info { min-width: 0; }
+    .panel-user-info .greeting {
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    .panel-user-info .name {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .btn-logout {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--azul-bebe-50);
+      border: 1px solid var(--azul-bebe-100);
+      border-radius: 999px;
+      color: var(--azul-escuro);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-logout:hover {
+      background: var(--azul-escuro);
+      color: var(--white);
+      border-color: var(--azul-escuro);
+      transform: translateY(-1px);
+    }
+    .btn-logout svg { width: 16px; height: 16px; }
+
+    .panel-title {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .panel-title h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 3vw, 1.7rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .panel-title p {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+    }
+
+    /* Cards de estatísticas */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: linear-gradient(135deg, var(--azul-bebe-50), #ffffff);
+      border: 1px solid var(--azul-bebe-100);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .stat:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--azul-escuro);
+      letter-spacing: -0.02em;
+    }
+    .stat-label {
+      font-size: 0.76rem;
+      color: var(--ink-soft);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    /* Grid de atalhos */
+    .shortcuts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .shortcut {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 20px;
+      background: var(--white);
+      border: 1px solid var(--azul-bebe-100);
+      border-radius: 16px;
+      text-decoration: none;
+      color: var(--ink);
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.3s ease,
+                  border-color 0.3s ease;
+      overflow: hidden;
+    }
+    .shortcut::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%),
+                  rgba(184, 224, 245, 0.4), transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .shortcut:hover {
+      transform: translateY(-4px);
+      border-color: var(--azul-bebe-200);
+      box-shadow: var(--shadow-md);
+    }
+    .shortcut:hover::before { opacity: 1; }
+
+    .shortcut-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--azul-bebe-50), var(--azul-bebe-100));
+      color: var(--azul-escuro);
+      border: 1px solid var(--azul-bebe-100);
+      transition: all 0.35s ease;
+    }
+    .shortcut-icon svg { width: 22px; height: 22px; }
+
+    .shortcut:hover .shortcut-icon {
+      background: linear-gradient(135deg, var(--azul-escuro), var(--azul-escuro-2));
+      color: var(--white);
+      transform: scale(1.05) rotate(-3deg);
+    }
+
+    .shortcut-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+    }
+    .shortcut-desc {
+      font-size: 0.76rem;
+      color: var(--ink-soft);
+      line-height: 1.4;
+    }
+
+    /* Seções com título */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .section-title h3 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--azul-escuro);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+    .section-title .line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--azul-bebe-200), transparent);
+    }
+
+    .panel-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding-top: 16px;
+      border-top: 1px solid var(--azul-bebe-100);
+    }
+    .panel-footer .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--azul-escuro);
+      opacity: 0.6;
+    }
+    .panel-footer p {
+      font-size: 0.74rem;
+      color: var(--ink-soft);
+      text-align: center;
+    }
+
+    /* =========================================================
+       Responsivo
+       ========================================================= */
+    @media (max-width: 540px) {
+      body { padding: 70px 14px 20px; align-items: flex-start; }
+
+      .back-link { top: 14px; left: 14px; padding: 8px 14px; font-size: 0.78rem; }
+
+      .card { padding: 32px 22px 24px; border-radius: 20px; gap: 22px; }
+      #panel-screen .card { padding: 24px 20px 18px; }
+
+      .shortcuts { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stat-value { font-size: 1.35rem; }
+      .panel-top { gap: 12px; }
+      .panel-user-info .name { font-size: 0.95rem; }
+    }
+
+    @media (max-width: 360px) {
+      .avatar { width: 42px; height: 42px; font-size: 0.95rem; }
+      .panel-user-info .name { font-size: 0.88rem; }
+      .btn-logout { padding: 8px 14px; font-size: 0.76rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fundo -->
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-grain"></div>
+  </div>
+
+  <!-- Botão voltar -->
+  <a href="index.html" class="back-link" aria-label="Voltar para a tela inicial">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5"/>
+      <path d="M12 19l-7-7 7-7"/>
+    </svg>
+    Voltar
+  </a>
+
+  <!-- =========================================================
+       TELA 1 · LOGIN
+       ========================================================= -->
+  <section class="screen active" id="login-screen">
+    <div class="card">
+
+      <header class="card-header">
+        <span class="badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18"/>
+            <path d="M5 21V8l7-4 7 4v13"/>
+            <path d="M10 12h4"/>
+            <path d="M10 16h4"/>
+          </svg>
+          Área do Diretor
+        </span>
+
+        <h1 class="card-title">Acesso à Gestão</h1>
+        <p class="card-subtitle">
+          Entre com suas credenciais de direção para acessar o painel de gestão escolar.
+        </p>
+      </header>
+
+      <form class="form" id="login-form" novalidate>
+
+        <div class="error-msg" id="error-msg" role="alert">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 8v4"/>
+            <path d="M12 16h.01"/>
+          </svg>
+          <span id="error-text">Preencha todos os campos.</span>
+        </div>
+
+        <div class="field">
+          <label for="user">Usuário ou e-mail</label>
+          <div class="input-wrap">
+            <input type="text" id="user" name="user" placeholder="ex: direcao" autocomplete="username" required />
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="pass">Senha</label>
+          <div class="input-wrap">
+            <input type="password" id="pass" name="pass" placeholder="Digite sua senha" autocomplete="current-password" required />
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="11" width="16" height="10" rx="2"/>
+              <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+            </svg>
+            <button type="button" class="toggle-pass" id="toggle-pass" aria-label="Mostrar senha">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <input type="checkbox" id="remember" />
+            Lembrar de mim
+          </label>
+          <a href="#" onclick="alert('Entre em contato com o suporte técnico da SEDUC.'); return false;">Esqueci a senha</a>
+        </div>
+
+        <button type="submit" class="btn-primary" id="btn-login">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+            <path d="M10 17l5-5-5-5"/>
+            <path d="M15 12H3"/>
+          </svg>
+          Entrar
+        </button>
+      </form>
+
+      <footer class="card-footer">
+        Acesso restrito à direção · <strong>Frei Graciano Droessler</strong>
+      </footer>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       TELA 2 · PAINEL DO DIRETOR
+       ========================================================= -->
+  <section class="screen" id="panel-screen">
+    <div class="card">
+
+      <!-- topbar -->
+      <div class="panel-top">
+        <div class="panel-user">
+          <div class="avatar" id="user-avatar">D</div>
+          <div class="panel-user-info">
+            <span class="greeting">Bem-vindo(a),</span>
+            <span class="name" id="user-name">Diretor(a)</span>
+          </div>
+        </div>
+        <button class="btn-logout" id="btn-logout">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <path d="M16 17l5-5-5-5"/>
+            <path d="M21 12H9"/>
+          </svg>
+          Sair
+        </button>
+      </div>
+
+      <!-- título -->
+      <div class="panel-title">
+        <h2>Painel de Gestão Escolar</h2>
+        <p>Visão geral e ações administrativas.</p>
+      </div>
+
+      <!-- estatísticas -->
+      <div class="stats" aria-label="Resumo da escola">
+        <div class="stat">
+          <span class="stat-value">342</span>
+          <span class="stat-label">Alunos matriculados</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">28</span>
+          <span class="stat-label">Professores</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">14</span>
+          <span class="stat-label">Turmas ativas</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">96%</span>
+          <span class="stat-label">Frequência média</span>
+        </div>
+      </div>
+
+      <!-- seção: gestão de pessoas -->
+      <div class="section-title">
+        <h3>Gestão de Pessoas</h3>
+        <span class="line"></span>
+      </div>
+
+      <nav class="shortcuts" aria-label="Gestão de pessoas">
+
+        <a href="#" class="shortcut" data-action="professores">
+          <span class="shortcut-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 4h20v12H2z"/>
+              <path d="M12 16v5"/>
+              <path d="M8 21h8"/>
+            </svg>
+          </span>
+          <span class="shortcut-title">Professores</span>
+          <span class="shortcut-desc">Gerenciar corpo docente</span>
+        </a>
+
+        <a href="#" class="shortcut" data-action="alunos">
+          <span class="shortcut-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </span>
+          <span class="shortcut-title">Alunos</span>
+          <span class="shortcut-desc">Matrículas e cadastros</span>
+        </a>
+
+        <a href="#" class="shortcut" data-action="funcionarios">
+          <span class="shortcut-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+            </svg>
+          </span>
+          <span class="shortcut-title">Funcionários</span>
+          <span class="shortcut-desc">Equipe administrativa</span>
+        </a>
+
+        <a href="#" class="shortcut" data-action="pedagogos">
+          <span class="shortcut-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h7a3 3 0 0 1 3 3v13a3 3 0 0 0-3-3H4z"/>
+              <path d="M20 4h-7a3 3 0 0 0-3 3v13a3 3 0 0 1 3-3h7z"/>
+            </svg>
+          </span>
+          <span class="shortcut-title">Pedagogos</span>
+          <span class="shortcut-desc">Equipe pedagógica</span>
+        </a>
+
+      </nav>
+
+      <!-- seção: gestão escolar -->
+      <div class="section-title">
+        <h3>Gestão Escolar</h3>
+        <span class="line"></span>
+      </div>
+
+      <nav class="shortcuts" aria-label="Gestão escolar">
+
+        <a href="#" class="shortcut" data-action="turmas">
+          <span class="shortcut-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18"/>
+              <path d="M5 21V8l7-4 7 4v13"/>
+              <path d="M10 12h4"/>
+              <path d="M10 16h4"/>
+            </svg>
+          </span>
+          <span class="shortcut-title">Turmas</span>
+          <span class="shortcut-desc">Organizar turmas e horários</span>
+        </a>
+
+        <a href="#" class="shortcut" data-action="notas">
+          <span class="shortcut-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 11H3v10h6z"/>
+              <path d="M15 3H9v18h6z"/>
+              <path d="M21 7h-6v14h6z"/>
+            </svg>
+          </span>
+          <span class="shortcut-title">Notas e Boletins</span>
+          <span class="shortcut-desc">Acompanhar desempenho</span>
+        </a>
+
+        <a href="#" class="shortcut" data-action="calendario">
+          <span class="shortcut-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <path d="M16 2v4"/>
+              <path d="M8 2v4"/>
+              <path d="M3 10h18"/>
+            </svg>
+          </span>
+          <span class="shortcut-title">Calendário</span>
+          <span class="shortcut-desc">Eventos e datas letivas</span>
+        </a>
+
+        <a href="#" class="shortcut" data-action="comunicados">
+          <span class="shortcut-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </span>
+          <span class="shortcut-title">Comunicados</span>
+          <span class="shortcut-desc">Avisos para equipe e alunos</span>
+        </a>
+
+      </nav>
+
+      <!-- seção: relatórios e administração -->
+      <div class="section-title">
+        <h3>Relatórios e Administração</h3>
+        <span class="line"></span>
+      </div>
+
+      <nav class="shortcuts" aria-label="Relatórios e administração">
+
+        <a href="#" class="shortcut" data-action="relatorios">
+          <span class="shortcut-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <path d="M14 2v6h6"/>
+              <path d="M9 15h6"/>
+              <path d="M9 11h3"/>
+            </svg>
+          </span>
+          <span class="shortcut-title">Relatórios</span>
+          <span class="shortcut-desc">Estatísticas e indicadores</span>
+        </a>
+
+        <a href="#" class="shortcut" data-action="financeiro">
+          <span class="shortcut-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 1v22"/>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </span>
+          <span class="shortcut-title">Financeiro</span>
+          <span class="shortcut-desc">Verbas e prestação de contas</span>
+        </a>
+
+        <a href="#" class="shortcut" data-action="documentos">
+          <span class="shortcut-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"/>
+              <path d="M14 2v5h5"/>
+              <path d="M2 15h10"/>
+              <path d="M9 18l3-3-3-3"/>
+            </svg>
+          </span>
+          <span class="shortcut-title">Documentos</span>
+          <span class="shortcut-desc">Ofícios, atas e arquivos</span>
+        </a>
+
+        <a href="#" class="shortcut" data-action="configuracoes">
+          <span class="shortcut-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          </span>
+          <span class="shortcut-title">Configurações</span>
+          <span class="shortcut-desc">Ajustes gerais do sistema</span>
+        </a>
+
+      </nav>
+
+      <footer class="panel-footer">
+        <span class="dot" aria-hidden="true"></span>
+        <p>© 2025 · Escola Estadual do Campo Frei Graciano Droessler</p>
+      </footer>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       JavaScript
+       ========================================================= -->
+  <script>
+    /* ---------- Elementos ---------- */
+    const loginScreen = document.getElementById('login-screen');
+    const panelScreen = document.getElementById('panel-screen');
+    const loginForm   = document.getElementById('login-form');
+    const errorBox    = document.getElementById('error-msg');
+    const errorText   = document.getElementById('error-text');
+    const userInput   = document.getElementById('user');
+    const passInput   = document.getElementById('pass');
+    const togglePass  = document.getElementById('toggle-pass');
+    const btnLogout   = document.getElementById('btn-logout');
+    const userNameEl  = document.getElementById('user-name');
+    const userAvatar  = document.getElementById('user-avatar');
+
+    /* ---------- Mostrar / esconder senha ---------- */
+    togglePass.addEventListener('click', () => {
+      const isPass = passInput.type === 'password';
+      passInput.type = isPass ? 'text' : 'password';
+      togglePass.setAttribute('aria-label', isPass ? 'Ocultar senha' : 'Mostrar senha');
+    });
+
+    /* ---------- Erro ---------- */
+    function showError(msg) {
+      errorText.textContent = msg;
+      errorBox.classList.add('show');
+      errorBox.style.animation = 'none';
+      void errorBox.offsetWidth;
+      errorBox.style.animation = '';
+    }
+    function hideError() {
+      errorBox.classList.remove('show');
+    }
+
+    /* ---------- Login (simulado) ---------- */
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      hideError();
+
+      const user = userInput.value.trim();
+      const pass = passInput.value.trim();
+
+      if (!user || !pass) {
+        showError('Preencha usuário e senha para continuar.');
+        return;
+      }
+      if (pass.length < 4) {
+        showError('A senha deve ter pelo menos 4 caracteres.');
+        return;
+      }
+
+      /* 
+        ⚠️ Aqui é onde você vai plugar o backend depois.
+        Por enquanto qualquer usuário + senha (>=4 chars) entra.
+      */
+      loginUser(user);
+    });
+
+    /* ---------- Entrar no painel ---------- */
+    function loginUser(name) {
+      const display = name
+        .replace(/[._-]+/g, ' ')
+        .replace(/\b\w/g, l => l.toUpperCase());
+
+      userNameEl.textContent = display || 'Diretor(a)';
+      userAvatar.textContent = (display || 'D').trim().charAt(0).toUpperCase();
+
+      loginScreen.classList.remove('active');
+      panelScreen.classList.add('active');
+
+      sessionStorage.setItem('diretorLogado', display);
+    }
+
+    /* ---------- Logout ---------- */
+    btnLogout.addEventListener('click', () => {
+      sessionStorage.removeItem('diretorLogado');
+      passInput.value = '';
+      hideError();
+      panelScreen.classList.remove('active');
+      loginScreen.classList.add('active');
+    });
+
+    /* ---------- Ações dos atalhos ---------- */
+    document.querySelectorAll('.shortcut').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const action = btn.dataset.action;
+        const labels = {
+          professores: 'Gerenciar Professores',
+          alunos: 'Gerenciar Alunos',
+          funcionarios: 'Gerenciar Funcionários',
+          pedagogos: 'Gerenciar Pedagogos',
+          turmas: 'Organizar Turmas',
+          notas: 'Notas e Boletins',
+          calendario: 'Calendário Escolar',
+          comunicados: 'Comunicados',
+          relatorios: 'Relatórios',
+          financeiro: 'Financeiro',
+          documentos: 'Documentos',
+          configuracoes: 'Configurações'
+        };
+        alert('Em breve: ' + (labels[action] || action));
+      });
+    });
+
+    /* ---------- Brilho que segue o mouse ---------- */
+    document.querySelectorAll('.shortcut').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width) * 100 + '%');
+        card.style.setProperty('--my', ((e.clientY - rect.top) / rect.height) * 100 + '%');
+      });
+    });
+
+    /* ---------- Mantém logado nessa aba ---------- */
+    const saved = sessionStorage.getItem('diretorLogado');
+    if (saved) loginUser(saved);
+  </script>
+
+</body>
+</html>
