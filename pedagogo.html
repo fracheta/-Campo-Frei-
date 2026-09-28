@@ -38,7 +38,7 @@
       --shadow-lg: 0 30px 60px -20px rgba(21, 101, 192, 0.25);
       --ring: 0 0 0 4px rgba(184, 224, 245, 0.55);
 
-      --radius-card: 24px;
+      --radius-card: 28px;
       --radius-pill: 14px;
 
       --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -141,29 +141,12 @@
     .back-link svg { width: 16px; height: 16px; }
 
     /* =========================================================
-       Estrutura das telas
+       Cartão de login
        ========================================================= */
-    .screen {
-      width: 100%;
-      max-width: 460px;
-      display: none;
-      animation: card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .screen.active { display: block; }
-
-    #panel-screen { max-width: 1040px; }
-
-    @keyframes card-in {
-      from { opacity: 0; transform: translateY(20px) scale(0.98); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* =========================================================
-       Cartão base
-       ========================================================= */
-    .card {
+    .login-card {
       position: relative;
       width: 100%;
+      max-width: 460px;
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(24px) saturate(150%);
       -webkit-backdrop-filter: blur(24px) saturate(150%);
@@ -174,8 +157,9 @@
       display: flex;
       flex-direction: column;
       gap: 26px;
+      animation: card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .card::before {
+    .login-card::before {
       content: "";
       position: absolute;
       top: 0; left: 12%; right: 12%;
@@ -183,6 +167,11 @@
       background: linear-gradient(90deg, transparent, var(--azul-escuro), transparent);
       border-radius: 0 0 4px 4px;
       opacity: 0.75;
+    }
+
+    @keyframes card-in {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     /* =========================================================
@@ -289,8 +278,11 @@
       box-shadow: var(--ring);
       background: var(--white);
     }
-    .input-wrap:focus-within svg.input-icon { color: var(--azul-escuro); }
+    .input-wrap:focus-within svg.input-icon {
+      color: var(--azul-escuro);
+    }
 
+    /* botão de mostrar senha */
     .toggle-pass {
       position: absolute;
       right: 12px;
@@ -311,6 +303,7 @@
     }
     .toggle-pass svg { width: 18px; height: 18px; }
 
+    /* linha de opções */
     .form-row {
       display: flex;
       align-items: center;
@@ -340,6 +333,7 @@
     }
     .form-row a:hover { color: var(--azul-escuro-2); text-decoration: underline; }
 
+    /* botão principal */
     .btn-primary {
       width: 100%;
       padding: 15px 20px;
@@ -390,6 +384,7 @@
       75%      { transform: translateX(6px); }
     }
 
+    /* rodapé */
     .card-footer {
       text-align: center;
       font-size: 0.78rem;
@@ -400,257 +395,6 @@
     .card-footer strong { color: var(--azul-escuro); }
 
     /* =========================================================
-       PAINEL DO PEDAGOGO
-       ========================================================= */
-    #panel-screen .card {
-      padding: 32px 32px 24px;
-      gap: 24px;
-    }
-
-    .panel-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--azul-bebe-100);
-    }
-
-    .panel-user {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--azul-escuro), var(--azul-escuro-2));
-      color: var(--white);
-      font-weight: 700;
-      font-size: 1.05rem;
-      flex-shrink: 0;
-      box-shadow: 0 8px 20px -6px rgba(21, 101, 192, 0.55);
-      position: relative;
-    }
-    .avatar::after {
-      content: "";
-      position: absolute;
-      bottom: -2px; right: -2px;
-      width: 14px; height: 14px;
-      border-radius: 50%;
-      background: #22c55e;
-      border: 2.5px solid var(--white);
-    }
-
-    .panel-user-info { min-width: 0; }
-    .panel-user-info .greeting {
-      font-size: 0.78rem;
-      color: var(--ink-soft);
-      font-weight: 500;
-      letter-spacing: 0.02em;
-    }
-    .panel-user-info .name {
-      font-size: 1.02rem;
-      font-weight: 700;
-      color: var(--ink);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .btn-logout {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      background: var(--azul-bebe-50);
-      border: 1px solid var(--azul-bebe-100);
-      border-radius: 999px;
-      color: var(--azul-escuro);
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .btn-logout:hover {
-      background: var(--azul-escuro);
-      color: var(--white);
-      border-color: var(--azul-escuro);
-      transform: translateY(-1px);
-    }
-    .btn-logout svg { width: 16px; height: 16px; }
-
-    .panel-title {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .panel-title h2 {
-      font-family: var(--font-display);
-      font-size: clamp(1.35rem, 3vw, 1.7rem);
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: var(--ink);
-    }
-    .panel-title p {
-      font-size: 0.88rem;
-      color: var(--ink-soft);
-    }
-
-    /* Cards de estatísticas */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 12px;
-    }
-    .stat {
-      background: linear-gradient(135deg, var(--azul-bebe-50), #ffffff);
-      border: 1px solid var(--azul-bebe-100);
-      border-radius: 14px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .stat:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-    .stat-value {
-      font-family: var(--font-display);
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--azul-escuro);
-      letter-spacing: -0.02em;
-    }
-    .stat-label {
-      font-size: 0.76rem;
-      color: var(--ink-soft);
-      font-weight: 500;
-      letter-spacing: 0.01em;
-    }
-
-    /* Grid de atalhos */
-    .shortcuts {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 14px;
-    }
-
-    .shortcut {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 20px;
-      background: var(--white);
-      border: 1px solid var(--azul-bebe-100);
-      border-radius: 16px;
-      text-decoration: none;
-      color: var(--ink);
-      cursor: pointer;
-      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-                  box-shadow 0.3s ease,
-                  border-color 0.3s ease;
-      overflow: hidden;
-    }
-    .shortcut::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%),
-                  rgba(184, 224, 245, 0.4), transparent 50%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      pointer-events: none;
-    }
-    .shortcut:hover {
-      transform: translateY(-4px);
-      border-color: var(--azul-bebe-200);
-      box-shadow: var(--shadow-md);
-    }
-    .shortcut:hover::before { opacity: 1; }
-
-    .shortcut-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--azul-bebe-50), var(--azul-bebe-100));
-      color: var(--azul-escuro);
-      border: 1px solid var(--azul-bebe-100);
-      transition: all 0.35s ease;
-    }
-    .shortcut-icon svg { width: 22px; height: 22px; }
-
-    .shortcut:hover .shortcut-icon {
-      background: linear-gradient(135deg, var(--azul-escuro), var(--azul-escuro-2));
-      color: var(--white);
-      transform: scale(1.05) rotate(-3deg);
-    }
-
-    .shortcut-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--ink);
-      letter-spacing: -0.005em;
-    }
-    .shortcut-desc {
-      font-size: 0.76rem;
-      color: var(--ink-soft);
-      line-height: 1.4;
-    }
-
-    /* Seções com título */
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 4px;
-    }
-    .section-title h3 {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--azul-escuro);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-    .section-title .line {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, var(--azul-bebe-200), transparent);
-    }
-
-    .panel-footer {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding-top: 16px;
-      border-top: 1px solid var(--azul-bebe-100);
-    }
-    .panel-footer .dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--azul-escuro);
-      opacity: 0.6;
-    }
-    .panel-footer p {
-      font-size: 0.74rem;
-      color: var(--ink-soft);
-      text-align: center;
-    }
-
-    /* =========================================================
        Responsivo
        ========================================================= */
     @media (max-width: 540px) {
@@ -658,20 +402,7 @@
 
       .back-link { top: 14px; left: 14px; padding: 8px 14px; font-size: 0.78rem; }
 
-      .card { padding: 32px 22px 24px; border-radius: 20px; gap: 22px; }
-      #panel-screen .card { padding: 24px 20px 18px; }
-
-      .shortcuts { grid-template-columns: 1fr; }
-      .stats { grid-template-columns: repeat(2, 1fr); }
-      .stat-value { font-size: 1.35rem; }
-      .panel-top { gap: 12px; }
-      .panel-user-info .name { font-size: 0.95rem; }
-    }
-
-    @media (max-width: 360px) {
-      .avatar { width: 42px; height: 42px; font-size: 0.95rem; }
-      .panel-user-info .name { font-size: 0.88rem; }
-      .btn-logout { padding: 8px 14px; font-size: 0.76rem; }
+      .login-card { padding: 32px 22px 24px; border-radius: 20px; gap: 22px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -692,7 +423,7 @@
     <div class="bg-grain"></div>
   </div>
 
-  <!-- Botão voltar → 1.html (portal de perfis) -->
+  <!-- Botão voltar → 1.html -->
   <a href="1.html" class="back-link" aria-label="Voltar para a tela inicial">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M19 12H5"/>
@@ -702,345 +433,121 @@
   </a>
 
   <!-- =========================================================
-       TELA 1 · LOGIN
+       LOGIN
        ========================================================= -->
-  <section class="screen active" id="login-screen">
-    <div class="card">
+  <main class="login-card" role="main">
 
-      <header class="card-header">
-        <span class="badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h7a3 3 0 0 1 3 3v13a3 3 0 0 0-3-3H4z"/>
-            <path d="M20 4h-7a3 3 0 0 0-3 3v13a3 3 0 0 1 3-3h7z"/>
+    <header class="card-header">
+      <span class="badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h7a3 3 0 0 1 3 3v13a3 3 0 0 0-3-3H4z"/>
+          <path d="M20 4h-7a3 3 0 0 0-3 3v13a3 3 0 0 1 3-3h7z"/>
+        </svg>
+        Acesso Pedagógico
+      </span>
+
+      <h1 class="card-title">Área do Pedagogo</h1>
+      <p class="card-subtitle">
+        Entre com suas credenciais pedagógicas para acessar o painel de acompanhamento escolar.
+      </p>
+    </header>
+
+    <form class="form" id="login-form" novalidate>
+
+      <!-- erro -->
+      <div class="error-msg" id="error-msg" role="alert">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 8v4"/>
+          <path d="M12 16h.01"/>
+        </svg>
+        <span id="error-text">Preencha todos os campos.</span>
+      </div>
+
+      <!-- usuário -->
+      <div class="field">
+        <label for="user">Usuário ou e-mail</label>
+        <div class="input-wrap">
+          <input type="text" id="user" name="user" placeholder="ex: pedagogo" autocomplete="username" required />
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
           </svg>
-          Acesso Pedagógico
-        </span>
+        </div>
+      </div>
 
-        <h1 class="card-title">Área do Pedagogo</h1>
-        <p class="card-subtitle">
-          Entre com suas credenciais pedagógicas para acessar o painel de acompanhamento escolar.
-        </p>
-      </header>
-
-      <form class="form" id="login-form" novalidate>
-
-        <div class="error-msg" id="error-msg" role="alert">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M12 8v4"/>
-            <path d="M12 16h.01"/>
+      <!-- senha -->
+      <div class="field">
+        <label for="pass">Senha</label>
+        <div class="input-wrap">
+          <input type="password" id="pass" name="pass" placeholder="Digite sua senha" autocomplete="current-password" required />
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="11" width="16" height="10" rx="2"/>
+            <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
           </svg>
-          <span id="error-text">Preencha todos os campos.</span>
-        </div>
-
-        <div class="field">
-          <label for="user">Usuário ou e-mail</label>
-          <div class="input-wrap">
-            <input type="text" id="user" name="user" placeholder="ex: pedagogo" autocomplete="username" required />
-            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
+          <button type="button" class="toggle-pass" id="toggle-pass" aria-label="Mostrar senha">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+              <circle cx="12" cy="12" r="3"/>
             </svg>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="pass">Senha</label>
-          <div class="input-wrap">
-            <input type="password" id="pass" name="pass" placeholder="Digite sua senha" autocomplete="current-password" required />
-            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="4" y="11" width="16" height="10" rx="2"/>
-              <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
-            </svg>
-            <button type="button" class="toggle-pass" id="toggle-pass" aria-label="Mostrar senha">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
-                <circle cx="12" cy="12" r="3"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <label>
-            <input type="checkbox" id="remember" />
-            Lembrar de mim
-          </label>
-          <a href="#" onclick="alert('Entre em contato com a coordenação ou secretaria.'); return false;">Esqueci a senha</a>
-        </div>
-
-        <button type="submit" class="btn-primary" id="btn-login">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-            <path d="M10 17l5-5-5-5"/>
-            <path d="M15 12H3"/>
-          </svg>
-          Entrar
-        </button>
-      </form>
-
-      <footer class="card-footer">
-        Acesso restrito à pedagogia · <strong>Frei Graciano Droessler</strong>
-      </footer>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       TELA 2 · PAINEL DO PEDAGOGO
-       ========================================================= -->
-  <section class="screen" id="panel-screen">
-    <div class="card">
-
-      <!-- topbar -->
-      <div class="panel-top">
-        <div class="panel-user">
-          <div class="avatar" id="user-avatar">P</div>
-          <div class="panel-user-info">
-            <span class="greeting">Bem-vindo(a),</span>
-            <span class="name" id="user-name">Pedagogo(a)</span>
-          </div>
-        </div>
-        <button class="btn-logout" id="btn-logout">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-            <path d="M16 17l5-5-5-5"/>
-            <path d="M21 12H9"/>
-          </svg>
-          Sair
-        </button>
-      </div>
-
-      <!-- título -->
-      <div class="panel-title">
-        <h2>Painel Pedagógico</h2>
-        <p>Acompanhamento e desenvolvimento do processo de ensino-aprendizagem.</p>
-      </div>
-
-      <!-- estatísticas -->
-      <div class="stats" aria-label="Resumo pedagógico">
-        <div class="stat">
-          <span class="stat-value">14</span>
-          <span class="stat-label">Turmas acompanhadas</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value">28</span>
-          <span class="stat-label">Professores atendidos</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value">23</span>
-          <span class="stat-label">Planos de aula revisados</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value">08</span>
-          <span class="stat-label">Alunos em reforço</span>
+          </button>
         </div>
       </div>
 
-      <!-- seção: acompanhamento pedagógico -->
-      <div class="section-title">
-        <h3>Acompanhamento Pedagógico</h3>
-        <span class="line"></span>
+      <!-- opções -->
+      <div class="form-row">
+        <label>
+          <input type="checkbox" id="remember" />
+          Lembrar de mim
+        </label>
+        <a href="#" onclick="alert('Entre em contato com a coordenação ou secretaria.'); return false;">Esqueci a senha</a>
       </div>
 
-      <nav class="shortcuts" aria-label="Acompanhamento pedagógico">
+      <!-- botão entrar -->
+      <button type="submit" class="btn-primary" id="btn-login">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+          <path d="M10 17l5-5-5-5"/>
+          <path d="M15 12H3"/>
+        </svg>
+        Entrar
+      </button>
+    </form>
 
-        <a href="#" class="shortcut" data-action="turmas">
-          <span class="shortcut-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-          </span>
-          <span class="shortcut-title">Turmas</span>
-          <span class="shortcut-desc">Acompanhar desempenho das turmas</span>
-        </a>
+    <footer class="card-footer">
+      Acesso restrito à pedagogia · <strong>Frei Graciano Droessler</strong>
+    </footer>
 
-        <a href="#" class="shortcut" data-action="professores">
-          <span class="shortcut-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 4h20v12H2z"/>
-              <path d="M12 16v5"/>
-              <path d="M8 21h8"/>
-            </svg>
-          </span>
-          <span class="shortcut-title">Professores</span>
-          <span class="shortcut-desc">Acompanhar práticas docentes</span>
-        </a>
-
-        <a href="#" class="shortcut" data-action="planos">
-          <span class="shortcut-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <path d="M14 2v6h6"/>
-              <path d="M9 13h6"/>
-              <path d="M9 17h6"/>
-            </svg>
-          </span>
-          <span class="shortcut-title">Planos de Aula</span>
-          <span class="shortcut-desc">Revisar e aprovar planos</span>
-        </a>
-
-        <a href="#" class="shortcut" data-action="avaliacoes">
-          <span class="shortcut-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 11H3v10h6z"/>
-              <path d="M15 3H9v18h6z"/>
-              <path d="M21 7h-6v14h6z"/>
-            </svg>
-          </span>
-          <span class="shortcut-title">Avaliações</span>
-          <span class="shortcut-desc">Acompanhar resultados e notas</span>
-        </a>
-
-      </nav>
-
-      <!-- seção: apoio ao aluno -->
-      <div class="section-title">
-        <h3>Apoio ao Aluno</h3>
-        <span class="line"></span>
-      </div>
-
-      <nav class="shortcuts" aria-label="Apoio ao aluno">
-
-        <a href="#" class="shortcut" data-action="dificuldades">
-          <span class="shortcut-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-              <path d="M12 17h.01"/>
-            </svg>
-          </span>
-          <span class="shortcut-title">Alunos com Dificuldade</span>
-          <span class="shortcut-desc">Identificar e acompanhar casos</span>
-        </a>
-
-        <a href="#" class="shortcut" data-action="reforco">
-          <span class="shortcut-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-            </svg>
-          </span>
-          <span class="shortcut-title">Reforço Escolar</span>
-          <span class="shortcut-desc">Organizar turmas de reforço</span>
-        </a>
-
-        <a href="#" class="shortcut" data-action="frequencia">
-          <span class="shortcut-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="2"/>
-              <path d="M16 2v4"/>
-              <path d="M8 2v4"/>
-              <path d="M3 10h18"/>
-              <path d="M9 16l2 2 4-4"/>
-            </svg>
-          </span>
-          <span class="shortcut-title">Frequência</span>
-          <span class="shortcut-desc">Monitorar presença dos alunos</span>
-        </a>
-
-        <a href="#" class="shortcut" data-action="atendimentos">
-          <span class="shortcut-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-          </span>
-          <span class="shortcut-title">Atendimentos</span>
-          <span class="shortcut-desc">Registrar conversas com alunos/famílias</span>
-        </a>
-
-      </nav>
-
-      <!-- seção: planejamento e formação -->
-      <div class="section-title">
-        <h3>Planejamento e Formação</h3>
-        <span class="line"></span>
-      </div>
-
-      <nav class="shortcuts" aria-label="Planejamento e formação">
-
-        <a href="#" class="shortcut" data-action="formacao">
-          <span class="shortcut-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2l3 6 6 .5-4.5 4 1.5 6-6-3-6 3 1.5-6L4 8.5 10 8z"/>
-            </svg>
-          </span>
-          <span class="shortcut-title">Formação Continuada</span>
-          <span class="shortcut-desc">Cursos e capacitações docentes</span>
-        </a>
-
-        <a href="#" class="shortcut" data-action="reunioes">
-          <span class="shortcut-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="2"/>
-              <path d="M16 2v4"/>
-              <path d="M8 2v4"/>
-              <path d="M3 10h18"/>
-              <circle cx="12" cy="15" r="1.5"/>
-            </svg>
-          </span>
-          <span class="shortcut-title">Reuniões</span>
-          <span class="shortcut-desc">Agendar conselhos e encontros</span>
-        </a>
-
-        <a href="#" class="shortcut" data-action="projetos">
-          <span class="shortcut-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 20h20"/>
-              <path d="M5 20V8l7-6 7 6v12"/>
-              <path d="M9 20v-6h6v6"/>
-            </svg>
-          </span>
-          <span class="shortcut-title">Projetos</span>
-          <span class="shortcut-desc">Projetos pedagógicos e interdisciplinares</span>
-        </a>
-
-        <a href="#" class="shortcut" data-action="relatorios">
-          <span class="shortcut-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <path d="M14 2v6h6"/>
-              <path d="M9 15h6"/>
-              <path d="M9 11h3"/>
-            </svg>
-          </span>
-          <span class="shortcut-title">Relatórios Pedagógicos</span>
-          <span class="shortcut-desc">Emitir pareceres e documentos</span>
-        </a>
-
-      </nav>
-
-      <footer class="panel-footer">
-        <span class="dot" aria-hidden="true"></span>
-        <p>© 2025 · Escola Estadual do Campo Frei Graciano Droessler</p>
-      </footer>
-    </div>
-  </section>
+  </main>
 
   <!-- =========================================================
        JavaScript
        ========================================================= -->
   <script>
     /* ---------- Elementos ---------- */
-    const loginScreen = document.getElementById('login-screen');
-    const panelScreen = document.getElementById('panel-screen');
-    const loginForm   = document.getElementById('login-form');
-    const errorBox    = document.getElementById('error-msg');
-    const errorText   = document.getElementById('error-text');
-    const userInput   = document.getElementById('user');
-    const passInput   = document.getElementById('pass');
-    const togglePass  = document.getElementById('toggle-pass');
-    const btnLogout   = document.getElementById('btn-logout');
-    const userNameEl  = document.getElementById('user-name');
-    const userAvatar  = document.getElementById('user-avatar');
+    const loginForm  = document.getElementById('login-form');
+    const errorBox   = document.getElementById('error-msg');
+    const errorText  = document.getElementById('error-text');
+    const userInput  = document.getElementById('user');
+    const passInput  = document.getElementById('pass');
+    const togglePass = document.getElementById('toggle-pass');
+    const remember   = document.getElementById('remember');
 
     /* ---------- Mostrar / esconder senha ---------- */
     togglePass.addEventListener('click', () => {
       const isPass = passInput.type === 'password';
       passInput.type = isPass ? 'text' : 'password';
       togglePass.setAttribute('aria-label', isPass ? 'Ocultar senha' : 'Mostrar senha');
+      togglePass.innerHTML = isPass
+        ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+             <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+             <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+             <line x1="1" y1="1" x2="23" y2="23"/>
+           </svg>`
+        : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+             <circle cx="12" cy="12" r="3"/>
+           </svg>`;
     });
 
     /* ---------- Erro ---------- */
@@ -1055,7 +562,7 @@
       errorBox.classList.remove('show');
     }
 
-    /* ---------- Login (simulado) ---------- */
+    /* ---------- Login → redireciona para 3.html ---------- */
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
       hideError();
@@ -1074,70 +581,36 @@
 
       /* 
         ⚠️ Aqui é onde você vai plugar o backend depois.
-        Por enquanto qualquer usuário + senha (>=4 chars) entra.
+        Por enquanto: qualquer usuário + senha (>=4 chars) entra.
       */
-      loginUser(user);
-    });
 
-    /* ---------- Entrar no painel ---------- */
-    function loginUser(name) {
-      const display = name
+      // Guarda o nome do usuário logado para usar no 3.html
+      const display = user
         .replace(/[._-]+/g, ' ')
         .replace(/\b\w/g, l => l.toUpperCase());
 
-      userNameEl.textContent = display || 'Pedagogo(a)';
-      userAvatar.textContent = (display || 'P').trim().charAt(0).toUpperCase();
-
-      loginScreen.classList.remove('active');
-      panelScreen.classList.add('active');
-
       sessionStorage.setItem('pedagogoLogado', display);
+
+      // Se marcou "Lembrar de mim", salva também no localStorage
+      if (remember.checked) {
+        localStorage.setItem('pedagogoLembrado', user);
+      } else {
+        localStorage.removeItem('pedagogoLembrado');
+      }
+
+      // 🔀 Redireciona para o painel do pedagogo
+      window.location.href = '3.html';
+    });
+
+    /* ---------- Preenche usuário se estava "lembrado" ---------- */
+    const lembrado = localStorage.getItem('pedagogoLembrado');
+    if (lembrado) {
+      userInput.value = lembrado;
+      remember.checked = true;
+      passInput.focus();
+    } else {
+      userInput.focus();
     }
-
-    /* ---------- Logout ---------- */
-    btnLogout.addEventListener('click', () => {
-      sessionStorage.removeItem('pedagogoLogado');
-      passInput.value = '';
-      hideError();
-      panelScreen.classList.remove('active');
-      loginScreen.classList.add('active');
-    });
-
-    /* ---------- Ações dos atalhos ---------- */
-    document.querySelectorAll('.shortcut').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const action = btn.dataset.action;
-        const labels = {
-          turmas: 'Acompanhar Turmas',
-          professores: 'Acompanhar Professores',
-          planos: 'Planos de Aula',
-          avaliacoes: 'Avaliações',
-          dificuldades: 'Alunos com Dificuldade',
-          reforco: 'Reforço Escolar',
-          frequencia: 'Frequência',
-          atendimentos: 'Atendimentos',
-          formacao: 'Formação Continuada',
-          reunioes: 'Reuniões',
-          projetos: 'Projetos',
-          relatorios: 'Relatórios Pedagógicos'
-        };
-        alert('Em breve: ' + (labels[action] || action));
-      });
-    });
-
-    /* ---------- Brilho que segue o mouse ---------- */
-    document.querySelectorAll('.shortcut').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width) * 100 + '%');
-        card.style.setProperty('--my', ((e.clientY - rect.top) / rect.height) * 100 + '%');
-      });
-    });
-
-    /* ---------- Mantém logado nessa aba ---------- */
-    const saved = sessionStorage.getItem('pedagogoLogado');
-    if (saved) loginUser(saved);
   </script>
 
 </body>
