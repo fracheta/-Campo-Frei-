@@ -290,7 +290,6 @@
       box-shadow: var(--ring);
       background: var(--white);
     }
-    .field input:focus + svg.input-icon,
     .input-wrap:focus-within svg.input-icon {
       color: var(--azul-escuro);
     }
@@ -404,7 +403,6 @@
       text-align: center;
       font-size: 0.78rem;
       color: var(--ink-soft);
-      padding-top: 4px;
       border-top: 1px solid var(--azul-bebe-100);
       padding-top: 16px;
     }
@@ -448,6 +446,16 @@
       font-size: 1.05rem;
       flex-shrink: 0;
       box-shadow: 0 8px 20px -6px rgba(21, 101, 192, 0.55);
+      position: relative;
+    }
+    .avatar::after {
+      content: "";
+      position: absolute;
+      bottom: -2px; right: -2px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 2.5px solid var(--white);
     }
 
     .panel-user-info { min-width: 0; }
@@ -640,8 +648,8 @@
     <div class="bg-grain"></div>
   </div>
 
-  <!-- Botão voltar -->
-  <a href="index.html" class="back-link" aria-label="Voltar para a tela inicial">
+  <!-- Botão voltar → 1.html -->
+  <a href="1.html" class="back-link" aria-label="Voltar para a tela inicial">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M19 12H5"/>
       <path d="M12 19l-7-7 7-7"/>
@@ -662,12 +670,12 @@
             <path d="M12 16v5"/>
             <path d="M8 21h8"/>
           </svg>
-          Área do Professor
+          Acesso Docente
         </span>
 
-        <h1 class="card-title">Bem-vindo de volta</h1>
+        <h1 class="card-title">Área do Professor</h1>
         <p class="card-subtitle">
-          Entre com suas credenciais institucionais para acessar o painel do professor.
+          Entre com suas credenciais docentes para acessar o painel do professor.
         </p>
       </header>
 
@@ -687,7 +695,7 @@
         <div class="field">
           <label for="user">Usuário ou e-mail</label>
           <div class="input-wrap">
-            <input type="text" id="user" name="user" placeholder="ex: maria.silva" autocomplete="username" required />
+            <input type="text" id="user" name="user" placeholder="ex: professor" autocomplete="username" required />
             <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
               <circle cx="12" cy="7" r="4"/>
@@ -734,7 +742,7 @@
       </form>
 
       <footer class="card-footer">
-        Acesso restrito · <strong>Frei Graciano Droessler</strong>
+        Acesso restrito ao docente · <strong>Frei Graciano Droessler</strong>
       </footer>
     </div>
   </section>
@@ -877,13 +885,22 @@
       const isPass = passInput.type === 'password';
       passInput.type = isPass ? 'text' : 'password';
       togglePass.setAttribute('aria-label', isPass ? 'Ocultar senha' : 'Mostrar senha');
+      togglePass.innerHTML = isPass
+        ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+             <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+             <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+             <line x1="1" y1="1" x2="23" y2="23"/>
+           </svg>`
+        : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+             <circle cx="12" cy="12" r="3"/>
+           </svg>`;
     });
 
     /* ---------- Erro ---------- */
     function showError(msg) {
       errorText.textContent = msg;
       errorBox.classList.add('show');
-      // reinicia animação
       errorBox.style.animation = 'none';
       void errorBox.offsetWidth;
       errorBox.style.animation = '';
@@ -918,7 +935,6 @@
 
     /* ---------- Entrar no painel ---------- */
     function loginUser(name) {
-      // formata nome bonito
       const display = name
         .replace(/[._-]+/g, ' ')
         .replace(/\b\w/g, l => l.toUpperCase());
@@ -926,11 +942,9 @@
       userNameEl.textContent = display || 'Professor(a)';
       userAvatar.textContent = (display || 'P').trim().charAt(0).toUpperCase();
 
-      // troca de tela
       loginScreen.classList.remove('active');
       panelScreen.classList.add('active');
 
-      // guarda "sessão" simples (opcional)
       sessionStorage.setItem('professorLogado', display);
     }
 
