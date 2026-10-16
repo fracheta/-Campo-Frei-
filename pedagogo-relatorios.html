@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1565c0" />
+  <title>Relatórios · Pedagogo · Frei Graciano Droessler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#fff; --white-soft:#f7fbfe;
+      --azul-bebe-50:#eaf5fb; --azul-bebe-100:#d3ecf8; --azul-bebe-200:#b8e0f5; --azul-bebe-300:#8ecbee;
+      --azul-escuro:#1565c0; --azul-escuro-2:#0d47a1;
+      --ink:#0f1e35; --ink-soft:#475569; --ink-mute:#94a3b8;
+      --verde:#22c55e; --verde-2:#15803d; --amarelo:#f59e0b; --amarelo-2:#b45309;
+      --vermelho:#dc2626; --roxo:#8b5cf6; --roxo-2:#6d28d9; --ciano:#06b6d4; --rosa:#ec4899;
+      --shadow-sm:0 1px 2px rgba(15,30,53,.06); --shadow-md:0 10px 30px -10px rgba(21,101,192,.18);
+      --shadow-lg:0 30px 60px -20px rgba(21,101,192,.25);
+      --radius:22px;
+      --font-sans:'Inter',system-ui,sans-serif;
+      --font-display:'Playfair Display',Georgia,serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { min-height:100vh;font-family:var(--font-sans);font-size:16px;color:var(--ink);background-color:var(--white-soft);padding:32px 20px 60px;overflow-x:hidden;position:relative;-webkit-font-smoothing:antialiased; }
+    .bg-layer { position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(1200px 600px at 15% 10%,#fff 0%,transparent 60%),radial-gradient(900px 500px at 85% 90%,var(--azul-bebe-50) 0%,transparent 55%),linear-gradient(160deg,#fff 0%,var(--azul-bebe-50) 55%,#eaf5fb 100%); }
+    .bg-glow { position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;pointer-events:none; }
+    .bg-glow-1 { width:480px;height:480px;top:-160px;left:-140px;background:radial-gradient(circle,var(--azul-bebe-200) 0%,transparent 70%);animation:float 14s ease-in-out infinite; }
+    .bg-glow-2 { width:560px;height:560px;bottom:-220px;right:-160px;background:radial-gradient(circle,var(--azul-bebe-100) 0%,transparent 70%);animation:float 18s ease-in-out infinite reverse; }
+    .bg-grain { position:absolute;inset:0;background-image:radial-gradient(rgba(21,101,192,.05) 1px,transparent 1px);background-size:22px 22px;mask-image:radial-gradient(circle at center,black 40%,transparent 80%);-webkit-mask-image:radial-gradient(circle at center,black 40%,transparent 80%);opacity:.6; }
+    @keyframes float { 0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(20px,-20px) scale(1.05);} }
+    .container { width:100%;max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:20px;animation:fade-in .7s cubic-bezier(.22,1,.36,1); }
+    @keyframes fade-in { from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);} }
+    .topbar { display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 22px;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:var(--radius);box-shadow:var(--shadow-md); }
+    .brand { display:flex;align-items:center;gap:14px;min-width:0; }
+    .brand-logo { width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--rosa),#be185d);color:#fff;font-family:var(--font-display);font-weight:700;font-size:1.1rem;flex-shrink:0;box-shadow:0 8px 20px -6px rgba(236,72,153,.5); }
+    .brand-info .top { font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--rosa);opacity:.85; }
+    .brand-info .main { font-size:.92rem;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .topbar-actions { display:flex;align-items:center;gap:10px; }
+    .user-chip { display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;background:var(--azul-bebe-50);border:1px solid var(--azul-bebe-100);border-radius:999px; }
+    .user-chip .avatar { width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--roxo),var(--roxo-2));color:#fff;font-size:.85rem;font-weight:700;position:relative; }
+    .user-chip .avatar::after { content:"";position:absolute;bottom:-1px;right:-1px;width:10px;height:10px;border-radius:50%;background:var(--verde);border:2px solid #fff; }
+    .user-chip .name { font-size:.85rem;font-weight:600;color:var(--ink);max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .btn-top { display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:var(--white);border:1px solid var(--azul-bebe-100);border-radius:999px;color:var(--azul-escuro);font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .3s ease;white-space:nowrap; }
+    .btn-top:hover { background:var(--azul-escuro);color:#fff;border-color:var(--azul-escuro);transform:translateX(-3px); }
+    .btn-top svg { width:15px;height:15px; }
+    .hero { padding:28px 32px;background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(252,231,243,.6));backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:var(--radius);box-shadow:var(--shadow-md);position:relative;overflow:hidden; }
+    .hero::before { content:"";position:absolute;top:-50%;right:-10%;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(236,72,153,.15),transparent 70%);pointer-events:none; }
+    .hero-content { position:relative;z-index:1; }
+    .hero .eyebrow { font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--rosa);margin-bottom:6px;display:inline-flex;align-items:center;gap:8px; }
+    .hero .eyebrow::before { content:"";width:6px;height:6px;border-radius:50%;background:var(--rosa);box-shadow:0 0 0 4px rgba(236,72,153,.2); }
+    .hero h1 { font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2rem);font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em; }
+    .hero p { font-size:.92rem;color:var(--ink-soft);max-width:560px;line-height:1.5; }
+    .relatorios-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px; }
+    .rel-card { display:flex;flex-direction:column;gap:14px;padding:22px;background:rgba(255,255,255,.95);border:1px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:var(--shadow-sm);transition:all .35s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden; }
+    .rel-card::before { content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent); }
+    .rel-card:hover { transform:translateY(-5px);box-shadow:var(--shadow-lg); }
+    .rel-card.c1 { --accent:linear-gradient(90deg,#1565c0,#0d47a1); }
+    .rel-card.c2 { --accent:linear-gradient(90deg,#22c55e,#15803d); }
+    .rel-card.c3 { --accent:linear-gradient(90deg,#8b5cf6,#6d28d9); }
+    .rel-card.c4 { --accent:linear-gradient(90deg,#f59e0b,#b45309); }
+    .rel-icon { width:52px;height:52px;border-radius:14px;display:grid;place-items:center;color:#fff;flex-shrink:0;box-shadow:0 10px 22px -8px rgba(21,101,192,.4); }
+    .rel-icon svg { width:24px;height:24px; }
+    .rel-icon.c1 { background:linear-gradient(135deg,#1565c0,#0d47a1); }
+    .rel-icon.c2 { background:linear-gradient(135deg,#22c55e,#15803d); }
+    .rel-icon.c3 { background:linear-gradient(135deg,#8b5cf6,#6d28d9); }
+    .rel-icon.c4 { background:linear-gradient(135deg,#f59e0b,#b45309); }
+    .rel-titulo { font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--ink);line-height:1.2; }
+    .rel-desc { font-size:.82rem;color:var(--ink-soft);line-height:1.5;flex:1; }
+    .rel-btn { display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;background:linear-gradient(135deg,var(--azul-escuro),var(--azul-escuro-2));color:#fff;border:none;border-radius:11px;font-family:inherit;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .25s ease;box-shadow:0 6px 14px -5px rgba(21,101,192,.5); }
+    .rel-btn:hover { transform:translateY(-2px);box-shadow:0 10px 20px -5px rgba(21,101,192,.6); }
+    .rel-btn svg { width:15px;height:15px; }
+    .footer { margin-top:12px;display:flex;align-items:center;justify-content:center;gap:10px;padding:20px 24px;background:rgba(255,255,255,.6);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:var(--shadow-sm); }
+    .footer .dot { width:6px;height:6px;border-radius:50%;background:var(--azul-escuro);opacity:.6; }
+    .footer p { font-size:.76rem;color:var(--ink-soft); }
+    @media (max-width:640px) {
+      body { padding:20px 14px 40px; }
+      .topbar { padding:14px 16px; }
+      .btn-top span { display:none; }
+      .user-chip .name { max-width:100px; }
+      .hero { padding:22px 20px; }
+      .relatorios-grid { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important;transition-duration:.01ms!important; } }
+  </style>
+</head>
+<body>
+  <div class="bg-layer" aria-hidden="true"><div class="bg-glow bg-glow-1"></div><div class="bg-glow bg-glow-2"></div><div class="bg-grain"></div></div>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">FG</div>
+        <div class="brand-info">
+          <div class="top">Área Pedagógica</div>
+          <div class="main">Frei Graciano Droessler</div>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <div class="user-chip">
+          <div class="avatar" id="user-avatar">P</div>
+          <span class="name" id="user-name">Pedagogo(a)</span>
+        </div>
+        <a href="3.html" class="btn-top" title="Voltar ao painel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+          <span>Painel</span>
+        </a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">Documentos</div>
+        <h1>Relatórios da escola</h1>
+        <p>Gere relatórios consolidados por turma, aluno ou período para apresentar à coordenação ou arquivar.</p>
+      </div>
+    </section>
+
+    <section class="relatorios-grid">
+      <div class="rel-card c1">
+        <div class="rel-icon c1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div class="rel-titulo">Relatório por turma</div>
+        <div class="rel-desc">Desempenho, frequência e situação geral de uma turma específica.</div>
+        <button class="rel-btn" data-rel="turma">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Gerar PDF
+        </button>
+      </div>
+      <div class="rel-card c2">
+        <div class="rel-icon c2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        </div>
+        <div class="rel-titulo">Relatório por aluno</div>
+        <div class="rel-desc">Boletim individual com notas, faltas, ocorrências e observações.</div>
+        <button class="rel-btn" data-rel="aluno">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Gerar PDF
+        </button>
+      </div>
+      <div class="rel-card c3">
+        <div class="rel-icon c3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        </div>
+        <div class="rel-titulo">Relatório geral da escola</div>
+        <div class="rel-desc">Visão consolidada de todas as turmas, médias e frequência geral.</div>
+        <button class="rel-btn" data-rel="geral">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Gerar PDF
+        </button>
+      </div>
+      <div class="rel-card c4">
+        <div class="rel-icon c4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        </div>
+        <div class="rel-titulo">Relatório de atenção</div>
+        <div class="rel-desc">Lista de turmas e alunos em situação de risco ou que precisam de acompanhamento.</div>
+        <button class="rel-btn" data-rel="atencao">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Gerar PDF
+        </button>
+      </div>
+    </section>
+
+    <footer class="footer"><span class="dot"></span><p>© 2025 · Escola Estadual do Campo Frei Graciano Droessler</p></footer>
+  </div>
+
+  <script>
+    const nomePedagogo = sessionStorage.getItem('pedagogoLogado');
+    if (!nomePedagogo) window.location.href = '2.html';
+    document.getElementById('user-name').textContent = nomePedagogo || 'Pedagogo';
+    document.getElementById('user-avatar').textContent = (nomePedagogo || 'P').trim().charAt(0).toUpperCase();
+
+    document.querySelectorAll('.rel-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tipo = btn.dataset.rel;
+        const mapa = {
+          turma: 'Relatório por turma',
+          aluno: 'Relatório por aluno',
+          geral: 'Relatório geral da escola',
+          atencao: 'Relatório de atenção'
+        };
+        alert(`${mapa[tipo]}\n\n(Simulação — aqui você geraria o PDF)`);
+      });
+    });
+  </script>
+</body>
+</html>
