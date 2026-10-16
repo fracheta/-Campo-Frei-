@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1565c0" />
+  <title>Professores · Pedagogo · Frei Graciano Droessler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#fff; --white-soft:#f7fbfe;
+      --azul-bebe-50:#eaf5fb; --azul-bebe-100:#d3ecf8; --azul-bebe-200:#b8e0f5; --azul-bebe-300:#8ecbee;
+      --azul-escuro:#1565c0; --azul-escuro-2:#0d47a1;
+      --ink:#0f1e35; --ink-soft:#475569; --ink-mute:#94a3b8;
+      --verde:#22c55e; --verde-2:#15803d; --amarelo:#f59e0b; --amarelo-2:#b45309;
+      --vermelho:#dc2626; --roxo:#8b5cf6; --roxo-2:#6d28d9; --ciano:#06b6d4; --rosa:#ec4899;
+      --shadow-sm:0 1px 2px rgba(15,30,53,.06); --shadow-md:0 10px 30px -10px rgba(21,101,192,.18);
+      --shadow-lg:0 30px 60px -20px rgba(21,101,192,.25);
+      --ring:0 0 0 4px rgba(184,224,245,.55);
+      --radius:22px;
+      --font-sans:'Inter',system-ui,sans-serif;
+      --font-display:'Playfair Display',Georgia,serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { min-height:100vh;font-family:var(--font-sans);font-size:16px;color:var(--ink);background-color:var(--white-soft);padding:32px 20px 60px;overflow-x:hidden;position:relative;-webkit-font-smoothing:antialiased; }
+    .bg-layer { position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(1200px 600px at 15% 10%,#fff 0%,transparent 60%),radial-gradient(900px 500px at 85% 90%,var(--azul-bebe-50) 0%,transparent 55%),linear-gradient(160deg,#fff 0%,var(--azul-bebe-50) 55%,#eaf5fb 100%); }
+    .bg-glow { position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;pointer-events:none; }
+    .bg-glow-1 { width:480px;height:480px;top:-160px;left:-140px;background:radial-gradient(circle,var(--azul-bebe-200) 0%,transparent 70%);animation:float 14s ease-in-out infinite; }
+    .bg-glow-2 { width:560px;height:560px;bottom:-220px;right:-160px;background:radial-gradient(circle,var(--azul-bebe-100) 0%,transparent 70%);animation:float 18s ease-in-out infinite reverse; }
+    .bg-grain { position:absolute;inset:0;background-image:radial-gradient(rgba(21,101,192,.05) 1px,transparent 1px);background-size:22px 22px;mask-image:radial-gradient(circle at center,black 40%,transparent 80%);-webkit-mask-image:radial-gradient(circle at center,black 40%,transparent 80%);opacity:.6; }
+    @keyframes float { 0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(20px,-20px) scale(1.05);} }
+    .container { width:100%;max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:20px;animation:fade-in .7s cubic-bezier(.22,1,.36,1); }
+    @keyframes fade-in { from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);} }
+    .topbar { display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 22px;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:var(--radius);box-shadow:var(--shadow-md); }
+    .brand { display:flex;align-items:center;gap:14px;min-width:0; }
+    .brand-logo { width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--roxo),var(--roxo-2));color:#fff;font-family:var(--font-display);font-weight:700;font-size:1.1rem;flex-shrink:0;box-shadow:0 8px 20px -6px rgba(139,92,246,.5); }
+    .brand-info .top { font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--roxo);opacity:.85; }
+    .brand-info .main { font-size:.92rem;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .topbar-actions { display:flex;align-items:center;gap:10px; }
+    .user-chip { display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;background:var(--azul-bebe-50);border:1px solid var(--azul-bebe-100);border-radius:999px; }
+    .user-chip .avatar { width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--roxo),var(--roxo-2));color:#fff;font-size:.85rem;font-weight:700;position:relative; }
+    .user-chip .avatar::after { content:"";position:absolute;bottom:-1px;right:-1px;width:10px;height:10px;border-radius:50%;background:var(--verde);border:2px solid #fff; }
+    .user-chip .name { font-size:.85rem;font-weight:600;color:var(--ink);max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .btn-top { display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:var(--white);border:1px solid var(--azul-bebe-100);border-radius:999px;color:var(--azul-escuro);font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .3s ease;white-space:nowrap; }
+    .btn-top:hover { background:var(--azul-escuro);color:#fff;border-color:var(--azul-escuro);transform:translateX(-3px); }
+    .btn-top svg { width:15px;height:15px; }
+    .hero { padding:28px 32px;background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(243,236,253,.9));backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:var(--radius);box-shadow:var(--shadow-md);position:relative;overflow:hidden; }
+    .hero::before { content:"";position:absolute;top:-50%;right:-10%;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.2),transparent 70%);pointer-events:none; }
+    .hero-content { position:relative;z-index:1; }
+    .hero .eyebrow { font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--roxo);margin-bottom:6px;display:inline-flex;align-items:center;gap:8px; }
+    .hero .eyebrow::before { content:"";width:6px;height:6px;border-radius:50%;background:var(--roxo);box-shadow:0 0 0 4px rgba(139,92,246,.2); }
+    .hero h1 { font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2rem);font-weight:700;line-height:1.15;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em; }
+    .hero p { font-size:.92rem;color:var(--ink-soft);max-width:560px;line-height:1.5; }
+    .filters { display:flex;gap:10px;flex-wrap:wrap;padding:14px;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.9);border-radius:16px;box-shadow:var(--shadow-sm);align-items:center; }
+    .search { position:relative;flex:1;min-width:220px; }
+    .search svg { position:absolute;left:14px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--ink-mute);pointer-events:none; }
+    .search input { width:100%;padding:11px 16px 11px 40px;font-family:inherit;font-size:.88rem;background:var(--white);border:1.5px solid var(--azul-bebe-100);border-radius:999px;outline:none;transition:all .25s ease; }
+    .search input:focus { border-color:var(--roxo);box-shadow:0 0 0 4px rgba(139,92,246,.2); }
+    .profs-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px; }
+    .prof-card { display:flex;flex-direction:column;gap:14px;padding:20px;background:rgba(255,255,255,.95);border:1px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:var(--shadow-sm);transition:all .35s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden; }
+    .prof-card::before { content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--roxo),var(--roxo-2)); }
+    .prof-card:hover { transform:translateY(-5px);box-shadow:var(--shadow-lg); }
+    .prof-head { display:flex;align-items:center;gap:14px; }
+    .prof-avatar { width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--roxo),var(--roxo-2));color:#fff;font-family:var(--font-display);font-size:1.2rem;font-weight:700;flex-shrink:0;box-shadow:0 10px 22px -8px rgba(139,92,246,.5); }
+    .prof-info { flex:1;min-width:0; }
+    .prof-nome { font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--ink);line-height:1.2;letter-spacing:-.01em; }
+    .prof-disc { font-size:.75rem;color:var(--roxo);font-weight:700;margin-top:3px;letter-spacing:.05em;text-transform:uppercase; }
+    .prof-details { display:flex;flex-direction:column;gap:8px;padding-top:14px;border-top:1px solid var(--azul-bebe-100); }
+    .detail-row { display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--ink-soft); }
+    .detail-row svg { width:14px;height:14px;color:var(--azul-escuro);flex-shrink:0; }
+    .detail-row strong { color:var(--ink);font-weight:600; }
+    .prof-turmas { display:flex;gap:5px;flex-wrap:wrap;margin-top:4px; }
+    .turma-tag { padding:3px 9px;border-radius:6px;background:var(--azul-bebe-50);color:var(--azul-escuro);font-size:.68rem;font-weight:700; }
+    .empty-box { grid-column:1/-1;text-align:center;padding:60px 24px;color:var(--ink-soft);background:rgba(255,255,255,.7);border:1.5px dashed var(--azul-bebe-200);border-radius:20px; }
+    .empty-box svg { width:48px;height:48px;color:var(--azul-bebe-300);margin-bottom:12px; }
+    .empty-box h3 { font-family:var(--font-display);font-size:1.15rem;color:var(--ink);margin-bottom:4px; }
+    .footer { margin-top:12px;display:flex;align-items:center;justify-content:center;gap:10px;padding:20px 24px;background:rgba(255,255,255,.6);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:var(--shadow-sm); }
+    .footer .dot { width:6px;height:6px;border-radius:50%;background:var(--azul-escuro);opacity:.6; }
+    .footer p { font-size:.76rem;color:var(--ink-soft); }
+    @media (max-width:640px) {
+      body { padding:20px 14px 40px; }
+      .topbar { padding:14px 16px; }
+      .btn-top span { display:none; }
+      .user-chip .name { max-width:100px; }
+      .hero { padding:22px 20px; }
+      .profs-grid { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important;transition-duration:.01ms!important; } }
+  </style>
+</head>
+<body>
+  <div class="bg-layer" aria-hidden="true"><div class="bg-glow bg-glow-1"></div><div class="bg-glow bg-glow-2"></div><div class="bg-grain"></div></div>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">FG</div>
+        <div class="brand-info">
+          <div class="top">Área Pedagógica</div>
+          <div class="main">Frei Graciano Droessler</div>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <div class="user-chip">
+          <div class="avatar" id="user-avatar">P</div>
+          <span class="name" id="user-name">Pedagogo(a)</span>
+        </div>
+        <a href="3.html" class="btn-top" title="Voltar ao painel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+          <span>Painel</span>
+        </a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">Ano letivo 2025</div>
+        <h1>Corpo docente</h1>
+        <p>Professores em regência, disciplinas lecionadas, turmas atribuídas e informações de contato.</p>
+      </div>
+    </section>
+
+    <section class="filters">
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" id="busca" placeholder="Buscar professor ou disciplina..." />
+      </div>
+    </section>
+
+    <section class="profs-grid" id="profs-grid"></section>
+
+    <footer class="footer"><span class="dot"></span><p>© 2025 · Escola Estadual do Campo Frei Graciano Droessler</p></footer>
+  </div>
+
+  <script>
+    const nomePedagogo = sessionStorage.getItem('pedagogoLogado');
+    if (!nomePedagogo) window.location.href = '2.html';
+    document.getElementById('user-name').textContent = nomePedagogo || 'Pedagogo';
+    document.getElementById('user-avatar').textContent = (nomePedagogo || 'P').trim().charAt(0).toUpperCase();
+
+    const professores = [
+      { nome:'Mariana Alves', disc:'Matemática', turmas:['6ºA','7ºA','8ºA','9ºA'], email:'mariana.alves@escola.edu.br', tel:'(45) 99812-4433' },
+      { nome:'Rafael Costa', disc:'Matemática', turmas:['6ºB','7ºB','8ºB','9ºB'], email:'rafael.costa@escola.edu.br', tel:'(45) 99812-4434' },
+      { nome:'Juliana Pereira', disc:'Português', turmas:['6ºA','6ºB','7ºA','7ºB'], email:'juliana.pereira@escola.edu.br', tel:'(45) 99812-4435' },
+      { nome:'André Souza', disc:'História', turmas:['8ºA','8ºB','9ºA','9ºB'], email:'andre.souza@escola.edu.br', tel:'(45) 99812-4436' },
+      { nome:'Patrícia Lima', disc:'Ciências', turmas:['6ºA','6ºB','7ºA','7ºB'], email:'patricia.lima@escola.edu.br', tel:'(45) 99812-4437' },
+      { nome:'Carlos Eduardo', disc:'Geografia', turmas:['8ºA','8ºB','9ºA','9ºB'], email:'carlos.eduardo@escola.edu.br', tel:'(45) 99812-4438' },
+      { nome:'Beatriz Nogueira', disc:'Arte', turmas:['6ºA','7ºA','8ºA','9ºA'], email:'beatriz.nogueira@escola.edu.br', tel:'(45) 99812-4439' },
+      { nome:'Fernando Rocha', disc:'Inglês', turmas:['6ºB','7ºB','8ºB','9ºB'], email:'fernando.rocha@escola.edu.br', tel:'(45) 99812-4440' }
+    ];
+
+    let buscaAtual = '';
+    const grid = document.getElementById('profs-grid');
+
+    function initials(n) { return n.split(' ').map(x => x[0]).slice(0,2).join('').toUpperCase(); }
+
+    function render() {
+      const termo = buscaAtual.toLowerCase().trim();
+      let lista = professores.filter(p => {
+        if (!termo) return true;
+        return (p.nome + ' ' + p.disc).toLowerCase().includes(termo);
+      });
+
+      if (lista.length === 0) {
+        grid.innerHTML = `<div class="empty-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <h3>Nenhum professor encontrado</h3>
+          <p>Ajuste a busca.</p>
+        </div>`;
+        return;
+      }
+
+      grid.innerHTML = lista.map(p => `
+        <div class="prof-card">
+          <div class="prof-head">
+            <div class="prof-avatar">${initials(p.nome)}</div>
+            <div class="prof-info">
+              <div class="prof-nome">${p.nome}</div>
+              <div class="prof-disc">${p.disc}</div>
+            </div>
+          </div>
+          <div class="prof-details">
+            <div class="detail-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <strong>${p.email}</strong>
+            </div>
+            <div class="detail-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <strong>${p.tel}</strong>
+            </div>
+            <div class="detail-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <strong>${p.turmas.length} turmas</strong>
+            </div>
+            <div class="prof-turmas">
+              ${p.turmas.map(t => `<span class="turma-tag">${t}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('busca').addEventListener('input', e => { buscaAtual = e.target.value; render(); });
+    render();
+  </script>
+</body>
+</html>
