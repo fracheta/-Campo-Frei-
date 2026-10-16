@@ -7,7 +7,7 @@
   <title>Ficha do Conselho de Classe · Frei Graciano Droessler</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,15 +25,22 @@
       --ink-soft: #475569;
       --ink-mute: #94a3b8;
       --verde: #22c55e;
+      --verde-2: #15803d;
       --amarelo: #f59e0b;
+      --amarelo-2: #b45309;
       --vermelho: #dc2626;
       --roxo: #8b5cf6;
       --roxo-2: #6d28d9;
+      --roxo-3: #4c1d95;
+      --ciano: #06b6d4;
+      --rosa: #ec4899;
       --shadow-sm: 0 1px 2px rgba(15, 30, 53, 0.06);
       --shadow-md: 0 10px 30px -10px rgba(21, 101, 192, 0.18);
       --shadow-lg: 0 30px 60px -20px rgba(21, 101, 192, 0.25);
-      --ring-roxo: 0 0 0 4px rgba(139, 92, 246, 0.2);
-      --radius-card: 24px;
+      --shadow-roxo: 0 20px 40px -14px rgba(139, 92, 246, 0.35);
+      --ring-roxo: 0 0 0 4px rgba(139, 92, 246, 0.15);
+      --radius: 20px;
+      --radius-lg: 28px;
       --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
       --font-display: 'Playfair Display', Georgia, serif;
     }
@@ -46,7 +53,7 @@
       font-size: 16px;
       color: var(--ink);
       background-color: var(--white-soft);
-      padding: 32px 20px 60px;
+      padding: 28px 20px 140px;
       overflow-x: hidden;
       position: relative;
       -webkit-font-smoothing: antialiased;
@@ -67,8 +74,8 @@
     @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(20px, -20px) scale(1.05); } }
 
     .container {
-      width: 100%; max-width: 980px; margin: 0 auto;
-      display: flex; flex-direction: column; gap: 20px;
+      width: 100%; max-width: 1020px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 18px;
       animation: fade-in 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
     @keyframes fade-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -80,19 +87,19 @@
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.9);
-      border-radius: var(--radius-card); box-shadow: var(--shadow-md);
+      border-radius: var(--radius); box-shadow: var(--shadow-md);
     }
     .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
     .brand-logo {
-      width: 44px; height: 44px; border-radius: 12px;
+      width: 46px; height: 46px; border-radius: 13px;
       display: grid; place-items: center;
       background: linear-gradient(135deg, var(--roxo), var(--roxo-2));
       color: var(--white); font-family: var(--font-display);
       font-weight: 700; font-size: 1.1rem; flex-shrink: 0;
-      box-shadow: 0 8px 20px -6px rgba(139, 92, 246, 0.6);
+      box-shadow: 0 10px 24px -6px rgba(139, 92, 246, 0.6);
     }
     .brand-info { min-width: 0; }
-    .brand-info .top { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--roxo); opacity: 0.9; }
+    .brand-info .top { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--roxo); opacity: 0.9; }
     .brand-info .main { font-size: 0.92rem; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .topbar-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
@@ -102,8 +109,9 @@
       font-family: inherit; font-size: 0.8rem; font-weight: 600;
       cursor: pointer; text-decoration: none; border: none;
       transition: all 0.25s ease;
+      white-space: nowrap;
     }
-    .btn svg { width: 15px; height: 15px; }
+    .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
     .btn-ghost {
       background: var(--white); color: var(--roxo);
       border: 1px solid rgba(139, 92, 246, 0.25);
@@ -116,224 +124,477 @@
     }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 26px -6px rgba(139, 92, 246, 0.7); }
     .btn-success {
-      background: linear-gradient(135deg, var(--verde), #15803d);
+      background: linear-gradient(135deg, var(--verde), var(--verde-2));
       color: var(--white);
       box-shadow: 0 8px 20px -6px rgba(34, 197, 94, 0.5);
     }
     .btn-success:hover { transform: translateY(-2px); box-shadow: 0 12px 26px -6px rgba(34, 197, 94, 0.6); }
 
-    /* ---------- FOLHA (documento) ---------- */
-    .ficha {
-      background: var(--white);
-      border-radius: 20px;
-      box-shadow: var(--shadow-lg);
-      padding: 48px 56px;
+    /* ---------- BARRA DE PROGRESSO ---------- */
+    .progress-wrap {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex; align-items: center; gap: 18px;
+      flex-wrap: wrap;
+    }
+    .progress-info { display: flex; flex-direction: column; gap: 4px; min-width: 180px; }
+    .progress-info .eyebrow {
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--roxo);
+    }
+    .progress-info .value {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 700; color: var(--ink);
+      line-height: 1;
+    }
+    .progress-info .value span { font-size: 0.95rem; color: var(--ink-soft); font-family: var(--font-sans); font-weight: 500; }
+    .progress-bar-outer {
+      flex: 1; min-width: 220px; height: 12px;
+      background: var(--azul-bebe-100);
+      border-radius: 999px; overflow: hidden;
+      position: relative;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--roxo), var(--azul-escuro));
+      border-radius: 999px;
+      transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
       position: relative;
       overflow: hidden;
     }
-    .ficha::before {
-      content: ""; position: absolute; top: 0; left: 0; right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, var(--roxo), var(--azul-escuro));
+    .progress-bar-fill::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shimmer 2s infinite;
     }
+    @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
-    /* Cabeçalho do documento */
-    .doc-header {
-      text-align: center;
-      padding-bottom: 24px;
-      border-bottom: 2px solid var(--azul-bebe-100);
-      margin-bottom: 28px;
+    .save-status {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 14px; border-radius: 999px;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.03em;
+      background: var(--azul-bebe-50);
+      color: var(--azul-escuro);
+      transition: all 0.3s ease;
+      flex-shrink: 0;
     }
-    .doc-header .escola {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+    .save-status .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--azul-escuro);
+      transition: background 0.3s ease;
+    }
+    .save-status.saving { background: #fef3c7; color: var(--amarelo-2); }
+    .save-status.saving .dot { background: var(--amarelo); animation: blink 1s infinite; }
+    .save-status.saved { background: #dcfce7; color: var(--verde-2); }
+    .save-status.saved .dot { background: var(--verde); }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* ---------- CABEÇALHO DO DOCUMENTO ---------- */
+    .doc-head {
+      padding: 32px 36px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(243,236,253,0.85));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; gap: 24px;
+    }
+    .doc-head::before {
+      content: ""; position: absolute; top: -50%; right: -10%;
+      width: 320px; height: 320px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.25), transparent 70%);
+      pointer-events: none;
+    }
+    .doc-head-icon {
+      width: 68px; height: 68px; border-radius: 18px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--roxo), var(--roxo-2));
+      color: var(--white); flex-shrink: 0;
+      box-shadow: 0 14px 30px -8px rgba(139, 92, 246, 0.7);
+      position: relative; z-index: 1;
+    }
+    .doc-head-icon svg { width: 32px; height: 32px; }
+    .doc-head-text { position: relative; z-index: 1; min-width: 0; }
+    .doc-head-text .escola {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em;
       text-transform: uppercase; color: var(--roxo);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
-    .doc-header h1 {
+    .doc-head-text h1 {
       font-family: var(--font-display);
-      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-size: clamp(1.4rem, 3vw, 1.85rem);
       font-weight: 700; color: var(--ink);
-      letter-spacing: -0.01em; margin-bottom: 6px;
+      letter-spacing: -0.01em; line-height: 1.15;
+      margin-bottom: 4px;
     }
-    .doc-header .sub {
+    .doc-head-text .sub {
       font-size: 0.85rem; color: var(--ink-soft);
     }
 
-    /* Bloco */
-    .bloco { margin-bottom: 28px; }
-    .bloco-title {
-      display: flex; align-items: center; gap: 10px;
-      font-family: var(--font-display);
-      font-size: 1.05rem; font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 14px;
-      padding-bottom: 8px;
-      border-bottom: 1.5px solid var(--azul-bebe-100);
+    /* ---------- FICHA ---------- */
+    .ficha {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 40px 44px;
+      position: relative;
     }
-    .bloco-title .num {
-      width: 26px; height: 26px; border-radius: 8px;
+
+    /* Bloco/seção */
+    .bloco {
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1.5px dashed var(--azul-bebe-100);
+    }
+    .bloco:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .bloco-title {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 20px;
+    }
+    .bloco-num {
+      width: 40px; height: 40px; border-radius: 12px;
       display: grid; place-items: center;
       background: linear-gradient(135deg, var(--roxo), var(--roxo-2));
       color: var(--white);
-      font-family: var(--font-sans);
-      font-size: 0.82rem; font-weight: 700;
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 700;
       flex-shrink: 0;
+      box-shadow: 0 8px 18px -5px rgba(139, 92, 246, 0.55);
+    }
+    .bloco-title .text { flex: 1; min-width: 0; }
+    .bloco-title .text .eyebrow {
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--roxo); opacity: 0.9;
+      margin-bottom: 2px;
+    }
+    .bloco-title .text h2 {
+      font-family: var(--font-display);
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--ink); line-height: 1.2;
+      letter-spacing: -0.01em;
     }
 
-    /* Identificação (grid de campos) */
+    /* Identificação grid */
     .ident-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px 20px;
+      gap: 16px 20px;
     }
     .ident-grid .full { grid-column: 1 / -1; }
 
     .field {
-      display: flex; flex-direction: column; gap: 6px;
+      display: flex; flex-direction: column; gap: 7px;
+      position: relative;
     }
     .field label {
-      font-size: 0.7rem; font-weight: 700;
+      font-size: 0.68rem; font-weight: 700;
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--ink-soft);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .field label .lock {
+      display: inline-flex; align-items: center; gap: 3px;
+      padding: 2px 7px; border-radius: 5px;
+      background: var(--azul-bebe-50);
+      color: var(--azul-escuro);
+      font-size: 0.58rem; letter-spacing: 0.05em;
     }
     .field input[type="text"],
     .field input[type="date"] {
-      padding: 10px 14px;
-      font-family: inherit; font-size: 0.92rem;
+      padding: 11px 14px;
+      font-family: inherit; font-size: 0.92rem; font-weight: 500;
       color: var(--ink);
-      background: var(--white);
-      border: none;
-      border-bottom: 1.5px solid var(--azul-bebe-200);
-      border-radius: 0;
+      background: var(--white-soft);
+      border: 1.5px solid var(--azul-bebe-100);
+      border-radius: 11px;
       outline: none;
-      transition: border-color 0.25s ease;
+      transition: all 0.25s ease;
     }
     .field input:focus {
-      border-bottom-color: var(--roxo);
+      border-color: var(--roxo);
+      background: var(--white);
+      box-shadow: var(--ring-roxo);
     }
-    .field input::placeholder { color: var(--ink-mute); }
+    .field input::placeholder { color: var(--ink-mute); font-weight: 400; }
 
-    /* Perguntas + textarea */
-    .pergunta {
-      margin-bottom: 16px;
-    }
+    /* Perguntas */
+    .pergunta { margin-bottom: 22px; }
+    .pergunta:last-child { margin-bottom: 0; }
+
     .pergunta .q {
       font-size: 0.88rem; font-weight: 600;
-      color: var(--ink); line-height: 1.4;
-      margin-bottom: 8px;
-      display: flex; gap: 8px;
+      color: var(--ink); line-height: 1.5;
+      margin-bottom: 10px;
+      display: flex; gap: 10px; align-items: flex-start;
     }
-    .pergunta .q::before {
-      content: "▸";
-      color: var(--roxo);
-      font-weight: 700;
-      flex-shrink: 0;
+    .pergunta .q .q-icon {
+      width: 22px; height: 22px; border-radius: 6px;
+      display: grid; place-items: center;
+      background: rgba(139, 92, 246, 0.12);
+      color: var(--roxo); flex-shrink: 0;
+      margin-top: 1px;
     }
+    .pergunta .q .q-icon svg { width: 12px; height: 12px; }
+
+    .textarea-wrap { position: relative; }
     .pergunta textarea {
       width: 100%;
-      min-height: 90px;
-      padding: 12px 14px;
-      font-family: inherit; font-size: 0.9rem; line-height: 1.55;
+      min-height: 100px;
+      padding: 14px 16px 32px;
+      font-family: inherit; font-size: 0.92rem; line-height: 1.6;
       color: var(--ink);
-      background: var(--white);
+      background: var(--white-soft);
       border: 1.5px solid var(--azul-bebe-100);
-      border-radius: 12px;
+      border-radius: 13px;
       outline: none;
       resize: vertical;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      transition: all 0.25s ease;
     }
     .pergunta textarea:focus {
       border-color: var(--roxo);
+      background: var(--white);
       box-shadow: var(--ring-roxo);
     }
     .pergunta textarea::placeholder {
       color: var(--ink-mute);
       font-style: italic;
+      font-weight: 400;
     }
 
-    /* Lista de destaques */
-    .list-box {
-      display: flex; flex-direction: column; gap: 8px;
-    }
-    .list-row {
-      display: flex; align-items: flex-start; gap: 10px;
-    }
-    .list-row .bullet {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--roxo);
-      margin-top: 14px;
-      flex-shrink: 0;
-    }
-    .list-row.danger .bullet { background: var(--vermelho); }
-    .list-row.warn .bullet { background: var(--amarelo); }
-    .list-row.ok .bullet { background: var(--verde); }
-    .list-row input {
-      flex: 1;
-      padding: 10px 14px;
-      font-family: inherit; font-size: 0.9rem;
-      color: var(--ink);
+    .char-counter {
+      position: absolute;
+      bottom: 10px; right: 14px;
+      font-size: 0.68rem; font-weight: 600;
+      color: var(--ink-mute);
+      pointer-events: none;
       background: var(--white);
-      border: none;
-      border-bottom: 1.5px solid var(--azul-bebe-200);
-      outline: none;
-      transition: border-color 0.25s ease;
+      padding: 2px 7px; border-radius: 999px;
+      border: 1px solid var(--azul-bebe-100);
     }
-    .list-row input:focus { border-bottom-color: var(--roxo); }
-    .list-row input::placeholder { color: var(--ink-mute); font-style: italic; }
+    .char-counter.over { color: var(--amarelo-2); }
 
-    /* Síntese do professor (texto grande) */
-    .sintese textarea {
-      width: 100%;
-      min-height: 140px;
-      padding: 16px;
-      font-family: var(--font-display);
-      font-size: 1rem; line-height: 1.6;
-      color: var(--ink);
-      background: linear-gradient(135deg, #faf5ff, #f3ecfd);
-      border: 1.5px solid rgba(139, 92, 246, 0.25);
-      border-radius: 14px;
-      outline: none;
-      resize: vertical;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    /* Sugestões */
+    .sugestoes {
+      display: flex; gap: 6px; flex-wrap: wrap;
+      margin-top: 10px;
     }
-    .sintese textarea:focus {
+    .sugestao {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(139, 92, 246, 0.08);
+      border: 1px solid rgba(139, 92, 246, 0.18);
+      color: var(--roxo);
+      font-family: inherit; font-size: 0.72rem; font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .sugestao::before {
+      content: "+";
+      font-weight: 800;
+      font-size: 0.85rem;
+      line-height: 1;
+    }
+    .sugestao:hover {
+      background: var(--roxo);
+      color: var(--white);
+      border-color: var(--roxo);
+      transform: translateY(-1px);
+    }
+
+    /* Lista dinâmica (destaques / dificuldades) */
+    .list-box { display: flex; flex-direction: column; gap: 8px; }
+    .list-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 6px 8px 6px 14px;
+      background: var(--white-soft);
+      border: 1.5px solid var(--azul-bebe-100);
+      border-radius: 11px;
+      transition: all 0.25s ease;
+    }
+    .list-row:focus-within {
       border-color: var(--roxo);
       box-shadow: var(--ring-roxo);
+      background: var(--white);
+    }
+    .list-row .bullet {
+      width: 9px; height: 9px; border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .list-row.ok .bullet { background: var(--verde); box-shadow: 0 0 0 3px rgba(34,197,94,0.15); }
+    .list-row.danger .bullet { background: var(--vermelho); box-shadow: 0 0 0 3px rgba(220,38,38,0.15); }
+
+    .list-row input {
+      flex: 1; min-width: 0;
+      padding: 8px 0;
+      font-family: inherit; font-size: 0.88rem;
+      color: var(--ink);
+      background: transparent;
+      border: none;
+      outline: none;
+    }
+    .list-row input::placeholder { color: var(--ink-mute); font-style: italic; }
+
+    .remove-btn {
+      width: 30px; height: 30px; border-radius: 8px;
+      display: grid; place-items: center;
+      background: transparent;
+      border: none;
+      color: var(--ink-mute);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .remove-btn:hover { background: #fee2e2; color: var(--vermelho); }
+    .remove-btn svg { width: 14px; height: 14px; }
+
+    .add-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 16px; border-radius: 999px;
+      background: transparent;
+      border: 1.5px dashed rgba(139, 92, 246, 0.4);
+      color: var(--roxo);
+      font-family: inherit; font-size: 0.78rem; font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      margin-top: 4px;
+    }
+    .add-btn:hover {
+      background: rgba(139, 92, 246, 0.08);
+      border-color: var(--roxo);
+      border-style: solid;
+    }
+    .add-btn svg { width: 14px; height: 14px; }
+
+    /* Síntese (destaque) */
+    .sintese-card {
+      padding: 22px 22px 18px;
+      background: linear-gradient(135deg, #faf5ff, #f3ecfd);
+      border: 1.5px solid rgba(139, 92, 246, 0.25);
+      border-radius: 16px;
+      position: relative;
+    }
+    .sintese-card::before {
+      content: "❝";
+      position: absolute; top: 8px; left: 16px;
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      color: rgba(139, 92, 246, 0.2);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .sintese-card textarea {
+      width: 100%;
+      min-height: 140px;
+      padding: 14px 16px 32px;
+      font-family: var(--font-display);
+      font-size: 1rem; line-height: 1.65;
+      color: var(--ink);
+      background: transparent;
+      border: none;
+      outline: none;
+      resize: vertical;
+      position: relative; z-index: 1;
+    }
+    .sintese-card textarea::placeholder { color: var(--ink-mute); font-style: italic; font-size: 0.95rem; }
+    .sintese-card .char-counter {
+      background: rgba(255,255,255,0.9);
+      position: absolute;
+      bottom: 12px; right: 18px;
     }
 
     /* Assinaturas */
     .assinaturas {
-      margin-top: 40px;
+      margin-top: 44px;
+      padding-top: 32px;
+      border-top: 2px solid var(--azul-bebe-100);
+    }
+    .assinaturas-head {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .assinaturas-head .eyebrow {
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--roxo); margin-bottom: 4px;
+    }
+    .assinaturas-head p {
+      font-size: 0.82rem; color: var(--ink-soft);
+    }
+    .assinaturas-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
+      gap: 32px;
     }
     .assinatura {
       text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 10px;
     }
+    .assinatura-icon {
+      width: 42px; height: 42px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--azul-bebe-50), var(--azul-bebe-100));
+      color: var(--roxo);
+    }
+    .assinatura-icon svg { width: 18px; height: 18px; }
     .assinatura .linha {
+      width: 100%;
       border-top: 1.5px solid var(--ink);
-      padding-top: 8px;
-      margin-top: 40px;
+      margin-top: 6px;
+    }
+    .assinatura .nome {
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--ink);
+      min-height: 18px;
     }
     .assinatura .cargo {
-      font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--ink-soft);
     }
 
-    /* Rodapé do documento */
-    .doc-footer {
-      margin-top: 36px;
-      padding-top: 20px;
-      border-top: 1.5px solid var(--azul-bebe-100);
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px;
+    /* ---------- BARRA DE AÇÕES FIXA ---------- */
+    .action-bar {
+      position: fixed;
+      bottom: 20px; left: 50%; transform: translateX(-50%);
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 999px;
+      box-shadow: 0 20px 50px -10px rgba(139, 92, 246, 0.35), var(--shadow-md);
+      display: flex; align-items: center; gap: 8px;
+      z-index: 100;
+      max-width: calc(100% - 32px);
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: slide-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+    }
+    @keyframes slide-up {
+      from { opacity: 0; transform: translate(-50%, 40px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+    .action-bar .divider {
+      width: 1px; height: 24px;
+      background: var(--azul-bebe-100);
+      margin: 0 4px;
+    }
+    .action-bar .info {
       font-size: 0.75rem; color: var(--ink-soft);
+      padding: 0 12px 0 6px;
+      display: inline-flex; align-items: center; gap: 8px;
     }
-    .doc-footer .local {
-      display: inline-flex; align-items: center; gap: 6px;
-    }
+    .action-bar .info strong { color: var(--roxo); font-weight: 700; }
 
     /* ---------- ESTADO VAZIO ---------- */
     .empty-full {
@@ -343,7 +604,7 @@
       padding: 60px 24px;
       background: rgba(255, 255, 255, 0.9);
       border: 1px solid rgba(255, 255, 255, 0.9);
-      border-radius: var(--radius-card);
+      border-radius: var(--radius);
       box-shadow: var(--shadow-md);
     }
     .empty-full svg { width: 56px; height: 56px; color: rgba(139, 92, 246, 0.4); }
@@ -352,13 +613,13 @@
 
     /* ---------- TOAST ---------- */
     .toast {
-      position: fixed; bottom: 28px; left: 50%; transform: translate(-50%, 100px);
+      position: fixed; bottom: 100px; left: 50%; transform: translate(-50%, 100px);
       padding: 14px 24px;
-      background: linear-gradient(135deg, var(--roxo), var(--roxo-2));
+      background: linear-gradient(135deg, var(--verde), var(--verde-2));
       color: var(--white);
       border-radius: 999px;
       font-size: 0.85rem; font-weight: 600;
-      box-shadow: 0 20px 40px -10px rgba(139, 92, 246, 0.6);
+      box-shadow: 0 20px 40px -10px rgba(34, 197, 94, 0.5);
       z-index: 2000;
       display: inline-flex; align-items: center; gap: 10px;
       opacity: 0;
@@ -369,14 +630,28 @@
     .toast svg { width: 18px; height: 18px; }
 
     /* ---------- RESPONSIVO ---------- */
-    @media (max-width: 640px) {
-      body { padding: 20px 12px 40px; }
-      .ficha { padding: 28px 22px; }
+    @media (max-width: 720px) {
+      body { padding: 20px 14px 180px; }
+      .ficha { padding: 26px 22px; border-radius: 22px; }
+      .doc-head { flex-direction: column; text-align: center; padding: 26px 22px; }
+      .doc-head-text { text-align: center; }
+      .bloco-title { gap: 10px; }
+      .bloco-num { width: 34px; height: 34px; font-size: 1rem; }
+      .bloco-title .text h2 { font-size: 1.05rem; }
       .ident-grid { grid-template-columns: 1fr; }
-      .assinaturas { grid-template-columns: 1fr; gap: 20px; }
-      .assinatura .linha { margin-top: 30px; }
+      .assinaturas-grid { grid-template-columns: 1fr; gap: 40px; }
+      .progress-wrap { padding: 16px; gap: 14px; }
+      .progress-info .value { font-size: 1.25rem; }
       .topbar { padding: 14px 16px; }
-      .doc-footer { justify-content: center; text-align: center; }
+      .action-bar { padding: 10px 12px; gap: 6px; }
+      .action-bar .info { display: none; }
+      .btn { font-size: 0.75rem; padding: 9px 13px; }
+    }
+    @media (max-width: 420px) {
+      .brand-info .main { display: none; }
+      .topbar-actions .btn span { display: none; }
+      .topbar-actions .btn { padding: 10px 12px; }
+      .topbar-actions .btn svg { width: 16px; height: 16px; }
     }
 
     /* ---------- PRINT ---------- */
@@ -384,34 +659,42 @@
       body {
         background: white !important;
         padding: 0;
-        font-size: 11pt;
+        font-size: 10.5pt;
       }
       .bg-layer,
       .topbar,
-      .no-print {
+      .progress-wrap,
+      .action-bar,
+      .toast,
+      .no-print,
+      .sugestoes,
+      .add-btn,
+      .remove-btn {
         display: none !important;
       }
       .container { max-width: 100%; gap: 0; }
-      .ficha {
+      .doc-head, .ficha {
         box-shadow: none;
         border-radius: 0;
-        padding: 0;
+        border: none;
+        padding: 0 0 16px;
+        background: white !important;
       }
-      .ficha::before { display: none; }
-      .bloco { page-break-inside: avoid; }
-      .assinaturas { page-break-inside: avoid; }
-      textarea, input {
+      .doc-head { flex-direction: row; padding-bottom: 20px; border-bottom: 2px solid #333; margin-bottom: 20px; }
+      .doc-head-icon { background: #8b5cf6 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .doc-head::before { display: none; }
+      .bloco { page-break-inside: avoid; border-bottom: 1px solid #ccc; padding-bottom: 16px; margin-bottom: 16px; }
+      .bloco-num { background: #8b5cf6 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .pergunta textarea, .field input, .list-row {
+        background: white !important;
         border-color: #ccc !important;
-        background: white !important;
+        box-shadow: none !important;
       }
-      .sintese textarea {
-        background: white !important;
-      }
-      .bloco-title .num {
-        background: #8b5cf6 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
+      .sintese-card { background: white !important; border-color: #ccc !important; }
+      .sintese-card::before { color: #ddd !important; }
+      .assinaturas { page-break-inside: avoid; }
+      .char-counter { display: none !important; }
+      .list-row input { border: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -433,13 +716,13 @@
 
   <div class="container">
 
-    <!-- TOPBAR (não imprime) -->
+    <!-- TOPBAR -->
     <header class="topbar no-print">
       <div class="brand">
         <div class="brand-logo">CC</div>
         <div class="brand-info">
           <div class="top">Painel Docente</div>
-          <div class="main">Ficha do Conselho de Classe</div>
+          <div class="main">Ficha do Conselho</div>
         </div>
       </div>
       <div class="topbar-actions">
@@ -448,28 +731,371 @@
             <path d="M19 12H5"/>
             <path d="M12 19l-7-7 7-7"/>
           </svg>
-          Voltar
+          <span>Voltar</span>
         </a>
-        <button class="btn btn-ghost" onclick="window.print()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 9V2h12v7"/>
-            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
-            <rect x="6" y="14" width="12" height="8"/>
-          </svg>
-          Imprimir
-        </button>
-        <button class="btn btn-success" id="btn-salvar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 6L9 17l-5-5"/>
-          </svg>
-          Salvar Ficha
-        </button>
       </div>
     </header>
 
-    <!-- CONTEÚDO (preenchido via JS) -->
-    <div id="conteudo"></div>
+    <!-- BARRA DE PROGRESSO -->
+    <div class="progress-wrap no-print" id="progress-wrap">
+      <div class="progress-info">
+        <span class="eyebrow">Preenchimento</span>
+        <span class="value"><span id="progress-num">0</span><span>%</span></span>
+      </div>
+      <div class="progress-bar-outer">
+        <div class="progress-bar-fill" id="progress-fill" style="width: 0%"></div>
+      </div>
+      <div class="save-status" id="save-status">
+        <span class="dot"></span>
+        <span id="save-status-text">Salvo automaticamente</span>
+      </div>
+    </div>
 
+    <!-- CABEÇALHO DO DOCUMENTO -->
+    <div class="doc-head" id="doc-head">
+      <div class="doc-head-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="doc-head-text">
+        <div class="escola">Escola Estadual do Campo Frei Graciano Droessler</div>
+        <h1>Ficha do Conselho de Classe</h1>
+        <div class="sub" id="doc-sub">Registro pedagógico</div>
+      </div>
+    </div>
+
+    <!-- FICHA -->
+    <article class="ficha" id="ficha-doc">
+
+      <!-- IDENTIFICAÇÃO -->
+      <section class="bloco">
+        <div class="bloco-title">
+          <div class="bloco-num">0</div>
+          <div class="text">
+            <div class="eyebrow">Seção</div>
+            <h2>Identificação</h2>
+          </div>
+        </div>
+        <div class="ident-grid">
+          <div class="field full">
+            <label for="f-professor">Professor(a)</label>
+            <input type="text" id="f-professor" placeholder="Nome completo do(a) professor(a)" />
+          </div>
+          <div class="field">
+            <label for="f-componente">Componente (Disciplina)</label>
+            <input type="text" id="f-componente" placeholder="Ex: Matemática" />
+          </div>
+          <div class="field">
+            <label for="f-turma">Turma</label>
+            <input type="text" id="f-turma" placeholder="Ex: 9º Ano A" />
+          </div>
+          <div class="field">
+            <label for="f-data">Data da reunião</label>
+            <input type="date" id="f-data" />
+          </div>
+        </div>
+      </section>
+
+      <!-- 1. PANORAMA -->
+      <section class="bloco">
+        <div class="bloco-title">
+          <div class="bloco-num">1</div>
+          <div class="text">
+            <div class="eyebrow">Seção</div>
+            <h2>Panorama da Turma</h2>
+          </div>
+        </div>
+
+        <div class="pergunta">
+          <div class="q">
+            <span class="q-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+            </span>
+            Como você avalia o desenvolvimento geral da turma em relação à aprendizagem?
+          </div>
+          <div class="textarea-wrap">
+            <textarea id="f-panoramaAprendizagem" maxlength="1200" placeholder="Descreva o panorama geral da turma neste componente: nível de aprendizagem, evolução ao longo do período, etc..."></textarea>
+            <span class="char-counter" data-for="f-panoramaAprendizagem">0 / 1200</span>
+          </div>
+          <div class="sugestoes" data-target="f-panoramaAprendizagem">
+            <button type="button" class="sugestao">A turma evoluiu de forma satisfatória</button>
+            <button type="button" class="sugestao">Alguns alunos ainda precisam consolidar</button>
+            <button type="button" class="sugestao">Aprendizagem heterogênea</button>
+          </div>
+        </div>
+
+        <div class="pergunta">
+          <div class="q">
+            <span class="q-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+              </svg>
+            </span>
+            Como está a participação, o envolvimento e a postura dos estudantes nas aulas?
+          </div>
+          <div class="textarea-wrap">
+            <textarea id="f-panoramaParticipacao" maxlength="1200" placeholder="Fale sobre engajamento, comportamento, entrega de atividades, postura em sala..."></textarea>
+            <span class="char-counter" data-for="f-panoramaParticipacao">0 / 1200</span>
+          </div>
+          <div class="sugestoes" data-target="f-panoramaParticipacao">
+            <button type="button" class="sugestao">Turma participativa e comprometida</button>
+            <button type="button" class="sugestao">Participação irregular</button>
+            <button type="button" class="sugestao">Boa postura em sala</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. APRENDIZAGEM E FREQUÊNCIA -->
+      <section class="bloco">
+        <div class="bloco-title">
+          <div class="bloco-num">2</div>
+          <div class="text">
+            <div class="eyebrow">Seção</div>
+            <h2>Aprendizagem e Frequência</h2>
+          </div>
+        </div>
+
+        <div class="pergunta">
+          <div class="q">
+            <span class="q-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+            </span>
+            Quais habilidades/conteúdos apresentam maior dificuldade para a turma?
+          </div>
+          <div class="textarea-wrap">
+            <textarea id="f-dificuldades" maxlength="1200" placeholder="Liste os conteúdos ou habilidades em que a turma encontra maior dificuldade..."></textarea>
+            <span class="char-counter" data-for="f-dificuldades">0 / 1200</span>
+          </div>
+          <div class="sugestoes" data-target="f-dificuldades">
+            <button type="button" class="sugestao">Interpretação de problemas</button>
+            <button type="button" class="sugestao">Operações básicas</button>
+            <button type="button" class="sugestao">Leitura e escrita</button>
+          </div>
+        </div>
+
+        <div class="pergunta">
+          <div class="q">
+            <span class="q-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                <path d="M16 2v4M8 2v4M3 10h18"/>
+              </svg>
+            </span>
+            Há estudantes com baixa frequência ou que necessitam de acompanhamento mais próximo? Quais e por quê?
+          </div>
+          <div class="textarea-wrap">
+            <textarea id="f-baixaFrequencia" maxlength="1200" placeholder="Cite nomes e motive a necessidade de acompanhamento individual..."></textarea>
+            <span class="char-counter" data-for="f-baixaFrequencia">0 / 1200</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. DESTAQUES -->
+      <section class="bloco">
+        <div class="bloco-title">
+          <div class="bloco-num">3</div>
+          <div class="text">
+            <div class="eyebrow">Seção</div>
+            <h2>Destaques e Situações que Merecem Atenção</h2>
+          </div>
+        </div>
+
+        <div class="pergunta">
+          <div class="q">
+            <span class="q-icon" style="background: rgba(34,197,94,0.15); color: var(--verde-2);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/>
+              </svg>
+            </span>
+            Estudantes que se destacaram positivamente (aprendizagem, participação, responsabilidade ou protagonismo).
+          </div>
+          <div class="list-box" id="lista-positivos"></div>
+          <button type="button" class="add-btn no-print" onclick="addItem('positivo')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+            Adicionar destaque positivo
+          </button>
+        </div>
+
+        <div class="pergunta" style="margin-top: 28px;">
+          <div class="q">
+            <span class="q-icon" style="background: rgba(220,38,38,0.12); color: var(--vermelho);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <path d="M12 9v4M12 17h.01"/>
+              </svg>
+            </span>
+            Estudantes com dificuldades: alunos que apresentam dificuldades significativas ou que necessitam de intervenção/encaminhamento.
+          </div>
+          <div class="list-box" id="lista-dificuldades"></div>
+          <button type="button" class="add-btn no-print" onclick="addItem('dificuldade')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+            Adicionar estudante com dificuldade
+          </button>
+        </div>
+      </section>
+
+      <!-- 4. ENCAMINHAMENTOS -->
+      <section class="bloco">
+        <div class="bloco-title">
+          <div class="bloco-num">4</div>
+          <div class="text">
+            <div class="eyebrow">Seção</div>
+            <h2>Encaminhamentos</h2>
+          </div>
+        </div>
+
+        <div class="pergunta">
+          <div class="q">
+            <span class="q-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 11l3 3L22 4"/>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+              </svg>
+            </span>
+            Quais estratégias já foram realizadas e quais ações você sugere para o próximo período?
+          </div>
+          <div class="textarea-wrap">
+            <textarea id="f-estrategias" maxlength="1200" placeholder="Descreva o que já foi feito (recuperação, reforço, atividades diferenciadas) e o que pretende fazer..."></textarea>
+            <span class="char-counter" data-for="f-estrategias">0 / 1200</span>
+          </div>
+        </div>
+
+        <div class="pergunta">
+          <div class="q">
+            <span class="q-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 16v-4M12 8h.01"/>
+              </svg>
+            </span>
+            Há alguma observação importante que deve ser registrada no Pré-Conselho?
+          </div>
+          <div class="textarea-wrap">
+            <textarea id="f-observacoesPreConselho" maxlength="1200" placeholder="Registre aqui qualquer ponto que deva ser levado à discussão prévia..."></textarea>
+            <span class="char-counter" data-for="f-observacoesPreConselho">0 / 1200</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. SÍNTESE -->
+      <section class="bloco">
+        <div class="bloco-title">
+          <div class="bloco-num">5</div>
+          <div class="text">
+            <div class="eyebrow">Seção</div>
+            <h2>Síntese do Professor</h2>
+          </div>
+        </div>
+
+        <div class="pergunta">
+          <div class="q">
+            <span class="q-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"/>
+                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/>
+              </svg>
+            </span>
+            Deixe aqui uma observação geral sobre a turma e/ou sobre algum estudante que considere relevante para o Conselho de Classe.
+          </div>
+          <div class="sintese-card">
+            <textarea id="f-sintese" maxlength="1500" placeholder="Síntese final que ficará registrada no Conselho de Classe..."></textarea>
+            <span class="char-counter" data-for="f-sintese">0 / 1500</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ASSINATURAS -->
+      <section class="assinaturas">
+        <div class="assinaturas-head">
+          <div class="eyebrow">Validação</div>
+          <p>Assinaturas dos responsáveis pelo Conselho de Classe</p>
+        </div>
+        <div class="assinaturas-grid">
+          <div class="assinatura">
+            <div class="assinatura-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <div class="nome" id="sig-professor">&nbsp;</div>
+            <div class="linha"></div>
+            <div class="cargo">Professor(a)</div>
+          </div>
+          <div class="assinatura">
+            <div class="assinatura-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+            </div>
+            <div class="nome">&nbsp;</div>
+            <div class="linha"></div>
+            <div class="cargo">Pedagoga(o)</div>
+          </div>
+          <div class="assinatura">
+            <div class="assinatura-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18"/>
+                <path d="M5 21V7l8-4v18"/>
+                <path d="M19 21V11l-6-4"/>
+              </svg>
+            </div>
+            <div class="nome">&nbsp;</div>
+            <div class="linha"></div>
+            <div class="cargo">Diretora(or)</div>
+          </div>
+        </div>
+      </section>
+
+    </article>
+
+  </div>
+
+  <!-- BARRA FIXA DE AÇÕES -->
+  <div class="action-bar no-print">
+    <span class="info">
+      <strong id="info-progresso">0%</strong> concluído
+    </span>
+    <button class="btn btn-ghost" onclick="window.print()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9V2h12v7"/>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+        <rect x="6" y="14" width="12" height="8"/>
+      </svg>
+      Imprimir
+    </button>
+    <button class="btn btn-ghost" id="btn-limpar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 6h18"/>
+        <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+        <path d="M10 11v6M14 11v6"/>
+      </svg>
+      Limpar
+    </button>
+    <span class="divider"></span>
+    <button class="btn btn-success" id="btn-salvar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6L9 17l-5-5"/>
+      </svg>
+      Salvar Ficha
+    </button>
   </div>
 
   <!-- TOAST -->
@@ -488,7 +1114,7 @@
     if (!nomeProfessor) window.location.href = 'professor.html';
 
     /* =========================================================
-       LÊ A TURMA DO localStorage (?turma=)
+       CARREGA TURMA (?turma=) E FICHA SALVA
        ========================================================= */
     const STORAGE_TURMAS = 'turmasProfessor';
     const STORAGE_FICHAS = 'fichasConselho';
@@ -500,24 +1126,19 @@
     try {
       const lista = JSON.parse(localStorage.getItem(STORAGE_TURMAS) || '[]');
       turmaAtual = lista.find(t => t.id === turmaId) || null;
-    } catch (e) {
-      console.error('Erro ao ler turmas:', e);
-    }
+    } catch (e) { console.error(e); }
 
-    const conteudo = document.getElementById('conteudo');
+    // Botão voltar
     const btnVoltar = document.getElementById('btn-voltar');
-
-    // Se veio sem turma, ainda assim mostra a ficha (em branco)
     if (turmaAtual) {
       btnVoltar.href = `turma-detalhes.html?id=${encodeURIComponent(turmaAtual.id)}`;
       document.title = `Ficha do Conselho · ${turmaAtual.nome} · Frei Graciano Droessler`;
+      document.getElementById('doc-sub').textContent =
+        `Registro pedagógico · ${new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}`;
     } else {
       btnVoltar.href = 'turmas.html';
     }
 
-    /* =========================================================
-       CARREGA FICHA SALVA (se existir)
-       ========================================================= */
     let fichaSalva = {};
     try {
       const all = JSON.parse(localStorage.getItem(STORAGE_FICHAS) || '{}');
@@ -525,246 +1146,98 @@
     } catch (e) { console.error(e); }
 
     /* =========================================================
-       DADOS INICIAIS
+       ESTADO INICIAL
        ========================================================= */
-    const dadosIniciais = {
-      professor: nomeProfessor || '',
-      componente: turmaAtual ? turmaAtual.disciplina : '',
-      turma: turmaAtual ? turmaAtual.nome : '',
-      data: new Date().toISOString().slice(0, 10),
+    const dados = {
+      professor: fichaSalva.professor || nomeProfessor || '',
+      componente: fichaSalva.componente || (turmaAtual ? turmaAtual.disciplina : ''),
+      turma: fichaSalva.turma || (turmaAtual ? turmaAtual.nome : ''),
+      data: fichaSalva.data || new Date().toISOString().slice(0, 10),
 
-      // 1. Panorama
-      panoramaAprendizagem: '',
-      panoramaParticipacao: '',
-
-      // 2. Aprendizagem e Frequência
-      dificuldades: '',
-      baixaFrequencia: '',
-
-      // 3. Destaques
-      destaquesPositivos: '',
-      destaquesDificuldades: '',
-
-      // 4. Encaminhamentos
-      estrategias: '',
-      observacoesPreConselho: '',
-
-      // 5. Síntese
-      sintese: ''
+      panoramaAprendizagem: fichaSalva.panoramaAprendizagem || '',
+      panoramaParticipacao: fichaSalva.panoramaParticipacao || '',
+      dificuldades: fichaSalva.dificuldades || '',
+      baixaFrequencia: fichaSalva.baixaFrequencia || '',
+      destaquesPositivos: fichaSalva.destaquesPositivos || [],
+      destaquesDificuldades: fichaSalva.destaquesDificuldades || [],
+      estrategias: fichaSalva.estrategias || '',
+      observacoesPreConselho: fichaSalva.observacoesPreConselho || '',
+      sintese: fichaSalva.sintese || ''
     };
 
-    // Mescla com o que já foi salvo
-    const dados = { ...dadosIniciais, ...fichaSalva };
+    /* =========================================================
+       PREENCHER CAMPOS DE TEXTO
+       ========================================================= */
+    const camposTexto = [
+      'professor', 'componente', 'turma', 'data',
+      'panoramaAprendizagem', 'panoramaParticipacao',
+      'dificuldades', 'baixaFrequencia',
+      'estrategias', 'observacoesPreConselho',
+      'sintese'
+    ];
+
+    camposTexto.forEach(k => {
+      const el = document.getElementById('f-' + k);
+      if (el) el.value = dados[k] || '';
+    });
+
+    // Atualiza assinatura do professor
+    if (dados.professor) {
+      document.getElementById('sig-professor').textContent = dados.professor;
+    }
 
     /* =========================================================
-       RENDER DA FICHA
+       LISTAS DINÂMICAS
        ========================================================= */
-    function renderFicha() {
-      const hoje = new Date();
-      const dataFmt = hoje.toLocaleDateString('pt-BR', {
-        day: '2-digit', month: 'long', year: 'numeric'
-      });
-
-      conteudo.innerHTML = `
-        <article class="ficha" id="ficha-doc">
-
-          <!-- CABEÇALHO DO DOCUMENTO -->
-          <div class="doc-header">
-            <div class="escola">Escola Estadual do Campo Frei Graciano Droessler</div>
-            <h1>Ficha do Conselho de Classe</h1>
-            <div class="sub">Registro pedagógico · ${dataFmt}</div>
-          </div>
-
-          <!-- IDENTIFICAÇÃO -->
-          <section class="bloco">
-            <div class="bloco-title">
-              <span class="num">0</span>
-              Identificação
-            </div>
-            <div class="ident-grid">
-              <div class="field full">
-                <label for="f-professor">Professor(a)</label>
-                <input type="text" id="f-professor" value="${escapeAttr(dados.professor)}" placeholder="Nome do(a) professor(a)" />
-              </div>
-              <div class="field">
-                <label for="f-componente">Componente (Disciplina)</label>
-                <input type="text" id="f-componente" value="${escapeAttr(dados.componente)}" placeholder="Ex: Matemática" />
-              </div>
-              <div class="field">
-                <label for="f-turma">Turma</label>
-                <input type="text" id="f-turma" value="${escapeAttr(dados.turma)}" placeholder="Ex: 9º Ano A" />
-              </div>
-              <div class="field">
-                <label for="f-data">Data</label>
-                <input type="date" id="f-data" value="${escapeAttr(dados.data)}" />
-              </div>
-            </div>
-          </section>
-
-          <!-- 1. PANORAMA -->
-          <section class="bloco">
-            <div class="bloco-title">
-              <span class="num">1</span>
-              Panorama da Turma
-            </div>
-
-            <div class="pergunta">
-              <div class="q">Como você avalia o desenvolvimento geral da turma em relação à aprendizagem?</div>
-              <textarea id="f-panoramaAprendizagem" placeholder="Descreva o panorama geral da turma neste componente...">${escapeHtml(dados.panoramaAprendizagem)}</textarea>
-            </div>
-
-            <div class="pergunta">
-              <div class="q">Como está a participação, o envolvimento e a postura dos estudantes nas aulas?</div>
-              <textarea id="f-panoramaParticipacao" placeholder="Fale sobre engajamento, comportamento, frequência às aulas...">${escapeHtml(dados.panoramaParticipacao)}</textarea>
-            </div>
-          </section>
-
-          <!-- 2. APRENDIZAGEM E FREQUÊNCIA -->
-          <section class="bloco">
-            <div class="bloco-title">
-              <span class="num">2</span>
-              Aprendizagem e Frequência
-            </div>
-
-            <div class="pergunta">
-              <div class="q">Quais habilidades/conteúdos apresentam maior dificuldade para a turma?</div>
-              <textarea id="f-dificuldades" placeholder="Liste os conteúdos ou habilidades em que a turma encontra maior dificuldade...">${escapeHtml(dados.dificuldades)}</textarea>
-            </div>
-
-            <div class="pergunta">
-              <div class="q">Há estudantes com baixa frequência ou que necessitam de acompanhamento mais próximo? Quais e por quê?</div>
-              <textarea id="f-baixaFrequencia" placeholder="Cite nomes e motive a necessidade de acompanhamento...">${escapeHtml(dados.baixaFrequencia)}</textarea>
-            </div>
-          </section>
-
-          <!-- 3. DESTAQUES -->
-          <section class="bloco">
-            <div class="bloco-title">
-              <span class="num">3</span>
-              Destaques e Situações que Merecem Atenção
-            </div>
-
-            <div class="pergunta">
-              <div class="q">Estudantes que se destacaram positivamente (aprendizagem, participação, responsabilidade ou protagonismo).</div>
-              <div class="list-box" id="lista-positivos">
-                ${renderListaItens('positivo', 'Nome do estudante + motivo do destaque')}
-              </div>
-              <button type="button" class="btn btn-ghost no-print" style="margin-top:10px" onclick="addItem('positivo')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 5v14M5 12h14"/>
-                </svg>
-                Adicionar destaque
-              </button>
-            </div>
-
-            <div class="pergunta" style="margin-top:24px">
-              <div class="q">Estudantes com dificuldades: alunos que apresentam dificuldades significativas ou que necessitam de intervenção/encaminhamento.</div>
-              <div class="list-box" id="lista-dificuldades">
-                ${renderListaItens('dificuldade', 'Nome do estudante + dificuldade/intervenção sugerida')}
-              </div>
-              <button type="button" class="btn btn-ghost no-print" style="margin-top:10px" onclick="addItem('dificuldade')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 5v14M5 12h14"/>
-                </svg>
-                Adicionar estudante
-              </button>
-            </div>
-          </section>
-
-          <!-- 4. ENCAMINHAMENTOS -->
-          <section class="bloco">
-            <div class="bloco-title">
-              <span class="num">4</span>
-              Encaminhamentos
-            </div>
-
-            <div class="pergunta">
-              <div class="q">Quais estratégias já foram realizadas e quais ações você sugere para o próximo período?</div>
-              <textarea id="f-estrategias" placeholder="Descreva o que já foi feito e o que pretende fazer...">${escapeHtml(dados.estrategias)}</textarea>
-            </div>
-
-            <div class="pergunta">
-              <div class="q">Há alguma observação importante que deve ser registrada no Pré-Conselho?</div>
-              <textarea id="f-observacoesPreConselho" placeholder="Registre aqui qualquer ponto que deva ser levado à discussão prévia...">${escapeHtml(dados.observacoesPreConselho)}</textarea>
-            </div>
-          </section>
-
-          <!-- 5. SÍNTESE -->
-          <section class="bloco">
-            <div class="bloco-title">
-              <span class="num">5</span>
-              Síntese do Professor
-            </div>
-
-            <div class="pergunta sintese">
-              <div class="q">Deixe aqui uma observação geral sobre a turma e/ou sobre algum estudante que considere relevante para o Conselho de Classe.</div>
-              <textarea id="f-sintese" placeholder="Síntese final para o Conselho de Classe...">${escapeHtml(dados.sintese)}</textarea>
-            </div>
-          </section>
-
-          <!-- ASSINATURAS -->
-          <section class="assinaturas">
-            <div class="assinatura">
-              <div class="linha"></div>
-              <div class="cargo">Professor(a)</div>
-            </div>
-            <div class="assinatura">
-              <div class="linha"></div>
-              <div class="cargo">Pedagoga(o)</div>
-            </div>
-            <div class="assinatura">
-              <div class="linha"></div>
-              <div class="cargo">Diretora(or)</div>
-            </div>
-          </section>
-
-          <!-- RODAPÉ DO DOCUMENTO -->
-          <footer class="doc-footer">
-            <div class="local">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
-              <span>Frei Graciano Droessler · ${dataFmt}</span>
-            </div>
-            <div>Documento gerado eletronicamente no Painel Docente</div>
-          </footer>
-
-        </article>
-      `;
-
-      // Carrega itens das listas salvas (ou inicia com 1 em branco)
-      carregarLista('positivo', dados.destaquesPositivos);
-      carregarLista('dificuldade', dados.destaquesDificuldades);
-
-      // Bind dos campos para salvar automaticamente
-      bindCampos();
-    }
-
-    /* ---------- Helpers ---------- */
-    function escapeHtml(s) {
-      return String(s || '').replace(/[&<>"']/g, c => ({
-        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-      }[c]));
-    }
-    function escapeAttr(s) { return escapeHtml(s).replace(/"/g, '&quot;'); }
-
-    function renderListaItens(tipo, placeholder) {
-      const cls = tipo === 'positivo' ? 'ok' : 'danger';
-      return `
-        <div class="list-row ${cls}" data-tipo="${tipo}">
-          <span class="bullet"></span>
-          <input type="text" placeholder="${placeholder}" />
-        </div>
-      `;
-    }
-
-    function addItem(tipo) {
-      const lista = document.getElementById(tipo === 'positivo' ? 'lista-positivos' : 'lista-dificuldades');
+    function renderLista(tipo, valores) {
+      const container = document.getElementById(tipo === 'positivo' ? 'lista-positivos' : 'lista-dificuldades');
       const cls = tipo === 'positivo' ? 'ok' : 'danger';
       const placeholder = tipo === 'positivo'
         ? 'Nome do estudante + motivo do destaque'
-        : 'Nome do estudante + dificuldade/intervenção sugerida';
+        : 'Nome do estudante + dificuldade ou intervenção sugerida';
+
+      const lista = Array.isArray(valores) && valores.length > 0 ? valores : [''];
+
+      container.innerHTML = lista.map(v => `
+        <div class="list-row ${cls}" data-tipo="${tipo}">
+          <span class="bullet"></span>
+          <input type="text" placeholder="${placeholder}" value="${escapeAttr(v)}" />
+          <button type="button" class="remove-btn no-print" title="Remover">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      `).join('');
+
+      container.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const row = btn.closest('.list-row');
+          const box = row.parentElement;
+          if (box.querySelectorAll('.list-row').length > 1) {
+            row.remove();
+          } else {
+            row.querySelector('input').value = '';
+          }
+          agendarSave();
+          atualizarProgresso();
+        });
+      });
+
+      container.querySelectorAll('input').forEach(inp => {
+        inp.addEventListener('input', () => {
+          agendarSave();
+          atualizarProgresso();
+        });
+      });
+    }
+
+    window.addItem = function(tipo) {
+      const container = document.getElementById(tipo === 'positivo' ? 'lista-positivos' : 'lista-dificuldades');
+      const cls = tipo === 'positivo' ? 'ok' : 'danger';
+      const placeholder = tipo === 'positivo'
+        ? 'Nome do estudante + motivo do destaque'
+        : 'Nome do estudante + dificuldade ou intervenção sugerida';
 
       const div = document.createElement('div');
       div.className = `list-row ${cls}`;
@@ -772,26 +1245,43 @@
       div.innerHTML = `
         <span class="bullet"></span>
         <input type="text" placeholder="${placeholder}" />
+        <button type="button" class="remove-btn no-print" title="Remover">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
       `;
-      lista.appendChild(div);
+      container.appendChild(div);
+
+      div.querySelector('input').addEventListener('input', () => {
+        agendarSave();
+        atualizarProgresso();
+      });
+      div.querySelector('.remove-btn').addEventListener('click', () => {
+        const box = div.parentElement;
+        if (box.querySelectorAll('.list-row').length > 1) {
+          div.remove();
+        } else {
+          div.querySelector('input').value = '';
+        }
+        agendarSave();
+        atualizarProgresso();
+      });
+
       div.querySelector('input').focus();
-    }
+      atualizarProgresso();
+    };
 
-    function carregarLista(tipo, valores) {
-      const container = document.getElementById(tipo === 'positivo' ? 'lista-positivos' : 'lista-dificuldades');
-      const lista = Array.isArray(valores) && valores.length > 0 ? valores : [''];
+    renderLista('positivo', dados.destaquesPositivos);
+    renderLista('dificuldade', dados.destaquesDificuldades);
 
-      const cls = tipo === 'positivo' ? 'ok' : 'danger';
-      const placeholder = tipo === 'positivo'
-        ? 'Nome do estudante + motivo do destaque'
-        : 'Nome do estudante + dificuldade/intervenção sugerida';
-
-      container.innerHTML = lista.map(v => `
-        <div class="list-row ${cls}" data-tipo="${tipo}">
-          <span class="bullet"></span>
-          <input type="text" placeholder="${placeholder}" value="${escapeAttr(v)}" />
-        </div>
-      `).join('');
+    /* =========================================================
+       HELPERS
+       ========================================================= */
+    function escapeAttr(s) {
+      return String(s || '').replace(/[&<>"']/g, c => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[c]));
     }
 
     function coletarLista(tipo) {
@@ -802,32 +1292,73 @@
     }
 
     /* =========================================================
-       AUTO-SAVE (campos)
+       CONTADORES DE CARACTERES
        ========================================================= */
+    document.querySelectorAll('textarea[maxlength]').forEach(ta => {
+      const counter = document.querySelector(`.char-counter[data-for="${ta.id}"]`);
+      if (!counter) return;
+      const max = parseInt(ta.getAttribute('maxlength'), 10);
+
+      function update() {
+        const len = ta.value.length;
+        counter.textContent = `${len} / ${max}`;
+        counter.classList.toggle('over', len > max * 0.9);
+      }
+      ta.addEventListener('input', update);
+      update();
+    });
+
+    /* =========================================================
+       SUGESTÕES
+       ========================================================= */
+    document.querySelectorAll('.sugestao').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.closest('.sugestoes').dataset.target;
+        const ta = document.getElementById(targetId);
+        if (!ta) return;
+
+        const texto = btn.textContent.trim();
+        const atual = ta.value.trim();
+        ta.value = atual ? `${atual} ${texto}.` : `${texto}.`;
+
+        ta.dispatchEvent(new Event('input'));
+        ta.focus();
+      });
+    });
+
+    /* =========================================================
+       AUTO-SAVE
+       ========================================================= */
+    const saveStatus = document.getElementById('save-status');
+    const saveStatusText = document.getElementById('save-status-text');
     let saveTimeout = null;
+
     function agendarSave() {
+      saveStatus.classList.remove('saved');
+      saveStatus.classList.add('saving');
+      saveStatusText.textContent = 'Salvando...';
+
       clearTimeout(saveTimeout);
-      saveTimeout = setTimeout(() => salvarFicha(false), 1200);
+      saveTimeout = setTimeout(() => {
+        salvarFicha(false);
+        saveStatus.classList.remove('saving');
+        saveStatus.classList.add('saved');
+        saveStatusText.textContent = 'Salvo automaticamente';
+      }, 1200);
     }
 
-    function bindCampos() {
-      const campos = [
-        'f-professor', 'f-componente', 'f-turma', 'f-data',
-        'f-panoramaAprendizagem', 'f-panoramaParticipacao',
-        'f-dificuldades', 'f-baixaFrequencia',
-        'f-estrategias', 'f-observacoesPreConselho',
-        'f-sintese'
-      ];
-      campos.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.addEventListener('input', agendarSave);
+    // Bind em todos os campos de texto
+    camposTexto.forEach(k => {
+      const el = document.getElementById('f-' + k);
+      if (!el) return;
+      el.addEventListener('input', () => {
+        agendarSave();
+        atualizarProgresso();
+        if (k === 'professor') {
+          document.getElementById('sig-professor').textContent = el.value.trim() || '\u00A0';
+        }
       });
-
-      // Inputs das listas
-      document.querySelectorAll('.list-row input').forEach(inp => {
-        inp.addEventListener('input', agendarSave);
-      });
-    }
+    });
 
     /* =========================================================
        SALVAR
@@ -841,18 +1372,13 @@
 
         panoramaAprendizagem: document.getElementById('f-panoramaAprendizagem').value,
         panoramaParticipacao: document.getElementById('f-panoramaParticipacao').value,
-
         dificuldades: document.getElementById('f-dificuldades').value,
         baixaFrequencia: document.getElementById('f-baixaFrequencia').value,
-
         destaquesPositivos: coletarLista('positivo'),
         destaquesDificuldades: coletarLista('dificuldade'),
-
         estrategias: document.getElementById('f-estrategias').value,
         observacoesPreConselho: document.getElementById('f-observacoesPreConselho').value,
-
         sintese: document.getElementById('f-sintese').value,
-
         atualizadoEm: new Date().toISOString()
       };
 
@@ -868,6 +1394,77 @@
       }
     }
 
+    document.getElementById('btn-salvar').addEventListener('click', () => {
+      salvarFicha(true);
+      saveStatus.classList.remove('saving');
+      saveStatus.classList.add('saved');
+      saveStatusText.textContent = 'Salvo';
+    });
+
+    /* =========================================================
+       LIMPAR
+       ========================================================= */
+    document.getElementById('btn-limpar').addEventListener('click', () => {
+      if (!confirm('Limpar todos os campos desta ficha?\n\nEssa ação não pode ser desfeita.')) return;
+
+      camposTexto.forEach(k => {
+        const el = document.getElementById('f-' + k);
+        if (!el) return;
+        if (k === 'professor' || k === 'componente' || k === 'turma' || k === 'data') return;
+        el.value = '';
+        el.dispatchEvent(new Event('input'));
+      });
+
+      renderLista('positivo', ['']);
+      renderLista('dificuldade', ['']);
+
+      try {
+        const all = JSON.parse(localStorage.getItem(STORAGE_FICHAS) || '{}');
+        const chave = turmaId || 'sem-turma';
+        delete all[chave];
+        localStorage.setItem(STORAGE_FICHAS, JSON.stringify(all));
+      } catch (e) { console.error(e); }
+
+      atualizarProgresso();
+      mostrarToast('Ficha limpa');
+    });
+
+    /* =========================================================
+       PROGRESSO
+       ========================================================= */
+    const CAMPOS_PROGRESSO = [
+      'f-professor', 'f-componente', 'f-turma', 'f-data',
+      'f-panoramaAprendizagem', 'f-panoramaParticipacao',
+      'f-dificuldades', 'f-baixaFrequencia',
+      'f-estrategias', 'f-observacoesPreConselho',
+      'f-sintese'
+    ];
+
+    function atualizarProgresso() {
+      let preenchidos = 0;
+      let total = CAMPOS_PROGRESSO.length;
+
+      CAMPOS_PROGRESSO.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.value && el.value.trim().length > 0) preenchidos++;
+      });
+
+      // Listas contam como 1 cada (se tiverem pelo menos 1 item preenchido)
+      const temPositivo = coletarLista('positivo').length > 0;
+      const temDificuldade = coletarLista('dificuldade').length > 0;
+      total += 2;
+      if (temPositivo) preenchidos++;
+      if (temDificuldade) preenchidos++;
+
+      const pct = Math.round((preenchidos / total) * 100);
+
+      document.getElementById('progress-num').textContent = pct;
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('info-progresso').textContent = pct + '%';
+    }
+
+    atualizarProgresso();
+
     /* =========================================================
        TOAST
        ========================================================= */
@@ -878,14 +1475,18 @@
       toastText.textContent = msg;
       toastEl.classList.add('show');
       clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(() => toastEl.classList.remove('show'), 2600);
+      toastTimeout = setTimeout(() => toastEl.classList.remove('show'), 2400);
     }
 
     /* =========================================================
-       INICIALIZA
+       ATALHO: Ctrl+S salva
        ========================================================= */
-    renderFicha();
-    document.getElementById('btn-salvar').addEventListener('click', () => salvarFicha(true));
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        salvarFicha(true);
+      }
+    });
   </script>
 
 </body>
