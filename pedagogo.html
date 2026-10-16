@@ -7,7 +7,7 @@
   <title>Painel do Pedagogo · Frei Graciano Droessler</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,6 +36,7 @@
       --shadow-sm: 0 1px 2px rgba(15, 30, 53, 0.06);
       --shadow-md: 0 10px 30px -10px rgba(21, 101, 192, 0.18);
       --shadow-lg: 0 30px 60px -20px rgba(21, 101, 192, 0.25);
+      --shadow-xl: 0 40px 80px -24px rgba(15, 30, 53, 0.2);
       --ring: 0 0 0 4px rgba(184, 224, 245, 0.55);
       --radius-card: 24px;
       --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -67,11 +68,12 @@
     .bg-glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.55; pointer-events: none; }
     .bg-glow-1 { width: 480px; height: 480px; top: -160px; left: -140px; background: radial-gradient(circle, var(--azul-bebe-200) 0%, transparent 70%); animation: float 14s ease-in-out infinite; }
     .bg-glow-2 { width: 560px; height: 560px; bottom: -220px; right: -160px; background: radial-gradient(circle, var(--azul-bebe-100) 0%, transparent 70%); animation: float 18s ease-in-out infinite reverse; }
+    .bg-glow-3 { width: 420px; height: 420px; top: 40%; right: 15%; background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%); animation: float 22s ease-in-out infinite; }
     .bg-grain { position: absolute; inset: 0; background-image: radial-gradient(rgba(21, 101, 192, 0.05) 1px, transparent 1px); background-size: 22px 22px; mask-image: radial-gradient(circle at center, black 40%, transparent 80%); -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%); opacity: 0.6; }
     @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(20px, -20px) scale(1.05); } }
 
     .container {
-      width: 100%; max-width: 1180px; margin: 0 auto;
+      width: 100%; max-width: 1240px; margin: 0 auto;
       display: flex; flex-direction: column; gap: 22px;
       animation: fade-in 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -136,86 +138,213 @@
 
     /* ---------- HERO ---------- */
     .hero {
-      padding: 36px 32px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(234,245,251,0.85));
+      padding: 40px 36px;
+      background:
+        radial-gradient(600px 300px at 100% 0%, rgba(139, 92, 246, 0.12) 0%, transparent 60%),
+        radial-gradient(600px 300px at 0% 100%, rgba(21, 101, 192, 0.08) 0%, transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,0.95), rgba(234,245,251,0.9));
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.9);
       border-radius: var(--radius-card);
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-lg);
       position: relative; overflow: hidden;
     }
     .hero::before {
       content: ""; position: absolute; top: -40%; right: -10%;
-      width: 380px; height: 380px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(184, 224, 245, 0.5), transparent 70%);
+      width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(184, 224, 245, 0.6), transparent 70%);
       pointer-events: none;
+      animation: float 16s ease-in-out infinite;
+    }
+    .hero::after {
+      content: ""; position: absolute; bottom: -60%; left: -5%;
+      width: 340px; height: 340px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.15), transparent 70%);
+      pointer-events: none;
+      animation: float 20s ease-in-out infinite reverse;
     }
     .hero-content { position: relative; z-index: 1; }
     .hero .eyebrow {
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em;
       text-transform: uppercase; color: var(--azul-escuro);
-      margin-bottom: 6px;
-      display: inline-flex; align-items: center; gap: 8px;
+      margin-bottom: 8px;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--azul-bebe-100);
+      border-radius: 999px;
     }
     .hero .eyebrow::before {
-      content: ""; width: 6px; height: 6px; border-radius: 50%;
+      content: ""; width: 7px; height: 7px; border-radius: 50%;
       background: var(--verde);
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25); }
+      50% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.08); }
     }
     .hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(1.6rem, 4vw, 2.3rem);
-      font-weight: 700; line-height: 1.15;
-      letter-spacing: -0.01em; color: var(--ink);
-      margin-bottom: 8px;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.015em; color: var(--ink);
+      margin-bottom: 10px;
+      margin-top: 8px;
+    }
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--azul-escuro), var(--roxo));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .hero p {
-      font-size: 0.95rem; color: var(--ink-soft);
-      max-width: 620px; line-height: 1.5;
+      font-size: 1rem; color: var(--ink-soft);
+      max-width: 640px; line-height: 1.55;
     }
 
-    /* ---------- CARDS DE ESTATÍSTICA ---------- */
-    .stats {
+    /* ---------- AÇÕES RÁPIDAS ---------- */
+    .quick-actions {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+      position: relative; z-index: 1;
+    }
+    .quick-action {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 18px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      text-decoration: none; color: inherit;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative; overflow: hidden;
+    }
+    .quick-action::after {
+      content: ""; position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(21, 101, 192, 0.06);
+      transition: transform 0.3s ease;
+      pointer-events: none;
+    }
+    .quick-action:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(21, 101, 192, 0.15);
+    }
+    .quick-action:hover::after { transform: translateY(-50%) scale(1.6); }
+
+    .quick-icon {
+      width: 46px; height: 46px; border-radius: 13px;
+      display: grid; place-items: center;
+      color: var(--white); flex-shrink: 0;
+      box-shadow: 0 8px 18px -6px rgba(21, 101, 192, 0.35);
+      position: relative; z-index: 1;
+      transition: transform 0.3s ease;
+    }
+    .quick-action:hover .quick-icon { transform: scale(1.08) rotate(-4deg); }
+    .quick-icon svg { width: 22px; height: 22px; }
+    .quick-icon.blue { background: linear-gradient(135deg, #1565c0, #0d47a1); }
+    .quick-icon.green { background: linear-gradient(135deg, #22c55e, #15803d); }
+    .quick-icon.purple { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+    .quick-icon.amber { background: linear-gradient(135deg, #f59e0b, #b45309); }
+    .quick-icon.cyan { background: linear-gradient(135deg, #06b6d4, #0e7490); }
+    .quick-icon.pink { background: linear-gradient(135deg, #ec4899, #be185d); }
+
+    .quick-text { flex: 1; min-width: 0; position: relative; z-index: 1; }
+    .quick-text .title {
+      font-size: 0.88rem; font-weight: 700;
+      color: var(--ink); margin-bottom: 2px;
+      letter-spacing: -0.005em;
+    }
+    .quick-text .sub {
+      font-size: 0.72rem; color: var(--ink-soft);
+      line-height: 1.3;
+    }
+    .quick-arrow {
+      color: var(--azul-escuro);
+      opacity: 0.5;
+      transition: all 0.3s ease;
+      position: relative; z-index: 1;
+    }
+    .quick-action:hover .quick-arrow {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+    .quick-arrow svg { width: 16px; height: 16px; }
+
+    /* ---------- CARDS DE ESTATÍSTICA PRINCIPAIS ---------- */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 14px;
     }
-    .stat {
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.92);
+    .stat-card {
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.9);
       border-radius: 18px;
       box-shadow: var(--shadow-sm);
-      display: flex; align-items: center; gap: 14px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
       position: relative; overflow: hidden;
+      transition: all 0.3s ease;
     }
-    .stat::before {
-      content: ""; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 3px; opacity: 0.85;
+    .stat-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
     }
-    .stat.blue::before { background: linear-gradient(90deg, #1565c0, #0d47a1); }
-    .stat.green::before { background: linear-gradient(90deg, #22c55e, #15803d); }
-    .stat.amber::before { background: linear-gradient(90deg, #f59e0b, #b45309); }
-    .stat.purple::before { background: linear-gradient(90deg, #8b5cf6, #6d28d9); }
-    .stat.red::before { background: linear-gradient(90deg, #dc2626, #991b1b); }
+    .stat-card.blue::before { background: linear-gradient(90deg, #1565c0, #0d47a1); }
+    .stat-card.green::before { background: linear-gradient(90deg, #22c55e, #15803d); }
+    .stat-card.amber::before { background: linear-gradient(90deg, #f59e0b, #b45309); }
+    .stat-card.purple::before { background: linear-gradient(90deg, #8b5cf6, #6d28d9); }
 
-    .stat:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .stat-icon {
-      width: 46px; height: 46px; border-radius: 13px;
+    .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+    .stat-card-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .stat-card-icon {
+      width: 40px; height: 40px; border-radius: 11px;
       display: grid; place-items: center;
       color: var(--white); flex-shrink: 0;
     }
-    .stat-icon svg { width: 22px; height: 22px; }
-    .stat-icon.blue { background: linear-gradient(135deg, #1565c0, #0d47a1); }
-    .stat-icon.green { background: linear-gradient(135deg, #22c55e, #15803d); }
-    .stat-icon.amber { background: linear-gradient(135deg, #f59e0b, #b45309); }
-    .stat-icon.purple { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
-    .stat-icon.red { background: linear-gradient(135deg, #dc2626, #991b1b); }
-    .stat-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-    .stat-value { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--ink); line-height: 1; }
-    .stat-label { font-size: 0.72rem; color: var(--ink-soft); font-weight: 500; }
+    .stat-card-icon svg { width: 20px; height: 20px; }
+    .stat-card-icon.blue { background: linear-gradient(135deg, #1565c0, #0d47a1); }
+    .stat-card-icon.green { background: linear-gradient(135deg, #22c55e, #15803d); }
+    .stat-card-icon.amber { background: linear-gradient(135deg, #f59e0b, #b45309); }
+    .stat-card-icon.purple { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+
+    .stat-card-trend {
+      font-size: 0.7rem; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 3px;
+      padding: 3px 8px; border-radius: 999px;
+      background: #dcfce7; color: #15803d;
+    }
+    .stat-card-trend.down { background: #fee2e2; color: #b91c1c; }
+    .stat-card-trend svg { width: 10px; height: 10px; }
+
+    .stat-card-value {
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 700;
+      color: var(--ink); line-height: 1;
+      margin-bottom: 6px;
+      display: flex; align-items: baseline; gap: 4px;
+    }
+    .stat-card-value .unit {
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--ink-mute); font-family: var(--font-sans);
+    }
+    .stat-card-label {
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .stat-card-detail {
+      font-size: 0.75rem; color: var(--ink-soft);
+      margin-top: 8px; line-height: 1.4;
+    }
 
     /* ---------- TABS ---------- */
     .tabs {
@@ -266,60 +395,91 @@
       font-size: 0.7rem; font-weight: 700;
       letter-spacing: 0.05em;
     }
-    .search-mini { position: relative; min-width: 220px; }
-    .search-mini svg {
-      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-      width: 16px; height: 16px; color: var(--ink-mute); pointer-events: none;
-    }
-    .search-mini input {
-      width: 100%; padding: 10px 14px 10px 40px;
-      font-family: inherit; font-size: 0.85rem;
-      background: var(--white);
-      border: 1.5px solid var(--azul-bebe-100);
-      border-radius: 999px; outline: none;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
-    }
-    .search-mini input:focus { border-color: var(--azul-escuro); box-shadow: var(--ring); }
 
-    /* ---------- LISTA DE TURMAS ---------- */
-    .turma-row {
-      display: flex; align-items: center; gap: 14px;
-      padding: 14px 16px;
+    /* ---------- CARDS DE TURMA (visão compacta) ---------- */
+    .turmas-compact {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 14px;
+    }
+    .turma-mini {
+      padding: 18px;
       background: var(--white);
       border: 1px solid var(--azul-bebe-100);
-      border-radius: 14px;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      border-radius: 16px;
       text-decoration: none; color: inherit;
-      margin-bottom: 8px;
+      position: relative; overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .turma-row:hover { border-color: var(--azul-escuro); transform: translateX(4px); box-shadow: var(--shadow-md); }
-    .turma-row-avatar {
-      width: 48px; height: 48px; border-radius: 12px;
+    .turma-mini::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--grad, linear-gradient(90deg, var(--azul-escuro), var(--azul-escuro-2)));
+    }
+    .turma-mini:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(21, 101, 192, 0.2);
+    }
+    .turma-mini.c1 { --grad: linear-gradient(90deg, #1565c0, #0d47a1); }
+    .turma-mini.c2 { --grad: linear-gradient(90deg, #22c55e, #15803d); }
+    .turma-mini.c3 { --grad: linear-gradient(90deg, #f59e0b, #b45309); }
+    .turma-mini.c4 { --grad: linear-gradient(90deg, #8b5cf6, #6d28d9); }
+    .turma-mini.c5 { --grad: linear-gradient(90deg, #06b6d4, #0e7490); }
+    .turma-mini.c6 { --grad: linear-gradient(90deg, #ec4899, #be185d); }
+
+    .turma-mini-head {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 14px;
+    }
+    .turma-mini-avatar {
+      width: 48px; height: 48px; border-radius: 13px;
       display: grid; place-items: center;
       color: var(--white); font-family: var(--font-display);
-      font-size: 1.05rem; font-weight: 700; flex-shrink: 0;
+      font-size: 1.05rem; font-weight: 700;
+      flex-shrink: 0;
     }
-    .turma-row-avatar.c1 { background: linear-gradient(135deg, #1565c0, #0d47a1); }
-    .turma-row-avatar.c2 { background: linear-gradient(135deg, #22c55e, #15803d); }
-    .turma-row-avatar.c3 { background: linear-gradient(135deg, #f59e0b, #b45309); }
-    .turma-row-avatar.c4 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
-    .turma-row-avatar.c5 { background: linear-gradient(135deg, #06b6d4, #0e7490); }
-    .turma-row-avatar.c6 { background: linear-gradient(135deg, #ec4899, #be185d); }
-    .turma-row-info { flex: 1; min-width: 0; }
-    .turma-row-info .nome { font-size: 0.92rem; font-weight: 600; color: var(--ink); }
-    .turma-row-info .meta { font-size: 0.75rem; color: var(--ink-soft); margin-top: 2px; }
-    .turma-row-stats { display: flex; gap: 8px; flex-shrink: 0; }
-    .turma-mini-stat {
-      padding: 5px 12px; border-radius: 999px;
-      font-size: 0.7rem; font-weight: 700;
-      letter-spacing: 0.03em;
+    .turma-mini-avatar.c1 { background: linear-gradient(135deg, #1565c0, #0d47a1); }
+    .turma-mini-avatar.c2 { background: linear-gradient(135deg, #22c55e, #15803d); }
+    .turma-mini-avatar.c3 { background: linear-gradient(135deg, #f59e0b, #b45309); }
+    .turma-mini-avatar.c4 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+    .turma-mini-avatar.c5 { background: linear-gradient(135deg, #06b6d4, #0e7490); }
+    .turma-mini-avatar.c6 { background: linear-gradient(135deg, #ec4899, #be185d); }
+    .turma-mini-title { flex: 1; min-width: 0; }
+    .turma-mini-serie {
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--azul-escuro); margin-bottom: 2px;
     }
-    .turma-mini-stat.ok { background: #dcfce7; color: #15803d; }
-    .turma-mini-stat.atencao { background: #fef3c7; color: #b45309; }
-    .turma-mini-stat.risco { background: #fee2e2; color: #b91c1c; }
+    .turma-mini-nome {
+      font-family: var(--font-display);
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--ink); line-height: 1.2;
+    }
+    .turma-mini-disc {
+      font-size: 0.75rem; color: var(--ink-soft);
+      margin-top: 1px;
+    }
+    .turma-mini-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 8px; padding-top: 12px;
+      border-top: 1px solid var(--azul-bebe-100);
+    }
+    .turma-mini-stat { text-align: center; }
+    .turma-mini-stat-value {
+      font-family: var(--font-display);
+      font-size: 0.95rem; font-weight: 700; color: var(--ink);
+      line-height: 1; margin-bottom: 3px;
+    }
+    .turma-mini-stat-value.green { color: var(--verde-2); }
+    .turma-mini-stat-value.amber { color: var(--amarelo-2); }
+    .turma-mini-stat-value.red { color: var(--vermelho); }
+    .turma-mini-stat-label {
+      font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--ink-soft);
+    }
 
-    /* ---------- CARDS DE CONSELHO ---------- */
+    /* ---------- CONSELHOS ---------- */
     .conselhos-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -331,7 +491,7 @@
       border: 1px solid var(--azul-bebe-100);
       border-radius: 16px;
       display: flex; flex-direction: column; gap: 14px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      transition: all 0.3s ease;
       position: relative; overflow: hidden;
     }
     .conselho-card::before {
@@ -339,15 +499,18 @@
       background: linear-gradient(90deg, var(--roxo), var(--azul-escuro));
       opacity: 0.85;
     }
-    .conselho-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--azul-bebe-200); }
-    .conselho-card-head {
-      display: flex; align-items: center; gap: 12px;
+    .conselho-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(139, 92, 246, 0.2);
     }
+    .conselho-card-head { display: flex; align-items: center; gap: 12px; }
     .conselho-card-icon {
       width: 42px; height: 42px; border-radius: 11px;
       display: grid; place-items: center;
       background: linear-gradient(135deg, var(--roxo), var(--roxo-2));
       color: var(--white); flex-shrink: 0;
+      box-shadow: 0 8px 16px -6px rgba(139, 92, 246, 0.5);
     }
     .conselho-card-icon svg { width: 20px; height: 20px; }
     .conselho-card-title { flex: 1; min-width: 0; }
@@ -369,15 +532,16 @@
     .conselho-card-meta span { display: inline-flex; align-items: center; gap: 5px; }
     .conselho-card-meta svg { width: 12px; height: 12px; color: var(--azul-escuro); }
 
-    .conselho-actions { display: flex; gap: 8px; }
+    .conselho-actions { display: flex; gap: 8px; margin-top: auto; }
     .btn-mini {
       flex: 1;
-      padding: 9px 14px;
-      border-radius: 10px;
-      font-family: inherit; font-size: 0.78rem; font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 11px;
+      font-family: inherit; font-size: 0.78rem; font-weight: 700;
       cursor: pointer; text-decoration: none;
       display: inline-flex; align-items: center; justify-content: center; gap: 6px;
       transition: all 0.25s ease; border: none;
+      white-space: nowrap;
     }
     .btn-mini svg { width: 14px; height: 14px; }
     .btn-mini.primary {
@@ -386,6 +550,12 @@
       box-shadow: 0 6px 14px -5px rgba(21, 101, 192, 0.5);
     }
     .btn-mini.primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(21, 101, 192, 0.6); }
+    .btn-mini.roxo {
+      background: linear-gradient(135deg, var(--roxo), var(--roxo-2));
+      color: var(--white);
+      box-shadow: 0 6px 14px -5px rgba(139, 92, 246, 0.5);
+    }
+    .btn-mini.roxo:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(139, 92, 246, 0.6); }
     .btn-mini.ghost {
       background: var(--white);
       border: 1.5px solid var(--azul-bebe-200);
@@ -393,7 +563,7 @@
     }
     .btn-mini.ghost:hover { background: var(--azul-bebe-50); border-color: var(--azul-bebe-300); }
 
-    /* ---------- LISTA DE PROFESSORES ---------- */
+    /* ---------- PROFESSORES ---------- */
     .prof-row {
       display: flex; align-items: center; gap: 14px;
       padding: 14px 16px;
@@ -403,21 +573,18 @@
       margin-bottom: 8px;
       transition: all 0.3s ease;
     }
-    .prof-row:hover { border-color: var(--azul-escuro); box-shadow: var(--shadow-sm); }
+    .prof-row:hover { border-color: var(--azul-escuro); transform: translateX(4px); box-shadow: var(--shadow-sm); }
     .prof-avatar {
-      width: 46px; height: 46px; border-radius: 50%;
+      width: 48px; height: 48px; border-radius: 50%;
       display: grid; place-items: center;
       background: linear-gradient(135deg, var(--azul-bebe-100), var(--azul-bebe-200));
-      color: var(--azul-escuro); font-weight: 700; font-size: 0.95rem;
+      color: var(--azul-escuro); font-weight: 700; font-size: 1rem;
       flex-shrink: 0;
     }
     .prof-info { flex: 1; min-width: 0; }
     .prof-info .nome { font-size: 0.92rem; font-weight: 600; color: var(--ink); }
     .prof-info .disc { font-size: 0.75rem; color: var(--ink-soft); margin-top: 2px; }
-    .prof-turmas {
-      display: flex; gap: 4px; flex-wrap: wrap;
-      max-width: 240px;
-    }
+    .prof-turmas { display: flex; gap: 4px; flex-wrap: wrap; max-width: 280px; }
     .prof-turma-tag {
       padding: 3px 9px; border-radius: 6px;
       background: var(--azul-bebe-50);
@@ -425,7 +592,7 @@
       font-size: 0.68rem; font-weight: 700;
     }
 
-    /* ---------- LISTA DE ALERTAS ---------- */
+    /* ---------- ALERTAS ---------- */
     .alert-item {
       display: flex; align-items: center; gap: 14px;
       padding: 14px 16px;
@@ -433,18 +600,19 @@
       border-left: 4px solid var(--amarelo);
       border-radius: 12px;
       margin-bottom: 8px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      text-decoration: none; color: inherit;
+      transition: all 0.25s ease;
     }
     .alert-item.danger { border-left-color: var(--vermelho); }
     .alert-item.ok { border-left-color: var(--verde); }
     .alert-item:hover { transform: translateX(4px); box-shadow: var(--shadow-sm); }
     .alert-icon {
-      width: 40px; height: 40px; border-radius: 10px;
+      width: 42px; height: 42px; border-radius: 11px;
       display: grid; place-items: center;
       flex-shrink: 0;
       color: var(--white);
     }
-    .alert-icon svg { width: 18px; height: 18px; }
+    .alert-icon svg { width: 20px; height: 20px; }
     .alert-icon.amber { background: linear-gradient(135deg, #f59e0b, #b45309); }
     .alert-icon.red { background: linear-gradient(135deg, #dc2626, #991b1b); }
     .alert-icon.green { background: linear-gradient(135deg, #22c55e, #15803d); }
@@ -460,7 +628,7 @@
     .alert-badge.red { background: #fee2e2; color: #b91c1c; }
     .alert-badge.green { background: #dcfce7; color: #15803d; }
 
-    /* ---------- EMPTY STATE ---------- */
+    /* ---------- EMPTY ---------- */
     .empty-box {
       text-align: center;
       padding: 48px 24px;
@@ -473,37 +641,44 @@
       width: 44px; height: 44px; color: var(--azul-bebe-300);
       margin-bottom: 12px;
     }
-    .empty-box p { font-size: 0.9rem; }
+    .empty-box h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem; color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .empty-box p { font-size: 0.88rem; }
 
     /* ---------- RODAPÉ ---------- */
     .footer {
       margin-top: 12px; display: flex; align-items: center; justify-content: center;
-      gap: 10px; padding: 20px 24px;
+      gap: 10px; padding: 22px 24px;
       background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 18px;
       box-shadow: var(--shadow-sm);
     }
     .footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--azul-escuro); opacity: 0.6; }
-    .footer p { font-size: 0.76rem; color: var(--ink-soft); text-align: center; }
+    .footer p { font-size: 0.78rem; color: var(--ink-soft); text-align: center; }
 
     /* ---------- RESPONSIVO ---------- */
-    @media (max-width: 640px) {
+    @media (max-width: 720px) {
       body { padding: 20px 14px 40px; }
       .topbar { padding: 14px 16px; }
       .topbar-actions .btn-top span { display: none; }
-      .hero { padding: 24px 20px; }
-      .hero h1 { font-size: 1.5rem; }
+      .hero { padding: 28px 22px; }
+      .hero h1 { font-size: 1.6rem; }
       .user-chip .name { max-width: 100px; }
-      .stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .stat { padding: 14px; }
-      .stat-value { font-size: 1.2rem; }
+      .quick-actions { grid-template-columns: 1fr; gap: 10px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .stat-card { padding: 16px; }
+      .stat-card-value { font-size: 1.5rem; }
       .panel { padding: 18px; }
+      .turmas-compact { grid-template-columns: 1fr; }
       .conselhos-grid { grid-template-columns: 1fr; }
       .prof-turmas { display: none; }
     }
-    @media (max-width: 380px) {
+    @media (max-width: 400px) {
       .user-chip .name { display: none; }
-      .stats { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -520,6 +695,7 @@
   <div class="bg-layer" aria-hidden="true">
     <div class="bg-glow bg-glow-1"></div>
     <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
     <div class="bg-grain"></div>
   </div>
 
@@ -553,62 +729,164 @@
     <!-- HERO -->
     <section class="hero">
       <div class="hero-content">
-        <div class="eyebrow">Bem-vindo(a) de volta</div>
-        <h1 id="hero-title">Painel do Pedagogo</h1>
-        <p>Acompanhe turmas, professores, conselhos de classe e alunos que precisam de atenção.</p>
+        <div class="eyebrow">Ano letivo 2025 · Em andamento</div>
+        <h1>Olá, <span class="highlight" id="hero-nome">Pedagogo</span>!</h1>
+        <p>Acompanhe turmas, professores, conselhos de classe e alunos que precisam de atenção. Todos os dados consolidados em tempo real.</p>
+
+        <!-- AÇÕES RÁPIDAS -->
+        <div class="quick-actions">
+          <a href="pedagogo-turmas.html" class="quick-action">
+            <div class="quick-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+            <div class="quick-text">
+              <div class="title">Todas as Turmas</div>
+              <div class="sub">6º ao 9º ano · visão completa</div>
+            </div>
+            <span class="quick-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </a>
+
+          <a href="pedagogo-conselhos.html" class="quick-action">
+            <div class="quick-icon purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="quick-text">
+              <div class="title">Conselhos de Classe</div>
+              <div class="sub">Atas e pareceres registrados</div>
+            </div>
+            <span class="quick-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </a>
+
+          <a href="pedagogo-professores.html" class="quick-action">
+            <div class="quick-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <div class="quick-text">
+              <div class="title">Corpo Docente</div>
+              <div class="sub">Professores e disciplinas</div>
+            </div>
+            <span class="quick-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </a>
+
+          <a href="pedagogo-atencao.html" class="quick-action">
+            <div class="quick-icon amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <path d="M12 9v4M12 17h.01"/>
+              </svg>
+            </div>
+            <div class="quick-text">
+              <div class="title">Atenção Pedagógica</div>
+              <div class="sub">Alunos e turmas em alerta</div>
+            </div>
+            <span class="quick-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- ESTATÍSTICAS -->
-    <section class="stats" aria-label="Estatísticas gerais">
-      <div class="stat blue">
-        <div class="stat-icon blue">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-          </svg>
+    <!-- ESTATÍSTICAS PRINCIPAIS -->
+    <section class="stats-grid" aria-label="Estatísticas gerais">
+      <div class="stat-card blue">
+        <div class="stat-card-head">
+          <div class="stat-card-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          <span class="stat-card-trend">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 17l6-6 4 4 8-8"/>
+            </svg>
+            ativas
+          </span>
         </div>
-        <div class="stat-text">
-          <span class="stat-value" id="st-turmas">0</span>
-          <span class="stat-label">Turmas</span>
-        </div>
+        <div class="stat-card-value" id="st-turmas">0</div>
+        <div class="stat-card-label">Turmas</div>
+        <div class="stat-card-detail" id="st-turmas-detail">6º ao 9º ano do Ensino Fundamental</div>
       </div>
-      <div class="stat green">
-        <div class="stat-icon green">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-          </svg>
+
+      <div class="stat-card green">
+        <div class="stat-card-head">
+          <div class="stat-card-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+            </svg>
+          </div>
+          <span class="stat-card-trend">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 17l6-6 4 4 8-8"/>
+            </svg>
+            matriculados
+          </span>
         </div>
-        <div class="stat-text">
-          <span class="stat-value" id="st-alunos">0</span>
-          <span class="stat-label">Alunos</span>
-        </div>
+        <div class="stat-card-value" id="st-alunos">0</div>
+        <div class="stat-card-label">Alunos</div>
+        <div class="stat-card-detail" id="st-alunos-detail">Média de 30 alunos por turma</div>
       </div>
-      <div class="stat purple">
-        <div class="stat-icon purple">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-            <circle cx="12" cy="7" r="4"/>
-          </svg>
+
+      <div class="stat-card amber">
+        <div class="stat-card-head">
+          <div class="stat-card-icon amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <span class="stat-card-trend">em regência</span>
         </div>
-        <div class="stat-text">
-          <span class="stat-value" id="st-professores">0</span>
-          <span class="stat-label">Professores</span>
-        </div>
+        <div class="stat-card-value" id="st-professores">0</div>
+        <div class="stat-card-label">Professores</div>
+        <div class="stat-card-detail" id="st-professores-detail">Distribuídos entre as disciplinas</div>
       </div>
-      <div class="stat amber">
-        <div class="stat-icon amber">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <path d="M14 2v6h6"/>
-            <path d="M9 15h6"/>
-          </svg>
+
+      <div class="stat-card purple">
+        <div class="stat-card-head">
+          <div class="stat-card-icon purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <path d="M22 4L12 14.01l-3-3"/>
+            </svg>
+          </div>
+          <span class="stat-card-trend">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 17l6-6 4 4 8-8"/>
+            </svg>
+            geral
+          </span>
         </div>
-        <div class="stat-text">
-          <span class="stat-value" id="st-conselhos">0</span>
-          <span class="stat-label">Conselhos</span>
-        </div>
+        <div class="stat-card-value" id="st-media">0.0</div>
+        <div class="stat-card-label">Média Geral</div>
+        <div class="stat-card-detail" id="st-media-detail">Das turmas em atividade</div>
       </div>
     </section>
 
@@ -650,18 +928,18 @@
     <section class="panel active" id="panel-turmas">
       <div class="panel-head">
         <h2>
-          Todas as Turmas
+          Turmas em Atividade
           <span class="badge" id="badge-turmas">0</span>
         </h2>
-        <div class="search-mini">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="M21 21l-4.35-4.35"/>
+        <a href="pedagogo-turmas.html" class="btn-mini primary" style="flex: none; padding: 10px 18px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+            <circle cx="12" cy="12" r="3"/>
           </svg>
-          <input type="text" id="busca-turma" placeholder="Buscar turma..." />
-        </div>
+          Ver todas
+        </a>
       </div>
-      <div id="turmas-list"></div>
+      <div class="turmas-compact" id="turmas-compact"></div>
     </section>
 
     <!-- PAINEL: CONSELHOS -->
@@ -671,6 +949,13 @@
           Conselhos de Classe
           <span class="badge" id="badge-conselhos">0</span>
         </h2>
+        <a href="pedagogo-conselhos.html" class="btn-mini primary" style="flex: none; padding: 10px 18px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          Ver todos
+        </a>
       </div>
       <div class="conselhos-grid" id="conselhos-grid"></div>
     </section>
@@ -682,6 +967,13 @@
           Corpo Docente
           <span class="badge" id="badge-professores">0</span>
         </h2>
+        <a href="pedagogo-professores.html" class="btn-mini primary" style="flex: none; padding: 10px 18px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          Ver todos
+        </a>
       </div>
       <div id="professores-list"></div>
     </section>
@@ -690,9 +982,16 @@
     <section class="panel" id="panel-atencao">
       <div class="panel-head">
         <h2>
-          Alunos que Precisam de Atenção
+          Alunos e Turmas em Atenção
           <span class="badge" id="badge-atencao">0</span>
         </h2>
+        <a href="pedagogo-atencao.html" class="btn-mini primary" style="flex: none; padding: 10px 18px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          Ver todos
+        </a>
       </div>
       <div id="atencao-list"></div>
     </section>
@@ -700,7 +999,7 @@
     <!-- RODAPÉ -->
     <footer class="footer">
       <span class="dot" aria-hidden="true"></span>
-      <p>© 2025 · Escola Estadual do Campo Frei Graciano Droessler</p>
+      <p>© 2025 · Escola Estadual do Campo Frei Graciano Droessler · Ano letivo em andamento</p>
     </footer>
 
   </div>
@@ -714,16 +1013,16 @@
 
     const userAvatar = document.getElementById('user-avatar');
     const userName   = document.getElementById('user-name');
-    const heroTitle  = document.getElementById('hero-title');
+    const heroNome   = document.getElementById('hero-nome');
 
     if (nomePedagogo) {
-      userName.textContent   = nomePedagogo;
+      userName.textContent = nomePedagogo;
       userAvatar.textContent = nomePedagogo.trim().charAt(0).toUpperCase();
-      heroTitle.textContent  = 'Olá, ' + nomePedagogo.split(' ')[0] + '!';
+      heroNome.textContent = nomePedagogo.split(' ')[0];
     }
 
     /* =========================================================
-       LOGOUT → volta para 2.html
+       LOGOUT
        ========================================================= */
     document.getElementById('btn-logout').addEventListener('click', () => {
       if (confirm('Deseja sair da sua conta?')) {
@@ -733,103 +1032,151 @@
     });
 
     /* =========================================================
-       CARREGA DADOS DO localStorage
+       DADOS — igual ao pedagogo-turmas.html
        ========================================================= */
+    const turmasBase = [
+      // 6º Ano
+      { id: '6a-mat', sigla: '6A', serie: '6º Ano', nome: '6º Ano A', disciplina: 'Matemática', professor: 'Mariana Alves', periodo: 'manha', turno: '07:00 às 11:30', dias: ['SEG','TER','QUA','QUI','SEX'], alunos: 30, media: 7.6, freq: 93, cor: 'c1', conselho: true },
+      { id: '6b-mat', sigla: '6B', serie: '6º Ano', nome: '6º Ano B', disciplina: 'Matemática', professor: 'Mariana Alves', periodo: 'tarde', turno: '13:00 às 17:30', dias: ['SEG','TER','QUA','QUI','SEX'], alunos: 28, media: 7.2, freq: 89, cor: 'c2', conselho: true },
+
+      // 7º Ano
+      { id: '7a-mat', sigla: '7A', serie: '7º Ano', nome: '7º Ano A', disciplina: 'Matemática', professor: 'Mariana Alves', periodo: 'manha', turno: '07:00 às 11:30', dias: ['SEG','TER','QUA','QUI','SEX'], alunos: 32, media: 8.1, freq: 94, cor: 'c3', conselho: true },
+      { id: '7b-mat', sigla: '7B', serie: '7º Ano', nome: '7º Ano B', disciplina: 'Matemática', professor: 'Rafael Costa', periodo: 'tarde', turno: '13:00 às 17:30', dias: ['SEG','TER','QUA','QUI','SEX'], alunos: 29, media: 6.8, freq: 82, cor: 'c4', conselho: false },
+
+      // 8º Ano
+      { id: '8a-mat', sigla: '8A', serie: '8º Ano', nome: '8º Ano A', disciplina: 'Matemática', professor: 'Rafael Costa', periodo: 'manha', turno: '07:00 às 11:30', dias: ['SEG','TER','QUA','QUI','SEX'], alunos: 31, media: 7.9, freq: 95, cor: 'c5', conselho: true },
+      { id: '8b-mat', sigla: '8B', serie: '8º Ano', nome: '8º Ano B', disciplina: 'Matemática', professor: 'Rafael Costa', periodo: 'manha', turno: '07:00 às 11:30', dias: ['SEG','TER','QUA','QUI','SEX'], alunos: 28, media: 6.5, freq: 79, cor: 'c6', conselho: false },
+
+      // 9º Ano
+      { id: '9a-mat', sigla: '9A', serie: '9º Ano', nome: '9º Ano A', disciplina: 'Matemática', professor: 'Mariana Alves', periodo: 'manha', turno: '07:00 às 11:30', dias: ['SEG','TER','QUA','QUI','SEX'], alunos: 32, media: 8.3, freq: 96, cor: 'c1', conselho: true },
+      { id: '9b-mat', sigla: '9B', serie: '9º Ano', nome: '9º Ano B', disciplina: 'Matemática', professor: 'Rafael Costa', periodo: 'tarde', turno: '13:00 às 17:30', dias: ['SEG','TER','QUA','QUI','SEX'], alunos: 30, media: 7.4, freq: 87, cor: 'c2', conselho: true }
+    ];
+
     let turmas = [];
+    try {
+      const salvas = JSON.parse(localStorage.getItem('turmasProfessor') || '[]');
+      turmas = salvas.length > 0 ? salvas : [...turmasBase];
+    } catch (e) {
+      turmas = [...turmasBase];
+    }
+    turmasBase.forEach(tb => {
+      if (!turmas.find(t => t.id === tb.id)) turmas.push(tb);
+    });
+
     let conselhos = {};
     let fichas = {};
-
-    try {
-      turmas = JSON.parse(localStorage.getItem('turmasProfessor') || '[]');
-    } catch (e) { console.error('Erro ao ler turmas:', e); }
-
-    try {
-      conselhos = JSON.parse(localStorage.getItem('conselhosProfessor') || '{}');
-    } catch (e) { console.error('Erro ao ler conselhos:', e); }
-
-    try {
-      fichas = JSON.parse(localStorage.getItem('fichasConselho') || '{}');
-    } catch (e) { console.error('Erro ao ler fichas:', e); }
+    try { conselhos = JSON.parse(localStorage.getItem('conselhosProfessor') || '{}'); } catch(e) {}
+    try { fichas = JSON.parse(localStorage.getItem('fichasConselho') || '{}'); } catch(e) {}
 
     /* =========================================================
-       CALCULA ESTATÍSTICAS
+       HELPERS
        ========================================================= */
-    function calcularStats() {
-      const totalTurmas = turmas.length;
-      const totalAlunos = turmas.reduce((s, t) => s + (Number(t.alunos) || 0), 0);
-
-      // Professores únicos (por disciplina + nome do professor se houver)
-      const setProfs = new Set();
-      turmas.forEach(t => {
-        const chave = (t.professor || 'Professor(a)') + '|' + (t.disciplina || 'Geral');
-        setProfs.add(chave);
-      });
-
-      const totalConselhos = Object.keys(conselhos).length + Object.keys(fichas).length;
-
-      document.getElementById('st-turmas').textContent = totalTurmas;
-      document.getElementById('st-alunos').textContent = totalAlunos;
-      document.getElementById('st-professores').textContent = setProfs.size;
-      document.getElementById('st-conselhos').textContent = totalConselhos;
+    function iniciais(nome) {
+      if (!nome) return '?';
+      return nome.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
+    }
+    function getStatus(t) {
+      const freq = Number(t.freq) || 0;
+      const media = Number(t.media) || 0;
+      if (freq < 80 || (media > 0 && media < 6)) return 'risco';
+      if (freq < 88 || (media > 0 && media < 7)) return 'atencao';
+      return 'ok';
+    }
+    function temConselho(id) {
+      return !!(conselhos[id] || fichas[id]) || !!turmas.find(t => t.id === id)?.conselho;
     }
 
     /* =========================================================
-       ABA: TURMAS
+       ESTATÍSTICAS
        ========================================================= */
-    function renderTurmas(filtro = '') {
-      const list = document.getElementById('turmas-list');
-      const termo = filtro.toLowerCase().trim();
+    function atualizarStats() {
+      document.getElementById('st-turmas').textContent = turmas.length;
+      document.getElementById('st-turmas-detail').textContent =
+        `${turmas.length} turmas · 6º ao 9º ano`;
 
-      const filtradas = turmas.filter(t => {
-        if (!termo) return true;
-        const hay = (t.nome + ' ' + t.disciplina + ' ' + t.serie).toLowerCase();
-        return hay.includes(termo);
-      });
+      const totalAlunos = turmas.reduce((s, t) => s + (Number(t.alunos) || 0), 0);
+      document.getElementById('st-alunos').textContent = totalAlunos;
+      document.getElementById('st-alunos-detail').textContent =
+        totalAlunos > 0 ? `Média de ${Math.round(totalAlunos / turmas.length)} alunos por turma` : '—';
 
-      document.getElementById('badge-turmas').textContent = filtradas.length;
+      const setProfs = new Set();
+      turmas.forEach(t => { if (t.professor) setProfs.add(t.professor); });
+      document.getElementById('st-professores').textContent = setProfs.size;
+      document.getElementById('st-professores-detail').textContent =
+        `${setProfs.size} profissionais em regência`;
 
-      if (filtradas.length === 0) {
-        list.innerHTML = `
-          <div class="empty-box">
+      if (turmas.length > 0) {
+        const soma = turmas.reduce((s, t) => s + (Number(t.media) || 0), 0);
+        const media = (soma / turmas.length).toFixed(1);
+        document.getElementById('st-media').textContent = media;
+        document.getElementById('st-media-detail').textContent =
+          Number(media) >= 7 ? 'Acima da média mínima (7.0)' : 'Abaixo da média mínima (7.0)';
+      } else {
+        document.getElementById('st-media').textContent = '0.0';
+        document.getElementById('st-media-detail').textContent = '—';
+      }
+    }
+
+    /* =========================================================
+       TURMAS (compacto)
+       ========================================================= */
+    function renderTurmasCompact() {
+      const cont = document.getElementById('turmas-compact');
+      document.getElementById('badge-turmas').textContent = turmas.length;
+
+      const ordem = { '6º Ano': 1, '7º Ano': 2, '8º Ano': 3, '9º Ano': 4 };
+      const lista = [...turmas].sort((a, b) => (ordem[a.serie] || 99) - (ordem[b.serie] || 99));
+
+      if (lista.length === 0) {
+        cont.innerHTML = `
+          <div class="empty-box" style="grid-column: 1/-1">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
               <path d="M6 12v5c3 3 9 3 12 0v-5"/>
             </svg>
-            <p>${turmas.length === 0 ? 'Nenhuma turma cadastrada ainda.' : 'Nenhuma turma encontrada.'}</p>
+            <h3>Nenhuma turma</h3>
+            <p>Não há turmas cadastradas.</p>
           </div>`;
         return;
       }
 
-      list.innerHTML = filtradas.map(t => {
-        const status = t.freq >= 90 ? 'ok' : t.freq >= 80 ? 'atencao' : 'risco';
+      cont.innerHTML = lista.map(t => {
+        const freqCls = t.freq >= 88 ? 'green' : t.freq >= 80 ? 'amber' : 'red';
+        const mediaCls = t.media >= 7 ? 'green' : t.media >= 6 ? 'amber' : 'red';
         return `
-          <a class="turma-row" href="turma-detalhes.html?id=${encodeURIComponent(t.id)}">
-            <div class="turma-row-avatar ${t.cor || 'c1'}">${t.sigla}</div>
-            <div class="turma-row-info">
-              <div class="nome">${t.nome} · ${t.disciplina}</div>
-              <div class="meta">${t.alunos} alunos · ${t.turno} · ${(t.dias || []).join(' · ')}</div>
+          <a class="turma-mini ${t.cor || 'c1'}" href="turma-detalhes.html?id=${encodeURIComponent(t.id)}">
+            <div class="turma-mini-head">
+              <div class="turma-mini-avatar ${t.cor || 'c1'}">${t.sigla}</div>
+              <div class="turma-mini-title">
+                <div class="turma-mini-serie">${t.serie}</div>
+                <div class="turma-mini-nome">${t.nome}</div>
+                <div class="turma-mini-disc">${t.disciplina} · ${t.professor || ''}</div>
+              </div>
             </div>
-            <div class="turma-row-stats">
-              <span class="turma-mini-stat ${status}">${t.freq}%</span>
+            <div class="turma-mini-stats">
+              <div class="turma-mini-stat">
+                <div class="turma-mini-stat-value">${t.alunos}</div>
+                <div class="turma-mini-stat-label">Alunos</div>
+              </div>
+              <div class="turma-mini-stat">
+                <div class="turma-mini-stat-value ${mediaCls}">${Number(t.media).toFixed(1)}</div>
+                <div class="turma-mini-stat-label">Média</div>
+              </div>
+              <div class="turma-mini-stat">
+                <div class="turma-mini-stat-value ${freqCls}">${t.freq}%</div>
+                <div class="turma-mini-stat-label">Freq.</div>
+              </div>
             </div>
           </a>`;
       }).join('');
     }
 
-    document.getElementById('busca-turma').addEventListener('input', e => renderTurmas(e.target.value));
-
     /* =========================================================
-       ABA: CONSELHOS
+       CONSELHOS
        ========================================================= */
     function renderConselhos() {
       const grid = document.getElementById('conselhos-grid');
-      const todos = { ...fichas };
-
-      // Mescla conselhos com fichas (chave = turma id)
-      Object.keys(conselhos).forEach(k => {
-        if (!todos[k]) todos[k] = conselhos[k];
-      });
-
+      const todos = { ...fichas, ...conselhos };
       const chaves = Object.keys(todos);
 
       document.getElementById('badge-conselhos').textContent = chaves.length;
@@ -841,7 +1188,8 @@
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
               <circle cx="9" cy="7" r="4"/>
             </svg>
-            <p>Nenhum conselho de classe registrado até o momento.</p>
+            <h3>Nenhum conselho registrado</h3>
+            <p>Assim que os professores preencherem as fichas, elas aparecerão aqui.</p>
           </div>`;
         return;
       }
@@ -888,18 +1236,17 @@
                 </span>` : ''}
             </div>
             <div class="conselho-actions">
-              <a href="conselho.html?turma=${encodeURIComponent(k)}" class="btn-mini primary">
+              <a href="conselho.html?turma=${encodeURIComponent(k)}" class="btn-mini roxo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
                   <circle cx="12" cy="12" r="3"/>
                 </svg>
-                Ver conselho
+                Ver
               </a>
               ${turma ? `
                 <a href="turma-detalhes.html?id=${encodeURIComponent(k)}" class="btn-mini ghost">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 12H5"/>
-                    <path d="M12 19l-7-7 7-7"/>
+                    <path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/>
                   </svg>
                   Turma
                 </a>` : ''}
@@ -909,21 +1256,17 @@
     }
 
     /* =========================================================
-       ABA: PROFESSORES
+       PROFESSORES
        ========================================================= */
     function renderProfessores() {
       const list = document.getElementById('professores-list');
       const mapa = {};
 
       turmas.forEach(t => {
-        const nome = t.professor || 'Professor(a)';
+        const nome = t.professor || 'Não atribuído';
         const chave = nome + '|' + (t.disciplina || 'Geral');
         if (!mapa[chave]) {
-          mapa[chave] = {
-            nome,
-            disciplina: t.disciplina || '—',
-            turmas: []
-          };
+          mapa[chave] = { nome, disciplina: t.disciplina || '—', turmas: [] };
         }
         mapa[chave].turmas.push(t);
       });
@@ -938,52 +1281,58 @@
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
               <circle cx="12" cy="7" r="4"/>
             </svg>
-            <p>Nenhum professor cadastrado ainda.</p>
+            <h3>Nenhum professor</h3>
+            <p>Assim que houver turmas atribuídas, os professores aparecerão aqui.</p>
           </div>`;
         return;
       }
 
-      list.innerHTML = lista.map(p => {
-        const initials = p.nome.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
-        return `
-          <div class="prof-row">
-            <div class="prof-avatar">${initials}</div>
-            <div class="prof-info">
-              <div class="nome">${p.nome}</div>
-              <div class="disc">${p.disciplina} · ${p.turmas.length} turma${p.turmas.length > 1 ? 's' : ''}</div>
-            </div>
-            <div class="prof-turmas">
-              ${p.turmas.map(t => `<span class="prof-turma-tag">${t.sigla}</span>`).join('')}
-            </div>
-          </div>`;
-      }).join('');
+      list.innerHTML = lista.map(p => `
+        <div class="prof-row">
+          <div class="prof-avatar">${iniciais(p.nome)}</div>
+          <div class="prof-info">
+            <div class="nome">${p.nome}</div>
+            <div class="disc">${p.disciplina} · ${p.turmas.length} turma${p.turmas.length > 1 ? 's' : ''}</div>
+          </div>
+          <div class="prof-turmas">
+            ${p.turmas.map(t => `<span class="prof-turma-tag">${t.sigla}</span>`).join('')}
+          </div>
+        </div>
+      `).join('');
     }
 
     /* =========================================================
-       ABA: ATENÇÃO
+       ATENÇÃO
        ========================================================= */
     function renderAtencao() {
       const list = document.getElementById('atencao-list');
-
-      // Turmas com frequência baixa (fonte principal de alerta)
       const alertas = [];
 
       turmas.forEach(t => {
-        if (t.freq < 85) {
+        if (t.freq < 88) {
           alertas.push({
-            tipo: t.freq < 75 ? 'danger' : 'amber',
+            tipo: t.freq < 80 ? 'danger' : 'amber',
             nome: t.nome,
-            meta: `Frequência em ${t.freq}% · ${t.alunos} alunos`,
-            badge: t.freq < 75 ? 'Crítico' : 'Atenção',
+            meta: `Frequência em ${t.freq}% · ${t.alunos} alunos · ${t.professor || 'Sem professor'}`,
+            badge: t.freq < 80 ? 'Crítico' : 'Atenção',
             turmaId: t.id
           });
         }
-        if (t.media > 0 && t.media < 6.5) {
+        if (t.media > 0 && t.media < 7) {
           alertas.push({
-            tipo: 'danger',
+            tipo: t.media < 6 ? 'danger' : 'amber',
             nome: t.nome,
-            meta: `Média geral em ${Number(t.media).toFixed(1)}`,
-            badge: 'Risco',
+            meta: `Média geral em ${Number(t.media).toFixed(1)} · professor(a) ${t.professor || '—'}`,
+            badge: t.media < 6 ? 'Risco' : 'Abaixo da meta',
+            turmaId: t.id
+          });
+        }
+        if (!temConselho(t.id)) {
+          alertas.push({
+            tipo: 'amber',
+            nome: t.nome,
+            meta: 'Conselho de classe ainda não registrado',
+            badge: 'Pendente',
             turmaId: t.id
           });
         }
@@ -998,19 +1347,19 @@
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
               <path d="M22 4L12 14.01l-3-3"/>
             </svg>
-            <p>Tudo tranquilo! Nenhum aluno ou turma em alerta no momento.</p>
+            <h3>Tudo em ordem!</h3>
+            <p>Nenhum aluno ou turma em alerta no momento.</p>
           </div>`;
         return;
       }
 
+      const iconFor = tipo => tipo === 'danger'
+        ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>`
+        : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>`;
+
       list.innerHTML = alertas.map(a => `
-        <a class="alert-item ${a.tipo}" href="turma-detalhes.html?id=${encodeURIComponent(a.turmaId)}" style="text-decoration:none; color:inherit">
-          <div class="alert-icon ${a.tipo}">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-              <path d="M12 9v4M12 17h.01"/>
-            </svg>
-          </div>
+        <a class="alert-item ${a.tipo}" href="turma-detalhes.html?id=${encodeURIComponent(a.turmaId)}">
+          <div class="alert-icon ${a.tipo}">${iconFor(a.tipo)}</div>
           <div class="alert-info">
             <div class="nome">${a.nome}</div>
             <div class="meta">${a.meta}</div>
@@ -1035,8 +1384,8 @@
     /* =========================================================
        INICIALIZA
        ========================================================= */
-    calcularStats();
-    renderTurmas();
+    atualizarStats();
+    renderTurmasCompact();
     renderConselhos();
     renderProfessores();
     renderAtencao();
