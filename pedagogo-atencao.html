@@ -194,4 +194,63 @@
 
     const criticos = alertas.filter(a => a.tipo === 'danger').length;
     const atencao = alertas.filter(a => a.tipo === 'amber').length;
-    const pendentes =
+    const pendentes = alertas.filter(a => a.tipo === 'blue').length;
+
+    document.getElementById('resumo').innerHTML = `
+      <div class="resumo-card red">
+        <div class="resumo-icon red">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+        </div>
+        <div class="resumo-text">
+          <span class="resumo-value">${criticos}</span>
+          <span class="resumo-label">Críticos</span>
+        </div>
+      </div>
+      <div class="resumo-card amber">
+        <div class="resumo-icon amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        </div>
+        <div class="resumo-text">
+          <span class="resumo-value">${atencao}</span>
+          <span class="resumo-label">Atenção</span>
+        </div>
+      </div>
+      <div class="resumo-card blue">
+        <div class="resumo-icon blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="resumo-text">
+          <span class="resumo-value">${pendentes}</span>
+          <span class="resumo-label">Pendentes</span>
+        </div>
+      </div>
+    `;
+
+    const list = document.getElementById('alertas');
+    const icons = {
+      danger: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>',
+      amber: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>',
+      blue: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>'
+    };
+
+    if (alertas.length === 0) {
+      list.innerHTML = `<div class="empty-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        <h3>Tudo em ordem!</h3>
+        <p>Nenhuma turma ou aluno em alerta no momento.</p>
+      </div>`;
+    } else {
+      list.innerHTML = alertas.map(a => `
+        <a class="alerta ${a.tipo}" href="turma-detalhes.html?id=${encodeURIComponent(a.turmaId)}">
+          <div class="alerta-icon ${a.tipo}">${icons[a.tipo]}</div>
+          <div class="alerta-info">
+            <div class="alerta-titulo">${a.titulo}</div>
+            <div class="alerta-meta">${a.meta}</div>
+          </div>
+          <span class="alerta-badge ${a.tipo}">${a.badge}</span>
+        </a>
+      `).join('');
+    }
+  </script>
+</body>
+</html>
