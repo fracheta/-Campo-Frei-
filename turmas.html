@@ -53,7 +53,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ---------- FUNDO ---------- */
     .bg-layer {
       position: fixed; inset: 0; z-index: -1; overflow: hidden;
       background:
@@ -117,7 +116,6 @@
     }
     .user-chip .name { font-size: 0.85rem; font-weight: 600; color: var(--ink); max-width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    /* Botão genérico */
     .btn-top {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 10px 16px;
@@ -184,7 +182,6 @@
       max-width: 620px; line-height: 1.5;
     }
 
-    /* Mini stats do hero */
     .hero-stats {
       display: flex; gap: 12px; flex-wrap: wrap;
       margin-top: 24px;
@@ -301,7 +298,6 @@
     }
     .turma-card:hover::after { opacity: 1; }
 
-    /* Botão excluir */
     .turma-delete {
       position: absolute; top: 14px; right: 14px;
       width: 32px; height: 32px; border-radius: 50%;
@@ -704,8 +700,8 @@
           <span class="name" id="user-name">Professor(a)</span>
         </div>
 
-        <!-- Voltar para a página anterior (professor.html) -->
-        <a href="professor.html" class="btn-top btn-back" id="btn-voltar" title="Voltar à tela inicial">
+        <!-- ✅ Voltar para 2.html -->
+        <a href="2.html" class="btn-top btn-back" id="btn-voltar" title="Voltar à tela anterior">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5"/>
             <path d="M12 19l-7-7 7-7"/>
@@ -932,7 +928,7 @@
        PROTEÇÃO DE SESSÃO
        ========================================================= */
     const nomeProfessor = sessionStorage.getItem('professorLogado');
-    if (!nomeProfessor) window.location.href = 'professor.html';
+    if (!nomeProfessor) window.location.href = '2.html'; // ✅ Redireciona para 2.html
 
     const userAvatar = document.getElementById('user-avatar');
     const userName   = document.getElementById('user-name');
@@ -950,7 +946,7 @@
     document.getElementById('btn-logout').addEventListener('click', () => {
       if (confirm('Deseja sair da sua conta?')) {
         sessionStorage.removeItem('professorLogado');
-        window.location.href = 'professor.html';
+        window.location.href = '2.html'; // ✅ Volta para 2.html
       }
     });
 
@@ -1113,7 +1109,6 @@
           </a>`;
       }).join('');
 
-      // Bind do botão excluir
       document.querySelectorAll('.turma-delete').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
@@ -1193,7 +1188,6 @@
       if (e.key === 'Escape' && modal.classList.contains('open')) fecharModal();
     });
 
-    // Dias (toggle)
     document.querySelectorAll('#days-picker .day-opt').forEach(btn => {
       btn.addEventListener('click', () => {
         const dia = btn.dataset.day;
@@ -1207,7 +1201,6 @@
       });
     });
 
-    // Cores
     document.querySelectorAll('#color-picker .color-opt').forEach(opt => {
       opt.addEventListener('click', () => {
         document.querySelectorAll('#color-picker .color-opt').forEach(c => c.classList.remove('selected'));
@@ -1216,7 +1209,6 @@
       });
     });
 
-    // Submeter
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
