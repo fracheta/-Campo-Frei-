@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1565c0" />
+  <title>Turmas · Painel do Pedagogo · Frei Graciano Droessler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --white-soft: #f7fbfe;
+      --azul-bebe-50: #eaf5fb;
+      --azul-bebe-100: #d3ecf8;
+      --azul-bebe-200: #b8e0f5;
+      --azul-bebe-300: #8ecbee;
+      --azul-escuro: #1565c0;
+      --azul-escuro-2: #0d47a1;
+      --ink: #0f1e35;
+      --ink-soft: #475569;
+      --ink-mute: #94a3b8;
+      --verde: #22c55e;
+      --verde-2: #15803d;
+      --amarelo: #f59e0b;
+      --amarelo-2: #b45309;
+      --vermelho: #dc2626;
+      --roxo: #8b5cf6;
+      --roxo-2: #6d28d9;
+      --ciano: #06b6d4;
+      --rosa: #ec4899;
+      --shadow-sm: 0 1px 2px rgba(15, 30, 53, 0.06);
+      --shadow-md: 0 10px 30px -10px rgba(21, 101, 192, 0.18);
+      --shadow-lg: 0 30px 60px -20px rgba(21, 101, 192, 0.25);
+      --ring: 0 0 0 4px rgba(184, 224, 245, 0.55);
+      --radius-card: 24px;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--ink);
+      background-color: var(--white-soft);
+      padding: 32px 20px 60px;
+      overflow-x: hidden;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---------- FUNDO ---------- */
+    .bg-layer {
+      position: fixed; inset: 0; z-index: -1; overflow: hidden;
+      background:
+        radial-gradient(1200px 600px at 15% 10%, #ffffff 0%, transparent 60%),
+        radial-gradient(900px 500px at 85% 90%, var(--azul-bebe-50) 0%, transparent 55%),
+        linear-gradient(160deg, #ffffff 0%, var(--azul-bebe-50) 55%, #eaf5fb 100%);
+    }
+    .bg-glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.55; pointer-events: none; }
+    .bg-glow-1 { width: 480px; height: 480px; top: -160px; left: -140px; background: radial-gradient(circle, var(--azul-bebe-200) 0%, transparent 70%); animation: float 14s ease-in-out infinite; }
+    .bg-glow-2 { width: 560px; height: 560px; bottom: -220px; right: -160px; background: radial-gradient(circle, var(--azul-bebe-100) 0%, transparent 70%); animation: float 18s ease-in-out infinite reverse; }
+    .bg-grain { position: absolute; inset: 0; background-image: radial-gradient(rgba(21, 101, 192, 0.05) 1px, transparent 1px); background-size: 22px 22px; mask-image: radial-gradient(circle at center, black 40%, transparent 80%); -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%); opacity: 0.6; }
+    @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(20px, -20px) scale(1.05); } }
+
+    .container {
+      width: 100%; max-width: 1180px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 22px;
+      animation: fade-in 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @keyframes fade-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ---------- TOPBAR ---------- */
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap; padding: 18px 24px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-card); box-shadow: var(--shadow-md);
+    }
+    .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .brand-logo {
+      width: 46px; height: 46px; border-radius: 12px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--azul-escuro), var(--azul-escuro-2));
+      color: var(--white); font-family: var(--font-display);
+      font-weight: 700; font-size: 1.15rem; flex-shrink: 0;
+      box-shadow: 0 8px 20px -6px rgba(21, 101, 192, 0.55);
+    }
+    .brand-info { min-width: 0; }
+    .brand-info .top { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--azul-escuro); opacity: 0.85; }
+    .brand-info .main { font-size: 0.95rem; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .topbar-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .user-chip {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 6px 14px 6px 6px;
+      background: var(--azul-bebe-50); border: 1px solid var(--azul-bebe-100);
+      border-radius: 999px;
+    }
+    .user-chip .avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--roxo), var(--roxo-2));
+      color: var(--white); font-size: 0.85rem; font-weight: 700; position: relative;
+    }
+    .user-chip .avatar::after {
+      content: ""; position: absolute; bottom: -1px; right: -1px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--verde); border: 2px solid var(--white);
+    }
+    .user-chip .name { font-size: 0.85rem; font-weight: 600; color: var(--ink); max-width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .btn-top {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-radius: 999px;
+      font-family: inherit; font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; border: none;
+      transition: all 0.3s ease; white-space: nowrap;
+    }
+    .btn-top svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .btn-back {
+      background: var(--white);
+      border: 1px solid var(--azul-bebe-100);
+      color: var(--azul-escuro);
+    }
+    .btn-back:hover { background: var(--azul-escuro); color: var(--white); border-color: var(--azul-escuro); transform: translateX(-3px); }
+    .btn-logout {
+      background: var(--white);
+      border: 1px solid var(--azul-bebe-100);
+      color: var(--vermelho);
+    }
+    .btn-logout:hover { background: var(--vermelho); color: var(--white); border-color: var(--vermelho); }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      padding: 36px 32px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(234,245,251,0.85));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-md);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ""; position: absolute; top: -40%; right: -10%;
+      width: 380px; height: 380px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(184, 224, 245, 0.5), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero .eyebrow {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--azul-escuro);
+      margin-bottom: 6px;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .hero .eyebrow::before {
+      content: ""; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--verde);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.3rem);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -0.01em; color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .hero p {
+      font-size: 0.95rem; color: var(--ink-soft);
+      max-width: 620px; line-height: 1.5;
+    }
+
+    /* ---------- ESTATÍSTICAS DO HERO ---------- */
+    .hero-stats {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      margin-top: 24px;
+      position: relative; z-index: 1;
+    }
+    .hero-stat {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 18px;
+      background: var(--white);
+      border: 1px solid var(--azul-bebe-100);
+      border-radius: 14px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+    .hero-stat:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .hero-stat-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      display: grid; place-items: center;
+      color: var(--white); flex-shrink: 0;
+    }
+    .hero-stat-icon svg { width: 18px; height: 18px; }
+    .hero-stat-icon.blue { background: linear-gradient(135deg, #1565c0, #0d47a1); }
+    .hero-stat-icon.green { background: linear-gradient(135deg, #22c55e, #15803d); }
+    .hero-stat-icon.purple { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+    .hero-stat-icon.amber { background: linear-gradient(135deg, #f59e0b, #b45309); }
+    .hero-stat-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+    .hero-stat-value {
+      font-family: var(--font-display);
+      font-size: 1.3rem; font-weight: 700; color: var(--ink);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* ---------- FILTROS ---------- */
+    .filters {
+      display: flex; flex-direction: column; gap: 12px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .filters-row {
+      display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+    }
+    .search {
+      position: relative; flex: 1; min-width: 240px;
+    }
+    .search svg {
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      width: 17px; height: 17px; color: var(--ink-mute); pointer-events: none;
+    }
+    .search input {
+      width: 100%; padding: 12px 16px 12px 44px;
+      font-family: inherit; font-size: 0.9rem;
+      background: var(--white);
+      border: 1.5px solid var(--azul-bebe-100);
+      border-radius: 999px; outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .search input:focus { border-color: var(--azul-escuro); box-shadow: var(--ring); }
+
+    .select-wrap {
+      position: relative;
+      min-width: 170px;
+    }
+    .select-wrap svg {
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      width: 14px; height: 14px; color: var(--ink-mute); pointer-events: none;
+    }
+    .select-wrap select {
+      width: 100%;
+      padding: 12px 38px 12px 16px;
+      font-family: inherit; font-size: 0.85rem; font-weight: 500;
+      color: var(--ink);
+      background: var(--white);
+      border: 1.5px solid var(--azul-bebe-100);
+      border-radius: 999px;
+      outline: none;
+      appearance: none; -webkit-appearance: none;
+      cursor: pointer;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .select-wrap select:focus { border-color: var(--azul-escuro); box-shadow: var(--ring); }
+
+    .chip-group { display: flex; gap: 6px; flex-wrap: wrap; }
+    .chip {
+      padding: 8px 16px;
+      background: var(--white);
+      border: 1.5px solid var(--azul-bebe-100);
+      border-radius: 999px;
+      font-family: inherit; font-size: 0.8rem; font-weight: 600;
+      color: var(--ink-soft); cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .chip:hover { color: var(--azul-escuro); border-color: var(--azul-bebe-300); }
+    .chip.active {
+      background: var(--azul-escuro); color: var(--white);
+      border-color: var(--azul-escuro);
+      box-shadow: 0 6px 14px -4px rgba(21, 101, 192, 0.5);
+    }
+    .chip .count {
+      background: rgba(255,255,255,0.2);
+      padding: 1px 7px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+    }
+    .chip:not(.active) .count {
+      background: var(--azul-bebe-50);
+      color: var(--azul-escuro);
+    }
+
+    /* ---------- GRID DE TURMAS ---------- */
+    .turmas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 18px;
+    }
+
+    .turma-card {
+      display: flex; flex-direction: column;
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: var(--shadow-sm);
+      text-decoration: none; color: inherit;
+      position: relative; overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.35s ease,
+                  border-color 0.35s ease;
+    }
+    .turma-card::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(21, 101, 192, 0.04), transparent 60%);
+      opacity: 0; transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+    .turma-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--azul-bebe-200);
+    }
+    .turma-card:hover::after { opacity: 1; }
+
+    .turma-top {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 18px;
+      position: relative; z-index: 1;
+    }
+    .turma-avatar {
+      width: 58px; height: 58px; border-radius: 16px;
+      display: grid; place-items: center;
+      color: var(--white);
+      font-family: var(--font-display);
+      font-size: 1.25rem; font-weight: 700;
+      flex-shrink: 0;
+      box-shadow: 0 10px 24px -8px rgba(21, 101, 192, 0.5);
+    }
+    .turma-avatar.c1 { background: linear-gradient(135deg, #1565c0, #0d47a1); }
+    .turma-avatar.c2 { background: linear-gradient(135deg, #22c55e, #15803d); }
+    .turma-avatar.c3 { background: linear-gradient(135deg, #f59e0b, #b45309); }
+    .turma-avatar.c4 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+    .turma-avatar.c5 { background: linear-gradient(135deg, #06b6d4, #0e7490); }
+    .turma-avatar.c6 { background: linear-gradient(135deg, #ec4899, #be185d); }
+
+    .turma-info { flex: 1; min-width: 0; }
+    .turma-info .serie {
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--azul-escuro); opacity: 0.85;
+      margin-bottom: 2px;
+    }
+    .turma-info .nome {
+      font-family: var(--font-display);
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--ink); line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    .turma-info .disc {
+      font-size: 0.82rem; color: var(--ink-soft);
+      margin-top: 2px;
+    }
+
+    /* Professor da turma */
+    .turma-prof {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 12px;
+      background: var(--azul-bebe-50);
+      border-radius: 10px;
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--azul-escuro);
+      margin-bottom: 16px;
+      position: relative; z-index: 1;
+    }
+    .turma-prof svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .turma-prof span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .turma-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 14px 0;
+      margin: 0 0 16px;
+      border-top: 1px solid var(--azul-bebe-100);
+      border-bottom: 1px solid var(--azul-bebe-100);
+      position: relative; z-index: 1;
+    }
+    .turma-stat { text-align: center; }
+    .turma-stat-value {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--ink); line-height: 1;
+      margin-bottom: 4px;
+    }
+    .turma-stat-value.green { color: var(--verde); }
+    .turma-stat-value.amber { color: var(--amarelo); }
+    .turma-stat-value.red { color: var(--vermelho); }
+    .turma-stat-label {
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .turma-schedule {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.78rem; color: var(--ink-soft);
+      margin-bottom: 16px;
+      position: relative; z-index: 1;
+    }
+    .turma-schedule svg { width: 14px; height: 14px; color: var(--azul-escuro); flex-shrink: 0; }
+    .turma-schedule .days {
+      display: inline-flex; gap: 4px; margin-left: auto;
+    }
+    .turma-schedule .day {
+      padding: 2px 8px; border-radius: 6px;
+      background: var(--azul-bebe-50);
+      color: var(--azul-escuro);
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* Ações do card */
+    .turma-actions {
+      display: flex; gap: 8px;
+      position: relative; z-index: 1;
+    }
+    .btn-mini {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 11px;
+      font-family: inherit; font-size: 0.78rem; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      transition: all 0.25s ease; border: none;
+      white-space: nowrap;
+    }
+    .btn-mini svg { width: 14px; height: 14px; }
+    .btn-mini.primary {
+      background: linear-gradient(135deg, var(--azul-escuro), var(--azul-escuro-2));
+      color: var(--white);
+      box-shadow: 0 6px 14px -5px rgba(21, 101, 192, 0.5);
+    }
+    .btn-mini.primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(21, 101, 192, 0.6); }
+    .btn-mini.roxo {
+      background: linear-gradient(135deg, var(--roxo), var(--roxo-2));
+      color: var(--white);
+      box-shadow: 0 6px 14px -5px rgba(139, 92, 246, 0.5);
+    }
+    .btn-mini.roxo:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(139, 92, 246, 0.6); }
+
+    /* Status do conselho no card */
+    .turma-status-tag {
+      position: absolute; top: 14px; right: 14px;
+      padding: 4px 10px; border-radius: 999px;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.03em;
+      z-index: 2;
+    }
+    .turma-status-tag.ok { background: #dcfce7; color: #15803d; }
+    .turma-status-tag.atencao { background: #fef3c7; color: #b45309; }
+    .turma-status-tag.risco { background: #fee2e2; color: #b91c1c; }
+    .turma-status-tag.pendente { background: #e0e7ff; color: #4338ca; }
+
+    /* ---------- EMPTY STATE ---------- */
+    .empty-box {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--ink-soft);
+      background: rgba(255, 255, 255, 0.7);
+      border: 1.5px dashed var(--azul-bebe-200);
+      border-radius: 20px;
+    }
+    .empty-box svg {
+      width: 48px; height: 48px; color: var(--azul-bebe-300);
+      margin-bottom: 12px;
+    }
+    .empty-box p { font-size: 0.92rem; }
+
+    /* ---------- RODAPÉ ---------- */
+    .footer {
+      margin-top: 12px; display: flex; align-items: center; justify-content: center;
+      gap: 10px; padding: 20px 24px;
+      background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--azul-escuro); opacity: 0.6; }
+    .footer p { font-size: 0.76rem; color: var(--ink-soft); text-align: center; }
+
+    /* ---------- RESPONSIVO ---------- */
+    @media (max-width: 640px) {
+      body { padding: 20px 14px 40px; }
+      .topbar { padding: 14px 16px; }
+      .topbar-actions .btn-top span { display: none; }
+      .hero { padding: 24px 20px; }
+      .hero h1 { font-size: 1.5rem; }
+      .user-chip .name { max-width: 100px; }
+      .hero-stats { gap: 8px; }
+      .hero-stat { padding: 10px 14px; }
+      .hero-stat-value { font-size: 1.1rem; }
+      .turmas-grid { grid-template-columns: 1fr; gap: 14px; }
+      .turma-card { padding: 18px; }
+      .turma-avatar { width: 52px; height: 52px; font-size: 1.1rem; border-radius: 14px; }
+      .select-wrap { min-width: 100%; }
+      .filters-row { flex-direction: column; align-items: stretch; }
+    }
+    @media (max-width: 380px) {
+      .user-chip .name { display: none; }
+      .turma-stats { gap: 4px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-grain"></div>
+  </div>
+
+  <div class="container">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">FG</div>
+        <div class="brand-info">
+          <div class="top">Área Pedagógica</div>
+          <div class="main">Frei Graciano Droessler</div>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <div class="user-chip">
+          <div class="avatar" id="user-avatar">P</div>
+          <span class="name" id="user-name">Pedagogo(a)</span>
+        </div>
+        <a href="3.html" class="btn-top btn-back" title="Voltar ao painel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5"/>
+            <path d="M12 19l-7-7 7-7"/>
+          </svg>
+          <span>Painel</span>
+        </a>
+        <button class="btn-top btn-logout" id="btn-logout" title="Sair">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <path d="M16 17l5-5-5-5"/>
+            <path d="M21 12H9"/>
+          </svg>
+          <span>Sair</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">Visão geral</div>
+        <h1>Todas as Turmas</h1>
+        <p>Acompanhe as turmas da escola, filtre por professor, período ou situação e acesse rapidamente o conselho de classe.</p>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+            <div class="hero-stat-text">
+              <span class="hero-stat-value" id="st-total">0</span>
+              <span class="hero-stat-label">Turmas</span>
+            </div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+              </svg>
+            </div>
+            <div class="hero-stat-text">
+              <span class="hero-stat-value" id="st-alunos">0</span>
+              <span class="hero-stat-label">Alunos</span>
+            </div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-icon purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <div class="hero-stat-text">
+              <span class="hero-stat-value" id="st-professores">0</span>
+              <span class="hero-stat-label">Professores</span>
+            </div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-icon amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <path d="M22 4L12 14.01l-3-3"/>
+              </svg>
+            </div>
+            <div class="hero-stat-text">
+              <span class="hero-stat-value" id="st-media">0.0</span>
+              <span class="hero-stat-label">Média Geral</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTROS -->
+    <section class="filters">
+      <div class="filters-row">
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <input type="text" id="busca" placeholder="Buscar por turma, série, disciplina ou professor..." />
+        </div>
+
+        <div class="select-wrap">
+          <select id="f-professor">
+            <option value="">Todos os professores</option>
+          </select>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </div>
+
+        <div class="select-wrap">
+          <select id="f-disciplina">
+            <option value="">Todas as disciplinas</option>
+          </select>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="filters-row">
+        <div class="chip-group" id="chips-situacao">
+          <button class="chip active" data-filter="todas">Todas <span class="count" id="count-todas">0</span></button>
+          <button class="chip" data-filter="ok">Em dia <span class="count" id="count-ok">0</span></button>
+          <button class="chip" data-filter="atencao">Atenção <span class="count" id="count-atencao">0</span></button>
+          <button class="chip" data-filter="risco">Risco <span class="count" id="count-risco">0</span></button>
+        </div>
+
+        <div class="chip-group" id="chips-nivel">
+          <button class="chip" data-nivel="fundamental">Fundamental</button>
+          <button class="chip" data-nivel="medio">Médio</button>
+        </div>
+
+        <div class="chip-group" id="chips-periodo">
+          <button class="chip" data-periodo="manha">Manhã</button>
+          <button class="chip" data-periodo="tarde">Tarde</button>
+        </div>
+
+        <button class="chip" id="btn-limpar" style="margin-left:auto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+          Limpar filtros
+        </button>
+      </div>
+    </section>
+
+    <!-- GRID -->
+    <section class="turmas-grid" id="turmas-grid" aria-label="Lista de turmas"></section>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+      <span class="dot" aria-hidden="true"></span>
+      <p>© 2025 · Escola Estadual do Campo Frei Graciano Droessler</p>
+    </footer>
+
+  </div>
+
+  <script>
+    /* =========================================================
+       PROTEÇÃO
+       ========================================================= */
+    const nomePedagogo = sessionStorage.getItem('pedagogoLogado');
+    if (!nomePedagogo) window.location.href = '2.html';
+
+    const userAvatar = document.getElementById('user-avatar');
+    const userName   = document.getElementById('user-name');
+    if (nomePedagogo) {
+      userName.textContent   = nomePedagogo;
+      userAvatar.textContent = nomePedagogo.trim().charAt(0).toUpperCase();
+    }
+
+    /* =========================================================
+       LOGOUT
+       ========================================================= */
+    document.getElementById('btn-logout').addEventListener('click', () => {
+      if (confirm('Deseja sair da sua conta?')) {
+        sessionStorage.removeItem('pedagogoLogado');
+        window.location.href = '2.html';
+      }
+    });
+
+    /* =========================================================
+       CARREGA DADOS
+       ========================================================= */
+    let turmas = [];
+    let conselhos = {};
+    let fichas = {};
+
+    try { turmas = JSON.parse(localStorage.getItem('turmasProfessor') || '[]'); } catch(e) {}
+    try { conselhos = JSON.parse(localStorage.getItem('conselhosProfessor') || '{}'); } catch(e) {}
+    try { fichas = JSON.parse(localStorage.getItem('fichasConselho') || '{}'); } catch(e) {}
+
+    /* =========================================================
+       ESTATÍSTICAS DO HERO
+       ========================================================= */
+    function atualizarHeroStats() {
+      document.getElementById('st-total').textContent = turmas.length;
+
+      const totalAlunos = turmas.reduce((s, t) => s + (Number(t.alunos) || 0), 0);
+      document.getElementById('st-alunos').textContent = totalAlunos;
+
+      const setProfs = new Set();
+      turmas.forEach(t => setProfs.add((t.professor || 'Professor(a)') + '|' + (t.disciplina || '')));
+      document.getElementById('st-professores').textContent = setProfs.size;
+
+      if (turmas.length > 0) {
+        const soma = turmas.reduce((s, t) => s + (Number(t.media) || 0), 0);
+        document.getElementById('st-media').textContent = (soma / turmas.length).toFixed(1);
+      } else {
+        document.getElementById('st-media').textContent = '0.0';
+      }
+    }
+
+    /* =========================================================
+       POPULA SELECTS
+       ========================================================= */
+    function popularSelects() {
+      const profs = new Set();
+      const discs = new Set();
+
+      turmas.forEach(t => {
+        if (t.professor) profs.add(t.professor);
+        if (t.disciplina) discs.add(t.disciplina);
+      });
+
+      const selProf = document.getElementById('f-professor');
+      const selDisc = document.getElementById('f-disciplina');
+
+      Array.from(profs).sort().forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p;
+        opt.textContent = p;
+        selProf.appendChild(opt);
+      });
+
+      Array.from(discs).sort().forEach(d => {
+        const opt = document.createElement('option');
+        opt.value = d;
+        opt.textContent = d;
+        selDisc.appendChild(opt);
+      });
+    }
+
+    /* =========================================================
+       HELPERS
+       ========================================================= */
+    function getStatusTurma(t) {
+      const freq = Number(t.freq) || 0;
+      const media = Number(t.media) || 0;
+
+      if (freq < 75 || (media > 0 && media < 5)) return 'risco';
+      if (freq < 85 || (media > 0 && media < 6.5)) return 'atencao';
+      return 'ok';
+    }
+
+    function temConselho(id) {
+      return !!(conselhos[id] || fichas[id]);
+    }
+
+    /* =========================================================
+       FILTROS ATUAIS
+       ========================================================= */
+    let filtros = {
+      busca: '',
+      professor: '',
+      disciplina: '',
+      situacao: 'todas',
+      nivel: null,
+      periodo: null
+    };
+
+    /* =========================================================
+       RENDER
+       ========================================================= */
+    const grid = document.getElementById('turmas-grid');
+
+    function renderTurmas() {
+      const termo = filtros.busca.toLowerCase().trim();
+
+      let lista = turmas.filter(t => {
+        // Busca
+        if (termo) {
+          const hay = (t.nome + ' ' + t.disciplina + ' ' + t.serie + ' ' + (t.professor || '')).toLowerCase();
+          if (!hay.includes(termo)) return false;
+        }
+        // Professor
+        if (filtros.professor && (t.professor || '') !== filtros.professor) return false;
+        // Disciplina
+        if (filtros.disciplina && (t.disciplina || '') !== filtros.disciplina) return false;
+        // Situação
+        if (filtros.situacao !== 'todas') {
+          const st = getStatusTurma(t);
+          if (st !== filtros.situacao) return false;
+        }
+        // Nível
+        if (filtros.nivel && t.nivel !== filtros.nivel) return false;
+        // Período
+        if (filtros.periodo && t.periodo !== filtros.periodo) return false;
+
+        return true;
+      });
+
+      // Atualiza counts
+      const counts = { todas: turmas.length, ok: 0, atencao: 0, risco: 0 };
+      turmas.forEach(t => counts[getStatusTurma(t)]++);
+      document.getElementById('count-todas').textContent = counts.todas;
+      document.getElementById('count-ok').textContent = counts.ok;
+      document.getElementById('count-atencao').textContent = counts.atencao;
+      document.getElementById('count-risco').textContent = counts.risco;
+
+      // Render
+      if (lista.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="M21 21l-4.35-4.35"/>
+            </svg>
+            <p>${turmas.length === 0 ? 'Nenhuma turma cadastrada ainda.' : 'Nenhuma turma corresponde a esses filtros.'}</p>
+          </div>`;
+        return;
+      }
+
+      grid.innerHTML = lista.map(t => {
+        const st = getStatusTurma(t);
+        const freqClass = Number(t.freq) >= 90 ? 'green' : Number(t.freq) >= 80 ? 'amber' : 'red';
+        const mediaClass = Number(t.media) >= 7 ? 'green' : Number(t.media) >= 6 ? 'amber' : 'red';
+        const temC = temConselho(t.id);
+
+        const tagTexto = temC ? 'Conselho OK' : 'Sem conselho';
+        const tagClass = temC ? 'ok' : 'pendente';
+
+        return `
+          <div class="turma-card">
+            <span class="turma-status-tag ${tagClass}">${tagTexto}</span>
+
+            <div class="turma-top">
+              <div class="turma-avatar ${t.cor || 'c1'}">${t.sigla}</div>
+              <div class="turma-info">
+                <div class="serie">${t.serie}</div>
+                <div class="nome">${t.nome}</div>
+                <div class="disc">${t.disciplina}</div>
+              </div>
+            </div>
+
+            <div class="turma-prof">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              <span>${t.professor || 'Professor(a) não informado'}</span>
+            </div>
+
+            <div class="turma-stats">
+              <div class="turma-stat">
+                <div class="turma-stat-value">${t.alunos}</div>
+                <div class="turma-stat-label">Alunos</div>
+              </div>
+              <div class="turma-stat">
+                <div class="turma-stat-value ${mediaClass}">${Number(t.media).toFixed(1)}</div>
+                <div class="turma-stat-label">Média</div>
+              </div>
+              <div class="turma-stat">
+                <div class="turma-stat-value ${freqClass}">${t.freq}%</div>
+                <div class="turma-stat-label">Frequência</div>
+              </div>
+            </div>
+
+            <div class="turma-schedule">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+              ${t.turno}
+              <span class="days">
+                ${(t.dias || []).map(d => `<span class="day">${d}</span>`).join('')}
+              </span>
+            </div>
+
+            <div class="turma-actions">
+              <a href="turma-detalhes.html?id=${encodeURIComponent(t.id)}" class="btn-mini primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                Ver turma
+              </a>
+              <a href="conselho.html?turma=${encodeURIComponent(t.id)}" class="btn-mini roxo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Conselho
+              </a>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    /* =========================================================
+       EVENTOS
+       ========================================================= */
+    document.getElementById('busca').addEventListener('input', e => {
+      filtros.busca = e.target.value;
+      renderTurmas();
+    });
+
+    document.getElementById('f-professor').addEventListener('change', e => {
+      filtros.professor = e.target.value;
+      renderTurmas();
+    });
+
+    document.getElementById('f-disciplina').addEventListener('change', e => {
+      filtros.disciplina = e.target.value;
+      renderTurmas();
+    });
+
+    // Chips de situação
+    document.querySelectorAll('#chips-situacao .chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#chips-situacao .chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        filtros.situacao = chip.dataset.filter;
+        renderTurmas();
+      });
+    });
+
+    // Chips de nível (toggle)
+    document.querySelectorAll('#chips-nivel .chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const nivel = chip.dataset.nivel;
+        if (filtros.nivel === nivel) {
+          filtros.nivel = null;
+          chip.classList.remove('active');
+        } else {
+          filtros.nivel = nivel;
+          document.querySelectorAll('#chips-nivel .chip').forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+        }
+        renderTurmas();
+      });
+    });
+
+    // Chips de período (toggle)
+    document.querySelectorAll('#chips-periodo .chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const p = chip.dataset.periodo;
+        if (filtros.periodo === p) {
+          filtros.periodo = null;
+          chip.classList.remove('active');
+        } else {
+          filtros.periodo = p;
+          document.querySelectorAll('#chips-periodo .chip').forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+        }
+        renderTurmas();
+      });
+    });
+
+    // Limpar filtros
+    document.getElementById('btn-limpar').addEventListener('click', () => {
+      filtros = { busca: '', professor: '', disciplina: '', situacao: 'todas', nivel: null, periodo: null };
+      document.getElementById('busca').value = '';
+      document.getElementById('f-professor').value = '';
+      document.getElementById('f-disciplina').value = '';
+
+      document.querySelectorAll('#chips-situacao .chip').forEach(c => c.classList.remove('active'));
+      document.querySelector('#chips-situacao .chip[data-filter="todas"]').classList.add('active');
+      document.querySelectorAll('#chips-nivel .chip').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('#chips-periodo .chip').forEach(c => c.classList.remove('active'));
+
+      renderTurmas();
+    });
+
+    /* =========================================================
+       INICIALIZA
+       ========================================================= */
+    atualizarHeroStats();
+    popularSelects();
+    renderTurmas();
+  </script>
+
+</body>
+</html>
