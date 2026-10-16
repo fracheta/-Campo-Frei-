@@ -95,7 +95,9 @@
     .brand-info { min-width: 0; }
     .brand-info .top { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--azul-escuro); opacity: 0.85; }
     .brand-info .main { font-size: 0.95rem; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
     .topbar-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
     .user-chip {
       display: inline-flex; align-items: center; gap: 10px;
       padding: 6px 14px 6px 6px;
@@ -115,16 +117,38 @@
     }
     .user-chip .name { font-size: 0.85rem; font-weight: 600; color: var(--ink); max-width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    .btn-logout {
+    /* Botão genérico */
+    .btn-top {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 16px; background: var(--white);
-      border: 1px solid var(--azul-bebe-100); border-radius: 999px;
-      color: var(--vermelho); font-family: inherit; font-size: 0.82rem;
-      font-weight: 600; cursor: pointer; text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-family: inherit; font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; border: none;
       transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    .btn-top svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    .btn-back {
+      background: var(--white);
+      border: 1px solid var(--azul-bebe-100);
+      color: var(--azul-escuro);
+    }
+    .btn-back:hover { background: var(--azul-escuro); color: var(--white); border-color: var(--azul-escuro); transform: translateX(-3px); }
+
+    .btn-new {
+      background: linear-gradient(135deg, var(--azul-escuro), var(--azul-escuro-2));
+      color: var(--white);
+      box-shadow: 0 8px 20px -6px rgba(21, 101, 192, 0.55);
+    }
+    .btn-new:hover { transform: translateY(-2px); box-shadow: 0 12px 26px -6px rgba(21, 101, 192, 0.65); }
+
+    .btn-logout {
+      background: var(--white);
+      border: 1px solid var(--azul-bebe-100);
+      color: var(--vermelho);
     }
     .btn-logout:hover { background: var(--vermelho); color: var(--white); border-color: var(--vermelho); }
-    .btn-logout svg { width: 15px; height: 15px; }
 
     /* ---------- HERO ---------- */
     .hero {
@@ -158,6 +182,43 @@
     .hero p {
       font-size: 0.95rem; color: var(--ink-soft);
       max-width: 620px; line-height: 1.5;
+    }
+
+    /* Mini stats do hero */
+    .hero-stats {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      margin-top: 24px;
+      position: relative; z-index: 1;
+    }
+    .hero-stat {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 18px;
+      background: var(--white);
+      border: 1px solid var(--azul-bebe-100);
+      border-radius: 14px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+    .hero-stat:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .hero-stat-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      display: grid; place-items: center;
+      color: var(--white); flex-shrink: 0;
+    }
+    .hero-stat-icon svg { width: 18px; height: 18px; }
+    .hero-stat-icon.blue { background: linear-gradient(135deg, #1565c0, #0d47a1); }
+    .hero-stat-icon.green { background: linear-gradient(135deg, #22c55e, #15803d); }
+    .hero-stat-icon.purple { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+    .hero-stat-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+    .hero-stat-value {
+      font-family: var(--font-display);
+      font-size: 1.3rem; font-weight: 700; color: var(--ink);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--ink-soft);
     }
 
     /* ---------- FILTROS ---------- */
@@ -239,6 +300,26 @@
       border-color: var(--azul-bebe-200);
     }
     .turma-card:hover::after { opacity: 1; }
+
+    /* Botão excluir */
+    .turma-delete {
+      position: absolute; top: 14px; right: 14px;
+      width: 32px; height: 32px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--azul-bebe-100);
+      color: var(--ink-mute);
+      cursor: pointer;
+      opacity: 0; transform: scale(0.8);
+      transition: all 0.3s ease;
+      z-index: 3;
+    }
+    .turma-card:hover .turma-delete { opacity: 1; transform: scale(1); }
+    .turma-delete:hover {
+      background: var(--vermelho); color: var(--white);
+      border-color: var(--vermelho);
+    }
+    .turma-delete svg { width: 14px; height: 14px; }
 
     .turma-top {
       display: flex; align-items: center; gap: 14px;
@@ -362,7 +443,179 @@
       width: 48px; height: 48px; color: var(--azul-bebe-300);
       margin-bottom: 12px;
     }
-    .empty-state p { font-size: 0.92rem; }
+    .empty-state p { font-size: 0.92rem; margin-bottom: 16px; }
+    .empty-state .btn-empty {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 22px;
+      background: linear-gradient(135deg, var(--azul-escuro), var(--azul-escuro-2));
+      color: var(--white); border: none; border-radius: 999px;
+      font-family: inherit; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 10px 24px -8px rgba(21, 101, 192, 0.55);
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+    .empty-state .btn-empty:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -8px rgba(21, 101, 192, 0.65); }
+    .empty-state .btn-empty svg { width: 16px; height: 16px; color: var(--white); margin: 0; }
+
+    /* ---------- MODAL: NOVA TURMA ---------- */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(15, 30, 53, 0.55);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      z-index: 999;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .modal-overlay.open { opacity: 1; visibility: visible; }
+
+    .modal {
+      width: 100%; max-width: 560px;
+      max-height: 92vh; overflow-y: auto;
+      background: var(--white);
+      border-radius: 28px;
+      box-shadow: 0 40px 80px -20px rgba(15, 30, 53, 0.4);
+      transform: translateY(30px) scale(0.96);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+    }
+    .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+
+    .modal::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--azul-escuro), transparent);
+      border-radius: 28px 28px 0 0;
+    }
+
+    .modal-head {
+      padding: 26px 28px 18px;
+      background: linear-gradient(135deg, var(--azul-bebe-50), var(--white));
+      border-bottom: 1px solid var(--azul-bebe-100);
+      border-radius: 28px 28px 0 0;
+      position: relative;
+    }
+    .modal-head .eyebrow {
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--azul-escuro); opacity: 0.85;
+      margin-bottom: 4px;
+    }
+    .modal-head h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--ink); line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    .modal-close {
+      position: absolute; top: 16px; right: 16px;
+      width: 36px; height: 36px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: var(--white); border: 1px solid var(--azul-bebe-100);
+      color: var(--ink-soft); cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .modal-close:hover {
+      background: var(--vermelho); color: var(--white);
+      border-color: var(--vermelho); transform: rotate(90deg);
+    }
+    .modal-close svg { width: 16px; height: 16px; }
+
+    .modal-body {
+      padding: 22px 28px 8px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .field input,
+    .field select {
+      padding: 12px 16px;
+      font-family: inherit; font-size: 0.9rem;
+      color: var(--ink);
+      background: var(--white);
+      border: 1.5px solid var(--azul-bebe-100);
+      border-radius: 12px;
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--azul-escuro);
+      box-shadow: var(--ring);
+    }
+    .field input::placeholder { color: var(--ink-mute); }
+
+    .field-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+
+    .days-picker { display: flex; gap: 6px; flex-wrap: wrap; }
+    .day-opt {
+      padding: 8px 14px;
+      background: var(--white);
+      border: 1.5px solid var(--azul-bebe-100);
+      border-radius: 999px;
+      font-family: inherit; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--ink-soft); cursor: pointer;
+      transition: all 0.25s ease;
+      user-select: none;
+    }
+    .day-opt:hover { color: var(--azul-escuro); border-color: var(--azul-bebe-300); }
+    .day-opt.selected {
+      background: var(--azul-escuro); color: var(--white);
+      border-color: var(--azul-escuro);
+    }
+
+    .color-picker { display: flex; gap: 8px; flex-wrap: wrap; }
+    .color-opt {
+      width: 34px; height: 34px; border-radius: 10px;
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .color-opt:hover { transform: scale(1.1); }
+    .color-opt.selected { border-color: var(--ink); }
+    .color-opt.c1 { background: linear-gradient(135deg, #1565c0, #0d47a1); }
+    .color-opt.c2 { background: linear-gradient(135deg, #22c55e, #15803d); }
+    .color-opt.c3 { background: linear-gradient(135deg, #f59e0b, #b45309); }
+    .color-opt.c4 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+    .color-opt.c5 { background: linear-gradient(135deg, #06b6d4, #0e7490); }
+    .color-opt.c6 { background: linear-gradient(135deg, #ec4899, #be185d); }
+
+    .modal-actions {
+      padding: 20px 28px 26px;
+      display: flex; gap: 10px; justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+    .btn-cancel {
+      padding: 12px 22px;
+      background: var(--white);
+      border: 1.5px solid var(--azul-bebe-200);
+      border-radius: 999px;
+      font-family: inherit; font-size: 0.85rem; font-weight: 600;
+      color: var(--ink-soft); cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .btn-cancel:hover { background: var(--azul-bebe-50); color: var(--azul-escuro); }
+    .btn-save {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 22px;
+      background: linear-gradient(135deg, var(--azul-escuro), var(--azul-escuro-2));
+      border: none; border-radius: 999px;
+      font-family: inherit; font-size: 0.85rem; font-weight: 600;
+      color: var(--white); cursor: pointer;
+      box-shadow: 0 10px 24px -8px rgba(21, 101, 192, 0.55);
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+    .btn-save:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -8px rgba(21, 101, 192, 0.65); }
+    .btn-save svg { width: 15px; height: 15px; }
 
     /* ---------- RODAPÉ ---------- */
     .footer {
@@ -375,16 +628,42 @@
     .footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--azul-escuro); opacity: 0.6; }
     .footer p { font-size: 0.76rem; color: var(--ink-soft); text-align: center; }
 
+    /* ---------- TOAST ---------- */
+    .toast {
+      position: fixed; bottom: 28px; left: 50%; transform: translate(-50%, 100px);
+      padding: 14px 24px;
+      background: linear-gradient(135deg, var(--azul-escuro), var(--azul-escuro-2));
+      color: var(--white);
+      border-radius: 999px;
+      font-size: 0.85rem; font-weight: 600;
+      box-shadow: 0 20px 40px -10px rgba(21, 101, 192, 0.5);
+      z-index: 2000;
+      display: inline-flex; align-items: center; gap: 10px;
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+    .toast svg { width: 18px; height: 18px; }
+
     /* ---------- RESPONSIVO ---------- */
     @media (max-width: 640px) {
       body { padding: 20px 14px 40px; }
       .topbar { padding: 14px 16px; }
+      .topbar-actions .btn-top span { display: none; }
       .hero { padding: 24px 20px; }
       .hero h1 { font-size: 1.5rem; }
       .user-chip .name { max-width: 100px; }
       .turmas-grid { grid-template-columns: 1fr; gap: 14px; }
       .turma-card { padding: 18px; }
       .turma-avatar { width: 52px; height: 52px; font-size: 1.1rem; border-radius: 14px; }
+      .hero-stats { gap: 8px; }
+      .hero-stat { padding: 10px 14px; }
+      .hero-stat-value { font-size: 1.1rem; }
+      .modal-head { padding: 22px 20px 16px; }
+      .modal-body { padding: 18px 20px 6px; }
+      .modal-actions { padding: 16px 20px 22px; }
+      .field-row { grid-template-columns: 1fr; }
     }
     @media (max-width: 380px) {
       .user-chip .name { display: none; }
@@ -424,13 +703,32 @@
           <div class="avatar" id="user-avatar">P</div>
           <span class="name" id="user-name">Professor(a)</span>
         </div>
-        <button class="btn-logout" id="btn-logout" title="Sair da conta">
+
+        <!-- Voltar para a página anterior (professor.html) -->
+        <a href="professor.html" class="btn-top btn-back" id="btn-voltar" title="Voltar à tela inicial">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5"/>
+            <path d="M12 19l-7-7 7-7"/>
+          </svg>
+          <span>Voltar</span>
+        </a>
+
+        <!-- Nova turma -->
+        <button class="btn-top btn-new" id="btn-nova-turma">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          <span>Nova Turma</span>
+        </button>
+
+        <!-- Logout -->
+        <button class="btn-top btn-logout" id="btn-logout" title="Sair da conta">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
             <path d="M16 17l5-5-5-5"/>
             <path d="M21 12H9"/>
           </svg>
-          Sair
+          <span>Sair</span>
         </button>
       </div>
     </header>
@@ -441,6 +739,45 @@
         <div class="eyebrow">Bem-vindo(a) de volta</div>
         <h1 id="hero-title">Minhas Turmas</h1>
         <p id="hero-sub">Selecione uma turma para visualizar alunos, notas, frequência e atividades.</p>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+            <div class="hero-stat-text">
+              <span class="hero-stat-value" id="stat-turmas">0</span>
+              <span class="hero-stat-label">Turmas</span>
+            </div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+              </svg>
+            </div>
+            <div class="hero-stat-text">
+              <span class="hero-stat-value" id="stat-alunos">0</span>
+              <span class="hero-stat-label">Alunos</span>
+            </div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-icon purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <path d="M22 4L12 14.01l-3-3"/>
+              </svg>
+            </div>
+            <div class="hero-stat-text">
+              <span class="hero-stat-value" id="stat-media">0.0</span>
+              <span class="hero-stat-label">Média Geral</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -473,15 +810,133 @@
 
   </div>
 
+  <!-- =========================================================
+       MODAL: NOVA TURMA
+       ========================================================= -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal" role="document">
+
+      <button class="modal-close" id="modal-close" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6L6 18"/>
+          <path d="M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <div class="modal-head">
+        <div class="eyebrow">Cadastro</div>
+        <h2 id="modal-title">Nova Turma</h2>
+      </div>
+
+      <form id="form-turma">
+        <div class="modal-body">
+
+          <div class="field-row">
+            <div class="field">
+              <label for="f-sigla">Sigla *</label>
+              <input type="text" id="f-sigla" placeholder="Ex: 9A" maxlength="4" required />
+            </div>
+            <div class="field">
+              <label for="f-serie">Série *</label>
+              <input type="text" id="f-serie" placeholder="Ex: 9º Ano" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-nome">Nome da turma *</label>
+            <input type="text" id="f-nome" placeholder="Ex: 9º Ano A" required />
+          </div>
+
+          <div class="field">
+            <label for="f-disciplina">Disciplina *</label>
+            <input type="text" id="f-disciplina" placeholder="Ex: Matemática" required />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="f-periodo">Período *</label>
+              <select id="f-periodo" required>
+                <option value="manha">Manhã</option>
+                <option value="tarde">Tarde</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-nivel">Nível *</label>
+              <select id="f-nivel" required>
+                <option value="fundamental">Fundamental</option>
+                <option value="medio">Médio</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="f-turno">Horário *</label>
+              <input type="text" id="f-turno" placeholder="07:30 às 09:10" required />
+            </div>
+            <div class="field">
+              <label for="f-alunos">Nº de alunos</label>
+              <input type="number" id="f-alunos" placeholder="0" min="0" value="0" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Dias da semana *</label>
+            <div class="days-picker" id="days-picker">
+              <button type="button" class="day-opt" data-day="SEG">SEG</button>
+              <button type="button" class="day-opt" data-day="TER">TER</button>
+              <button type="button" class="day-opt" data-day="QUA">QUA</button>
+              <button type="button" class="day-opt" data-day="QUI">QUI</button>
+              <button type="button" class="day-opt" data-day="SEX">SEX</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Cor da turma</label>
+            <div class="color-picker" id="color-picker">
+              <div class="color-opt c1 selected" data-color="c1"></div>
+              <div class="color-opt c2" data-color="c2"></div>
+              <div class="color-opt c3" data-color="c3"></div>
+              <div class="color-opt c4" data-color="c4"></div>
+              <div class="color-opt c5" data-color="c5"></div>
+              <div class="color-opt c6" data-color="c6"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="btn-cancelar">Cancelar</button>
+          <button type="submit" class="btn-save">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            Salvar Turma
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6L9 17l-5-5"/>
+    </svg>
+    <span id="toast-text">Salvo</span>
+  </div>
+
   <script>
-    /* ---------- Proteção de sessão ---------- */
+    /* =========================================================
+       PROTEÇÃO DE SESSÃO
+       ========================================================= */
     const nomeProfessor = sessionStorage.getItem('professorLogado');
     if (!nomeProfessor) window.location.href = 'professor.html';
 
     const userAvatar = document.getElementById('user-avatar');
     const userName   = document.getElementById('user-name');
     const heroTitle  = document.getElementById('hero-title');
-    const heroSub    = document.getElementById('hero-sub');
 
     if (nomeProfessor) {
       userName.textContent   = nomeProfessor;
@@ -489,7 +944,9 @@
       heroTitle.textContent  = 'Olá, ' + nomeProfessor.split(' ')[0] + '!';
     }
 
-    /* ---------- Logout ---------- */
+    /* =========================================================
+       LOGOUT
+       ========================================================= */
     document.getElementById('btn-logout').addEventListener('click', () => {
       if (confirm('Deseja sair da sua conta?')) {
         sessionStorage.removeItem('professorLogado');
@@ -497,122 +954,74 @@
       }
     });
 
-    /* ---------- Dados simulados das turmas ---------- */
-    const turmas = [
-      {
-        id: '9a-mat',
-        sigla: '9A',
-        serie: '9º Ano',
-        nome: '9º Ano A',
-        disciplina: 'Matemática',
-        periodo: 'manha',
-        nivel: 'fundamental',
-        turno: '07:30 às 09:10',
-        dias: ['SEG', 'QUA', 'SEX'],
-        alunos: 32,
-        media: 7.8,
-        freq: 92,
-        cor: 'c1',
-        status: 'ok'
-      },
-      {
-        id: '8b-mat',
-        sigla: '8B',
-        serie: '8º Ano',
-        nome: '8º Ano B',
-        disciplina: 'Matemática',
-        periodo: 'manha',
-        nivel: 'fundamental',
-        turno: '09:20 às 11:00',
-        dias: ['TER', 'QUI'],
-        alunos: 28,
-        media: 8.1,
-        freq: 95,
-        cor: 'c2',
-        status: 'ok'
-      },
-      {
-        id: '7a-mat',
-        sigla: '7A',
-        serie: '7º Ano',
-        nome: '7º Ano A',
-        disciplina: 'Matemática',
-        periodo: 'tarde',
-        nivel: 'fundamental',
-        turno: '13:30 às 15:10',
-        dias: ['SEG', 'QUA'],
-        alunos: 30,
-        media: 7.2,
-        freq: 88,
-        cor: 'c3',
-        status: 'atencao'
-      },
-      {
-        id: '1em-mat',
-        sigla: '1M',
-        serie: '1ª Série',
-        nome: '1ª Série EM',
-        disciplina: 'Matemática',
-        periodo: 'manha',
-        nivel: 'medio',
-        turno: '07:30 às 09:10',
-        dias: ['TER', 'QUI', 'SEX'],
-        alunos: 34,
-        media: 7.5,
-        freq: 90,
-        cor: 'c4',
-        status: 'ok'
-      },
-      {
-        id: '2em-mat',
-        sigla: '2M',
-        serie: '2ª Série',
-        nome: '2ª Série EM',
-        disciplina: 'Matemática',
-        periodo: 'tarde',
-        nivel: 'medio',
-        turno: '15:20 às 17:00',
-        dias: ['SEG', 'QUA', 'SEX'],
-        alunos: 29,
-        media: 6.9,
-        freq: 84,
-        cor: 'c5',
-        status: 'atencao'
-      },
-      {
-        id: '3em-mat',
-        sigla: '3M',
-        serie: '3ª Série',
-        nome: '3ª Série EM',
-        disciplina: 'Matemática',
-        periodo: 'manha',
-        nivel: 'medio',
-        turno: '09:20 às 11:00',
-        dias: ['TER', 'QUI'],
-        alunos: 26,
-        media: 8.3,
-        freq: 96,
-        cor: 'c6',
-        status: 'ok'
-      }
+    /* =========================================================
+       ARMAZENAMENTO
+       ========================================================= */
+    const STORAGE_KEY = 'turmasProfessor';
+
+    const turmasIniciais = [
+      { id: '9a-mat', sigla: '9A', serie: '9º Ano', nome: '9º Ano A', disciplina: 'Matemática', periodo: 'manha', nivel: 'fundamental', turno: '07:30 às 09:10', dias: ['SEG','QUA','SEX'], alunos: 32, media: 7.8, freq: 92, cor: 'c1', status: 'ok' },
+      { id: '8b-mat', sigla: '8B', serie: '8º Ano', nome: '8º Ano B', disciplina: 'Matemática', periodo: 'manha', nivel: 'fundamental', turno: '09:20 às 11:00', dias: ['TER','QUI'], alunos: 28, media: 8.1, freq: 95, cor: 'c2', status: 'ok' },
+      { id: '7a-mat', sigla: '7A', serie: '7º Ano', nome: '7º Ano A', disciplina: 'Matemática', periodo: 'tarde', nivel: 'fundamental', turno: '13:30 às 15:10', dias: ['SEG','QUA'], alunos: 30, media: 7.2, freq: 88, cor: 'c3', status: 'atencao' },
+      { id: '1em-mat', sigla: '1M', serie: '1ª Série', nome: '1ª Série EM', disciplina: 'Matemática', periodo: 'manha', nivel: 'medio', turno: '07:30 às 09:10', dias: ['TER','QUI','SEX'], alunos: 34, media: 7.5, freq: 90, cor: 'c4', status: 'ok' },
+      { id: '2em-mat', sigla: '2M', serie: '2ª Série', nome: '2ª Série EM', disciplina: 'Matemática', periodo: 'tarde', nivel: 'medio', turno: '15:20 às 17:00', dias: ['SEG','QUA','SEX'], alunos: 29, media: 6.9, freq: 84, cor: 'c5', status: 'atencao' },
+      { id: '3em-mat', sigla: '3M', serie: '3ª Série', nome: '3ª Série EM', disciplina: 'Matemática', periodo: 'manha', nivel: 'medio', turno: '09:20 às 11:00', dias: ['TER','QUI'], alunos: 26, media: 8.3, freq: 96, cor: 'c6', status: 'ok' }
     ];
 
-    /* ---------- Render ---------- */
+    function carregarTurmas() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(turmasIniciais));
+          return [...turmasIniciais];
+        }
+        return JSON.parse(raw);
+      } catch (e) {
+        console.error('Erro ao carregar turmas:', e);
+        return [...turmasIniciais];
+      }
+    }
+
+    function salvarTurmas(lista) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(lista));
+      } catch (e) {
+        console.error('Erro ao salvar turmas:', e);
+      }
+    }
+
+    let turmas = carregarTurmas();
+
+    /* =========================================================
+       RENDER
+       ========================================================= */
     const grid = document.getElementById('turmas-grid');
     let filtroAtual = 'todas';
     let buscaAtual  = '';
+
+    function atualizarHeroStats() {
+      document.getElementById('stat-turmas').textContent = turmas.length;
+      const totalAlunos = turmas.reduce((s, t) => s + (Number(t.alunos) || 0), 0);
+      document.getElementById('stat-alunos').textContent = totalAlunos;
+
+      if (turmas.length > 0) {
+        const somaMedias = turmas.reduce((s, t) => s + (Number(t.media) || 0), 0);
+        const mediaGeral = somaMedias / turmas.length;
+        document.getElementById('stat-media').textContent = mediaGeral.toFixed(1);
+      } else {
+        document.getElementById('stat-media').textContent = '0.0';
+      }
+    }
 
     function renderTurmas() {
       const termo = buscaAtual.toLowerCase().trim();
 
       const lista = turmas.filter(t => {
-        // Filtro por chip
         if (filtroAtual === 'manha' || filtroAtual === 'tarde') {
           if (t.periodo !== filtroAtual) return false;
         } else if (filtroAtual === 'fundamental' || filtroAtual === 'medio') {
           if (t.nivel !== filtroAtual) return false;
         }
-        // Busca
         if (termo) {
           const haystack = (t.nome + ' ' + t.disciplina + ' ' + t.serie).toLowerCase();
           if (!haystack.includes(termo)) return false;
@@ -624,10 +1033,18 @@
         grid.innerHTML = `
           <div class="empty-state">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"/>
-              <path d="M21 21l-4.35-4.35"/>
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
             </svg>
-            <p>Nenhuma turma encontrada com esses filtros.</p>
+            <p>${turmas.length === 0 ? 'Você ainda não tem turmas cadastradas.' : 'Nenhuma turma encontrada com esses filtros.'}</p>
+            ${turmas.length === 0 ? `
+              <button class="btn-empty" onclick="abrirModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 5v14M5 12h14"/>
+                </svg>
+                Criar primeira turma
+              </button>
+            ` : ''}
           </div>`;
         return;
       }
@@ -638,7 +1055,16 @@
         const mediaClass = t.media >= 7 ? 'green' : t.media >= 6 ? 'amber' : 'red';
 
         return `
-          <a class="turma-card" href="detalhes-turma.html?id=${t.id}" data-id="${t.id}">
+          <a class="turma-card" href="turma-detalhes.html?id=${encodeURIComponent(t.id)}" data-id="${t.id}">
+            <button class="turma-delete" data-del="${t.id}" title="Excluir turma" aria-label="Excluir turma">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 6h18"/>
+                <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                <path d="M10 11v6M14 11v6"/>
+              </svg>
+            </button>
+
             <div class="turma-top">
               <div class="turma-avatar ${t.cor}">${t.sigla}</div>
               <div class="turma-info">
@@ -654,7 +1080,7 @@
                 <div class="turma-stat-label">Alunos</div>
               </div>
               <div class="turma-stat">
-                <div class="turma-stat-value ${mediaClass}">${t.media.toFixed(1)}</div>
+                <div class="turma-stat-value ${mediaClass}">${Number(t.media).toFixed(1)}</div>
                 <div class="turma-stat-label">Média</div>
               </div>
               <div class="turma-stat">
@@ -670,7 +1096,7 @@
               </svg>
               ${t.turno}
               <span class="days">
-                ${t.dias.map(d => `<span class="day">${d}</span>`).join('')}
+                ${(t.dias || []).map(d => `<span class="day">${d}</span>`).join('')}
               </span>
             </div>
 
@@ -686,11 +1112,35 @@
             </div>
           </a>`;
       }).join('');
+
+      // Bind do botão excluir
+      document.querySelectorAll('.turma-delete').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          excluirTurma(btn.dataset.del);
+        });
+      });
+    }
+
+    function excluirTurma(id) {
+      const turma = turmas.find(t => t.id === id);
+      if (!turma) return;
+      if (!confirm(`Excluir a turma "${turma.nome}"?\n\nEssa ação não pode ser desfeita.`)) return;
+
+      turmas = turmas.filter(t => t.id !== id);
+      salvarTurmas(turmas);
+      renderTurmas();
+      atualizarHeroStats();
+      mostrarToast('Turma excluída');
     }
 
     renderTurmas();
+    atualizarHeroStats();
 
-    /* ---------- Eventos ---------- */
+    /* =========================================================
+       EVENTOS DE FILTRO E BUSCA
+       ========================================================= */
     document.getElementById('busca').addEventListener('input', e => {
       buscaAtual = e.target.value;
       renderTurmas();
@@ -704,6 +1154,121 @@
         renderTurmas();
       });
     });
+
+    /* =========================================================
+       MODAL: NOVA TURMA
+       ========================================================= */
+    const modal       = document.getElementById('modal-overlay');
+    const btnNova     = document.getElementById('btn-nova-turma');
+    const btnClose    = document.getElementById('modal-close');
+    const btnCancelar = document.getElementById('btn-cancelar');
+    const form        = document.getElementById('form-turma');
+
+    let diasSelecionados = [];
+    let corSelecionada   = 'c1';
+
+    function abrirModal() {
+      form.reset();
+      diasSelecionados = [];
+      corSelecionada   = 'c1';
+      document.querySelectorAll('#days-picker .day-opt').forEach(d => d.classList.remove('selected'));
+      document.querySelectorAll('#color-picker .color-opt').forEach(c => c.classList.remove('selected'));
+      document.querySelector('#color-picker .color-opt.c1').classList.add('selected');
+
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => document.getElementById('f-sigla').focus(), 100);
+    }
+
+    function fecharModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    btnNova.addEventListener('click', abrirModal);
+    btnClose.addEventListener('click', fecharModal);
+    btnCancelar.addEventListener('click', fecharModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) fecharModal(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) fecharModal();
+    });
+
+    // Dias (toggle)
+    document.querySelectorAll('#days-picker .day-opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const dia = btn.dataset.day;
+        if (diasSelecionados.includes(dia)) {
+          diasSelecionados = diasSelecionados.filter(d => d !== dia);
+          btn.classList.remove('selected');
+        } else {
+          diasSelecionados.push(dia);
+          btn.classList.add('selected');
+        }
+      });
+    });
+
+    // Cores
+    document.querySelectorAll('#color-picker .color-opt').forEach(opt => {
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('#color-picker .color-opt').forEach(c => c.classList.remove('selected'));
+        opt.classList.add('selected');
+        corSelecionada = opt.dataset.color;
+      });
+    });
+
+    // Submeter
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      if (diasSelecionados.length === 0) {
+        alert('Selecione pelo menos um dia da semana.');
+        return;
+      }
+
+      const sigla = document.getElementById('f-sigla').value.trim().toUpperCase();
+      const serie = document.getElementById('f-serie').value.trim();
+      const nome  = document.getElementById('f-nome').value.trim();
+      const disc  = document.getElementById('f-disciplina').value.trim();
+      const periodo = document.getElementById('f-periodo').value;
+      const nivel   = document.getElementById('f-nivel').value;
+      const turno   = document.getElementById('f-turno').value.trim();
+      const alunos  = parseInt(document.getElementById('f-alunos').value, 10) || 0;
+
+      const id = 'turma-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7);
+
+      const novaTurma = {
+        id, sigla, serie, nome,
+        disciplina: disc,
+        periodo, nivel, turno,
+        dias: [...diasSelecionados],
+        alunos,
+        media: 0,
+        freq: 100,
+        cor: corSelecionada,
+        status: 'ok'
+      };
+
+      turmas.push(novaTurma);
+      salvarTurmas(turmas);
+      renderTurmas();
+      atualizarHeroStats();
+      fecharModal();
+      mostrarToast(`Turma "${nome}" criada!`);
+    });
+
+    /* =========================================================
+       TOAST
+       ========================================================= */
+    const toastEl = document.getElementById('toast');
+    const toastText = document.getElementById('toast-text');
+    let toastTimeout = null;
+
+    function mostrarToast(msg) {
+      toastText.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toastEl.classList.remove('show'), 2400);
+    }
   </script>
 
 </body>
