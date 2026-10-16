@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#8b5cf6" />
-  <title>Conselho de Classe · Frei Graciano Droessler</title>
+  <title>Ficha do Conselho de Classe · Frei Graciano Droessler</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -29,13 +29,10 @@
       --vermelho: #dc2626;
       --roxo: #8b5cf6;
       --roxo-2: #6d28d9;
-      --ciano: #06b6d4;
-      --rosa: #ec4899;
       --shadow-sm: 0 1px 2px rgba(15, 30, 53, 0.06);
       --shadow-md: 0 10px 30px -10px rgba(21, 101, 192, 0.18);
       --shadow-lg: 0 30px 60px -20px rgba(21, 101, 192, 0.25);
-      --ring: 0 0 0 4px rgba(184, 224, 245, 0.55);
-      --ring-roxo: 0 0 0 4px rgba(139, 92, 246, 0.25);
+      --ring-roxo: 0 0 0 4px rgba(139, 92, 246, 0.2);
       --radius-card: 24px;
       --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
       --font-display: 'Playfair Display', Georgia, serif;
@@ -70,8 +67,8 @@
     @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(20px, -20px) scale(1.05); } }
 
     .container {
-      width: 100%; max-width: 1180px; margin: 0 auto;
-      display: flex; flex-direction: column; gap: 24px;
+      width: 100%; max-width: 980px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 20px;
       animation: fade-in 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
     @keyframes fade-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -79,7 +76,7 @@
     /* ---------- TOPBAR ---------- */
     .topbar {
       display: flex; align-items: center; justify-content: space-between;
-      gap: 16px; flex-wrap: wrap; padding: 18px 24px;
+      gap: 16px; flex-wrap: wrap; padding: 16px 22px;
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.9);
@@ -87,438 +84,260 @@
     }
     .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
     .brand-logo {
-      width: 46px; height: 46px; border-radius: 12px;
+      width: 44px; height: 44px; border-radius: 12px;
       display: grid; place-items: center;
       background: linear-gradient(135deg, var(--roxo), var(--roxo-2));
       color: var(--white); font-family: var(--font-display);
-      font-weight: 700; font-size: 1.15rem; flex-shrink: 0;
+      font-weight: 700; font-size: 1.1rem; flex-shrink: 0;
       box-shadow: 0 8px 20px -6px rgba(139, 92, 246, 0.6);
     }
     .brand-info { min-width: 0; }
-    .brand-info .top { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--roxo); opacity: 0.9; }
-    .brand-info .main { font-size: 0.95rem; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .topbar-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .user-chip {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 6px 14px 6px 6px;
-      background: #f3ecfd; border: 1px solid rgba(139, 92, 246, 0.2);
-      border-radius: 999px;
-    }
-    .user-chip .avatar {
-      width: 32px; height: 32px; border-radius: 50%;
-      display: grid; place-items: center;
-      background: linear-gradient(135deg, var(--roxo), var(--roxo-2));
-      color: var(--white); font-size: 0.85rem; font-weight: 700; position: relative;
-    }
-    .user-chip .avatar::after {
-      content: ""; position: absolute; bottom: -1px; right: -1px;
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--verde); border: 2px solid var(--white);
-    }
-    .user-chip .name { font-size: 0.85rem; font-weight: 600; color: var(--ink); max-width: 140px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .btn-back {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 16px; background: var(--white);
-      border: 1px solid rgba(139, 92, 246, 0.25); border-radius: 999px;
-      color: var(--roxo); font-family: inherit; font-size: 0.82rem;
-      font-weight: 600; cursor: pointer; text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    .btn-back:hover { background: var(--roxo); color: var(--white); border-color: var(--roxo); transform: translateX(-3px); }
-    .btn-back svg { width: 15px; height: 15px; }
+    .brand-info .top { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--roxo); opacity: 0.9; }
+    .brand-info .main { font-size: 0.92rem; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .topbar-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
-    /* ---------- CABEÇALHO ---------- */
-    .head {
-      padding: 32px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(243, 236, 253, 0.85));
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      border-radius: var(--radius-card);
-      box-shadow: var(--shadow-md);
-      position: relative; overflow: hidden;
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 10px 16px; border-radius: 999px;
+      font-family: inherit; font-size: 0.8rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; border: none;
+      transition: all 0.25s ease;
     }
-    .head::before {
-      content: ""; position: absolute; top: -50%; right: -10%;
-      width: 340px; height: 340px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.25), transparent 70%);
-      pointer-events: none;
+    .btn svg { width: 15px; height: 15px; }
+    .btn-ghost {
+      background: var(--white); color: var(--roxo);
+      border: 1px solid rgba(139, 92, 246, 0.25);
     }
-    .head-content {
-      position: relative; z-index: 1;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 24px; flex-wrap: wrap;
-    }
-    .head-info { display: flex; align-items: center; gap: 20px; }
-    .head-icon {
-      width: 76px; height: 76px; border-radius: 20px;
-      display: grid; place-items: center;
-      background: linear-gradient(135deg, var(--roxo), var(--roxo-2));
-      color: var(--white); flex-shrink: 0;
-      box-shadow: 0 12px 28px -8px rgba(139, 92, 246, 0.7);
-    }
-    .head-icon svg { width: 36px; height: 36px; }
-    .head-text .eyebrow {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--roxo); margin-bottom: 4px;
-    }
-    .head-text h1 {
-      font-family: var(--font-display);
-      font-size: clamp(1.5rem, 3.5vw, 2rem);
-      font-weight: 700; line-height: 1.15;
-      letter-spacing: -0.01em; color: var(--ink); margin-bottom: 6px;
-    }
-    .head-text .meta { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.82rem; color: var(--ink-soft); }
-    .head-text .meta span { display: inline-flex; align-items: center; gap: 5px; }
-    .head-text .meta svg { width: 14px; height: 14px; color: var(--roxo); }
-
+    .btn-ghost:hover { background: var(--roxo); color: var(--white); border-color: var(--roxo); }
     .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 22px;
       background: linear-gradient(135deg, var(--roxo), var(--roxo-2));
-      color: var(--white); border: none; border-radius: 999px;
-      font-family: inherit; font-size: 0.85rem; font-weight: 600;
-      cursor: pointer; text-decoration: none;
-      box-shadow: 0 10px 24px -8px rgba(139, 92, 246, 0.6);
-      transition: transform 0.25s ease, box-shadow 0.3s ease;
+      color: var(--white);
+      box-shadow: 0 8px 20px -6px rgba(139, 92, 246, 0.6);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -8px rgba(139, 92, 246, 0.7); }
-    .btn-primary svg { width: 16px; height: 16px; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 26px -6px rgba(139, 92, 246, 0.7); }
+    .btn-success {
+      background: linear-gradient(135deg, var(--verde), #15803d);
+      color: var(--white);
+      box-shadow: 0 8px 20px -6px rgba(34, 197, 94, 0.5);
+    }
+    .btn-success:hover { transform: translateY(-2px); box-shadow: 0 12px 26px -6px rgba(34, 197, 94, 0.6); }
 
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 22px; background: var(--white);
-      border: 1.5px solid rgba(139, 92, 246, 0.25); border-radius: 999px;
-      color: var(--roxo); font-family: inherit;
-      font-size: 0.85rem; font-weight: 600; cursor: pointer;
-      text-decoration: none; transition: all 0.3s ease;
-    }
-    .btn-secondary:hover { background: #f3ecfd; border-color: rgba(139, 92, 246, 0.5); }
-    .btn-secondary svg { width: 16px; height: 16px; }
-
-    /* ---------- ESTATÍSTICAS ---------- */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 14px;
-    }
-    .stat {
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      border-radius: 18px;
-      box-shadow: var(--shadow-sm);
-      display: flex; align-items: center; gap: 14px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .stat:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-    .stat-icon {
-      width: 46px; height: 46px; border-radius: 13px;
-      display: grid; place-items: center;
-      color: var(--white); flex-shrink: 0;
-    }
-    .stat-icon svg { width: 22px; height: 22px; }
-    .stat-icon.blue   { background: linear-gradient(135deg, #1565c0, #0d47a1); }
-    .stat-icon.green  { background: linear-gradient(135deg, #22c55e, #15803d); }
-    .stat-icon.amber  { background: linear-gradient(135deg, #f59e0b, #b45309); }
-    .stat-icon.red    { background: linear-gradient(135deg, #dc2626, #991b1b); }
-    .stat-icon.purple { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
-    .stat-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-    .stat-value { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--ink); line-height: 1; }
-    .stat-label { font-size: 0.72rem; color: var(--ink-soft); font-weight: 500; }
-
-    /* ---------- PAINEL PRINCIPAL ---------- */
-    .panel {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.9);
+    /* ---------- FOLHA (documento) ---------- */
+    .ficha {
+      background: var(--white);
       border-radius: 20px;
-      padding: 24px;
-      box-shadow: var(--shadow-sm);
-    }
-    .panel-head {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 14px; flex-wrap: wrap; margin-bottom: 20px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(139, 92, 246, 0.15);
-    }
-    .panel-head h2 {
-      font-family: var(--font-display);
-      font-size: 1.15rem; font-weight: 700; color: var(--ink);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .panel-head h2 .badge {
-      padding: 3px 10px; border-radius: 999px;
-      background: #f3ecfd; color: var(--roxo);
-      font-family: var(--font-sans);
-      font-size: 0.7rem; font-weight: 700;
-      letter-spacing: 0.05em;
-    }
-    .search-mini { position: relative; min-width: 240px; }
-    .search-mini svg {
-      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-      width: 16px; height: 16px; color: var(--ink-mute); pointer-events: none;
-    }
-    .search-mini input {
-      width: 100%; padding: 10px 14px 10px 40px;
-      font-family: inherit; font-size: 0.85rem;
-      background: var(--white);
-      border: 1.5px solid rgba(139, 92, 246, 0.2);
-      border-radius: 999px; outline: none;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
-    }
-    .search-mini input:focus { border-color: var(--roxo); box-shadow: var(--ring-roxo); }
-
-    /* ---------- TABELA DE CONSELHO ---------- */
-    .table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid rgba(139, 92, 246, 0.15); }
-    table.conselho {
-      width: 100%; border-collapse: collapse;
-      font-size: 0.85rem; min-width: 900px;
-    }
-    table.conselho thead { background: linear-gradient(135deg, #f3ecfd, #eaf5fb); }
-    table.conselho th {
-      padding: 14px 14px; text-align: left;
-      font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--roxo); white-space: nowrap;
-    }
-    table.conselho th.center { text-align: center; }
-    table.conselho td {
-      padding: 14px 14px;
-      border-top: 1px solid rgba(139, 92, 246, 0.1);
-      color: var(--ink);
-      vertical-align: middle;
-    }
-    table.conselho tr:hover td { background: rgba(139, 92, 246, 0.04); }
-
-    .aluno-cell { display: flex; align-items: center; gap: 12px; min-width: 220px; }
-    .aluno-cell .avatar {
-      width: 38px; height: 38px; border-radius: 50%;
-      display: grid; place-items: center;
-      background: linear-gradient(135deg, #e0d3fc, #c7b3f9);
-      color: var(--roxo-2); font-weight: 700; font-size: 0.82rem;
-      flex-shrink: 0;
-    }
-    .aluno-cell .info { min-width: 0; }
-    .aluno-cell .nome { font-weight: 600; color: var(--ink); font-size: 0.88rem; line-height: 1.2; }
-    .aluno-cell .mat { font-size: 0.7rem; color: var(--ink-soft); margin-top: 2px; }
-
-    .nota-pill {
-      display: inline-block;
-      padding: 4px 10px; border-radius: 999px;
-      font-size: 0.78rem; font-weight: 700;
-      min-width: 42px; text-align: center;
-    }
-    .nota-pill.alta  { background: #dcfce7; color: #15803d; }
-    .nota-pill.media { background: #fef3c7; color: #b45309; }
-    .nota-pill.baixa { background: #fee2e2; color: #b91c1c; }
-
-    /* ---------- PARECER ---------- */
-    .parecer-group { display: flex; gap: 4px; justify-content: center; }
-    .parecer-opt {
-      padding: 6px 10px;
-      border-radius: 8px;
-      background: var(--white);
-      border: 1.5px solid rgba(139, 92, 246, 0.2);
-      font-family: inherit; font-size: 0.7rem; font-weight: 700;
-      letter-spacing: 0.02em;
-      color: var(--ink-soft);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-    .parecer-opt:hover { transform: translateY(-1px); }
-    .parecer-opt.ap { }
-    .parecer-opt.rec { }
-    .parecer-opt.rep { }
-    .parecer-opt.selected.ap  { background: var(--verde); color: var(--white); border-color: var(--verde); }
-    .parecer-opt.selected.rec { background: var(--amarelo); color: var(--white); border-color: var(--amarelo); }
-    .parecer-opt.selected.rep { background: var(--vermelho); color: var(--white); border-color: var(--vermelho); }
-
-    /* ---------- OBSERVAÇÃO ---------- */
-    .obs-btn {
-      width: 34px; height: 34px; border-radius: 10px;
-      display: grid; place-items: center;
-      background: var(--white);
-      border: 1.5px solid rgba(139, 92, 246, 0.2);
-      color: var(--roxo);
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .obs-btn:hover { background: var(--roxo); color: var(--white); border-color: var(--roxo); }
-    .obs-btn.has-obs { background: var(--roxo); color: var(--white); border-color: var(--roxo); }
-    .obs-btn svg { width: 15px; height: 15px; }
-
-    /* ---------- ATA DO CONSELHO ---------- */
-    .ata-field {
-      display: flex; flex-direction: column; gap: 8px;
-    }
-    .ata-field label {
-      font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--roxo);
-      display: flex; align-items: center; gap: 8px;
-    }
-    .ata-field label svg { width: 14px; height: 14px; }
-    .ata-field textarea {
-      width: 100%; min-height: 140px;
-      padding: 16px;
-      font-family: inherit; font-size: 0.9rem; line-height: 1.5;
-      color: var(--ink);
-      background: var(--white);
-      border: 1.5px solid rgba(139, 92, 246, 0.2);
-      border-radius: 14px;
-      outline: none;
-      resize: vertical;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
-    }
-    .ata-field textarea:focus {
-      border-color: var(--roxo);
-      box-shadow: var(--ring-roxo);
-    }
-    .ata-field textarea::placeholder { color: var(--ink-mute); }
-
-    /* ---------- AÇÕES FINAIS ---------- */
-    .final-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      align-items: center;
-    }
-    .final-info {
-      margin-right: auto;
-      font-size: 0.8rem;
-      color: var(--ink-soft);
-      display: flex; align-items: center; gap: 8px;
-    }
-    .final-info .dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--verde);
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2); }
-      50% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.05); }
-    }
-
-    .btn-save {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 26px;
-      background: linear-gradient(135deg, var(--roxo), var(--roxo-2));
-      color: var(--white); border: none; border-radius: 999px;
-      font-family: inherit; font-size: 0.88rem; font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 12px 26px -8px rgba(139, 92, 246, 0.65);
-      transition: transform 0.25s ease, box-shadow 0.3s ease;
-    }
-    .btn-save:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -8px rgba(139, 92, 246, 0.75); }
-    .btn-save svg { width: 17px; height: 17px; }
-
-    /* ---------- MODAL DE OBSERVAÇÃO ---------- */
-    .modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(15, 30, 53, 0.55);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      z-index: 999;
-      display: flex; align-items: center; justify-content: center;
-      padding: 20px;
-      opacity: 0; visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-    .modal-overlay.open { opacity: 1; visibility: visible; }
-
-    .modal {
-      width: 100%; max-width: 520px;
-      background: var(--white);
-      border-radius: 24px;
-      box-shadow: 0 40px 80px -20px rgba(15, 30, 53, 0.4);
-      transform: translateY(30px) scale(0.96);
-      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: var(--shadow-lg);
+      padding: 48px 56px;
       position: relative;
       overflow: hidden;
     }
-    .modal-overlay.open .modal { transform: translateY(0) scale(1); }
-    .modal::before {
+    .ficha::before {
       content: ""; position: absolute; top: 0; left: 0; right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, var(--roxo), transparent);
+      height: 5px;
+      background: linear-gradient(90deg, var(--roxo), var(--azul-escuro));
     }
 
-    .modal-head {
-      padding: 24px 26px 16px;
-      border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+    /* Cabeçalho do documento */
+    .doc-header {
+      text-align: center;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--azul-bebe-100);
+      margin-bottom: 28px;
     }
-    .modal-head .eyebrow {
-      font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--roxo); margin-bottom: 4px;
+    .doc-header .escola {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--roxo);
+      margin-bottom: 8px;
     }
-    .modal-head h3 {
+    .doc-header h1 {
       font-family: var(--font-display);
-      font-size: 1.2rem; font-weight: 700;
-      color: var(--ink);
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 700; color: var(--ink);
+      letter-spacing: -0.01em; margin-bottom: 6px;
     }
-    .modal-close {
-      position: absolute; top: 16px; right: 16px;
-      width: 34px; height: 34px; border-radius: 50%;
-      display: grid; place-items: center;
-      background: var(--white); border: 1px solid rgba(139, 92, 246, 0.2);
-      color: var(--ink-soft); cursor: pointer;
-      transition: all 0.25s ease;
+    .doc-header .sub {
+      font-size: 0.85rem; color: var(--ink-soft);
     }
-    .modal-close:hover {
-      background: var(--vermelho); color: var(--white);
-      border-color: var(--vermelho); transform: rotate(90deg);
-    }
-    .modal-close svg { width: 15px; height: 15px; }
 
-    .modal-body { padding: 20px 26px; }
-    .modal-body textarea {
-      width: 100%; min-height: 130px;
-      padding: 14px;
-      font-family: inherit; font-size: 0.9rem; line-height: 1.5;
+    /* Bloco */
+    .bloco { margin-bottom: 28px; }
+    .bloco-title {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-display);
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid var(--azul-bebe-100);
+    }
+    .bloco-title .num {
+      width: 26px; height: 26px; border-radius: 8px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--roxo), var(--roxo-2));
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 0.82rem; font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* Identificação (grid de campos) */
+    .ident-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 20px;
+    }
+    .ident-grid .full { grid-column: 1 / -1; }
+
+    .field {
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .field label {
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .field input[type="text"],
+    .field input[type="date"] {
+      padding: 10px 14px;
+      font-family: inherit; font-size: 0.92rem;
       color: var(--ink);
       background: var(--white);
-      border: 1.5px solid rgba(139, 92, 246, 0.2);
+      border: none;
+      border-bottom: 1.5px solid var(--azul-bebe-200);
+      border-radius: 0;
+      outline: none;
+      transition: border-color 0.25s ease;
+    }
+    .field input:focus {
+      border-bottom-color: var(--roxo);
+    }
+    .field input::placeholder { color: var(--ink-mute); }
+
+    /* Perguntas + textarea */
+    .pergunta {
+      margin-bottom: 16px;
+    }
+    .pergunta .q {
+      font-size: 0.88rem; font-weight: 600;
+      color: var(--ink); line-height: 1.4;
+      margin-bottom: 8px;
+      display: flex; gap: 8px;
+    }
+    .pergunta .q::before {
+      content: "▸";
+      color: var(--roxo);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .pergunta textarea {
+      width: 100%;
+      min-height: 90px;
+      padding: 12px 14px;
+      font-family: inherit; font-size: 0.9rem; line-height: 1.55;
+      color: var(--ink);
+      background: var(--white);
+      border: 1.5px solid var(--azul-bebe-100);
       border-radius: 12px;
       outline: none;
       resize: vertical;
       transition: border-color 0.25s ease, box-shadow 0.25s ease;
     }
-    .modal-body textarea:focus {
+    .pergunta textarea:focus {
+      border-color: var(--roxo);
+      box-shadow: var(--ring-roxo);
+    }
+    .pergunta textarea::placeholder {
+      color: var(--ink-mute);
+      font-style: italic;
+    }
+
+    /* Lista de destaques */
+    .list-box {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .list-row {
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .list-row .bullet {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--roxo);
+      margin-top: 14px;
+      flex-shrink: 0;
+    }
+    .list-row.danger .bullet { background: var(--vermelho); }
+    .list-row.warn .bullet { background: var(--amarelo); }
+    .list-row.ok .bullet { background: var(--verde); }
+    .list-row input {
+      flex: 1;
+      padding: 10px 14px;
+      font-family: inherit; font-size: 0.9rem;
+      color: var(--ink);
+      background: var(--white);
+      border: none;
+      border-bottom: 1.5px solid var(--azul-bebe-200);
+      outline: none;
+      transition: border-color 0.25s ease;
+    }
+    .list-row input:focus { border-bottom-color: var(--roxo); }
+    .list-row input::placeholder { color: var(--ink-mute); font-style: italic; }
+
+    /* Síntese do professor (texto grande) */
+    .sintese textarea {
+      width: 100%;
+      min-height: 140px;
+      padding: 16px;
+      font-family: var(--font-display);
+      font-size: 1rem; line-height: 1.6;
+      color: var(--ink);
+      background: linear-gradient(135deg, #faf5ff, #f3ecfd);
+      border: 1.5px solid rgba(139, 92, 246, 0.25);
+      border-radius: 14px;
+      outline: none;
+      resize: vertical;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .sintese textarea:focus {
       border-color: var(--roxo);
       box-shadow: var(--ring-roxo);
     }
 
-    .modal-actions {
-      padding: 0 26px 24px;
-      display: flex; gap: 10px; justify-content: flex-end;
+    /* Assinaturas */
+    .assinaturas {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
     }
-    .modal-actions button {
-      padding: 11px 20px;
-      font-family: inherit; font-size: 0.82rem; font-weight: 600;
-      border-radius: 999px; cursor: pointer;
-      transition: all 0.25s ease;
+    .assinatura {
+      text-align: center;
     }
-    .btn-cancel {
-      background: var(--white);
-      border: 1.5px solid rgba(139, 92, 246, 0.2);
+    .assinatura .linha {
+      border-top: 1.5px solid var(--ink);
+      padding-top: 8px;
+      margin-top: 40px;
+    }
+    .assinatura .cargo {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
       color: var(--ink-soft);
     }
-    .btn-cancel:hover { background: #f3ecfd; color: var(--roxo); }
-    .btn-confirm {
-      background: linear-gradient(135deg, var(--roxo), var(--roxo-2));
-      border: none; color: var(--white);
-      box-shadow: 0 8px 18px -6px rgba(139, 92, 246, 0.6);
+
+    /* Rodapé do documento */
+    .doc-footer {
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1.5px solid var(--azul-bebe-100);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+      font-size: 0.75rem; color: var(--ink-soft);
     }
-    .btn-confirm:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -6px rgba(139, 92, 246, 0.7); }
+    .doc-footer .local {
+      display: inline-flex; align-items: center; gap: 6px;
+    }
 
     /* ---------- ESTADO VAZIO ---------- */
     .empty-full {
-      min-height: 60vh;
+      min-height: 50vh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; gap: 16px;
       padding: 60px 24px;
@@ -549,42 +368,50 @@
     .toast.show { transform: translate(-50%, 0); opacity: 1; }
     .toast svg { width: 18px; height: 18px; }
 
-    /* ---------- RODAPÉ ---------- */
-    .footer {
-      margin-top: 12px; display: flex; align-items: center; justify-content: center;
-      gap: 10px; padding: 20px 24px;
-      background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 18px;
-      box-shadow: var(--shadow-sm);
-    }
-    .footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--roxo); opacity: 0.6; }
-    .footer p { font-size: 0.76rem; color: var(--ink-soft); text-align: center; }
-
     /* ---------- RESPONSIVO ---------- */
-    @media (max-width: 720px) {
-      .head-content { flex-direction: column; align-items: flex-start; gap: 20px; }
-      .head-actions { width: 100%; }
-      .head-actions .btn-primary, .head-actions .btn-secondary { flex: 1; justify-content: center; }
-    }
     @media (max-width: 640px) {
-      body { padding: 20px 14px 40px; }
+      body { padding: 20px 12px 40px; }
+      .ficha { padding: 28px 22px; }
+      .ident-grid { grid-template-columns: 1fr; }
+      .assinaturas { grid-template-columns: 1fr; gap: 20px; }
+      .assinatura .linha { margin-top: 30px; }
       .topbar { padding: 14px 16px; }
-      .head { padding: 24px 20px; }
-      .head-icon { width: 62px; height: 62px; border-radius: 16px; }
-      .head-icon svg { width: 30px; height: 30px; }
-      .user-chip .name { max-width: 90px; }
-      .stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .stat { padding: 14px; }
-      .stat-value { font-size: 1.2rem; }
-      .panel { padding: 18px; }
-      .panel-head h2 { font-size: 1rem; }
-      .final-actions { flex-direction: column; align-items: stretch; }
-      .final-info { justify-content: center; }
-      .btn-save { justify-content: center; }
+      .doc-footer { justify-content: center; text-align: center; }
     }
-    @media (max-width: 380px) {
-      .user-chip .name { display: none; }
-      .stats { grid-template-columns: 1fr; }
+
+    /* ---------- PRINT ---------- */
+    @media print {
+      body {
+        background: white !important;
+        padding: 0;
+        font-size: 11pt;
+      }
+      .bg-layer,
+      .topbar,
+      .no-print {
+        display: none !important;
+      }
+      .container { max-width: 100%; gap: 0; }
+      .ficha {
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+      }
+      .ficha::before { display: none; }
+      .bloco { page-break-inside: avoid; }
+      .assinaturas { page-break-inside: avoid; }
+      textarea, input {
+        border-color: #ccc !important;
+        background: white !important;
+      }
+      .sintese textarea {
+        background: white !important;
+      }
+      .bloco-title .num {
+        background: #8b5cf6 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -606,62 +433,43 @@
 
   <div class="container">
 
-    <!-- TOPBAR -->
-    <header class="topbar">
+    <!-- TOPBAR (não imprime) -->
+    <header class="topbar no-print">
       <div class="brand">
         <div class="brand-logo">CC</div>
         <div class="brand-info">
           <div class="top">Painel Docente</div>
-          <div class="main">Frei Graciano Droessler</div>
+          <div class="main">Ficha do Conselho de Classe</div>
         </div>
       </div>
       <div class="topbar-actions">
-        <div class="user-chip">
-          <div class="avatar" id="user-avatar">P</div>
-          <span class="name" id="user-name">Professor(a)</span>
-        </div>
-        <a href="turmas.html" class="btn-back" id="btn-voltar">
+        <a href="turmas.html" class="btn btn-ghost" id="btn-voltar">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5"/>
             <path d="M12 19l-7-7 7-7"/>
           </svg>
           Voltar
         </a>
+        <button class="btn btn-ghost" onclick="window.print()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9V2h12v7"/>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+            <rect x="6" y="14" width="12" height="8"/>
+          </svg>
+          Imprimir
+        </button>
+        <button class="btn btn-success" id="btn-salvar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6L9 17l-5-5"/>
+          </svg>
+          Salvar Ficha
+        </button>
       </div>
     </header>
 
     <!-- CONTEÚDO (preenchido via JS) -->
     <div id="conteudo"></div>
 
-    <!-- RODAPÉ -->
-    <footer class="footer">
-      <span class="dot" aria-hidden="true"></span>
-      <p>© 2025 · Escola Estadual do Campo Frei Graciano Droessler</p>
-    </footer>
-
-  </div>
-
-  <!-- MODAL DE OBSERVAÇÃO -->
-  <div class="modal-overlay" id="modal-obs">
-    <div class="modal" role="dialog" aria-modal="true">
-      <button class="modal-close" id="modal-obs-close" aria-label="Fechar">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 6L6 18"/>
-          <path d="M6 6l12 12"/>
-        </svg>
-      </button>
-      <div class="modal-head">
-        <div class="eyebrow">Observação individual</div>
-        <h3 id="modal-obs-nome">Nome do aluno</h3>
-      </div>
-      <div class="modal-body">
-        <textarea id="modal-obs-text" placeholder="Escreva observações sobre o aluno no contexto do conselho de classe..."></textarea>
-      </div>
-      <div class="modal-actions">
-        <button class="btn-cancel" id="modal-obs-cancel">Cancelar</button>
-        <button class="btn-confirm" id="modal-obs-confirm">Salvar observação</button>
-      </div>
-    </div>
   </div>
 
   <!-- TOAST -->
@@ -679,18 +487,11 @@
     const nomeProfessor = sessionStorage.getItem('professorLogado');
     if (!nomeProfessor) window.location.href = 'professor.html';
 
-    const userAvatar = document.getElementById('user-avatar');
-    const userName   = document.getElementById('user-name');
-    if (nomeProfessor) {
-      userName.textContent   = nomeProfessor;
-      userAvatar.textContent = nomeProfessor.trim().charAt(0).toUpperCase();
-    }
-
     /* =========================================================
-       LÊ ?turma= DA URL E BUSCA A TURMA NO localStorage
+       LÊ A TURMA DO localStorage (?turma=)
        ========================================================= */
     const STORAGE_TURMAS = 'turmasProfessor';
-    const STORAGE_CONSELHOS = 'conselhosProfessor';
+    const STORAGE_FICHAS = 'fichasConselho';
 
     const params = new URLSearchParams(window.location.search);
     const turmaId = params.get('turma');
@@ -706,533 +507,363 @@
     const conteudo = document.getElementById('conteudo');
     const btnVoltar = document.getElementById('btn-voltar');
 
-    // Se não achou a turma, mostra aviso
-    if (!turmaAtual) {
-      btnVoltar.href = 'turmas.html';
-      conteudo.innerHTML = `
-        <div class="empty-full">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M12 8v4"/>
-            <path d="M12 16h.01"/>
-          </svg>
-          <h2>Turma não informada</h2>
-          <p>Para abrir o Conselho de Classe, é preciso vir da página de uma turma. Volte e clique em "Conselho".</p>
-          <a href="turmas.html" class="btn-primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M19 12H5"/>
-              <path d="M12 19l-7-7 7-7"/>
-            </svg>
-            Voltar às Turmas
-          </a>
-        </div>`;
-    } else {
-      document.title = `Conselho · ${turmaAtual.nome} · Frei Graciano Droessler`;
+    // Se veio sem turma, ainda assim mostra a ficha (em branco)
+    if (turmaAtual) {
       btnVoltar.href = `turma-detalhes.html?id=${encodeURIComponent(turmaAtual.id)}`;
-      renderConselho(turmaAtual);
+      document.title = `Ficha do Conselho · ${turmaAtual.nome} · Frei Graciano Droessler`;
+    } else {
+      btnVoltar.href = 'turmas.html';
     }
 
     /* =========================================================
-       DADOS SIMULADOS (alunos + notas por disciplina)
+       CARREGA FICHA SALVA (se existir)
        ========================================================= */
-    const DISCIPLINAS = ['Português', 'Matemática', 'História', 'Ciências', 'Geografia'];
-
-    const alunosBase = [
-      { nome: 'Ana Beatriz Souza',   mat: '2025001' },
-      { nome: 'Bruno Carvalho Lima', mat: '2025002' },
-      { nome: 'Carla Mendes Rocha',  mat: '2025003' },
-      { nome: 'Daniel Oliveira',     mat: '2025004' },
-      { nome: 'Eduarda Santos',      mat: '2025005' },
-      { nome: 'Felipe Andrade',      mat: '2025006' },
-      { nome: 'Gabriela Nunes',      mat: '2025007' },
-      { nome: 'Henrique Costa',      mat: '2025008' },
-      { nome: 'Isabela Ferreira',    mat: '2025009' },
-      { nome: 'João Pedro Martins',  mat: '2025010' },
-      { nome: 'Karina Almeida',      mat: '2025011' },
-      { nome: 'Lucas Ribeiro',       mat: '2025012' }
-    ];
-
-    // Gera notas consistentes por aluno
-    function seedNotas(mat) {
-      // Usa a matrícula como seed determinística
-      let seed = 0;
-      for (let i = 0; i < mat.length; i++) seed += mat.charCodeAt(i) * (i + 1);
-      const rnd = (n) => {
-        seed = (seed * 9301 + 49297) % 233280;
-        return (seed / 233280) * n;
-      };
-      const notas = {};
-      DISCIPLINAS.forEach(d => {
-        const base = 5 + rnd(5);
-        notas[d] = Number(base.toFixed(1));
-      });
-      return notas;
-    }
-
-    const alunos = alunosBase.map(a => {
-      const notas = seedNotas(a.mat);
-      const vals = Object.values(notas);
-      const media = vals.reduce((s, v) => s + v, 0) / vals.length;
-      const freq = 65 + Math.floor((seedNotas(a.mat)['Português'] || 5) * 6);
-      return {
-        ...a,
-        notas,
-        media: Number(media.toFixed(1)),
-        freq: Math.min(freq, 100),
-        parecer: media >= 7 ? 'ap' : media >= 5 ? 'rec' : 'rep',
-        observacao: ''
-      };
-    });
+    let fichaSalva = {};
+    try {
+      const all = JSON.parse(localStorage.getItem(STORAGE_FICHAS) || '{}');
+      fichaSalva = (turmaId && all[turmaId]) ? all[turmaId] : {};
+    } catch (e) { console.error(e); }
 
     /* =========================================================
-       ESTADO ATUAL DO CONSELHO
+       DADOS INICIAIS
        ========================================================= */
-    let conselhoAtual = {
-      turma: turmaId,
-      data: new Date().toISOString(),
-      pareceres: {},    // { mat: 'ap' | 'rec' | 'rep' }
-      observacoes: {},  // { mat: 'texto' }
-      ata: '',
-      finalizado: false
+    const dadosIniciais = {
+      professor: nomeProfessor || '',
+      componente: turmaAtual ? turmaAtual.disciplina : '',
+      turma: turmaAtual ? turmaAtual.nome : '',
+      data: new Date().toISOString().slice(0, 10),
+
+      // 1. Panorama
+      panoramaAprendizagem: '',
+      panoramaParticipacao: '',
+
+      // 2. Aprendizagem e Frequência
+      dificuldades: '',
+      baixaFrequencia: '',
+
+      // 3. Destaques
+      destaquesPositivos: '',
+      destaquesDificuldades: '',
+
+      // 4. Encaminhamentos
+      estrategias: '',
+      observacoesPreConselho: '',
+
+      // 5. Síntese
+      sintese: ''
     };
 
-    // Carrega conselho salvo (se já existir)
-    try {
-      const salvo = JSON.parse(localStorage.getItem(STORAGE_CONSELHOS) || '{}');
-      if (salvo[turmaId]) {
-        conselhoAtual = { ...conselhoAtual, ...salvo[turmaId] };
-        alunos.forEach(a => {
-          if (conselhoAtual.pareceres[a.mat]) a.parecer = conselhoAtual.pareceres[a.mat];
-          if (conselhoAtual.observacoes[a.mat]) a.observacao = conselhoAtual.observacoes[a.mat];
-        });
-      }
-    } catch (e) {
-      console.error('Erro ao carregar conselho salvo:', e);
-    }
+    // Mescla com o que já foi salvo
+    const dados = { ...dadosIniciais, ...fichaSalva };
 
     /* =========================================================
-       RENDER
+       RENDER DA FICHA
        ========================================================= */
-    function renderConselho(turma) {
-      const corClasse = turma.cor || 'c1';
+    function renderFicha() {
+      const hoje = new Date();
+      const dataFmt = hoje.toLocaleDateString('pt-BR', {
+        day: '2-digit', month: 'long', year: 'numeric'
+      });
 
       conteudo.innerHTML = `
-        <!-- CABEÇALHO -->
-        <section class="head">
-          <div class="head-content">
-            <div class="head-info">
-              <div class="head-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                  <circle cx="9" cy="7" r="4"/>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                </svg>
+        <article class="ficha" id="ficha-doc">
+
+          <!-- CABEÇALHO DO DOCUMENTO -->
+          <div class="doc-header">
+            <div class="escola">Escola Estadual do Campo Frei Graciano Droessler</div>
+            <h1>Ficha do Conselho de Classe</h1>
+            <div class="sub">Registro pedagógico · ${dataFmt}</div>
+          </div>
+
+          <!-- IDENTIFICAÇÃO -->
+          <section class="bloco">
+            <div class="bloco-title">
+              <span class="num">0</span>
+              Identificação
+            </div>
+            <div class="ident-grid">
+              <div class="field full">
+                <label for="f-professor">Professor(a)</label>
+                <input type="text" id="f-professor" value="${escapeAttr(dados.professor)}" placeholder="Nome do(a) professor(a)" />
               </div>
-              <div class="head-text">
-                <div class="eyebrow">Conselho de Classe</div>
-                <h1>${turma.nome} · ${turma.disciplina}</h1>
-                <div class="meta">
-                  <span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                      <circle cx="9" cy="7" r="4"/>
-                    </svg>
-                    ${turma.alunos} alunos
-                  </span>
-                  <span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="3" y="4" width="18" height="18" rx="2"/>
-                      <path d="M16 2v4M8 2v4M3 10h18"/>
-                    </svg>
-                    ${new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
-                  </span>
-                  <span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 6v6l4 2"/>
-                      <circle cx="12" cy="12" r="10"/>
-                    </svg>
-                    Reunião do ${new Date().getFullYear()}
-                  </span>
-                </div>
+              <div class="field">
+                <label for="f-componente">Componente (Disciplina)</label>
+                <input type="text" id="f-componente" value="${escapeAttr(dados.componente)}" placeholder="Ex: Matemática" />
+              </div>
+              <div class="field">
+                <label for="f-turma">Turma</label>
+                <input type="text" id="f-turma" value="${escapeAttr(dados.turma)}" placeholder="Ex: 9º Ano A" />
+              </div>
+              <div class="field">
+                <label for="f-data">Data</label>
+                <input type="date" id="f-data" value="${escapeAttr(dados.data)}" />
               </div>
             </div>
-            <div class="head-actions" style="display:flex;gap:10px;flex-wrap:wrap">
-              <a href="turma-detalhes.html?id=${encodeURIComponent(turma.id)}" class="btn-secondary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19 12H5"/>
-                  <path d="M12 19l-7-7 7-7"/>
+          </section>
+
+          <!-- 1. PANORAMA -->
+          <section class="bloco">
+            <div class="bloco-title">
+              <span class="num">1</span>
+              Panorama da Turma
+            </div>
+
+            <div class="pergunta">
+              <div class="q">Como você avalia o desenvolvimento geral da turma em relação à aprendizagem?</div>
+              <textarea id="f-panoramaAprendizagem" placeholder="Descreva o panorama geral da turma neste componente...">${escapeHtml(dados.panoramaAprendizagem)}</textarea>
+            </div>
+
+            <div class="pergunta">
+              <div class="q">Como está a participação, o envolvimento e a postura dos estudantes nas aulas?</div>
+              <textarea id="f-panoramaParticipacao" placeholder="Fale sobre engajamento, comportamento, frequência às aulas...">${escapeHtml(dados.panoramaParticipacao)}</textarea>
+            </div>
+          </section>
+
+          <!-- 2. APRENDIZAGEM E FREQUÊNCIA -->
+          <section class="bloco">
+            <div class="bloco-title">
+              <span class="num">2</span>
+              Aprendizagem e Frequência
+            </div>
+
+            <div class="pergunta">
+              <div class="q">Quais habilidades/conteúdos apresentam maior dificuldade para a turma?</div>
+              <textarea id="f-dificuldades" placeholder="Liste os conteúdos ou habilidades em que a turma encontra maior dificuldade...">${escapeHtml(dados.dificuldades)}</textarea>
+            </div>
+
+            <div class="pergunta">
+              <div class="q">Há estudantes com baixa frequência ou que necessitam de acompanhamento mais próximo? Quais e por quê?</div>
+              <textarea id="f-baixaFrequencia" placeholder="Cite nomes e motive a necessidade de acompanhamento...">${escapeHtml(dados.baixaFrequencia)}</textarea>
+            </div>
+          </section>
+
+          <!-- 3. DESTAQUES -->
+          <section class="bloco">
+            <div class="bloco-title">
+              <span class="num">3</span>
+              Destaques e Situações que Merecem Atenção
+            </div>
+
+            <div class="pergunta">
+              <div class="q">Estudantes que se destacaram positivamente (aprendizagem, participação, responsabilidade ou protagonismo).</div>
+              <div class="list-box" id="lista-positivos">
+                ${renderListaItens('positivo', 'Nome do estudante + motivo do destaque')}
+              </div>
+              <button type="button" class="btn btn-ghost no-print" style="margin-top:10px" onclick="addItem('positivo')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 5v14M5 12h14"/>
                 </svg>
-                Voltar à turma
-              </a>
-              <button class="btn-primary" id="btn-ir-ata">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 19V5"/>
-                  <path d="M5 12l7-7 7 7"/>
-                </svg>
-                Ir para a ata
+                Adicionar destaque
               </button>
             </div>
-          </div>
-        </section>
 
-        <!-- ESTATÍSTICAS -->
-        <section class="stats" id="stats-wrap">
-          <div class="stat">
-            <div class="stat-icon blue">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-              </svg>
+            <div class="pergunta" style="margin-top:24px">
+              <div class="q">Estudantes com dificuldades: alunos que apresentam dificuldades significativas ou que necessitam de intervenção/encaminhamento.</div>
+              <div class="list-box" id="lista-dificuldades">
+                ${renderListaItens('dificuldade', 'Nome do estudante + dificuldade/intervenção sugerida')}
+              </div>
+              <button type="button" class="btn btn-ghost no-print" style="margin-top:10px" onclick="addItem('dificuldade')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 5v14M5 12h14"/>
+                </svg>
+                Adicionar estudante
+              </button>
             </div>
-            <div class="stat-text">
-              <span class="stat-value" id="st-total">0</span>
-              <span class="stat-label">Total de alunos</span>
-            </div>
-          </div>
-          <div class="stat">
-            <div class="stat-icon green">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                <path d="M22 4L12 14.01l-3-3"/>
-              </svg>
-            </div>
-            <div class="stat-text">
-              <span class="stat-value" id="st-ap">0</span>
-              <span class="stat-label">Aprovados</span>
-            </div>
-          </div>
-          <div class="stat">
-            <div class="stat-icon amber">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 3v5h5"/>
-                <path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/>
-                <path d="M12 7v5l4 2"/>
-              </svg>
-            </div>
-            <div class="stat-text">
-              <span class="stat-value" id="st-rec">0</span>
-              <span class="stat-label">Recuperação</span>
-            </div>
-          </div>
-          <div class="stat">
-            <div class="stat-icon red">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M15 9l-6 6M9 9l6 6"/>
-              </svg>
-            </div>
-            <div class="stat-text">
-              <span class="stat-value" id="st-rep">0</span>
-              <span class="stat-label">Reprovados</span>
-            </div>
-          </div>
-          <div class="stat">
-            <div class="stat-icon purple">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 20h9"/>
-                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/>
-              </svg>
-            </div>
-            <div class="stat-text">
-              <span class="stat-value" id="st-obs">0</span>
-              <span class="stat-label">Com observação</span>
-            </div>
-          </div>
-        </section>
+          </section>
 
-        <!-- PAINEL: PARECERES -->
-        <section class="panel">
-          <div class="panel-head">
-            <h2>
-              Pareceres por Aluno
-              <span class="badge" id="badge-pendentes">0 pendentes</span>
-            </h2>
-            <div class="search-mini">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="M21 21l-4.35-4.35"/>
-              </svg>
-              <input type="text" id="busca-conselho" placeholder="Buscar aluno..." />
+          <!-- 4. ENCAMINHAMENTOS -->
+          <section class="bloco">
+            <div class="bloco-title">
+              <span class="num">4</span>
+              Encaminhamentos
             </div>
-          </div>
-          <div class="table-wrap">
-            <table class="conselho">
-              <thead>
-                <tr>
-                  <th>Aluno</th>
-                  ${DISCIPLINAS.map(d => `<th class="center">${d}</th>`).join('')}
-                  <th class="center">Média</th>
-                  <th class="center">Freq.</th>
-                  <th class="center">Parecer</th>
-                  <th class="center">Obs.</th>
-                </tr>
-              </thead>
-              <tbody id="conselho-body"></tbody>
-            </table>
-          </div>
-        </section>
 
-        <!-- PAINEL: ATA -->
-        <section class="panel" id="panel-ata">
-          <div class="panel-head">
-            <h2>
-              Ata do Conselho
-              <span class="badge">Documento oficial</span>
-            </h2>
-          </div>
-          <div class="ata-field">
-            <label>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <path d="M14 2v6h6"/>
-                <path d="M9 15h6"/>
-              </svg>
-              Registro da reunião
-            </label>
-            <textarea id="ata-text" placeholder="Registre aqui os principais pontos discutidos no conselho de classe: desempenho geral da turma, alunos em destaque, casos de atenção, estratégias pedagógicas definidas, encaminhamentos..."></textarea>
-          </div>
-          <div class="final-actions" style="margin-top:20px">
-            <div class="final-info">
-              <span class="dot"></span>
-              <span id="final-info-text">Preencha os pareceres e salve para encerrar</span>
+            <div class="pergunta">
+              <div class="q">Quais estratégias já foram realizadas e quais ações você sugere para o próximo período?</div>
+              <textarea id="f-estrategias" placeholder="Descreva o que já foi feito e o que pretende fazer...">${escapeHtml(dados.estrategias)}</textarea>
             </div>
-            <button class="btn-save" id="btn-salvar">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6L9 17l-5-5"/>
+
+            <div class="pergunta">
+              <div class="q">Há alguma observação importante que deve ser registrada no Pré-Conselho?</div>
+              <textarea id="f-observacoesPreConselho" placeholder="Registre aqui qualquer ponto que deva ser levado à discussão prévia...">${escapeHtml(dados.observacoesPreConselho)}</textarea>
+            </div>
+          </section>
+
+          <!-- 5. SÍNTESE -->
+          <section class="bloco">
+            <div class="bloco-title">
+              <span class="num">5</span>
+              Síntese do Professor
+            </div>
+
+            <div class="pergunta sintese">
+              <div class="q">Deixe aqui uma observação geral sobre a turma e/ou sobre algum estudante que considere relevante para o Conselho de Classe.</div>
+              <textarea id="f-sintese" placeholder="Síntese final para o Conselho de Classe...">${escapeHtml(dados.sintese)}</textarea>
+            </div>
+          </section>
+
+          <!-- ASSINATURAS -->
+          <section class="assinaturas">
+            <div class="assinatura">
+              <div class="linha"></div>
+              <div class="cargo">Professor(a)</div>
+            </div>
+            <div class="assinatura">
+              <div class="linha"></div>
+              <div class="cargo">Pedagoga(o)</div>
+            </div>
+            <div class="assinatura">
+              <div class="linha"></div>
+              <div class="cargo">Diretora(or)</div>
+            </div>
+          </section>
+
+          <!-- RODAPÉ DO DOCUMENTO -->
+          <footer class="doc-footer">
+            <div class="local">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
               </svg>
-              Salvar Conselho
-            </button>
-          </div>
-        </section>
+              <span>Frei Graciano Droessler · ${dataFmt}</span>
+            </div>
+            <div>Documento gerado eletronicamente no Painel Docente</div>
+          </footer>
+
+        </article>
       `;
 
-      // Preenche a ata se já existir
-      document.getElementById('ata-text').value = conselhoAtual.ata || '';
+      // Carrega itens das listas salvas (ou inicia com 1 em branco)
+      carregarLista('positivo', dados.destaquesPositivos);
+      carregarLista('dificuldade', dados.destaquesDificuldades);
 
-      renderTabela();
-      atualizarStats();
-      bindEventos();
+      // Bind dos campos para salvar automaticamente
+      bindCampos();
+    }
+
+    /* ---------- Helpers ---------- */
+    function escapeHtml(s) {
+      return String(s || '').replace(/[&<>"']/g, c => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[c]));
+    }
+    function escapeAttr(s) { return escapeHtml(s).replace(/"/g, '&quot;'); }
+
+    function renderListaItens(tipo, placeholder) {
+      const cls = tipo === 'positivo' ? 'ok' : 'danger';
+      return `
+        <div class="list-row ${cls}" data-tipo="${tipo}">
+          <span class="bullet"></span>
+          <input type="text" placeholder="${placeholder}" />
+        </div>
+      `;
+    }
+
+    function addItem(tipo) {
+      const lista = document.getElementById(tipo === 'positivo' ? 'lista-positivos' : 'lista-dificuldades');
+      const cls = tipo === 'positivo' ? 'ok' : 'danger';
+      const placeholder = tipo === 'positivo'
+        ? 'Nome do estudante + motivo do destaque'
+        : 'Nome do estudante + dificuldade/intervenção sugerida';
+
+      const div = document.createElement('div');
+      div.className = `list-row ${cls}`;
+      div.dataset.tipo = tipo;
+      div.innerHTML = `
+        <span class="bullet"></span>
+        <input type="text" placeholder="${placeholder}" />
+      `;
+      lista.appendChild(div);
+      div.querySelector('input').focus();
+    }
+
+    function carregarLista(tipo, valores) {
+      const container = document.getElementById(tipo === 'positivo' ? 'lista-positivos' : 'lista-dificuldades');
+      const lista = Array.isArray(valores) && valores.length > 0 ? valores : [''];
+
+      const cls = tipo === 'positivo' ? 'ok' : 'danger';
+      const placeholder = tipo === 'positivo'
+        ? 'Nome do estudante + motivo do destaque'
+        : 'Nome do estudante + dificuldade/intervenção sugerida';
+
+      container.innerHTML = lista.map(v => `
+        <div class="list-row ${cls}" data-tipo="${tipo}">
+          <span class="bullet"></span>
+          <input type="text" placeholder="${placeholder}" value="${escapeAttr(v)}" />
+        </div>
+      `).join('');
+    }
+
+    function coletarLista(tipo) {
+      const container = document.getElementById(tipo === 'positivo' ? 'lista-positivos' : 'lista-dificuldades');
+      return Array.from(container.querySelectorAll('input'))
+        .map(i => i.value.trim())
+        .filter(v => v.length > 0);
     }
 
     /* =========================================================
-       RENDER TABELA
+       AUTO-SAVE (campos)
        ========================================================= */
-    function renderTabela(filtro = '') {
-      const termo = filtro.toLowerCase().trim();
-      const lista = alunos.filter(a => a.nome.toLowerCase().includes(termo));
-      const tbody = document.getElementById('conselho-body');
+    let saveTimeout = null;
+    function agendarSave() {
+      clearTimeout(saveTimeout);
+      saveTimeout = setTimeout(() => salvarFicha(false), 1200);
+    }
 
-      if (lista.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="${DISCIPLINAS.length + 5}" style="text-align:center; padding:30px; color:var(--ink-soft)">Nenhum aluno encontrado.</td></tr>`;
-        return;
-      }
-
-      tbody.innerHTML = lista.map(a => {
-        const initials = a.nome.split(' ').map(n => n[0]).slice(0, 2).join('');
-        const clsNota = v => v >= 7 ? 'alta' : v >= 5 ? 'media' : 'baixa';
-        const mediaCls = clsNota(a.media);
-        const freqCls = a.freq >= 90 ? 'alta' : a.freq >= 75 ? 'media' : 'baixa';
-        const temObs = a.observacao && a.observacao.trim().length > 0;
-
-        return `
-          <tr data-mat="${a.mat}">
-            <td>
-              <div class="aluno-cell">
-                <div class="avatar">${initials}</div>
-                <div class="info">
-                  <div class="nome">${a.nome}</div>
-                  <div class="mat">Mat. ${a.mat}</div>
-                </div>
-              </div>
-            </td>
-            ${DISCIPLINAS.map(d => {
-              const v = a.notas[d];
-              return `<td style="text-align:center"><span class="nota-pill ${clsNota(v)}">${v.toFixed(1)}</span></td>`;
-            }).join('')}
-            <td style="text-align:center"><span class="nota-pill ${mediaCls}">${a.media.toFixed(1)}</span></td>
-            <td style="text-align:center"><span class="nota-pill ${freqCls}">${a.freq}%</span></td>
-            <td>
-              <div class="parecer-group" data-mat="${a.mat}">
-                <button class="parecer-opt ap ${a.parecer === 'ap' ? 'selected' : ''}" data-parecer="ap">Aprov.</button>
-                <button class="parecer-opt rec ${a.parecer === 'rec' ? 'selected' : ''}" data-parecer="rec">Rec.</button>
-                <button class="parecer-opt rep ${a.parecer === 'rep' ? 'selected' : ''}" data-parecer="rep">Reprov.</button>
-              </div>
-            </td>
-            <td style="text-align:center">
-              <button class="obs-btn ${temObs ? 'has-obs' : ''}" data-obs-mat="${a.mat}" title="Observação">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                </svg>
-              </button>
-            </td>
-          </tr>`;
-      }).join('');
-
-      // Bind parecer buttons
-      document.querySelectorAll('.parecer-opt').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const group = btn.closest('.parecer-group');
-          const mat = group.dataset.mat;
-          const novo = btn.dataset.parecer;
-
-          group.querySelectorAll('.parecer-opt').forEach(b => b.classList.remove('selected'));
-          btn.classList.add('selected');
-
-          const aluno = alunos.find(x => x.mat === mat);
-          if (aluno) aluno.parecer = novo;
-
-          conselhoAtual.pareceres[mat] = novo;
-          atualizarStats();
-        });
+    function bindCampos() {
+      const campos = [
+        'f-professor', 'f-componente', 'f-turma', 'f-data',
+        'f-panoramaAprendizagem', 'f-panoramaParticipacao',
+        'f-dificuldades', 'f-baixaFrequencia',
+        'f-estrategias', 'f-observacoesPreConselho',
+        'f-sintese'
+      ];
+      campos.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', agendarSave);
       });
 
-      // Bind observação buttons
-      document.querySelectorAll('[data-obs-mat]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          abrirModalObs(btn.dataset.obsMat);
-        });
+      // Inputs das listas
+      document.querySelectorAll('.list-row input').forEach(inp => {
+        inp.addEventListener('input', agendarSave);
       });
     }
 
     /* =========================================================
-       ATUALIZA ESTATÍSTICAS
+       SALVAR
        ========================================================= */
-    function atualizarStats() {
-      const total = alunos.length;
-      const ap = alunos.filter(a => a.parecer === 'ap').length;
-      const rec = alunos.filter(a => a.parecer === 'rec').length;
-      const rep = alunos.filter(a => a.parecer === 'rep').length;
-      const obs = alunos.filter(a => a.observacao && a.observacao.trim().length > 0).length;
-      const pendentes = alunos.filter(a => !conselhoAtual.pareceres[a.mat]).length;
+    function salvarFicha(mostrarToast = true) {
+      const ficha = {
+        professor: document.getElementById('f-professor').value.trim(),
+        componente: document.getElementById('f-componente').value.trim(),
+        turma: document.getElementById('f-turma').value.trim(),
+        data: document.getElementById('f-data').value,
 
-      document.getElementById('st-total').textContent = total;
-      document.getElementById('st-ap').textContent = ap;
-      document.getElementById('st-rec').textContent = rec;
-      document.getElementById('st-rep').textContent = rep;
-      document.getElementById('st-obs').textContent = obs;
+        panoramaAprendizagem: document.getElementById('f-panoramaAprendizagem').value,
+        panoramaParticipacao: document.getElementById('f-panoramaParticipacao').value,
 
-      const badge = document.getElementById('badge-pendentes');
-      if (badge) {
-        if (pendentes === 0) {
-          badge.textContent = 'tudo preenchido';
-          badge.style.background = '#dcfce7';
-          badge.style.color = '#15803d';
-        } else {
-          badge.textContent = `${pendentes} pendente${pendentes > 1 ? 's' : ''}`;
-          badge.style.background = '#fef3c7';
-          badge.style.color = '#b45309';
-        }
-      }
+        dificuldades: document.getElementById('f-dificuldades').value,
+        baixaFrequencia: document.getElementById('f-baixaFrequencia').value,
 
-      const infoTxt = document.getElementById('final-info-text');
-      if (infoTxt) {
-        infoTxt.textContent = pendentes === 0
-          ? 'Tudo pronto — clique em Salvar Conselho'
-          : `Ainda faltam ${pendentes} parecer${pendentes > 1 ? 'es' : ''}`;
-      }
-    }
+        destaquesPositivos: coletarLista('positivo'),
+        destaquesDificuldades: coletarLista('dificuldade'),
 
-    /* =========================================================
-       MODAL DE OBSERVAÇÃO
-       ========================================================= */
-    const modalObs      = document.getElementById('modal-obs');
-    const modalObsClose = document.getElementById('modal-obs-close');
-    const modalObsCancel= document.getElementById('modal-obs-cancel');
-    const modalObsConfirm=document.getElementById('modal-obs-confirm');
-    const modalObsNome  = document.getElementById('modal-obs-nome');
-    const modalObsText  = document.getElementById('modal-obs-text');
+        estrategias: document.getElementById('f-estrategias').value,
+        observacoesPreConselho: document.getElementById('f-observacoesPreConselho').value,
 
-    let obsMatAtual = null;
+        sintese: document.getElementById('f-sintese').value,
 
-    function abrirModalObs(mat) {
-      const aluno = alunos.find(a => a.mat === mat);
-      if (!aluno) return;
+        atualizadoEm: new Date().toISOString()
+      };
 
-      obsMatAtual = mat;
-      modalObsNome.textContent = aluno.nome;
-      modalObsText.value = aluno.observacao || '';
-      modalObs.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      setTimeout(() => modalObsText.focus(), 100);
-    }
-
-    function fecharModalObs() {
-      modalObs.classList.remove('open');
-      document.body.style.overflow = '';
-      obsMatAtual = null;
-    }
-
-    modalObsClose.addEventListener('click', fecharModalObs);
-    modalObsCancel.addEventListener('click', fecharModalObs);
-    modalObs.addEventListener('click', e => { if (e.target === modalObs) fecharModalObs(); });
-
-    modalObsConfirm.addEventListener('click', () => {
-      if (!obsMatAtual) return;
-      const aluno = alunos.find(a => a.mat === obsMatAtual);
-      if (!aluno) return;
-
-      const texto = modalObsText.value.trim();
-      aluno.observacao = texto;
-      conselhoAtual.observacoes[obsMatAtual] = texto;
-
-      // Atualiza o botão de obs
-      const btn = document.querySelector(`[data-obs-mat="${obsMatAtual}"]`);
-      if (btn) btn.classList.toggle('has-obs', texto.length > 0);
-
-      atualizarStats();
-      fecharModalObs();
-      mostrarToast('Observação salva');
-    });
-
-    /* =========================================================
-       EVENTOS GERAIS
-       ========================================================= */
-    function bindEventos() {
-      // Busca
-      const busca = document.getElementById('busca-conselho');
-      if (busca) busca.addEventListener('input', e => renderTabela(e.target.value));
-
-      // Ata
-      const ata = document.getElementById('ata-text');
-      if (ata) ata.addEventListener('input', e => { conselhoAtual.ata = e.target.value; });
-
-      // Botão "ir para ata"
-      const btnIrAta = document.getElementById('btn-ir-ata');
-      if (btnIrAta) btnIrAta.addEventListener('click', () => {
-        document.getElementById('panel-ata').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-
-      // Botão salvar
-      const btnSalvar = document.getElementById('btn-salvar');
-      if (btnSalvar) btnSalvar.addEventListener('click', salvarConselho);
-    }
-
-    /* =========================================================
-       SALVAR CONSELHO
-       ========================================================= */
-    function salvarConselho() {
-      conselhoAtual.turma = turmaId;
-      conselhoAtual.data = new Date().toISOString();
-      conselhoAtual.ata = document.getElementById('ata-text').value;
-      conselhoAtual.finalizado = true;
-
-      // Recalcula pareceres a partir do array de alunos
-      conselhoAtual.pareceres = {};
-      conselhoAtual.observacoes = {};
-      alunos.forEach(a => {
-        conselhoAtual.pareceres[a.mat] = a.parecer;
-        if (a.observacao) conselhoAtual.observacoes[a.mat] = a.observacao;
-      });
-
-      // Salva no localStorage
       try {
-        const salvo = JSON.parse(localStorage.getItem(STORAGE_CONSELHOS) || '{}');
-        salvo[turmaId] = conselhoAtual;
-        localStorage.setItem(STORAGE_CONSELHOS, JSON.stringify(salvo));
-        mostrarToast('Conselho salvo com sucesso!');
+        const chave = turmaId || 'sem-turma';
+        const all = JSON.parse(localStorage.getItem(STORAGE_FICHAS) || '{}');
+        all[chave] = ficha;
+        localStorage.setItem(STORAGE_FICHAS, JSON.stringify(all));
+        if (mostrarToast) mostrarToast('Ficha salva com sucesso!');
       } catch (e) {
-        console.error('Erro ao salvar conselho:', e);
+        console.error('Erro ao salvar:', e);
         alert('Erro ao salvar. Tente novamente.');
       }
     }
@@ -1243,13 +874,18 @@
     const toastEl = document.getElementById('toast');
     const toastText = document.getElementById('toast-text');
     let toastTimeout = null;
-
     function mostrarToast(msg) {
       toastText.textContent = msg;
       toastEl.classList.add('show');
       clearTimeout(toastTimeout);
       toastTimeout = setTimeout(() => toastEl.classList.remove('show'), 2600);
     }
+
+    /* =========================================================
+       INICIALIZA
+       ========================================================= */
+    renderFicha();
+    document.getElementById('btn-salvar').addEventListener('click', () => salvarFicha(true));
   </script>
 
 </body>
