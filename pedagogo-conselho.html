@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#8b5cf6" />
+  <title>Conselho de Classe · Pedagogo · Frei Graciano Droessler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:#fff; --white-soft:#f7fbfe;
+      --azul-bebe-50:#eaf5fb; --azul-bebe-100:#d3ecf8; --azul-bebe-200:#b8e0f5; --azul-bebe-300:#8ecbee;
+      --azul-escuro:#1565c0; --azul-escuro-2:#0d47a1;
+      --ink:#0f1e35; --ink-soft:#475569; --ink-mute:#94a3b8;
+      --verde:#22c55e; --verde-2:#15803d; --amarelo:#f59e0b; --amarelo-2:#b45309;
+      --vermelho:#dc2626; --roxo:#8b5cf6; --roxo-2:#6d28d9; --ciano:#06b6d4; --rosa:#ec4899;
+      --shadow-sm:0 1px 2px rgba(15,30,53,.06); --shadow-md:0 10px 30px -10px rgba(21,101,192,.18);
+      --shadow-lg:0 30px 60px -20px rgba(21,101,192,.25); --shadow-xl:0 40px 80px -24px rgba(15,30,53,.2);
+      --ring:0 0 0 4px rgba(184,224,245,.55); --ring-roxo:0 0 0 4px rgba(139,92,246,.15);
+      --radius:22px;
+      --font-sans:'Inter',system-ui,sans-serif;
+      --font-display:'Playfair Display',Georgia,serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height:100vh; font-family:var(--font-sans); font-size:16px; color:var(--ink);
+      background-color:var(--white-soft); padding:32px 20px 60px; overflow-x:hidden;
+      position:relative; -webkit-font-smoothing:antialiased;
+    }
+
+    /* FUNDO */
+    .bg-layer { position:fixed;inset:0;z-index:-1;overflow:hidden;
+      background: radial-gradient(1200px 600px at 15% 10%, #fff 0%, transparent 60%),
+                  radial-gradient(900px 500px at 85% 90%, #f3ecfd 0%, transparent 55%),
+                  linear-gradient(160deg, #fff 0%, #f3ecfd 55%, #eaf5fb 100%); }
+    .bg-glow { position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;pointer-events:none; }
+    .bg-glow-1 { width:480px;height:480px;top:-160px;left:-140px;background:radial-gradient(circle,var(--azul-bebe-200) 0%,transparent 70%);animation:float 14s ease-in-out infinite; }
+    .bg-glow-2 { width:560px;height:560px;bottom:-220px;right:-160px;background:radial-gradient(circle,rgba(139,92,246,.35) 0%,transparent 70%);animation:float 18s ease-in-out infinite reverse; }
+    .bg-glow-3 { width:400px;height:400px;top:40%;right:20%;background:radial-gradient(circle,rgba(139,92,246,.12) 0%,transparent 70%);animation:float 22s ease-in-out infinite; }
+    .bg-grain { position:absolute;inset:0;background-image:radial-gradient(rgba(139,92,246,.05) 1px,transparent 1px);background-size:22px 22px;mask-image:radial-gradient(circle at center,black 40%,transparent 80%);-webkit-mask-image:radial-gradient(circle at center,black 40%,transparent 80%);opacity:.6; }
+    @keyframes float { 0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(20px,-20px) scale(1.05);} }
+
+    .container { width:100%;max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:22px;animation:fade-in .8s cubic-bezier(.22,1,.36,1); }
+    @keyframes fade-in { from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);} }
+
+    /* TOPBAR */
+    .topbar { display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 22px;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:var(--radius);box-shadow:var(--shadow-md); }
+    .brand { display:flex;align-items:center;gap:14px;min-width:0; }
+    .brand-logo { width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--roxo),var(--roxo-2));color:#fff;font-family:var(--font-display);font-weight:700;font-size:1.1rem;flex-shrink:0;box-shadow:0 8px 20px -6px rgba(139,92,246,.55); }
+    .brand-info .top { font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--roxo);opacity:.85; }
+    .brand-info .main { font-size:.92rem;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .topbar-actions { display:flex;align-items:center;gap:10px;flex-wrap:wrap; }
+    .user-chip { display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;background:#f3ecfd;border:1px solid rgba(139,92,246,.2);border-radius:999px; }
+    .user-chip .avatar { width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--roxo),var(--roxo-2));color:#fff;font-size:.85rem;font-weight:700;position:relative; }
+    .user-chip .avatar::after { content:"";position:absolute;bottom:-1px;right:-1px;width:10px;height:10px;border-radius:50%;background:var(--verde);border:2px solid #fff; }
+    .user-chip .name { font-size:.85rem;font-weight:600;color:var(--ink);max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .btn-top { display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:var(--white);border:1px solid rgba(139,92,246,.25);border-radius:999px;color:var(--roxo);font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .3s ease;white-space:nowrap; }
+    .btn-top:hover { background:var(--roxo);color:#fff;border-color:var(--roxo);transform:translateX(-3px); }
+    .btn-top svg { width:15px;height:15px; }
+
+    /* HERO */
+    .hero {
+      padding:32px 34px;
+      background:
+        radial-gradient(600px 300px at 100% 0%, rgba(139,92,246,.15) 0%, transparent 60%),
+        radial-gradient(600px 300px at 0% 100%, rgba(21,101,192,.08) 0%, transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.95), rgba(243,236,253,.9));
+      backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-lg);
+      position:relative; overflow:hidden;
+      display:flex; align-items:center; gap:22px; flex-wrap:wrap;
+    }
+    .hero::before {
+      content:""; position:absolute; top:-40%; right:-10%;
+      width:400px; height:400px; border-radius:50%;
+      background: radial-gradient(circle, rgba(139,92,246,.2), transparent 70%);
+      pointer-events:none; animation: float 16s ease-in-out infinite;
+    }
+    .hero-icon {
+      width:84px;height:84px;border-radius:22px;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--roxo),var(--roxo-2));
+      color:#fff;flex-shrink:0;
+      box-shadow:0 16px 32px -12px rgba(139,92,246,.7);
+      position:relative; z-index:1;
+    }
+    .hero-icon svg { width:40px;height:40px; }
+    .hero-text { flex:1; min-width:240px; position:relative; z-index:1; }
+    .hero-text .eyebrow {
+      font-size:.72rem; font-weight:700; letter-spacing:.16em;
+      text-transform:uppercase; color:var(--roxo);
+      margin-bottom:6px;
+      display:inline-flex; align-items:center; gap:8px;
+    }
+    .hero-text .eyebrow::before {
+      content:""; width:6px;height:6px;border-radius:50%;
+      background:var(--roxo); box-shadow:0 0 0 4px rgba(139,92,246,.2);
+      animation:pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100%{ box-shadow:0 0 0 4px rgba(139,92,246,.2);}
+      50%{ box-shadow:0 0 0 8px rgba(139,92,246,.06);}
+    }
+    .hero-text h1 {
+      font-family:var(--font-display);
+      font-size:clamp(1.6rem,3.5vw,2.2rem);
+      font-weight:700; line-height:1.1;
+      color:var(--ink); letter-spacing:-.015em;
+      margin-bottom:6px;
+    }
+    .hero-text h1 .highlight {
+      background:linear-gradient(135deg,var(--roxo),var(--azul-escuro));
+      -webkit-background-clip:text;background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .hero-text p { font-size:.9rem; color:var(--ink-soft); max-width:600px; line-height:1.5; }
+
+    .hero-badge {
+      padding:8px 16px;border-radius:999px;
+      font-size:.75rem;font-weight:700;letter-spacing:.03em;
+      background:linear-gradient(135deg, rgba(139,92,246,.15), rgba(21,101,192,.12));
+      border:1px solid rgba(139,92,246,.25);
+      color:var(--roxo);
+      position:relative; z-index:1;
+      display:inline-flex; align-items:center; gap:8px;
+      align-self:flex-start;
+      flex-shrink:0;
+    }
+    .hero-badge svg { width:14px;height:14px; }
+
+    /* AÇÕES DO HERO */
+    .hero-actions {
+      display:flex; gap:8px; flex-wrap:wrap;
+      position:relative; z-index:1;
+      width:100%;
+      padding-top:16px;
+      border-top:1px dashed rgba(139,92,246,.2);
+      margin-top:6px;
+    }
+    .btn-action {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:11px 18px; border-radius:999px;
+      font-family:inherit; font-size:.82rem; font-weight:600;
+      cursor:pointer; text-decoration:none; border:none;
+      transition:all .25s ease; white-space:nowrap;
+    }
+    .btn-action svg { width:15px;height:15px; }
+    .btn-action.primary { background:linear-gradient(135deg,var(--roxo),var(--roxo-2)); color:#fff; box-shadow:0 8px 20px -6px rgba(139,92,246,.55); }
+    .btn-action.primary:hover { transform:translateY(-2px); box-shadow:0 12px 26px -6px rgba(139,92,246,.7); }
+    .btn-action.ghost { background:#fff; border:1.5px solid rgba(139,92,246,.25); color:var(--roxo); }
+    .btn-action.ghost:hover { background:#f3ecfd; border-color:rgba(139,92,246,.5); }
+
+    /* ESTATÍSTICAS */
+    .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; }
+    .stat {
+      padding:20px; background:rgba(255,255,255,.95);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:16px; box-shadow:var(--shadow-sm);
+      display:flex; flex-direction:column; gap:10px;
+      transition:transform .3s ease,box-shadow .3s ease;
+      position:relative; overflow:hidden;
+    }
+    .stat::before { content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent); }
+    .stat:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); }
+    .stat.blue { --accent:linear-gradient(90deg,#1565c0,#0d47a1); }
+    .stat.green { --accent:linear-gradient(90deg,#22c55e,#15803d); }
+    .stat.amber { --accent:linear-gradient(90deg,#f59e0b,#b45309); }
+    .stat.purple { --accent:linear-gradient(90deg,#8b5cf6,#6d28d9); }
+    .stat.red { --accent:linear-gradient(90deg,#dc2626,#991b1b); }
+
+    .stat-head { display:flex;align-items:center;justify-content:space-between;gap:10px; }
+    .stat-icon { width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:#fff;flex-shrink:0; }
+    .stat-icon svg { width:18px;height:18px; }
+    .stat-icon.blue { background:linear-gradient(135deg,#1565c0,#0d47a1); }
+    .stat-icon.green { background:linear-gradient(135deg,#22c55e,#15803d); }
+    .stat-icon.amber { background:linear-gradient(135deg,#f59e0b,#b45309); }
+    .stat-icon.purple { background:linear-gradient(135deg,#8b5cf6,#6d28d9); }
+    .stat-icon.red { background:linear-gradient(135deg,#dc2626,#991b1b); }
+    .stat-trend { font-size:.68rem;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--azul-bebe-50);color:var(--azul-escuro); }
+    .stat-trend.up { background:#dcfce7;color:#15803d; }
+    .stat-trend.down { background:#fee2e2;color:#b91c1c; }
+    .stat-trend.roxo { background:#f3ecfd;color:var(--roxo); }
+    .stat-value { font-family:var(--font-display);font-size:1.9rem;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-.02em; }
+    .stat-value .unit { font-size:.85rem;font-weight:500;color:var(--ink-mute);font-family:var(--font-sans); }
+    .stat-label { font-size:.75rem;color:var(--ink-soft);font-weight:500; }
+
+    /* SECTION HEAD */
+    .section-head { display:flex;align-items:center;gap:12px;margin-top:6px; }
+    .section-head h2 { font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--ink);letter-spacing:-.01em;white-space:nowrap; }
+    .section-head .line { flex:1;height:1px;background:linear-gradient(90deg,rgba(139,92,246,.3),transparent); }
+    .section-head .count { font-size:.7rem;font-weight:700;padding:4px 10px;background:#f3ecfd;color:var(--roxo);border-radius:999px;letter-spacing:.04em;white-space:nowrap; }
+
+    /* GRID DE RELATÓRIOS */
+    .relatorios-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(360px,1fr));
+      gap:16px;
+    }
+
+    /* CARD DE RELATÓRIO (um por professor) */
+    .relatorio {
+      background:rgba(255,255,255,.95);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:18px;
+      box-shadow:var(--shadow-sm);
+      overflow:hidden;
+      transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease;
+      position:relative;
+      display:flex; flex-direction:column;
+    }
+    .relatorio:hover {
+      transform:translateY(-4px);
+      box-shadow:var(--shadow-lg);
+    }
+
+    /* Cabeçalho do card */
+    .rel-head {
+      padding:18px 20px;
+      background:linear-gradient(135deg, rgba(139,92,246,.06), rgba(21,101,192,.04));
+      border-bottom:1px solid rgba(139,92,246,.12);
+      display:flex; align-items:center; gap:14px;
+    }
+    .rel-avatar {
+      width:48px; height:48px; border-radius:50%;
+      display:grid; place-items:center;
+      background:linear-gradient(135deg,var(--roxo),var(--roxo-2));
+      color:#fff; font-family:var(--font-display);
+      font-size:1rem; font-weight:700;
+      flex-shrink:0;
+      box-shadow:0 8px 18px -6px rgba(139,92,246,.55);
+      position:relative;
+    }
+    .rel-avatar::after {
+      content:""; position:absolute; bottom:-1px; right:-1px;
+      width:14px;height:14px; border-radius:50%;
+      background:var(--verde); border:2px solid #fff;
+    }
+    .rel-info { flex:1; min-width:0; }
+    .rel-nome {
+      font-size:.95rem; font-weight:700;
+      color:var(--ink); line-height:1.2;
+      margin-bottom:3px;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    .rel-disc {
+      font-size:.72rem; font-weight:600;
+      letter-spacing:.04em; text-transform:uppercase;
+      color:var(--roxo);
+      display:inline-flex; align-items:center; gap:5px;
+    }
+    .rel-disc::before {
+      content:""; width:5px;height:5px;border-radius:50%;
+      background:var(--roxo);
+    }
+    .rel-date {
+      font-size:.7rem; font-weight:600;
+      color:var(--ink-soft);
+      padding:4px 9px;
+      background:var(--white);
+      border:1px solid rgba(139,92,246,.2);
+      border-radius:999px;
+      flex-shrink:0;
+      white-space:nowrap;
+    }
+
+    /* Corpo do card */
+    .rel-body {
+      padding:18px 20px;
+      display:flex; flex-direction:column; gap:16px;
+      flex:1;
+    }
+
+    /* Bloco de pergunta/resposta */
+    .qa-block { display:flex; flex-direction:column; gap:6px; }
+    .qa-q {
+      font-size:.72rem; font-weight:700;
+      letter-spacing:.06em; text-transform:uppercase;
+      color:var(--ink-soft);
+      display:flex; align-items:center; gap:6px;
+    }
+    .qa-q .num {
+      width:20px;height:20px;border-radius:6px;
+      display:grid; place-items:center;
+      background:rgba(139,92,246,.12);
+      color:var(--roxo);
+      font-size:.65rem;font-weight:800;
+      flex-shrink:0;
+    }
+    .qa-a {
+      font-size:.85rem; line-height:1.55;
+      color:var(--ink);
+      padding:10px 12px;
+      background:var(--white-soft);
+      border-left:3px solid rgba(139,92,246,.3);
+      border-radius:0 10px 10px 0;
+    }
+
+    /* Destaques (chips) */
+    .destaques-list { display:flex; flex-wrap:wrap; gap:6px; }
+    .destaque-chip {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:5px 10px; border-radius:999px;
+      font-size:.72rem; font-weight:600;
+    }
+    .destaque-chip.ok { background:#dcfce7; color:#15803d; }
+    .destaque-chip.danger { background:#fee2e2; color:#b91c1c; }
+    .destaque-chip::before {
+      content:""; width:6px;height:6px;border-radius:50%;
+      background:currentColor;
+    }
+
+    /* Síntese (destaque) */
+    .sintese-box {
+      padding:14px 16px;
+      background:linear-gradient(135deg, #faf5ff, #f3ecfd);
+      border:1px solid rgba(139,92,246,.25);
+      border-radius:14px;
+      position:relative;
+    }
+    .sintese-box::before {
+      content:"❝";
+      position:absolute; top:-2px; left:12px;
+      font-family:var(--font-display);
+      font-size:2.4rem;
+      color:rgba(139,92,246,.2);
+      line-height:1;
+      pointer-events:none;
+    }
+    .sintese-text {
+      font-family:var(--font-display);
+      font-size:.95rem; line-height:1.55;
+      color:var(--ink);
+      font-style:italic;
+      position:relative; z-index:1;
+    }
+
+    /* Rodapé do card */
+    .rel-footer {
+      padding:14px 20px;
+      border-top:1px solid rgba(139,92,246,.12);
+      background:linear-gradient(135deg, rgba(139,92,246,.04), transparent);
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      flex-wrap:wrap;
+    }
+    .rel-status {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:6px 12px; border-radius:999px;
+      font-size:.7rem; font-weight:700;
+      letter-spacing:.03em;
+    }
+    .rel-status.ok { background:#dcfce7; color:#15803d; }
+    .rel-status.pendente { background:#fef3c7; color:#b45309; }
+    .rel-status::before {
+      content:""; width:6px;height:6px;border-radius:50%;
+      background:currentColor;
+    }
+
+    .rel-actions { display:flex; gap:6px; }
+    .btn-mini {
+      padding:7px 13px;
+      border-radius:9px;
+      font-family:inherit; font-size:.72rem; font-weight:700;
+      cursor:pointer; text-decoration:none;
+      display:inline-flex; align-items:center; gap:5px;
+      transition:all .25s ease; border:none;
+      white-space:nowrap;
+    }
+    .btn-mini svg { width:13px;height:13px; }
+    .btn-mini.primary { background:linear-gradient(135deg,var(--roxo),var(--roxo-2)); color:#fff; }
+    .btn-mini.primary:hover { transform:translateY(-2px); box-shadow:0 6px 14px -4px rgba(139,92,246,.5); }
+    .btn-mini.ghost { background:#fff; border:1.5px solid rgba(139,92,246,.25); color:var(--roxo); }
+    .btn-mini.ghost:hover { background:#f3ecfd; border-color:rgba(139,92,246,.5); }
+
+    /* ATA GERAL */
+    .ata-section {
+      background:rgba(255,255,255,.95);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:20px;
+      box-shadow:var(--shadow-sm);
+      padding:24px;
+    }
+    .ata-head {
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; flex-wrap:wrap;
+      margin-bottom:18px;
+      padding-bottom:16px;
+      border-bottom:1px solid rgba(139,92,246,.12);
+    }
+    .ata-head-left { display:flex; align-items:center; gap:12px; }
+    .ata-icon {
+      width:44px;height:44px;border-radius:12px;
+      display:grid; place-items:center;
+      background:linear-gradient(135deg,var(--roxo),var(--roxo-2));
+      color:#fff; flex-shrink:0;
+      box-shadow:0 10px 22px -8px rgba(139,92,246,.55);
+    }
+    .ata-icon svg { width:22px;height:22px; }
+    .ata-title-wrap h2 {
+      font-family:var(--font-display);
+      font-size:1.15rem; font-weight:700; color:var(--ink);
+      letter-spacing:-.01em; line-height:1.2;
+      margin-bottom:3px;
+    }
+    .ata-title-wrap p {
+      font-size:.78rem; color:var(--ink-soft);
+    }
+    .ata-textarea {
+      width:100%; min-height:140px;
+      padding:16px;
+      font-family:var(--font-display);
+      font-size:.95rem; line-height:1.6;
+      color:var(--ink);
+      background:linear-gradient(135deg, #faf5ff, #f3ecfd);
+      border:1.5px solid rgba(139,92,246,.25);
+      border-radius:14px;
+      outline:none; resize:vertical;
+      transition:border-color .25s ease, box-shadow .25s ease;
+    }
+    .ata-textarea:focus { border-color:var(--roxo); box-shadow:var(--ring-roxo); }
+    .ata-textarea::placeholder {
+      color:var(--ink-mute);
+      font-style:italic;
+      font-family:var(--font-sans);
+      font-size:.88rem;
+    }
+
+    /* Estado vazio / erro */
+    .empty-full {
+      min-height:60vh; display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center; gap:16px; padding:60px 24px;
+      background:rgba(255,255,255,.9); border:1px solid rgba(255,255,255,.9);
+      border-radius:var(--radius); box-shadow:var(--shadow-md);
+    }
+    .empty-full svg { width:56px;height:56px;color:rgba(139,92,246,.35); }
+    .empty-full h2 { font-family:var(--font-display);font-size:1.5rem;color:var(--ink); }
+    .empty-full p { color:var(--ink-soft);max-width:420px;font-size:.92rem; }
+
+    /* RODAPÉ */
+    .footer { margin-top:12px;display:flex;align-items:center;justify-content:center;gap:10px;padding:22px 24px;background:rgba(255,255,255,.6);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:var(--shadow-sm); }
+    .footer .dot { width:6px;height:6px;border-radius:50%;background:var(--roxo);opacity:.6; }
+    .footer p { font-size:.78rem;color:var(--ink-soft);text-align:center; }
+
+    /* TOAST */
+    .toast {
+      position:fixed;bottom:28px;left:50%;transform:translate(-50%,120px);
+      padding:14px 24px;
+      background:linear-gradient(135deg,var(--verde),var(--verde-2));
+      color:#fff;border-radius:999px;
+      font-size:.85rem;font-weight:600;
+      box-shadow:0 20px 40px -10px rgba(34,197,94,.5);
+      z-index:2000;
+      display:inline-flex;align-items:center;gap:10px;
+      opacity:0;
+      transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .3s ease;
+      pointer-events:none;
+    }
+    .toast.show { transform:translate(-50%,0); opacity:1; }
+    .toast svg { width:18px;height:18px; }
+
+    /* RESPONSIVO */
+    @media (max-width:720px) {
+      body { padding:20px 14px 40px; }
+      .topbar { padding:14px 16px; }
+      .btn-top span { display:none; }
+      .user-chip .name { max-width:100px; }
+      .hero { padding:24px 20px; gap:16px; }
+      .hero-icon { width:66px;height:66px;border-radius:18px; }
+      .hero-icon svg { width:32px;height:32px; }
+      .hero-text h1 { font-size:1.5rem; }
+      .hero-actions { flex-direction:column; }
+      .btn-action { justify-content:center; }
+      .stats { grid-template-columns:repeat(2,1fr); gap:10px; }
+      .stat { padding:14px; }
+      .stat-value { font-size:1.4rem; }
+      .relatorios-grid { grid-template-columns:1fr; }
+      .ata-section { padding:18px; }
+      .rel-footer { flex-direction:column; align-items:stretch; }
+      .rel-actions { width:100%; }
+      .rel-actions .btn-mini { flex:1; justify-content:center; }
+    }
+    @media (max-width:400px) {
+      .user-chip .name { display:none; }
+      .stats { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after {
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+    <div class="bg-grain"></div>
+  </div>
+
+  <div class="container">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">FG</div>
+        <div class="brand-info">
+          <div class="top">Painel Pedagógico</div>
+          <div class="main">Frei Graciano Droessler</div>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <div class="user-chip">
+          <div class="avatar" id="user-avatar">P</div>
+          <span class="name" id="user-name">Pedagogo(a)</span>
+        </div>
+        <a href="pedagogo-turmas.html" class="btn-top" id="btn-voltar" title="Voltar às turmas">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5"/>
+            <path d="M12 19l-7-7 7-7"/>
+          </svg>
+          <span>Turmas</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- CONTEÚDO DINÂMICO -->
+    <div id="conteudo"></div>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+      <span class="dot" aria-hidden="true"></span>
+      <p>© 2025 · Escola Estadual do Campo Frei Graciano Droessler</p>
+    </footer>
+
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6L9 17l-5-5"/>
+    </svg>
+    <span id="toast-text">Salvo</span>
+  </div>
+
+  <script>
+    /* =========================================================
+       PROTEÇÃO
+       ========================================================= */
+    const nomePedagogo = sessionStorage.getItem('pedagogoLogado');
+    if (!nomePedagogo) window.location.href = 'pedagogo.html';
+
+    document.getElementById('user-name').textContent = nomePedagogo || 'Pedagogo';
+    document.getElementById('user-avatar').textContent = (nomePedagogo || 'P').trim().charAt(0).toUpperCase();
+
+    /* =========================================================
+       CARREGA DADOS
+       ========================================================= */
+    const turmasBase = [
+      { id:'6a', serie:'6º Ano', nome:'6º Ano A', sigla:'6A', professor:'Mariana Alves', alunos:30, media:7.6, freq:93 },
+      { id:'6b', serie:'6º Ano', nome:'6º Ano B', sigla:'6B', professor:'Rafael Costa',  alunos:28, media:7.2, freq:89 },
+      { id:'7a', serie:'7º Ano', nome:'7º Ano A', sigla:'7A', professor:'Mariana Alves', alunos:32, media:8.1, freq:94 },
+      { id:'7b', serie:'7º Ano', nome:'7º Ano B', sigla:'7B', professor:'Rafael Costa',  alunos:29, media:6.8, freq:82 },
+      { id:'8a', serie:'8º Ano', nome:'8º Ano A', sigla:'8A', professor:'Mariana Alves', alunos:31, media:7.9, freq:95 },
+      { id:'8b', serie:'8º Ano', nome:'8º Ano B', sigla:'8B', professor:'Rafael Costa',  alunos:28, media:6.5, freq:79 },
+      { id:'9a', serie:'9º Ano', nome:'9º Ano A', sigla:'9A', professor:'Mariana Alves', alunos:32, media:8.3, freq:96 },
+      { id:'9b', serie:'9º Ano', nome:'9º Ano B', sigla:'9B', professor:'Rafael Costa',  alunos:30, media:7.4, freq:87 }
+    ];
+
+    let turmas = [...turmasBase];
+    try {
+      const salvas = JSON.parse(localStorage.getItem('turmasProfessor') || '[]');
+      if (salvas.length > 0) {
+        turmas = turmasBase.map(b => {
+          const s = salvas.find(x => x.id === b.id || x.sigla === b.sigla);
+          return s ? { ...b, ...s } : b;
+        });
+      }
+    } catch(e) {}
+
+    const params = new URLSearchParams(window.location.search);
+    const turmaId = params.get('turma') || params.get('id');
+    const turma = turmas.find(t => t.id === turmaId);
+
+    /* =========================================================
+       RELATÓRIOS DOS PROFESSORES (mock + localStorage)
+       ========================================================= */
+    function gerarRelatorios(turmaId) {
+      const profsBase = [
+        {
+          nome: 'Mariana Alves',
+          disc: 'Matemática',
+          data: '2025-10-14',
+          status: 'ok',
+          panorama: 'A turma apresenta desenvolvimento satisfatório em álgebra e geometria. A maioria dos alunos domina as operações básicas e evoluiu bem na resolução de problemas.',
+          participacao: 'Turma participativa e comprometida. Os alunos colaboram nas atividades em grupo e respeitam as regras de convivência.',
+          dificuldades: 'Equações do 2º grau e interpretação de problemas contextualizados ainda geram dúvidas em parte da turma.',
+          frequencia: 'Frequência regular. Dois alunos precisam de acompanhamento por faltas recorrentes.',
+          destaques: ['Ana Beatriz Souza', 'Henrique Costa', 'Carla Mendes'],
+          atencao: ['Felipe Andrade'],
+          sintese: 'Turma engajada, mas alguns alunos precisam de reforço pontual. Recomendo trabalho em duplas produtivas no próximo bimestre.'
+        },
+        {
+          nome: 'Juliana Pereira',
+          disc: 'Português',
+          data: '2025-10-12',
+          status: 'ok',
+          panorama: 'Boa evolução na leitura e produção textual. A turma demonstra interesse pela literatura e participa das discussões em sala.',
+          participacao: 'Participação ativa nas aulas. Alguns alunos ainda têm timidez para expor opiniões em público.',
+          dificuldades: 'Concordância verbal e nominal, além de produção de textos argumentativos.',
+          frequencia: 'Excelente frequência. Não há casos preocupantes nesta disciplina.',
+          destaques: ['Isabela Ferreira', 'Gabriela Nunes'],
+          atencao: [],
+          sintese: 'Turma com bom potencial. Sugiro oficinas de escrita criativa para estimular ainda mais o interesse.'
+        },
+        {
+          nome: 'André Souza',
+          disc: 'História',
+          data: '2025-10-11',
+          status: 'ok',
+          panorama: 'Desenvolvimento consistente na compreensão dos processos históricos. Alunos conseguem estabelecer relações entre passado e presente.',
+          participacao: 'Participação razoável. Alguns alunos dispersam em aulas mais expositivas.',
+          dificuldades: 'Leitura de fontes históricas e análise crítica de documentos.',
+          frequencia: 'Frequência regular.',
+          destaques: ['Bruno Carvalho'],
+          atencao: ['Daniel Oliveira'],
+          sintese: 'Necessário trabalhar mais com fontes primárias. Sugiro visitas virtuais a museus.'
+        },
+        {
+          nome: 'Patrícia Lima',
+          disc: 'Ciências',
+          data: '2025-10-13',
+          status: 'ok',
+          panorama: 'Excelente desempenho em atividades práticas de laboratório. Os alunos demonstram curiosidade científica.',
+          participacao: 'Muito participativos durante experimentos. Interesse evidente pelo conteúdo.',
+          dificuldades: 'Nomenclatura científica e fórmulas químicas.',
+          frequencia: 'Boa frequência com poucas ausências justificadas.',
+          destaques: ['Ana Beatriz Souza', 'Lucas Ribeiro'],
+          atencao: [],
+          sintese: 'Turma que se destaca nas atividades práticas. Recomendo ampliar projetos de iniciação científica.'
+        },
+        {
+          nome: 'Carlos Eduardo',
+          disc: 'Geografia',
+          data: '2025-10-10',
+          status: 'pendente',
+          panorama: 'Desenvolvimento médio. Alguns alunos têm dificuldade com leitura de mapas e gráficos.',
+          participacao: 'Participação irregular. Alunos mais dispersos após o intervalo.',
+          dificuldades: 'Interpretação de mapas, gráficos e dados estatísticos.',
+          frequencia: 'Frequência regular com alguns casos de atrasos frequentes.',
+          destaques: ['Karina Almeida'],
+          atencao: ['Lucas Ribeiro', 'Daniel Oliveira'],
+          sintese: 'Precisa de mais atividades com recursos visuais. Alguns alunos necessitam acompanhamento individual.'
+        },
+        {
+          nome: 'Beatriz Nogueira',
+          disc: 'Arte',
+          data: '2025-10-09',
+          status: 'ok',
+          panorama: 'Turma muito criativa e expressiva. Os trabalhos apresentados têm qualidade surpreendente.',
+          participacao: 'Altíssima participação. Os alunos demonstram prazer nas atividades artísticas.',
+          dificuldades: 'Poucas dificuldades relatadas. Alguns alunos precisam desenvolver mais a técnica.',
+          frequencia: 'Excelente frequência.',
+          destaques: ['Gabriela Nunes', 'Isabela Ferreira', 'Eduarda Santos'],
+          atencao: [],
+          sintese: 'Turma exemplar. Sugiro organizar uma exposição dos trabalhos ao final do semestre.'
+        }
+      ];
+      return profsBase;
+    }
+
+    const relatorios = gerarRelatorios(turmaId);
+
+    /* =========================================================
+       RENDER
+       ========================================================= */
+    const conteudo = document.getElementById('conteudo');
+
+    if (!turma) {
+      conteudo.innerHTML = `
+        <div class="empty-full">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 8v4M12 16h.01"/>
+          </svg>
+          <h2>Turma não informada</h2>
+          <p>Para abrir o Conselho de Classe, é necessário vir da página de uma turma.</p>
+          <a href="pedagogo-turmas.html" class="btn-action primary" style="margin-top:8px">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/>
+            </svg>
+            Voltar às turmas
+          </a>
+        </div>`;
+    } else {
+      renderConselho();
+    }
+
+    function renderConselho() {
+      document.title = `Conselho · ${turma.nome} · Pedagogo`;
+
+      // Estatísticas
+      const totalRelatorios = relatorios.length;
+      const entregues = relatorios.filter(r => r.status === 'ok').length;
+      const pendentes = totalRelatorios - entregues;
+
+      // Total de destaques e atenções
+      const totalDestaques = relatorios.reduce((s, r) => s + (r.destaques?.length || 0), 0);
+      const totalAtencao = relatorios.reduce((s, r) => s + (r.atencao?.length || 0), 0);
+
+      conteudo.innerHTML = `
+        <!-- HERO -->
+        <section class="hero">
+          <div class="hero-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div class="hero-text">
+            <div class="eyebrow">Conselho de Classe · Visão Pedagógica</div>
+            <h1>Relatórios de <span class="highlight">${turma.nome}</span></h1>
+            <p>Reúne os relatórios individuais enviados pelos professores da turma. Analise, compare e consolide o parecer final do conselho.</p>
+          </div>
+          <span class="hero-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <path d="M16 2v4M8 2v4M3 10h18"/>
+            </svg>
+            ${new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
+          </span>
+
+          <div class="hero-actions">
+            <a href="pedagogo-turma-detalhes.html?id=${encodeURIComponent(turma.id)}" class="btn-action ghost">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"/>
+                <path d="M12 19l-7-7 7-7"/>
+              </svg>
+              Voltar à turma
+            </a>
+            <button class="btn-action primary" onclick="window.print()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9V2h12v7"/>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                <rect x="6" y="14" width="12" height="8"/>
+              </svg>
+              Imprimir Conselho
+            </button>
+            <button class="btn-action ghost" id="btn-ir-ata">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 19V5"/>
+                <path d="M5 12l7-7 7 7"/>
+              </svg>
+              Ir para Ata
+            </button>
+          </div>
+        </section>
+
+        <!-- ESTATÍSTICAS -->
+        <section class="stats">
+          <div class="stat purple">
+            <div class="stat-head">
+              <div class="stat-icon purple">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+              <span class="stat-trend roxo">Docentes</span>
+            </div>
+            <div class="stat-value">${totalRelatorios}</div>
+            <div class="stat-label">Relatórios recebidos</div>
+          </div>
+
+          <div class="stat green">
+            <div class="stat-head">
+              <div class="stat-icon green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <path d="M22 4L12 14.01l-3-3"/>
+                </svg>
+              </div>
+              <span class="stat-trend up">Completos</span>
+            </div>
+            <div class="stat-value">${entregues}<span class="unit"> / ${totalRelatorios}</span></div>
+            <div class="stat-label">Relatórios preenchidos</div>
+          </div>
+
+          <div class="stat amber">
+            <div class="stat-head">
+              <div class="stat-icon amber">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+              </div>
+              <span class="stat-trend ${pendentes > 0 ? 'down' : 'up'}">${pendentes > 0 ? 'Aguardando' : 'Em dia'}</span>
+            </div>
+            <div class="stat-value">${pendentes}</div>
+            <div class="stat-label">Pendentes de envio</div>
+          </div>
+
+          <div class="stat blue">
+            <div class="stat-head">
+              <div class="stat-icon blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/>
+                </svg>
+              </div>
+              <span class="stat-trend">Positivos</span>
+            </div>
+            <div class="stat-value">${totalDestaques}</div>
+            <div class="stat-label">Alunos em destaque</div>
+          </div>
+
+          <div class="stat red">
+            <div class="stat-head">
+              <div class="stat-icon red">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                  <path d="M12 9v4M12 16h.01"/>
+                </svg>
+              </div>
+              <span class="stat-trend down">Acompanhar</span>
+            </div>
+            <div class="stat-value">${totalAtencao}</div>
+            <div class="stat-label">Alunos em atenção</div>
+          </div>
+        </section>
+
+        <!-- SECTION: RELATÓRIOS DOS PROFESSORES -->
+        <div class="section-head">
+          <h2>Relatórios dos Professores</h2>
+          <span class="line"></span>
+          <span class="count">${totalRelatorios} enviados</span>
+        </div>
+
+        <section class="relatorios-grid">
+          ${relatorios.map(r => {
+            const ini = r.nome.split(' ').map(n => n[0]).slice(0,2).join('').toUpperCase();
+            const dataFmt = new Date(r.data).toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric' });
+            const statusLabel = r.status === 'ok' ? 'Enviado' : 'Pendente';
+            const statusClass = r.status === 'ok' ? 'ok' : 'pendente';
+
+            return `
+              <div class="relatorio">
+                <div class="rel-head">
+                  <div class="rel-avatar">${ini}</div>
+                  <div class="rel-info">
+                    <div class="rel-nome">${r.nome}</div>
+                    <div class="rel-disc">${r.disc}</div>
+                  </div>
+                  <span class="rel-date">${dataFmt}</span>
+                </div>
+
+                <div class="rel-body">
+                  <div class="qa-block">
+                    <div class="qa-q"><span class="num">1</span> Panorama da turma</div>
+                    <div class="qa-a">${r.panorama}</div>
+                  </div>
+
+                  <div class="qa-block">
+                    <div class="qa-q"><span class="num">2</span> Aprendizagem e frequência</div>
+                    <div class="qa-a">${r.dificuldades}<br><br><strong>Frequência:</strong> ${r.frequencia}</div>
+                  </div>
+
+                  ${r.destaques && r.destaques.length > 0 ? `
+                    <div class="qa-block">
+                      <div class="qa-q"><span class="num">3</span> Destaques positivos</div>
+                      <div class="destaques-list">
+                        ${r.destaques.map(d => `<span class="destaque-chip ok">${d}</span>`).join('')}
+                      </div>
+                    </div>
+                  ` : ''}
+
+                  ${r.atencao && r.atencao.length > 0 ? `
+                    <div class="qa-block">
+                      <div class="qa-q"><span class="num">4</span> Alunos em atenção</div>
+                      <div class="destaques-list">
+                        ${r.atencao.map(d => `<span class="destaque-chip danger">${d}</span>`).join('')}
+                      </div>
+                    </div>
+                  ` : ''}
+
+                  <div class="qa-block">
+                    <div class="qa-q"><span class="num">5</span> Síntese do professor</div>
+                    <div class="sintese-box">
+                      <div class="sintese-text">${r.sintese}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="rel-footer">
+                  <span class="rel-status ${statusClass}">${statusLabel}</span>
+                  <div class="rel-actions">
+                    <button class="btn-mini primary" data-rel="${r.nome}">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                      </svg>
+                      Ver completo
+                    </button>
+                    <button class="btn-mini ghost" data-prof="${r.nome}">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                      </svg>
+                      Comentar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </section>
+
+        <!-- ATA GERAL DO CONSELHO -->
+        <section class="ata-section" id="ata-section">
+          <div class="ata-head">
+            <div class="ata-head-left">
+              <div class="ata-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <path d="M14 2v6h6"/>
+                  <path d="M9 15h6"/>
+                </svg>
+              </div>
+              <div class="ata-title-wrap">
+                <h2>Ata do Conselho de Classe</h2>
+                <p>Documento consolidado · ${turma.nome} · ${turma.serie}</p>
+              </div>
+            </div>
+            <button class="btn-mini primary" id="btn-salvar-ata" style="padding:10px 18px;font-size:.8rem">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              Salvar Ata
+            </button>
+          </div>
+
+          <textarea class="ata-textarea" id="ata-text" placeholder="Consolide aqui a visão do conselho de classe: principais pontos discutidos, alunos que precisam de acompanhamento, encaminhamentos e ações para o próximo bimestre..."></textarea>
+        </section>
+      `;
+
+      // Botão ir para ata
+      document.getElementById('btn-ir-ata').addEventListener('click', () => {
+        document.getElementById('ata-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      // Botões "Ver completo"
+      document.querySelectorAll('[data-rel]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const prof = btn.dataset.rel;
+          alert(`Relatório completo de ${prof}\n\n(Simulação — aqui abriria o documento em tela cheia)`);
+        });
+      });
+
+      // Botões "Comentar"
+      document.querySelectorAll('[data-prof]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const prof = btn.dataset.prof;
+          const comentario = prompt(`Comentário do pedagogo para ${prof}:`);
+          if (comentario && comentario.trim()) {
+            mostrarToast(`Comentário salvo para ${prof}`);
+          }
+        });
+      });
+
+      // Salvar ata
+      document.getElementById('btn-salvar-ata').addEventListener('click', () => {
+        const texto = document.getElementById('ata-text').value;
+        try {
+          const todas = JSON.parse(localStorage.getItem('atasConselho') || '{}');
+          todas[turma.id] = { texto, data: new Date().toISOString() };
+          localStorage.setItem('atasConselho', JSON.stringify(todas));
+          mostrarToast('Ata do conselho salva');
+        } catch(e) {
+          mostrarToast('Erro ao salvar');
+        }
+      });
+    }
+
+    /* =========================================================
+       TOAST
+       ========================================================= */
+    const toastEl = document.getElementById('toast');
+    const toastText = document.getElementById('toast-text');
+    let toastTimeout = null;
+    function mostrarToast(msg) {
+      toastText.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toastEl.classList.remove('show'), 2600);
+    }
+  </script>
+
+</body>
+</html>
