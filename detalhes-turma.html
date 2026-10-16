@@ -183,6 +183,88 @@
     .btn-secondary:hover { background: var(--azul-bebe-50); border-color: var(--azul-bebe-300); }
     .btn-secondary svg { width: 16px; height: 16px; }
 
+    /* Botão Conselho de Classe (roxo) */
+    .btn-conselho {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, var(--roxo), #6d28d9);
+      color: var(--white); border: none; border-radius: 999px;
+      font-family: inherit; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      box-shadow: 0 10px 24px -8px rgba(139, 92, 246, 0.6);
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+    .btn-conselho:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -8px rgba(139, 92, 246, 0.7); }
+    .btn-conselho svg { width: 16px; height: 16px; }
+
+    /* BANNER DO CONSELHO DE CLASSE */
+    .conselho-banner {
+      display: flex; align-items: center; gap: 18px;
+      padding: 20px 24px;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(21, 101, 192, 0.06));
+      backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(139, 92, 246, 0.25);
+      border-radius: 20px;
+      text-decoration: none; color: inherit;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      position: relative; overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+    .conselho-banner::before {
+      content: ""; position: absolute; top: -50%; right: -5%;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+    .conselho-banner:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -14px rgba(139, 92, 246, 0.4);
+      border-color: rgba(139, 92, 246, 0.5);
+    }
+    .conselho-icon {
+      width: 54px; height: 54px; border-radius: 14px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--roxo), #6d28d9);
+      color: var(--white); flex-shrink: 0;
+      box-shadow: 0 10px 22px -6px rgba(139, 92, 246, 0.6);
+      position: relative; z-index: 1;
+    }
+    .conselho-icon svg { width: 26px; height: 26px; }
+    .conselho-text { flex: 1; min-width: 0; position: relative; z-index: 1; }
+    .conselho-text .eyebrow {
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--roxo); opacity: 0.9;
+      margin-bottom: 3px;
+    }
+    .conselho-text h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--ink); line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .conselho-text p { font-size: 0.8rem; color: var(--ink-soft); }
+    .conselho-arrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 16px;
+      background: var(--white);
+      border: 1.5px solid rgba(139, 92, 246, 0.3);
+      border-radius: 999px;
+      font-size: 0.8rem; font-weight: 700;
+      color: var(--roxo);
+      flex-shrink: 0;
+      transition: gap 0.3s ease, background 0.3s ease, color 0.3s ease;
+      position: relative; z-index: 1;
+    }
+    .conselho-banner:hover .conselho-arrow {
+      gap: 10px;
+      background: var(--roxo);
+      color: var(--white);
+    }
+    .conselho-arrow svg { width: 14px; height: 14px; }
+
     /* ESTATÍSTICAS RÁPIDAS */
     .quick-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
     .qstat {
@@ -339,9 +421,7 @@
     }
     .freq-pct { font-size: 0.85rem; font-weight: 700; color: var(--azul-escuro); min-width: 48px; text-align: right; }
 
-    /* =========================================================
-       MODAL DO ALUNO
-       ========================================================= */
+    /* MODAL DO ALUNO */
     .modal-overlay {
       position: fixed; inset: 0;
       background: rgba(15, 30, 53, 0.55);
@@ -374,7 +454,6 @@
       background: linear-gradient(90deg, transparent, var(--azul-escuro), transparent);
     }
 
-    /* Cabeçalho do modal */
     .modal-head {
       padding: 28px 28px 20px;
       background: linear-gradient(135deg, var(--azul-bebe-50), var(--white));
@@ -425,7 +504,6 @@
     }
     .modal-close svg { width: 16px; height: 16px; }
 
-    /* Mini estatísticas dentro do modal */
     .modal-stats {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 10px; padding: 20px 28px;
@@ -449,7 +527,6 @@
       text-transform: uppercase;
     }
 
-    /* Ações */
     .modal-actions {
       padding: 20px 28px 28px;
     }
@@ -520,12 +597,10 @@
       line-height: 1.3;
     }
 
-    /* Botão perigoso (vermelho) */
     .action-btn.danger { border-color: #fecaca; }
     .action-btn.danger:hover { border-color: var(--vermelho); }
     .action-btn.danger .text .title { color: var(--vermelho); }
 
-    /* Ação primária destacada */
     .action-btn.primary {
       background: linear-gradient(135deg, var(--azul-escuro), var(--azul-escuro-2));
       border-color: var(--azul-escuro);
@@ -572,6 +647,8 @@
       .qstat { padding: 14px; }
       .qstat-value { font-size: 1.15rem; }
       .panel { padding: 18px; }
+      .conselho-banner { flex-direction: column; text-align: center; gap: 14px; padding: 20px; }
+      .conselho-arrow { width: 100%; justify-content: center; }
     }
     @media (max-width: 380px) {
       .user-chip .name { display: none; }
@@ -625,9 +702,9 @@
     <section class="class-head">
       <div class="class-head-content">
         <div class="class-info">
-          <div class="class-avatar">9A</div>
+          <div class="class-avatar" id="class-avatar">9A</div>
           <div class="class-text">
-            <div class="eyebrow">Turma</div>
+            <div class="eyebrow" id="class-eyebrow">Turma</div>
             <h1 id="class-title">9º Ano A · Matemática</h1>
             <div class="meta">
               <span>
@@ -635,34 +712,34 @@
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                   <circle cx="9" cy="7" r="4"/>
                 </svg>
-                32 alunos
+                <span id="class-alunos">32 alunos</span>
               </span>
               <span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 6v6l4 2"/>
                   <circle cx="12" cy="12" r="10"/>
                 </svg>
-                07:30 às 09:10
+                <span id="class-horario">07:30 às 09:10</span>
               </span>
               <span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="3" y="4" width="18" height="18" rx="2"/>
                   <path d="M16 2v4M8 2v4M3 10h18"/>
                 </svg>
-                Seg · Qua · Sex
+                <span id="class-dias">Seg · Qua · Sex</span>
               </span>
             </div>
           </div>
         </div>
         <div class="class-actions">
-          <a href="frequencia.html" class="btn-primary">
+          <a href="frequencia.html" class="btn-primary" id="btn-chamada">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="4" width="18" height="18" rx="2"/>
               <path d="M9 16l2 2 4-4"/>
             </svg>
             Fazer Chamada
           </a>
-          <a href="notas.html" class="btn-secondary">
+          <a href="notas.html" class="btn-secondary" id="btn-notas">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M9 11H3v10h6z"/>
               <path d="M15 3H9v18h6z"/>
@@ -670,9 +747,42 @@
             </svg>
             Lançar Notas
           </a>
+          <a href="conselho.html" class="btn-conselho" id="btn-conselho">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            Conselho
+          </a>
         </div>
       </div>
     </section>
+
+    <!-- BANNER: CONSELHO DE CLASSE -->
+    <a href="conselho.html" class="conselho-banner" id="banner-conselho">
+      <div class="conselho-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="conselho-text">
+        <div class="eyebrow">Reunião pedagógica</div>
+        <h3 id="conselho-title">Conselho de Classe · 9º Ano A</h3>
+        <p>Discuta desempenho, comportamento e estratégias pedagógicas com os outros professores.</p>
+      </div>
+      <span class="conselho-arrow">
+        Abrir conselho
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/>
+          <path d="M12 5l7 7-7 7"/>
+        </svg>
+      </span>
+    </a>
 
     <!-- ESTATÍSTICAS -->
     <section class="quick-stats" aria-label="Estatísticas da turma">
@@ -684,7 +794,7 @@
           </svg>
         </div>
         <div class="qstat-text">
-          <span class="qstat-value">32</span>
+          <span class="qstat-value" id="stat-alunos">32</span>
           <span class="qstat-label">Alunos</span>
         </div>
       </div>
@@ -696,7 +806,7 @@
           </svg>
         </div>
         <div class="qstat-text">
-          <span class="qstat-value">7.8</span>
+          <span class="qstat-value" id="stat-media">7.8</span>
           <span class="qstat-label">Média geral</span>
         </div>
       </div>
@@ -708,7 +818,7 @@
           </svg>
         </div>
         <div class="qstat-text">
-          <span class="qstat-value">92%</span>
+          <span class="qstat-value" id="stat-freq">92%</span>
           <span class="qstat-label">Frequência</span>
         </div>
       </div>
@@ -826,9 +936,7 @@
 
   </div>
 
-  <!-- =========================================================
-       MODAL DE AÇÕES DO ALUNO
-       ========================================================= -->
+  <!-- MODAL DE AÇÕES DO ALUNO -->
   <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-nome">
     <div class="modal" role="document">
 
@@ -839,7 +947,6 @@
         </svg>
       </button>
 
-      <!-- Cabeçalho -->
       <div class="modal-head">
         <div class="modal-avatar" id="modal-avatar">AB</div>
         <div class="modal-user">
@@ -863,7 +970,6 @@
         </div>
       </div>
 
-      <!-- Mini stats -->
       <div class="modal-stats">
         <div class="modal-stat">
           <div class="modal-stat-value" id="modal-media">8.5</div>
@@ -879,7 +985,6 @@
         </div>
       </div>
 
-      <!-- Ações -->
       <div class="modal-actions">
 
         <div class="modal-section-title">Ações Rápidas</div>
@@ -1016,7 +1121,7 @@
 
           <button class="action-btn danger" data-action="encaminhar">
             <span class="icon red">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M16 3h5v5"/>
                 <path d="M4 20L21 3"/>
                 <path d="M21 16v5h-5"/>
@@ -1036,7 +1141,9 @@
   </div>
 
   <script>
-    /* ---------- Proteção ---------- */
+    /* =========================================================
+       PROTEÇÃO
+       ========================================================= */
     const nomeProfessor = sessionStorage.getItem('professorLogado');
     if (!nomeProfessor) window.location.href = 'professor.html';
 
@@ -1047,7 +1154,55 @@
       userAvatar.textContent = nomeProfessor.trim().charAt(0).toUpperCase();
     }
 
-    /* ---------- Dados simulados ---------- */
+    /* =========================================================
+       LÊ O ?id= DA URL E INTEGRA COM O localStorage DO turmas.html
+       ========================================================= */
+    const STORAGE_KEY = 'turmasProfessor';
+    const params = new URLSearchParams(window.location.search);
+    const turmaId = params.get('id');
+
+    let turmaAtual = null;
+    try {
+      const lista = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      turmaAtual = lista.find(t => t.id === turmaId) || null;
+    } catch (e) {
+      console.error('Erro ao ler turmas do localStorage:', e);
+    }
+
+    // Se veio ?id= e encontrou a turma, atualiza os textos do cabeçalho
+    if (turmaAtual) {
+      document.title = `${turmaAtual.nome} · ${turmaAtual.disciplina} · Frei Graciano Droessler`;
+
+      // Avatar com cor da turma
+      const avatarEl = document.getElementById('class-avatar');
+      avatarEl.textContent = turmaAtual.sigla;
+      avatarEl.classList.add(turmaAtual.cor || 'c1');
+
+      document.getElementById('class-eyebrow').textContent = `${turmaAtual.serie} · Turma`;
+      document.getElementById('class-title').textContent = `${turmaAtual.nome} · ${turmaAtual.disciplina}`;
+      document.getElementById('class-alunos').textContent = `${turmaAtual.alunos} alunos`;
+      document.getElementById('class-horario').textContent = turmaAtual.turno;
+      document.getElementById('class-dias').textContent = (turmaAtual.dias || []).join(' · ');
+
+      // Estatísticas
+      document.getElementById('stat-alunos').textContent = turmaAtual.alunos;
+      document.getElementById('stat-media').textContent = Number(turmaAtual.media).toFixed(1);
+      document.getElementById('stat-freq').textContent = turmaAtual.freq + '%';
+
+      // Título do banner do Conselho
+      document.getElementById('conselho-title').textContent = `Conselho de Classe · ${turmaAtual.nome}`;
+
+      // Links internos levam o ?turma= e ?id= para as próximas páginas
+      const idQ = encodeURIComponent(turmaAtual.id);
+      document.getElementById('btn-chamada').href = `frequencia.html?turma=${idQ}`;
+      document.getElementById('btn-notas').href = `notas.html?turma=${idQ}`;
+      document.getElementById('btn-conselho').href = `conselho.html?turma=${idQ}`;
+      document.getElementById('banner-conselho').href = `conselho.html?turma=${idQ}`;
+    }
+
+    /* =========================================================
+       DADOS SIMULADOS DOS ALUNOS
+       ========================================================= */
     const alunos = [
       { nome: 'Ana Beatriz Souza',   mat: '2025001', status: 'ok',      media: 8.5, freq: 96, faltas: 3 },
       { nome: 'Bruno Carvalho Lima', mat: '2025002', status: 'ok',      media: 7.8, freq: 92, faltas: 6 },
@@ -1063,7 +1218,7 @@
       { nome: 'Lucas Ribeiro',       mat: '2025012', status: 'risco',   media: 4.9, freq: 68, faltas: 25 }
     ];
 
-    /* ---------- Renderiza lista de alunos ---------- */
+    /* ---------- Lista de alunos ---------- */
     const alunoList = document.getElementById('aluno-list');
 
     function renderAlunos(filtro = '') {
@@ -1078,11 +1233,10 @@
         return;
       }
 
-      alunoList.innerHTML = lista.map((a, idx) => {
+      alunoList.innerHTML = lista.map(a => {
         const initials = a.nome.split(' ').map(n => n[0]).slice(0, 2).join('');
         const statusClass = a.status === 'ok' ? 'ok' : a.status === 'atencao' ? 'atencao' : 'risco';
         const statusLabel = a.status === 'ok' ? 'Regular' : a.status === 'atencao' ? 'Atenção' : 'Risco';
-        // guarda o índice real do aluno no data-index
         const realIndex = alunos.indexOf(a);
         return `
           <div class="aluno" data-index="${realIndex}">
@@ -1095,7 +1249,6 @@
           </div>`;
       }).join('');
 
-      // Aplica o evento de clique nos cards de aluno
       document.querySelectorAll('.aluno[data-index]').forEach(card => {
         card.addEventListener('click', () => {
           const idx = parseInt(card.dataset.index, 10);
@@ -1142,7 +1295,6 @@
       </div>
     `).join('');
 
-    // Permite clicar também na aba de frequência
     document.querySelectorAll('.freq-item').forEach(item => {
       item.addEventListener('click', () => {
         const idx = parseInt(item.dataset.index, 10);
@@ -1208,7 +1360,7 @@
       if (e.key === 'Escape' && modal.classList.contains('open')) fecharModal();
     });
 
-    /* ---------- Ações dos botões do modal ---------- */
+    /* ---------- Ações do modal ---------- */
     const acoes = {
       perfil:       { label: 'Ver perfil completo de',       redirect: 'aluno-perfil.html' },
       nota:         { label: 'Lançar nota para',             redirect: 'notas.html' },
@@ -1228,16 +1380,11 @@
         const info = acoes[acao];
         if (!info || !alunoAtual) return;
 
-        // Aqui você pode direcionar para outro arquivo com o id do aluno
-        // Por enquanto, mostramos um alerta (simulação)
         alert(
           info.label + ' ' + alunoAtual.nome +
           '\n\n(Simulação — aqui você abriria "' + info.redirect +
           '?mat=' + alunoAtual.mat + '")'
         );
-
-        // Quando tiver as páginas prontas, descomente:
-        // window.location.href = info.redirect + '?mat=' + alunoAtual.mat;
 
         fecharModal();
       });
