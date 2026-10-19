@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1565c0" />
+  <title>Turmas · Direção · Frei Graciano Droessler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:#fff; --white-soft:#f7fbfe;
+      --azul-bebe-50:#eaf5fb; --azul-bebe-100:#d3ecf8; --azul-bebe-200:#b8e0f5; --azul-bebe-300:#8ecbee;
+      --azul-escuro:#1565c0; --azul-escuro-2:#0d47a1;
+      --ink:#0f1e35; --ink-soft:#475569; --ink-mute:#94a3b8;
+      --verde:#22c55e; --verde-2:#15803d; --amarelo:#f59e0b; --amarelo-2:#b45309;
+      --vermelho:#dc2626; --roxo:#8b5cf6; --roxo-2:#6d28d9; --ciano:#06b6d4; --rosa:#ec4899;
+      --shadow-sm:0 1px 2px rgba(15,30,53,.06); --shadow-md:0 10px 30px -10px rgba(21,101,192,.18);
+      --shadow-lg:0 30px 60px -20px rgba(21,101,192,.25); --shadow-xl:0 40px 80px -24px rgba(15,30,53,.2);
+      --ring:0 0 0 4px rgba(184,224,245,.55);
+      --radius:22px;
+      --font-sans:'Inter',system-ui,sans-serif;
+      --font-display:'Playfair Display',Georgia,serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height:100vh; font-family:var(--font-sans); font-size:16px; color:var(--ink);
+      background-color:var(--white-soft); padding:32px 20px 60px; overflow-x:hidden;
+      position:relative; -webkit-font-smoothing:antialiased;
+    }
+
+    /* FUNDO */
+    .bg-layer { position:fixed;inset:0;z-index:-1;overflow:hidden;
+      background: radial-gradient(1200px 600px at 15% 10%, #fff 0%, transparent 60%),
+                  radial-gradient(900px 500px at 85% 90%, var(--azul-bebe-50) 0%, transparent 55%),
+                  linear-gradient(160deg, #fff 0%, var(--azul-bebe-50) 55%, #eaf5fb 100%); }
+    .bg-glow { position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;pointer-events:none; }
+    .bg-glow-1 { width:480px;height:480px;top:-160px;left:-140px;background:radial-gradient(circle,var(--azul-bebe-200) 0%,transparent 70%);animation:float 14s ease-in-out infinite; }
+    .bg-glow-2 { width:560px;height:560px;bottom:-220px;right:-160px;background:radial-gradient(circle,var(--azul-bebe-100) 0%,transparent 70%);animation:float 18s ease-in-out infinite reverse; }
+    .bg-glow-3 { width:400px;height:400px;top:40%;right:20%;background:radial-gradient(circle,rgba(21,101,192,.1) 0%,transparent 70%);animation:float 22s ease-in-out infinite; }
+    .bg-grain { position:absolute;inset:0;background-image:radial-gradient(rgba(21,101,192,.05) 1px,transparent 1px);background-size:22px 22px;mask-image:radial-gradient(circle at center,black 40%,transparent 80%);-webkit-mask-image:radial-gradient(circle at center,black 40%,transparent 80%);opacity:.6; }
+    @keyframes float { 0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(20px,-20px) scale(1.05);} }
+
+    .container { width:100%;max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:20px;animation:fade-in .8s cubic-bezier(.22,1,.36,1); }
+    @keyframes fade-in { from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);} }
+
+    /* TOPBAR */
+    .topbar { display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 22px;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:var(--radius);box-shadow:var(--shadow-md); }
+    .brand { display:flex;align-items:center;gap:14px;min-width:0; }
+    .brand-logo { width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--azul-escuro),var(--azul-escuro-2));color:#fff;font-family:var(--font-display);font-weight:700;font-size:1.1rem;flex-shrink:0;box-shadow:0 8px 20px -6px rgba(21,101,192,.55); }
+    .brand-info .top { font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--azul-escuro);opacity:.85; }
+    .brand-info .main { font-size:.92rem;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .topbar-actions { display:flex;align-items:center;gap:10px;flex-wrap:wrap; }
+    .user-chip { display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;background:var(--azul-bebe-50);border:1px solid var(--azul-bebe-100);border-radius:999px; }
+    .user-chip .avatar { width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--azul-escuro),var(--azul-escuro-2));color:#fff;font-size:.85rem;font-weight:700;position:relative; }
+    .user-chip .avatar::after { content:"";position:absolute;bottom:-1px;right:-1px;width:10px;height:10px;border-radius:50%;background:var(--verde);border:2px solid #fff; }
+    .user-chip .name { font-size:.85rem;font-weight:600;color:var(--ink);max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .btn-top { display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:var(--white);border:1px solid var(--azul-bebe-100);border-radius:999px;color:var(--azul-escuro);font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .3s ease;white-space:nowrap; }
+    .btn-top:hover { background:var(--azul-escuro);color:#fff;border-color:var(--azul-escuro);transform:translateX(-3px); }
+    .btn-top svg { width:15px;height:15px; }
+
+    /* HERO */
+    .hero {
+      padding:34px 32px;
+      background:
+        radial-gradient(600px 300px at 100% 0%, rgba(21,101,192,.14) 0%, transparent 60%),
+        radial-gradient(600px 300px at 0% 100%, rgba(139,92,246,.08) 0%, transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.95), rgba(234,245,251,.9));
+      backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-lg);
+      position:relative; overflow:hidden;
+    }
+    .hero::before {
+      content:""; position:absolute; top:-40%; right:-10%;
+      width:420px; height:420px; border-radius:50%;
+      background: radial-gradient(circle, rgba(21,101,192,.2), transparent 70%);
+      pointer-events:none; animation: float 16s ease-in-out infinite;
+    }
+    .hero-content { position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+    .hero-text .eyebrow {
+      font-size:.72rem; font-weight:700; letter-spacing:.16em;
+      text-transform:uppercase; color:var(--azul-escuro);
+      margin-bottom:8px;
+      display:inline-flex; align-items:center; gap:10px;
+      padding:6px 14px;
+      background:rgba(255,255,255,.7);
+      border:1px solid var(--azul-bebe-200);
+      border-radius:999px;
+    }
+    .hero-text .eyebrow::before {
+      content:""; width:7px;height:7px;border-radius:50%;
+      background:var(--azul-escuro);
+      box-shadow:0 0 0 4px rgba(21,101,192,.25);
+      animation:pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100%{ box-shadow:0 0 0 4px rgba(21,101,192,.25);}
+      50%{ box-shadow:0 0 0 8px rgba(21,101,192,.08);}
+    }
+    .hero-text h1 {
+      font-family:var(--font-display);
+      font-size:clamp(1.7rem,3.5vw,2.3rem);
+      font-weight:700; line-height:1.1;
+      letter-spacing:-.015em; color:var(--ink);
+      margin-bottom:8px;
+    }
+    .hero-text h1 .highlight {
+      background:linear-gradient(135deg,var(--azul-escuro),var(--roxo));
+      -webkit-background-clip:text;background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .hero-text p { font-size:.92rem; color:var(--ink-soft); max-width:560px; line-height:1.5; }
+
+    .btn-hero-primary {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:13px 24px; border-radius:999px; border:none;
+      background:linear-gradient(135deg,var(--azul-escuro),var(--azul-escuro-2));
+      color:#fff; font-family:inherit; font-size:.85rem; font-weight:700;
+      cursor:pointer; text-decoration:none;
+      box-shadow:0 10px 24px -8px rgba(21,101,192,.55);
+      transition:all .25s ease;
+      white-space:nowrap;
+      position:relative; z-index:1;
+    }
+    .btn-hero-primary:hover { transform:translateY(-2px); box-shadow:0 14px 30px -8px rgba(21,101,192,.65); }
+    .btn-hero-primary svg { width:16px;height:16px; }
+
+    /* ESTATÍSTICAS */
+    .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; }
+    .stat {
+      padding:20px; background:rgba(255,255,255,.95);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:16px; box-shadow:var(--shadow-sm);
+      display:flex; flex-direction:column; gap:10px;
+      transition:transform .3s ease,box-shadow .3s ease;
+      position:relative; overflow:hidden;
+    }
+    .stat::before { content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent); }
+    .stat:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); }
+    .stat.blue { --accent:linear-gradient(90deg,#1565c0,#0d47a1); }
+    .stat.green { --accent:linear-gradient(90deg,#22c55e,#15803d); }
+    .stat.amber { --accent:linear-gradient(90deg,#f59e0b,#b45309); }
+    .stat.purple { --accent:linear-gradient(90deg,#8b5cf6,#6d28d9); }
+    .stat.red { --accent:linear-gradient(90deg,#dc2626,#991b1b); }
+    .stat-head { display:flex;align-items:center;justify-content:space-between;gap:10px; }
+    .stat-icon { width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:#fff;flex-shrink:0; }
+    .stat-icon svg { width:18px;height:18px; }
+    .stat-icon.blue { background:linear-gradient(135deg,#1565c0,#0d47a1); }
+    .stat-icon.green { background:linear-gradient(135deg,#22c55e,#15803d); }
+    .stat-icon.amber { background:linear-gradient(135deg,#f59e0b,#b45309); }
+    .stat-icon.purple { background:linear-gradient(135deg,#8b5cf6,#6d28d9); }
+    .stat-icon.red { background:linear-gradient(135deg,#dc2626,#991b1b); }
+    .stat-trend { font-size:.68rem;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--azul-bebe-50);color:var(--azul-escuro); }
+    .stat-value { font-family:var(--font-display);font-size:1.85rem;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-.02em; }
+    .stat-label { font-size:.75rem;color:var(--ink-soft);font-weight:500; }
+
+    /* FILTROS */
+    .filters {
+      display:flex; flex-direction:column; gap:12px;
+      padding:16px;
+      background:rgba(255,255,255,.9);
+      backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:18px;
+      box-shadow:var(--shadow-sm);
+    }
+    .filters-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    .search { position:relative; flex:1; min-width:240px; }
+    .search svg { position:absolute; left:16px; top:50%; transform:translateY(-50%); width:17px;height:17px;color:var(--ink-mute); pointer-events:none; }
+    .search input {
+      width:100%; padding:12px 16px 12px 44px;
+      font-family:inherit; font-size:.9rem;
+      background:var(--white);
+      border:1.5px solid var(--azul-bebe-100);
+      border-radius:999px; outline:none;
+      transition:border-color .25s ease, box-shadow .25s ease;
+    }
+    .search input:focus { border-color:var(--azul-escuro); box-shadow:var(--ring); }
+
+    .select-wrap { position:relative; min-width:170px; }
+    .select-wrap svg { position:absolute; right:14px; top:50%; transform:translateY(-50%); width:14px;height:14px;color:var(--ink-mute); pointer-events:none; }
+    .select-wrap select {
+      width:100%; padding:12px 38px 12px 16px;
+      font-family:inherit; font-size:.85rem; font-weight:500;
+      color:var(--ink); background:var(--white);
+      border:1.5px solid var(--azul-bebe-100);
+      border-radius:999px; outline:none;
+      appearance:none; -webkit-appearance:none;
+      cursor:pointer;
+      transition:border-color .25s ease, box-shadow .25s ease;
+    }
+    .select-wrap select:focus { border-color:var(--azul-escuro); box-shadow:var(--ring); }
+
+    .chip-group { display:flex; gap:6px; flex-wrap:wrap; }
+    .chip {
+      padding:9px 16px;
+      background:var(--white);
+      border:1.5px solid var(--azul-bebe-100);
+      border-radius:999px;
+      font-family:inherit; font-size:.8rem; font-weight:600;
+      color:var(--ink-soft); cursor:pointer;
+      transition:all .25s ease;
+      display:inline-flex; align-items:center; gap:6px;
+    }
+    .chip:hover { color:var(--azul-escuro); border-color:var(--azul-bebe-300); transform:translateY(-1px); }
+    .chip.active { background:var(--azul-escuro); color:#fff; border-color:var(--azul-escuro); box-shadow:0 6px 14px -4px rgba(21,101,192,.5); }
+    .chip .count { background:rgba(255,255,255,.25); padding:1px 8px; border-radius:999px; font-size:.7rem; font-weight:700; }
+    .chip:not(.active) .count { background:var(--azul-bebe-50); color:var(--azul-escuro); }
+    .chip.clear { color:var(--vermelho); border-color:#fecaca; margin-left:auto; }
+    .chip.clear:hover { background:var(--vermelho); color:#fff; border-color:var(--vermelho); }
+
+    /* GRID DE TURMAS */
+    .turmas-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(360px,1fr)); gap:16px; }
+
+    .turma-card {
+      padding:22px;
+      background:rgba(255,255,255,.95);
+      backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:20px;
+      box-shadow:var(--shadow-sm);
+      transition:all .35s cubic-bezier(.22,1,.36,1);
+      position:relative; overflow:hidden;
+      display:flex; flex-direction:column; gap:16px;
+    }
+    .turma-card::before {
+      content:""; position:absolute; top:0; left:0; right:0; height:4px;
+      background:var(--grad, linear-gradient(90deg, var(--azul-escuro), var(--azul-escuro-2)));
+    }
+    .turma-card:hover {
+      transform:translateY(-5px);
+      box-shadow:var(--shadow-lg);
+      border-color:rgba(21,101,192,.15);
+    }
+    .turma-card.tc-c1 { --grad:linear-gradient(90deg,#1565c0,#0d47a1); }
+    .turma-card.tc-c2 { --grad:linear-gradient(90deg,#22c55e,#15803d); }
+    .turma-card.tc-c3 { --grad:linear-gradient(90deg,#f59e0b,#b45309); }
+    .turma-card.tc-c4 { --grad:linear-gradient(90deg,#8b5cf6,#6d28d9); }
+    .turma-card.tc-c5 { --grad:linear-gradient(90deg,#06b6d4,#0e7490); }
+    .turma-card.tc-c6 { --grad:linear-gradient(90deg,#ec4899,#be185d); }
+
+    /* Topo do card */
+    .turma-top { display:flex; align-items:flex-start; gap:14px; }
+    .turma-avatar {
+      width:60px; height:60px; border-radius:16px;
+      display:grid; place-items:center;
+      color:#fff; font-family:var(--font-display);
+      font-size:1.3rem; font-weight:700;
+      flex-shrink:0;
+      box-shadow:0 10px 22px -8px rgba(21,101,192,.5);
+      position:relative;
+    }
+    .turma-avatar.c1 { background:linear-gradient(135deg,#1565c0,#0d47a1); }
+    .turma-avatar.c2 { background:linear-gradient(135deg,#22c55e,#15803d); }
+    .turma-avatar.c3 { background:linear-gradient(135deg,#f59e0b,#b45309); }
+    .turma-avatar.c4 { background:linear-gradient(135deg,#8b5cf6,#6d28d9); }
+    .turma-avatar.c5 { background:linear-gradient(135deg,#06b6d4,#0e7490); }
+    .turma-avatar.c6 { background:linear-gradient(135deg,#ec4899,#be185d); }
+
+    .turma-info { flex:1; min-width:0; }
+    .turma-serie {
+      font-size:.68rem; font-weight:700;
+      letter-spacing:.12em; text-transform:uppercase;
+      color:var(--azul-escuro); margin-bottom:2px;
+    }
+    .turma-nome {
+      font-family:var(--font-display);
+      font-size:1.25rem; font-weight:700;
+      color:var(--ink); line-height:1.2;
+      letter-spacing:-.01em;
+      margin-bottom:3px;
+    }
+    .turma-prof {
+      font-size:.75rem; color:var(--ink-soft);
+      display:inline-flex; align-items:center; gap:5px;
+    }
+    .turma-prof svg { width:12px;height:12px;color:var(--azul-escuro); }
+
+    .turma-badge {
+      padding:5px 11px; border-radius:999px;
+      font-size:.65rem; font-weight:700;
+      letter-spacing:.03em;
+      flex-shrink:0;
+      display:inline-flex; align-items:center; gap:5px;
+    }
+    .turma-badge::before { content:""; width:6px;height:6px;border-radius:50%;background:currentColor; }
+    .turma-badge.ok { background:#dcfce7; color:#15803d; }
+    .turma-badge.atencao { background:#fef3c7; color:#b45309; }
+    .turma-badge.risco { background:#fee2e2; color:#b91c1c; }
+
+    /* Stats principais */
+    .turma-stats {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:8px;
+      padding:14px 0;
+      border-top:1px solid var(--azul-bebe-100);
+      border-bottom:1px solid var(--azul-bebe-100);
+    }
+    .turma-stat { text-align:center; position:relative; }
+    .turma-stat:not(:last-child)::after {
+      content:""; position:absolute;
+      right:-4px; top:20%; bottom:20%;
+      width:1px; background:var(--azul-bebe-100);
+    }
+    .turma-stat-value {
+      font-family:var(--font-display);
+      font-size:1.2rem; font-weight:700;
+      color:var(--ink); line-height:1;
+      margin-bottom:3px;
+    }
+    .turma-stat-value.green { color:var(--verde-2); }
+    .turma-stat-value.amber { color:var(--amarelo-2); }
+    .turma-stat-value.red { color:var(--vermelho); }
+    .turma-stat-label {
+      font-size:.6rem; font-weight:600;
+      letter-spacing:.04em; text-transform:uppercase;
+      color:var(--ink-soft);
+    }
+
+    /* Info extra */
+    .turma-info-extra { display:flex; flex-direction:column; gap:6px; }
+    .detail-row { display:flex; align-items:center; gap:8px; font-size:.75rem; color:var(--ink-soft); }
+    .detail-row svg { width:13px;height:13px;color:var(--azul-escuro); flex-shrink:0; }
+    .detail-row strong { color:var(--ink); font-weight:600; }
+    .detail-row span { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+    /* Dias da semana */
+    .turma-dias { display:flex; gap:4px; flex-wrap:wrap; }
+    .dia-tag {
+      padding:2px 8px; border-radius:6px;
+      background:var(--azul-bebe-50); color:var(--azul-escuro);
+      font-size:.65rem; font-weight:700;
+    }
+
+    /* Ações */
+    .turma-actions { display:flex; gap:6px; margin-top:auto; }
+    .btn-mini {
+      flex:1; padding:9px 12px; border-radius:10px;
+      font-family:inherit; font-size:.72rem; font-weight:700;
+      cursor:pointer; text-decoration:none; border:none;
+      display:inline-flex; align-items:center; justify-content:center; gap:5px;
+      transition:all .25s ease;
+      white-space:nowrap;
+    }
+    .btn-mini svg { width:13px;height:13px; }
+    .btn-mini.primary { background:linear-gradient(135deg,var(--azul-escuro),var(--azul-escuro-2)); color:#fff; }
+    .btn-mini.primary:hover { transform:translateY(-2px); box-shadow:0 6px 14px -4px rgba(21,101,192,.5); }
+    .btn-mini.ghost { background:#fff; border:1.5px solid var(--azul-bebe-200); color:var(--azul-escuro); }
+    .btn-mini.ghost:hover { background:var(--azul-bebe-50); border-color:var(--azul-bebe-300); }
+    .btn-mini.danger { background:#fff; border:1.5px solid #fecaca; color:var(--vermelho); }
+    .btn-mini.danger:hover { background:var(--vermelho); color:#fff; border-color:var(--vermelho); }
+
+    /* EMPTY STATE */
+    .empty-box {
+      grid-column:1/-1;
+      text-align:center;
+      padding:70px 24px;
+      color:var(--ink-soft);
+      background:rgba(255,255,255,.7);
+      border:1.5px dashed var(--azul-bebe-200);
+      border-radius:22px;
+    }
+    .empty-box svg { width:56px;height:56px;color:var(--azul-bebe-300); margin-bottom:14px; }
+    .empty-box h3 { font-family:var(--font-display); font-size:1.2rem; color:var(--ink); margin-bottom:6px; }
+    .empty-box p { font-size:.92rem; }
+
+    /* MODAL */
+    .modal-overlay {
+      position:fixed; inset:0;
+      background:rgba(15,30,53,.55);
+      backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+      z-index:999;
+      display:flex; align-items:center; justify-content:center;
+      padding:20px;
+      opacity:0; visibility:hidden;
+      transition:opacity .3s ease, visibility .3s ease;
+    }
+    .modal-overlay.open { opacity:1; visibility:visible; }
+
+    .modal {
+      width:100%; max-width:620px;
+      max-height:92vh; overflow-y:auto;
+      background:var(--white);
+      border-radius:24px;
+      box-shadow:0 40px 80px -20px rgba(15,30,53,.4);
+      transform:translateY(30px) scale(.96);
+      transition:transform .4s cubic-bezier(.22,1,.36,1);
+      position:relative;
+    }
+    .modal-overlay.open .modal { transform:translateY(0) scale(1); }
+
+    .modal::before {
+      content:""; position:absolute; top:0; left:0; right:0; height:4px;
+      background:linear-gradient(90deg,transparent,var(--azul-escuro),transparent);
+      border-radius:24px 24px 0 0;
+    }
+
+    .modal-head {
+      padding:24px 26px 18px;
+      background:linear-gradient(135deg,var(--azul-bebe-50),#fff);
+      border-bottom:1px solid var(--azul-bebe-100);
+      border-radius:24px 24px 0 0;
+      position:relative;
+    }
+    .modal-head .eyebrow {
+      font-size:.68rem; font-weight:700;
+      letter-spacing:.14em; text-transform:uppercase;
+      color:var(--azul-escuro); opacity:.85;
+      margin-bottom:4px;
+    }
+    .modal-head h2 {
+      font-family:var(--font-display);
+      font-size:1.3rem; font-weight:700;
+      color:var(--ink); line-height:1.15;
+    }
+    .modal-close {
+      position:absolute; top:14px; right:14px;
+      width:34px;height:34px;border-radius:50%;
+      display:grid; place-items:center;
+      background:#fff; border:1px solid var(--azul-bebe-100);
+      color:var(--ink-soft); cursor:pointer;
+      transition:all .25s ease;
+    }
+    .modal-close:hover { background:var(--vermelho); color:#fff; border-color:var(--vermelho); transform:rotate(90deg); }
+    .modal-close svg { width:15px;height:15px; }
+
+    .modal-body {
+      padding:20px 26px 8px;
+      display:flex; flex-direction:column; gap:14px;
+    }
+
+    .field { display:flex; flex-direction:column; gap:6px; }
+    .field label {
+      font-size:.7rem; font-weight:700;
+      letter-spacing:.06em; text-transform:uppercase;
+      color:var(--ink-soft);
+    }
+    .field input, .field select {
+      padding:11px 14px;
+      font-family:inherit; font-size:.9rem;
+      color:var(--ink);
+      background:#fff;
+      border:1.5px solid var(--azul-bebe-100);
+      border-radius:11px;
+      outline:none;
+      transition:all .25s ease;
+    }
+    .field input:focus, .field select:focus {
+      border-color:var(--azul-escuro);
+      box-shadow:var(--ring);
+    }
+    .field input::placeholder { color:var(--ink-mute); }
+
+    .field-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+    .dias-picker { display:flex; gap:6px; flex-wrap:wrap; }
+    .dia-opt {
+      padding:8px 14px;
+      background:#fff;
+      border:1.5px solid var(--azul-bebe-100);
+      border-radius:999px;
+      font-family:inherit; font-size:.75rem; font-weight:700;
+      letter-spacing:.05em;
+      color:var(--ink-soft); cursor:pointer;
+      transition:all .25s ease;
+      user-select:none;
+    }
+    .dia-opt:hover { color:var(--azul-escuro); border-color:var(--azul-bebe-300); }
+    .dia-opt.selected { background:var(--azul-escuro); color:#fff; border-color:var(--azul-escuro); }
+
+    .color-picker { display:flex; gap:8px; flex-wrap:wrap; }
+    .color-opt {
+      width:34px; height:34px; border-radius:10px;
+      border:3px solid transparent;
+      cursor:pointer;
+      transition:transform .2s ease, border-color .2s ease;
+    }
+    .color-opt:hover { transform:scale(1.1); }
+    .color-opt.selected { border-color:var(--ink); }
+    .color-opt.c1 { background:linear-gradient(135deg,#1565c0,#0d47a1); }
+    .color-opt.c2 { background:linear-gradient(135deg,#22c55e,#15803d); }
+    .color-opt.c3 { background:linear-gradient(135deg,#f59e0b,#b45309); }
+    .color-opt.c4 { background:linear-gradient(135deg,#8b5cf6,#6d28d9); }
+    .color-opt.c5 { background:linear-gradient(135deg,#06b6d4,#0e7490); }
+    .color-opt.c6 { background:linear-gradient(135deg,#ec4899,#be185d); }
+
+    .modal-actions {
+      padding:18px 26px 22px;
+      display:flex; gap:10px; justify-content:flex-end;
+      flex-wrap:wrap;
+    }
+    .btn-cancel {
+      padding:11px 20px;
+      background:#fff;
+      border:1.5px solid var(--azul-bebe-200);
+      border-radius:999px;
+      font-family:inherit; font-size:.82rem; font-weight:600;
+      color:var(--ink-soft); cursor:pointer;
+      transition:all .25s ease;
+    }
+    .btn-cancel:hover { background:var(--azul-bebe-50); color:var(--azul-escuro); }
+    .btn-save {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:11px 22px;
+      background:linear-gradient(135deg,var(--azul-escuro),var(--azul-escuro-2));
+      border:none; border-radius:999px;
+      font-family:inherit; font-size:.82rem; font-weight:700;
+      color:#fff; cursor:pointer;
+      box-shadow:0 8px 18px -6px rgba(21,101,192,.55);
+      transition:all .25s ease;
+    }
+    .btn-save:hover { transform:translateY(-2px); box-shadow:0 12px 24px -6px rgba(21,101,192,.65); }
+    .btn-save svg { width:14px;height:14px; }
+
+    /* RODAPÉ */
+    .footer { margin-top:12px;display:flex;align-items:center;justify-content:center;gap:10px;padding:20px 24px;background:rgba(255,255,255,.6);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:var(--shadow-sm); }
+    .footer .dot { width:6px;height:6px;border-radius:50%;background:var(--azul-escuro);opacity:.6; }
+    .footer p { font-size:.76rem;color:var(--ink-soft); }
+
+    /* TOAST */
+    .toast {
+      position:fixed; bottom:28px; left:50%; transform:translate(-50%, 120px);
+      padding:14px 24px;
+      background:linear-gradient(135deg,var(--verde),var(--verde-2));
+      color:#fff; border-radius:999px;
+      font-size:.85rem; font-weight:600;
+      box-shadow:0 20px 40px -10px rgba(34,197,94,.5);
+      z-index:2000;
+      display:inline-flex; align-items:center; gap:10px;
+      opacity:0;
+      transition:transform .4s cubic-bezier(.22,1,.36,1), opacity .3s ease;
+      pointer-events:none;
+    }
+    .toast.show { transform:translate(-50%, 0); opacity:1; }
+    .toast svg { width:18px;height:18px; }
+
+    /* RESPONSIVO */
+    @media (max-width:640px) {
+      body { padding:20px 14px 40px; }
+      .topbar { padding:14px 16px; }
+      .btn-top span { display:none; }
+      .user-chip .name { max-width:100px; }
+      .hero { padding:24px 20px; }
+      .hero-content { flex-direction:column; align-items:stretch; }
+      .hero-text h1 { font-size:1.5rem; }
+      .btn-hero-primary { width:100%; justify-content:center; }
+      .stats { grid-template-columns:repeat(2,1fr); gap:10px; }
+      .stat { padding:14px; }
+      .stat-value { font-size:1.4rem; }
+      .turmas-grid { grid-template-columns:1fr; }
+      .filters-row { flex-direction:column; align-items:stretch; }
+      .select-wrap { min-width:100%; }
+      .chip.clear { margin-left:0; }
+      .field-row { grid-template-columns:1fr; }
+    }
+    @media (max-width:400px) {
+      .user-chip .name { display:none; }
+      .stats { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after {
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+    <div class="bg-grain"></div>
+  </div>
+
+  <div class="container">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">FG</div>
+        <div class="brand-info">
+          <div class="top">Painel da Direção</div>
+          <div class="main">Frei Graciano Droessler</div>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <div class="user-chip">
+          <div class="avatar" id="user-avatar">D</div>
+          <span class="name" id="user-name">Direção</span>
+        </div>
+        <a href="4.html" class="btn-top" id="btn-voltar" title="Voltar ao painel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5"/>
+            <path d="M12 19l-7-7 7-7"/>
+          </svg>
+          <span>Painel</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="eyebrow">Gestão de Pessoas · Turmas</div>
+          <h1>Gestão de <span class="highlight">Turmas</span></h1>
+          <p>Organize as turmas da escola, atribua professores, defina horários e acompanhe o desempenho geral de cada turma.</p>
+        </div>
+        <button class="btn-hero-primary" id="btn-novo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          Nova Turma
+        </button>
+      </div>
+    </section>
+
+    <!-- ESTATÍSTICAS -->
+    <section class="stats">
+      <div class="stat blue">
+        <div class="stat-head">
+          <div class="stat-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+            </svg>
+          </div>
+          <span class="stat-trend">Total</span>
+        </div>
+        <div class="stat-value" id="st-total">0</div>
+        <div class="stat-label">Turmas cadastradas</div>
+      </div>
+
+      <div class="stat green">
+        <div class="stat-head">
+          <div class="stat-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          <span class="stat-trend">Alunos</span>
+        </div>
+        <div class="stat-value" id="st-alunos">0</div>
+        <div class="stat-label">Total de alunos</div>
+      </div>
+
+      <div class="stat amber">
+        <div class="stat-head">
+          <div class="stat-icon amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <path d="M22 4L12 14.01l-3-3"/>
+            </svg>
+          </div>
+          <span class="stat-trend">Média</span>
+        </div>
+        <div class="stat-value" id="st-media">0.0</div>
+        <div class="stat-label">Média geral da escola</div>
+      </div>
+
+      <div class="stat purple">
+        <div class="stat-head">
+          <div class="stat-icon purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <span class="stat-trend">Docentes</span>
+        </div>
+        <div class="stat-value" id="st-professores">0</div>
+        <div class="stat-label">Professores alocados</div>
+      </div>
+    </section>
+
+    <!-- FILTROS -->
+    <section class="filters">
+      <div class="filters-row">
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <input type="text" id="busca" placeholder="Buscar por turma ou professor..." />
+        </div>
+
+        <div class="select-wrap">
+          <select id="f-serie">
+            <option value="">Todas as séries</option>
+            <option value="6º Ano">6º Ano</option>
+            <option value="7º Ano">7º Ano</option>
+            <option value="8º Ano">8º Ano</option>
+            <option value="9º Ano">9º Ano</option>
+          </select>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </div>
+
+        <div class="select-wrap">
+          <select id="f-professor">
+            <option value="">Todos os professores</option>
+          </select>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="filters-row">
+        <div class="chip-group" id="chips-status">
+          <button class="chip active" data-status="">Todas <span class="count" id="count-todos">0</span></button>
+          <button class="chip" data-status="ok">Em dia <span class="count" id="count-ok">0</span></button>
+          <button class="chip" data-status="atencao">Atenção <span class="count" id="count-atencao">0</span></button>
+          <button class="chip" data-status="risco">Risco <span class="count" id="count-risco">0</span></button>
+        </div>
+
+        <button class="chip clear" id="btn-limpar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+          Limpar
+        </button>
+      </div>
+    </section>
+
+    <!-- GRID -->
+    <section class="turmas-grid" id="turmas-grid" aria-label="Lista de turmas"></section>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+      <span class="dot" aria-hidden="true"></span>
+      <p>© 2025 · Escola Estadual do Campo Frei Graciano Droessler</p>
+    </footer>
+
+  </div>
+
+  <!-- MODAL NOVO/EDITAR -->
+  <div class="modal-overlay" id="modal" role="dialog" aria-modal="true">
+    <div class="modal">
+      <button class="modal-close" id="modal-close" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6L6 18"/>
+          <path d="M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <div class="modal-head">
+        <div class="eyebrow" id="modal-eyebrow">Cadastro</div>
+        <h2 id="modal-title">Nova Turma</h2>
+      </div>
+
+      <form id="form-turma">
+        <input type="hidden" id="f-id" />
+
+        <div class="modal-body">
+          <div class="field-row">
+            <div class="field">
+              <label for="f-sigla">Sigla *</label>
+              <input type="text" id="f-sigla" placeholder="Ex: 9A" maxlength="4" required />
+            </div>
+            <div class="field">
+              <label for="f-serie-input">Série *</label>
+              <select id="f-serie-input" required>
+                <option value="6º Ano">6º Ano</option>
+                <option value="7º Ano">7º Ano</option>
+                <option value="8º Ano">8º Ano</option>
+                <option value="9º Ano">9º Ano</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-nome">Nome da turma *</label>
+            <input type="text" id="f-nome" placeholder="Ex: 9º Ano A" required />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="f-professor-input">Professor(a) responsável</label>
+              <input type="text" id="f-professor-input" placeholder="Ex: Mariana Alves" />
+            </div>
+            <div class="field">
+              <label for="f-sala">Sala</label>
+              <input type="text" id="f-sala" placeholder="Ex: 12" />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="f-turno">Turno *</label>
+              <select id="f-turno" required>
+                <option value="manha">Manhã</option>
+                <option value="tarde">Tarde</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-alunos">Nº de alunos</label>
+              <input type="number" id="f-alunos" placeholder="0" min="0" value="0" />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="f-horario">Horário</label>
+              <input type="text" id="f-horario" placeholder="07:30 às 09:10" />
+            </div>
+            <div class="field">
+              <label for="f-media">Média inicial</label>
+              <input type="number" id="f-media" placeholder="0.0" step="0.1" min="0" max="10" value="0" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Dias da semana</label>
+            <div class="dias-picker" id="dias-picker">
+              <button type="button" class="dia-opt" data-dia="SEG">SEG</button>
+              <button type="button" class="dia-opt" data-dia="TER">TER</button>
+              <button type="button" class="dia-opt" data-dia="QUA">QUA</button>
+              <button type="button" class="dia-opt" data-dia="QUI">QUI</button>
+              <button type="button" class="dia-opt" data-dia="SEX">SEX</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Cor da turma</label>
+            <div class="color-picker" id="color-picker">
+              <div class="color-opt c1 selected" data-color="c1"></div>
+              <div class="color-opt c2" data-color="c2"></div>
+              <div class="color-opt c3" data-color="c3"></div>
+              <div class="color-opt c4" data-color="c4"></div>
+              <div class="color-opt c5" data-color="c5"></div>
+              <div class="color-opt c6" data-color="c6"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="btn-cancelar">Cancelar</button>
+          <button type="submit" class="btn-save">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            <span id="btn-save-text">Salvar Turma</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6L9 17l-5-5"/>
+    </svg>
+    <span id="toast-text">Salvo</span>
+  </div>
+
+  <script>
+    /* =========================================================
+       PROTEÇÃO
+       ========================================================= */
+    const nomeDiretor = sessionStorage.getItem('diretorLogado');
+    if (!nomeDiretor) window.location.href = 'diretor.html';
+
+    document.getElementById('user-name').textContent = nomeDiretor || 'Direção';
+    document.getElementById('user-avatar').textContent = (nomeDiretor || 'D').trim().charAt(0).toUpperCase();
+
+    /* =========================================================
+       STORAGE — sincronizado com 3 painéis
+       ========================================================= */
+    const KEY_DIRECAO   = 'turmasDirecao';
+    const KEY_PROFESSOR = 'turmasProfessor';
+    const KEY_PEDAGOGO  = 'turmasPedagogo';
+
+    const turmasSeed = [
+      { id:'6a', serie:'6º Ano', nome:'6º Ano A', sigla:'6A', professor:'Mariana Alves', alunos:30, media:7.6, freq:93, cor:'c1', conselho:true,  turno:'manha', horario:'07:00 às 11:30', dias:['SEG','TER','QUA','QUI','SEX'], sala:'12' },
+      { id:'6b', serie:'6º Ano', nome:'6º Ano B', sigla:'6B', professor:'Rafael Costa',  alunos:28, media:7.2, freq:89, cor:'c2', conselho:true,  turno:'tarde', horario:'13:00 às 17:30', dias:['SEG','TER','QUA','QUI','SEX'], sala:'13' },
+      { id:'7a', serie:'7º Ano', nome:'7º Ano A', sigla:'7A', professor:'Mariana Alves', alunos:32, media:8.1, freq:94, cor:'c3', conselho:true,  turno:'manha', horario:'07:00 às 11:30', dias:['SEG','TER','QUA','QUI','SEX'], sala:'14' },
+      { id:'7b', serie:'7º Ano', nome:'7º Ano B', sigla:'7B', professor:'Rafael Costa',  alunos:29, media:6.8, freq:82, cor:'c4', conselho:false, turno:'tarde', horario:'13:00 às 17:30', dias:['SEG','TER','QUA','QUI','SEX'], sala:'15' },
+      { id:'8a', serie:'8º Ano', nome:'8º Ano A', sigla:'8A', professor:'Mariana Alves', alunos:31, media:7.9, freq:95, cor:'c5', conselho:true,  turno:'manha', horario:'07:00 às 11:30', dias:['SEG','TER','QUA','QUI','SEX'], sala:'16' },
+      { id:'8b', serie:'8º Ano', nome:'8º Ano B', sigla:'8B', professor:'Rafael Costa',  alunos:28, media:6.5, freq:79, cor:'c6', conselho:false, turno:'manha', horario:'07:00 às 11:30', dias:['SEG','TER','QUA','QUI','SEX'], sala:'17' },
+      { id:'9a', serie:'9º Ano', nome:'9º Ano A', sigla:'9A', professor:'Mariana Alves', alunos:32, media:8.3, freq:96, cor:'c1', conselho:true,  turno:'manha', horario:'07:00 às 11:30', dias:['SEG','TER','QUA','QUI','SEX'], sala:'18' },
+      { id:'9b', serie:'9º Ano', nome:'9º Ano B', sigla:'9B', professor:'Rafael Costa',  alunos:30, media:7.4, freq:87, cor:'c2', conselho:true,  turno:'tarde', horario:'13:00 às 17:30', dias:['SEG','TER','QUA','QUI','SEX'], sala:'19' }
+    ];
+
+    function carregar() {
+      try {
+        const raw = localStorage.getItem(KEY_DIRECAO);
+        if (!raw) {
+          // Semeia em todas as chaves
+          localStorage.setItem(KEY_DIRECAO, JSON.stringify(turmasSeed));
+          localStorage.setItem(KEY_PROFESSOR, JSON.stringify(turmasSeed));
+          localStorage.setItem(KEY_PEDAGOGO, JSON.stringify(turmasSeed));
+          return [...turmasSeed];
+        }
+        return JSON.parse(raw);
+      } catch(e) { return [...turmasSeed]; }
+    }
+
+    function salvar() {
+      try {
+        // Salva nas 3 chaves (direção, professor, pedagogo)
+        localStorage.setItem(KEY_DIRECAO, JSON.stringify(turmas));
+        localStorage.setItem(KEY_PROFESSOR, JSON.stringify(turmas));
+        localStorage.setItem(KEY_PEDAGOGO, JSON.stringify(turmas));
+      } catch(e) { console.error('Erro ao salvar:', e); }
+    }
+
+    let turmas = carregar();
+
+    /* =========================================================
+       HELPERS
+       ========================================================= */
+    function getStatus(t) {
+      const freq = Number(t.freq) || 0;
+      const media = Number(t.media) || 0;
+      if (freq < 80 || (media > 0 && media < 6)) return 'risco';
+      if (freq < 88 || (media > 0 && media < 7)) return 'atencao';
+      return 'ok';
+    }
+
+    function labelStatus(st) {
+      if (st === 'ok') return 'Em dia';
+      if (st === 'atencao') return 'Atenção';
+      return 'Risco';
+    }
+
+    /* =========================================================
+       ESTATÍSTICAS
+       ========================================================= */
+    function atualizarStats() {
+      document.getElementById('st-total').textContent = turmas.length;
+      document.getElementById('st-alunos').textContent = turmas.reduce((s,t) => s + (t.alunos || 0), 0);
+
+      if (turmas.length > 0) {
+        const media = turmas.reduce((s,t) => s + (Number(t.media) || 0), 0) / turmas.length;
+        document.getElementById('st-media').textContent = media.toFixed(1);
+      } else {
+        document.getElementById('st-media').textContent = '0.0';
+      }
+
+      const profs = new Set(turmas.map(t => t.professor).filter(Boolean));
+      document.getElementById('st-professores').textContent = profs.size;
+    }
+
+    /* =========================================================
+       POPULA SELECT PROFESSORES
+       ========================================================= */
+    function popularProfessores() {
+      const sel = document.getElementById('f-professor');
+      sel.innerHTML = '<option value="">Todos os professores</option>';
+      const profs = [...new Set(turmas.map(t => t.professor).filter(Boolean))].sort();
+      profs.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p;
+        opt.textContent = p;
+        sel.appendChild(opt);
+      });
+    }
+
+    /* =========================================================
+       FILTROS
+       ========================================================= */
+    let filtros = { busca:'', serie:'', professor:'', status:'' };
+    const grid = document.getElementById('turmas-grid');
+
+    function render() {
+      const termo = filtros.busca.toLowerCase().trim();
+      let lista = turmas.filter(t => {
+        if (termo) {
+          const hay = (t.nome + ' ' + t.professor + ' ' + t.serie).toLowerCase();
+          if (!hay.includes(termo)) return false;
+        }
+        if (filtros.serie && t.serie !== filtros.serie) return false;
+        if (filtros.professor && t.professor !== filtros.professor) return false;
+        if (filtros.status && getStatus(t) !== filtros.status) return false;
+        return true;
+      });
+
+      // Ordena por série depois nome
+      const ordem = { '6º Ano':1, '7º Ano':2, '8º Ano':3, '9º Ano':4 };
+      lista.sort((a,b) => {
+        const sa = ordem[a.serie] || 99;
+        const sb = ordem[b.serie] || 99;
+        if (sa !== sb) return sa - sb;
+        return (a.nome || '').localeCompare(b.nome || '');
+      });
+
+      // Counts
+      const counts = { ok:0, atencao:0, risco:0 };
+      turmas.forEach(t => counts[getStatus(t)]++);
+      document.getElementById('count-todos').textContent = turmas.length;
+      document.getElementById('count-ok').textContent = counts.ok;
+      document.getElementById('count-atencao').textContent = counts.atencao;
+      document.getElementById('count-risco').textContent = counts.risco;
+
+      if (lista.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="M21 21l-4.35-4.35"/>
+            </svg>
+            <h3>Nenhuma turma encontrada</h3>
+            <p>${turmas.length === 0 ? 'Clique em "Nova Turma" para começar.' : 'Ajuste os filtros para ver mais turmas.'}</p>
+          </div>`;
+        return;
+      }
+
+      grid.innerHTML = lista.map(t => {
+        const st = getStatus(t);
+        const statusLabel = labelStatus(st);
+        const corClass = t.cor || 'c1';
+        const dias = t.dias || [];
+
+        return `
+          <div class="turma-card tc-${corClass}">
+            <div class="turma-top">
+              <div class="turma-avatar ${corClass}">${t.sigla}</div>
+              <div class="turma-info">
+                <div class="turma-serie">${t.serie}</div>
+                <div class="turma-nome">${t.nome}</div>
+                <div class="turma-prof">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                  ${t.professor || 'Sem professor'}
+                </div>
+              </div>
+              <span class="turma-badge ${st}">${statusLabel}</span>
+            </div>
+
+            <div class="turma-stats">
+              <div class="turma-stat">
+                <div class="turma-stat-value">${t.alunos || 0}</div>
+                <div class="turma-stat-label">Alunos</div>
+              </div>
+              <div class="turma-stat">
+                <div class="turma-stat-value ${t.media >= 7 ? 'green' : t.media >= 6 ? 'amber' : 'red'}">${Number(t.media || 0).toFixed(1)}</div>
+                <div class="turma-stat-label">Média</div>
+              </div>
+              <div class="turma-stat">
+                <div class="turma-stat-value ${t.freq >= 88 ? 'green' : t.freq >= 80 ? 'amber' : 'red'}">${t.freq || 0}%</div>
+                <div class="turma-stat-label">Freq.</div>
+              </div>
+            </div>
+
+            <div class="turma-info-extra">
+              <div class="detail-row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <strong>${t.turno === 'manha' ? 'Manhã' : 'Tarde'}</strong>
+                <span>·</span>
+                <span>${t.horario || '—'}</span>
+                ${t.sala ? `<span>· Sala ${t.sala}</span>` : ''}
+              </div>
+              ${dias.length > 0 ? `
+                <div class="turma-dias">
+                  ${dias.map(d => `<span class="dia-tag">${d}</span>`).join('')}
+                </div>
+              ` : ''}
+            </div>
+
+            <div class="turma-actions">
+              <button class="btn-mini primary" data-edit="${t.id}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20h9"/>
+                  <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/>
+                </svg>
+                Editar
+              </button>
+              <button class="btn-mini ghost" data-alunos="${t.id}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                </svg>
+                Alunos
+              </button>
+              <button class="btn-mini danger" data-del="${t.id}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 6h18"/>
+                  <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Binds
+      document.querySelectorAll('[data-edit]').forEach(btn => {
+        btn.addEventListener('click', () => abrirEdicao(btn.dataset.edit));
+      });
+      document.querySelectorAll('[data-del]').forEach(btn => {
+        btn.addEventListener('click', () => excluir(btn.dataset.del));
+      });
+      document.querySelectorAll('[data-alunos]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const t = turmas.find(x => x.id === btn.dataset.alunos);
+          if (t) {
+            // Salva turma selecionada e vai para alunos-direcao
+            sessionStorage.setItem('filtroTurmaDirecao', t.nome);
+            window.location.href = 'alunos-direcao.html';
+          }
+        });
+      });
+    }
+
+    /* =========================================================
+       EVENTOS DE FILTRO
+       ========================================================= */
+    document.getElementById('busca').addEventListener('input', e => {
+      filtros.busca = e.target.value;
+      render();
+    });
+
+    document.getElementById('f-serie').addEventListener('change', e => {
+      filtros.serie = e.target.value;
+      render();
+    });
+
+    document.getElementById('f-professor').addEventListener('change', e => {
+      filtros.professor = e.target.value;
+      render();
+    });
+
+    document.querySelectorAll('#chips-status .chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#chips-status .chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        filtros.status = chip.dataset.status;
+        render();
+      });
+    });
+
+    document.getElementById('btn-limpar').addEventListener('click', () => {
+      filtros = { busca:'', serie:'', professor:'', status:'' };
+      document.getElementById('busca').value = '';
+      document.getElementById('f-serie').value = '';
+      document.getElementById('f-professor').value = '';
+      document.querySelectorAll('#chips-status .chip').forEach(c => c.classList.remove('active'));
+      document.querySelector('#chips-status .chip[data-status=""]').classList.add('active');
+      render();
+    });
+
+    /* =========================================================
+       MODAL
+       ========================================================= */
+    const modal       = document.getElementById('modal');
+    const modalClose  = document.getElementById('modal-close');
+    const modalEyebrow= document.getElementById('modal-eyebrow');
+    const modalTitle  = document.getElementById('modal-title');
+    const form        = document.getElementById('form-turma');
+    const btnNovo     = document.getElementById('btn-novo');
+    const btnCancelar = document.getElementById('btn-cancelar');
+    const btnSaveText = document.getElementById('btn-save-text');
+
+    let diasSelecionados = [];
+    let corSelecionada   = 'c1';
+
+    function abrirNovo() {
+      form.reset();
+      document.getElementById('f-id').value = '';
+      diasSelecionados = ['SEG','TER','QUA','QUI','SEX'];
+      corSelecionada = 'c1';
+
+      document.querySelectorAll('.dia-opt').forEach(d => {
+        d.classList.toggle('selected', diasSelecionados.includes(d.dataset.dia));
+      });
+      document.querySelectorAll('.color-opt').forEach(c => c.classList.remove('selected'));
+      document.querySelector('.color-opt.c1').classList.add('selected');
+
+      modalEyebrow.textContent = 'Cadastro';
+      modalTitle.textContent   = 'Nova Turma';
+      btnSaveText.textContent  = 'Cadastrar Turma';
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => document.getElementById('f-sigla').focus(), 100);
+    }
+
+    function abrirEdicao(id) {
+      const t = turmas.find(x => x.id === id);
+      if (!t) return;
+
+      document.getElementById('f-id').value = t.id;
+      document.getElementById('f-sigla').value = t.sigla;
+      document.getElementById('f-serie-input').value = t.serie;
+      document.getElementById('f-nome').value = t.nome;
+      document.getElementById('f-professor-input').value = t.professor || '';
+      document.getElementById('f-sala').value = t.sala || '';
+      document.getElementById('f-turno').value = t.turno || 'manha';
+      document.getElementById('f-alunos').value = t.alunos || 0;
+      document.getElementById('f-horario').value = t.horario || '';
+      document.getElementById('f-media').value = t.media || 0;
+
+      diasSelecionados = t.dias || [];
+      document.querySelectorAll('.dia-opt').forEach(d => {
+        d.classList.toggle('selected', diasSelecionados.includes(d.dataset.dia));
+      });
+
+      corSelecionada = t.cor || 'c1';
+      document.querySelectorAll('.color-opt').forEach(c => c.classList.remove('selected'));
+      const corEl = document.querySelector(`.color-opt.${corSelecionada}`);
+      if (corEl) corEl.classList.add('selected');
+
+      modalEyebrow.textContent = 'Edição';
+      modalTitle.textContent   = 'Editar Turma';
+      btnSaveText.textContent  = 'Salvar Alterações';
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function fecharModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    btnNovo.addEventListener('click', abrirNovo);
+    modalClose.addEventListener('click', fecharModal);
+    btnCancelar.addEventListener('click', fecharModal);
+    modal.addEventListener('click', e => { if (e.target === modal) fecharModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(); });
+
+    // Dias toggle
+    document.querySelectorAll('.dia-opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const dia = btn.dataset.dia;
+        if (diasSelecionados.includes(dia)) {
+          diasSelecionados = diasSelecionados.filter(d => d !== dia);
+          btn.classList.remove('selected');
+        } else {
+          diasSelecionados.push(dia);
+          btn.classList.add('selected');
+        }
+      });
+    });
+
+    // Cores
+    document.querySelectorAll('.color-opt').forEach(opt => {
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('.color-opt').forEach(c => c.classList.remove('selected'));
+        opt.classList.add('selected');
+        corSelecionada = opt.dataset.color;
+      });
+    });
+
+    /* =========================================================
+       SALVAR
+       ========================================================= */
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const id        = document.getElementById('f-id').value;
+      const sigla     = document.getElementById('f-sigla').value.trim().toUpperCase();
+      const serie     = document.getElementById('f-serie-input').value;
+      const nome      = document.getElementById('f-nome').value.trim();
+      const professor = document.getElementById('f-professor-input').value.trim();
+      const sala      = document.getElementById('f-sala').value.trim();
+      const turno     = document.getElementById('f-turno').value;
+      const alunos    = parseInt(document.getElementById('f-alunos').value, 10) || 0;
+      const horario   = document.getElementById('f-horario').value.trim();
+      const media     = parseFloat(document.getElementById('f-media').value) || 0;
+
+      if (id) {
+        const idx = turmas.findIndex(t => t.id === id);
+        if (idx >= 0) {
+          turmas[idx] = { ...turmas[idx], sigla, serie, nome, professor, sala, turno, alunos, horario, media, dias:[...diasSelecionados], cor:corSelecionada };
+          mostrarToast(`Turma atualizada`);
+        }
+      } else {
+        const novoId = 't' + Date.now();
+        turmas.push({ id:novoId, sigla, serie, nome, professor, sala, turno, alunos, horario, media, dias:[...diasSelecionados], cor:corSelecionada, freq:100, conselho:false });
+        mostrarToast(`Turma cadastrada`);
+      }
+
+      salvar();
+      atualizarStats();
+      popularProfessores();
+      render();
+      fecharModal();
+    });
+
+    /* =========================================================
+       EXCLUIR
+       ========================================================= */
+    function excluir(id) {
+      const t = turmas.find(x => x.id === id);
+      if (!t) return;
+      if (!confirm(`Excluir a turma "${t.nome}"?\n\nEssa ação não pode ser desfeita.`)) return;
+
+      turmas = turmas.filter(x => x.id !== id);
+      salvar();
+      atualizarStats();
+      popularProfessores();
+      render();
+      mostrarToast('Turma excluída');
+    }
+
+    /* =========================================================
+       TOAST
+       ========================================================= */
+    const toastEl = document.getElementById('toast');
+    const toastText = document.getElementById('toast-text');
+    let toastTimeout = null;
+    function mostrarToast(msg) {
+      toastText.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toastEl.classList.remove('show'), 2400);
+    }
+
+    /* =========================================================
+       INIT
+       ========================================================= */
+    atualizarStats();
+    popularProfessores();
+    render();
+  </script>
+
+</body>
+</html>
