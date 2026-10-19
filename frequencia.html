@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#1565c0" />
-  <title>Fazer Chamada · Frei Graciano Droessler</title>
+  <title>Fazer Chamada · 6º Ano A · Frei Graciano Droessler</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -159,7 +159,6 @@
     }
     .head-text p { font-size: 0.88rem; color: var(--ink-soft); max-width: 500px; line-height: 1.5; }
 
-    /* DATA DA CHAMADA */
     .data-box {
       position: relative; z-index: 1;
       padding: 14px 20px;
@@ -212,6 +211,13 @@
       box-shadow: var(--shadow-sm);
       align-items: center;
     }
+    .bulk-actions .info {
+      font-size: 0.82rem; color: var(--ink-soft);
+      margin-right: auto;
+      display: inline-flex; align-items: center; gap: 6px;
+      flex-wrap: wrap;
+    }
+    .bulk-actions .info strong { color: var(--ink); font-weight: 700; }
     .btn-mini {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 10px 16px; border-radius: 999px;
@@ -225,6 +231,10 @@
       border: 1.5px solid var(--azul-bebe-200);
     }
     .btn-mini.ghost:hover { background: var(--azul-bebe-50); border-color: var(--azul-bebe-300); }
+    .btn-mini.ghost.verde {
+      color: var(--verde-2); border-color: #86efac;
+    }
+    .btn-mini.ghost.verde:hover { background: #dcfce7; border-color: var(--verde); }
     .btn-mini.success {
       background: linear-gradient(135deg, var(--verde), var(--verde-2));
       color: var(--white);
@@ -422,12 +432,12 @@
           <div class="avatar" id="user-avatar">P</div>
           <span class="name" id="user-name">Professor(a)</span>
         </div>
-        <a href="turmas.html" class="btn-back">
+        <a href="turma-6a.html" class="btn-back">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5"/>
             <path d="M12 19l-7-7 7-7"/>
           </svg>
-          Voltar
+          Voltar ao 6º Ano A
         </a>
       </div>
     </header>
@@ -443,9 +453,9 @@
           </svg>
         </div>
         <div class="head-text">
-          <div class="eyebrow">Fazer Chamada</div>
-          <h1 id="titulo-turma">6º Ano A · Matemática</h1>
-          <p>Marque a presença de cada aluno. A chamada é registrada automaticamente e atualizada em todos os painéis.</p>
+          <div class="eyebrow">Fazer Chamada · 6º Ano A</div>
+          <h1>6º Ano A · Matemática</h1>
+          <p>Marque a presença de cada aluno individualmente. Ao salvar, a chamada atualiza a frequência de cada um em todos os painéis.</p>
         </div>
       </div>
       <div class="data-box">
@@ -508,7 +518,14 @@
 
     <!-- AÇÕES -->
     <div class="bulk-actions">
-      <button class="btn-mini ghost" id="btn-todos-presentes">
+      <span class="info">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="color:var(--amarelo-2)">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 16v-4M12 8h.01"/>
+        </svg>
+        Clique em <strong>Presente</strong>, <strong>Ausente</strong> ou <strong>Justificado</strong> em cada aluno separadamente.
+      </span>
+      <button class="btn-mini ghost verde" id="btn-todos-presentes">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M20 6L9 17l-5-5"/>
         </svg>
@@ -518,7 +535,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M18 6L6 18M6 6l12 12"/>
         </svg>
-        Limpar
+        Limpar Tudo
       </button>
       <button class="btn-mini success" id="btn-salvar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
@@ -531,7 +548,7 @@
     <!-- LISTA DE CHAMADA -->
     <section class="chamada-panel">
       <div class="panel-head">
-        <h2>Lista de Chamada</h2>
+        <h2>Lista de Chamada · 6º Ano A</h2>
         <div class="search-mini">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"/>
@@ -581,94 +598,87 @@
        ========================================================= */
     const hoje = new Date();
     const dataFmt = `${String(hoje.getDate()).padStart(2,'0')}/${String(hoje.getMonth()+1).padStart(2,'0')}/${hoje.getFullYear()}`;
+    const dataISO = hoje.toISOString().slice(0, 10);
     document.getElementById('data-hoje').textContent = dataFmt;
 
     /* =========================================================
        🔗 CHAVES SINCRONIZADAS
        ========================================================= */
-    const TURMAS_KEYS = ['turmasProfessor', 'turmasDirecao', 'turmasPedagogo'];
     const ALUNOS_KEYS = ['alunosProfessor', 'alunosDirecao', 'alunosPedagogo'];
     const FREQ_KEYS   = ['frequenciaProfessor', 'frequenciaDirecao', 'frequenciaPedagogo'];
 
     /* =========================================================
-       TURMA DA URL
+       ALUNOS DO 6º ANO A — 30 ALUNOS FIXOS
+       Estes são os mesmos 30 de turma-6a.html
        ========================================================= */
-    const params = new URLSearchParams(window.location.search);
-    const turmaId = params.get('turma') || params.get('id') || '6a';
-
-    let turmaAtual = null;
-    for (const key of TURMAS_KEYS) {
-      try {
-        const raw = localStorage.getItem(key);
-        if (raw) {
-          const lista = JSON.parse(raw);
-          const encontrada = lista.find(t => t.id === turmaId);
-          if (encontrada) { turmaAtual = encontrada; break; }
-        }
-      } catch(e) {}
-    }
-
-    if (turmaAtual) {
-      document.getElementById('titulo-turma').textContent = `${turmaAtual.nome} · ${turmaAtual.disciplina}`;
-      document.title = `Chamada · ${turmaAtual.nome} · Frei Graciano Droessler`;
-    }
+    const alunos6A = [
+      { nome: 'Alice Ferreira Souza',     mat: '2025101', freq: 96, faltas: 2 },
+      { nome: 'Arthur Silva Lima',        mat: '2025102', freq: 94, faltas: 4 },
+      { nome: 'Beatriz Nogueira Rocha',   mat: '2025103', freq: 98, faltas: 1 },
+      { nome: 'Bernardo Costa Alves',     mat: '2025104', freq: 92, faltas: 6 },
+      { nome: 'Carla Mendes Ribeiro',     mat: '2025105', freq: 97, faltas: 2 },
+      { nome: 'Daniel Oliveira Santos',   mat: '2025106', freq: 84, faltas: 12 },
+      { nome: 'Eduarda Souza Pereira',    mat: '2025107', freq: 94, faltas: 5 },
+      { nome: 'Enzo Gabriel Martins',     mat: '2025108', freq: 91, faltas: 7 },
+      { nome: 'Fernanda Lima Costa',      mat: '2025109', freq: 96, faltas: 3 },
+      { nome: 'Felipe Andrade Rocha',     mat: '2025110', freq: 72, faltas: 22 },
+      { nome: 'Gabriela Nunes Ferreira',  mat: '2025111', freq: 93, faltas: 5 },
+      { nome: 'Gustavo Pereira Alves',    mat: '2025112', freq: 95, faltas: 4 },
+      { nome: 'Helena Ribeiro Santos',    mat: '2025113', freq: 97, faltas: 2 },
+      { nome: 'Henrique Costa Souza',     mat: '2025114', freq: 94, faltas: 5 },
+      { nome: 'Isabela Almeida Lima',     mat: '2025115', freq: 96, faltas: 3 },
+      { nome: 'Isadora Ferreira Martins', mat: '2025116', freq: 90, faltas: 8 },
+      { nome: 'João Pedro Rocha Alves',   mat: '2025117', freq: 92, faltas: 6 },
+      { nome: 'Júlia Pereira Costa',      mat: '2025118', freq: 96, faltas: 3 },
+      { nome: 'Kauã Ribeiro Santos',      mat: '2025119', freq: 86, faltas: 10 },
+      { nome: 'Larissa Souza Oliveira',   mat: '2025120', freq: 95, faltas: 4 },
+      { nome: 'Lucas Martins Ferreira',   mat: '2025121', freq: 91, faltas: 7 },
+      { nome: 'Manuela Costa Ribeiro',    mat: '2025122', freq: 98, faltas: 1 },
+      { nome: 'Matheus Alves Nogueira',   mat: '2025123', freq: 90, faltas: 8 },
+      { nome: 'Nicolas Santos Lima',      mat: '2025124', freq: 68, faltas: 25 },
+      { nome: 'Olívia Ribeiro Costa',     mat: '2025125', freq: 95, faltas: 4 },
+      { nome: 'Pedro Henrique Alves',     mat: '2025126', freq: 89, faltas: 9 },
+      { nome: 'Rafaela Martins Costa',    mat: '2025127', freq: 95, faltas: 4 },
+      { nome: 'Samuel Ferreira Rocha',    mat: '2025128', freq: 91, faltas: 7 },
+      { nome: 'Sofia Lima Nogueira',      mat: '2025129', freq: 97, faltas: 2 },
+      { nome: 'Vinícius Souza Alves',     mat: '2025130', freq: 93, faltas: 5 }
+    ];
 
     /* =========================================================
-       CARREGA ALUNOS
+       SINCRONIZA: pega dados atuais de qualquer chave
        ========================================================= */
-    function carregarAlunos() {
+    function carregarAlunosSincronizados() {
       for (const key of ALUNOS_KEYS) {
         try {
           const raw = localStorage.getItem(key);
           if (raw) {
             const lista = JSON.parse(raw);
-            if (lista.length > 0) return lista;
+            // Confirma que são os alunos do 6A (matrículas 2025101+)
+            if (lista.length > 0 && lista[0].mat && lista[0].mat.startsWith('2025')) {
+              // Filtra apenas os do 6A por matrícula
+              const mats6A = new Set(alunos6A.map(a => a.mat));
+              const filtrados = lista.filter(a => mats6A.has(a.mat));
+              if (filtrados.length > 0) {
+                // Mescla: mantém dados do 6A, atualiza freq/faltas
+                return alunos6A.map(base => {
+                  const found = filtrados.find(f => f.mat === base.mat);
+                  return found ? { ...base, freq: found.freq ?? base.freq, faltas: found.faltas ?? base.faltas } : base;
+                });
+              }
+            }
           }
         } catch(e) {}
       }
-      return [];
+      return [...alunos6A];
     }
 
-    let alunos = carregarAlunos();
+    let alunos = carregarAlunosSincronizados();
 
     /* =========================================================
-       CARREGA HISTÓRICO DE CHAMADAS
+       ESTADO DA CHAMADA (individual por matrícula)
        ========================================================= */
-    function carregarHistorico() {
-      for (const key of FREQ_KEYS) {
-        try {
-          const raw = localStorage.getItem(key);
-          if (raw) {
-            const hist = JSON.parse(raw);
-            if (hist[turmaId]) return hist[turmaId];
-          }
-        } catch(e) {}
-      }
-      return [];
-    }
-
-    function salvarHistorico(hist) {
-      try {
-        let all = {};
-        for (const key of FREQ_KEYS) {
-          try {
-            const raw = localStorage.getItem(key);
-            if (raw) { all = JSON.parse(raw); break; }
-          } catch(e) {}
-        }
-        all[turmaId] = hist;
-        const json = JSON.stringify(all);
-        FREQ_KEYS.forEach(k => localStorage.setItem(k, json));
-      } catch(e) { console.error('Erro ao salvar histórico:', e); }
-    }
-
-    /* =========================================================
-       ESTADO DA CHAMADA ATUAL
-       ========================================================= */
-    let chamadaAtual = {}; // { mat: 'presente' | 'ausente' | 'justificado' }
-    alunos.forEach(a => {
-      chamadaAtual[a.mat] = null;
-    });
+    let chamada = {}; // { 'mat': 'presente' | 'ausente' | 'justificado' | null }
+    alunos.forEach(a => { chamada[a.mat] = null; });
 
     /* =========================================================
        RENDER
@@ -685,7 +695,7 @@
       }
 
       alunoList.innerHTML = lista.map(a => {
-        const st = chamadaAtual[a.mat];
+        const st = chamada[a.mat];
         const cls = st === 'presente' ? 'presente' : st === 'ausente' ? 'ausente' : st === 'justificado' ? 'justificado' : '';
         const ini = a.nome.split(' ').map(n => n[0]).slice(0,2).join('');
 
@@ -694,22 +704,22 @@
             <div class="aluno-avatar">${ini}</div>
             <div class="aluno-info">
               <div class="nome">${a.nome}</div>
-              <div class="meta">Mat. ${a.mat}</div>
+              <div class="meta">Mat. ${a.mat} · Freq. ${a.freq}%</div>
             </div>
             <div class="chamada-btns">
-              <button class="chamada-btn presente ${st === 'presente' ? 'active' : ''}" data-mat="${a.mat}" data-status="presente">
+              <button type="button" class="chamada-btn presente ${st === 'presente' ? 'active' : ''}" data-mat="${a.mat}" data-status="presente">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M20 6L9 17l-5-5"/>
                 </svg>
                 Presente
               </button>
-              <button class="chamada-btn ausente ${st === 'ausente' ? 'active' : ''}" data-mat="${a.mat}" data-status="ausente">
+              <button type="button" class="chamada-btn ausente ${st === 'ausente' ? 'active' : ''}" data-mat="${a.mat}" data-status="ausente">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M18 6L6 18M6 6l12 12"/>
                 </svg>
                 Ausente
               </button>
-              <button class="chamada-btn justificado ${st === 'justificado' ? 'active' : ''}" data-mat="${a.mat}" data-status="justificado">
+              <button type="button" class="chamada-btn justificado ${st === 'justificado' ? 'active' : ''}" data-mat="${a.mat}" data-status="justificado">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10"/>
                   <path d="M12 6v6l4 2"/>
@@ -720,12 +730,15 @@
           </div>`;
       }).join('');
 
-      // Binds nos botões
+      // Binds individuais em cada botão
       document.querySelectorAll('.chamada-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
           const mat = btn.dataset.mat;
           const status = btn.dataset.status;
-          chamadaAtual[mat] = (chamadaAtual[mat] === status) ? null : status;
+          // Toggle: se já está marcado com esse status, desmarca
+          chamada[mat] = (chamada[mat] === status) ? null : status;
           renderLista(document.getElementById('busca-aluno').value);
           atualizarResumo();
         });
@@ -735,7 +748,7 @@
     }
 
     function atualizarResumo() {
-      const vals = Object.values(chamadaAtual);
+      const vals = Object.values(chamada);
       const presentes = vals.filter(v => v === 'presente').length;
       const ausentes = vals.filter(v => v === 'ausente').length;
       const justificados = vals.filter(v => v === 'justificado').length;
@@ -759,7 +772,7 @@
        TODOS PRESENTES
        ========================================================= */
     document.getElementById('btn-todos-presentes').addEventListener('click', () => {
-      alunos.forEach(a => { chamadaAtual[a.mat] = 'presente'; });
+      alunos.forEach(a => { chamada[a.mat] = 'presente'; });
       renderLista(document.getElementById('busca-aluno').value);
       mostrarToast('Todos marcados como presentes');
     });
@@ -769,17 +782,16 @@
        ========================================================= */
     document.getElementById('btn-limpar').addEventListener('click', () => {
       if (!confirm('Limpar todas as marcações da chamada?')) return;
-      alunos.forEach(a => { chamadaAtual[a.mat] = null; });
+      alunos.forEach(a => { chamada[a.mat] = null; });
       renderLista(document.getElementById('busca-aluno').value);
       mostrarToast('Chamada limpa');
     });
 
     /* =========================================================
-       SALVAR CHAMADA
+       SALVAR CHAMADA — atualiza frequência + sincroniza
        ========================================================= */
     document.getElementById('btn-salvar').addEventListener('click', () => {
-      // Conta presenças
-      const vals = Object.values(chamadaAtual);
+      const vals = Object.values(chamada);
       const marcados = vals.filter(v => v !== null).length;
 
       if (marcados === 0) {
@@ -787,36 +799,37 @@
         return;
       }
 
-      // Atualiza a frequência (%) de cada aluno
+      // Atualiza a frequência e faltas de cada aluno
       alunos.forEach(a => {
-        const st = chamadaAtual[a.mat];
+        const st = chamada[a.mat];
         if (st === 'presente') {
-          // Aumenta frequência levemente
-          a.freq = Math.min(100, (a.freq || 90) + 0.3);
+          // Presença: +0.2% (suave)
+          a.freq = Math.min(100, Math.round(((a.freq || 90) + 0.2) * 10) / 10);
         } else if (st === 'ausente') {
-          // Diminui frequência
-          a.freq = Math.max(0, (a.freq || 90) - 1);
+          // Falta: -1% e +1 falta
+          a.freq = Math.max(0, Math.round(((a.freq || 90) - 1) * 10) / 10);
           a.faltas = (a.faltas || 0) + 1;
         }
-        // Justificado não altera
+        // Justificado: não altera
       });
 
-      // Salva alunos atualizados
+      // 🔗 Salva nas 3 chaves (sincroniza com pedagogo e diretor)
       try {
         const json = JSON.stringify(alunos);
         ALUNOS_KEYS.forEach(k => localStorage.setItem(k, json));
-      } catch(e) {}
+      } catch(e) { console.error('Erro ao salvar:', e); }
 
-      // Salva chamada no histórico
+      // Salva no histórico
       const hist = carregarHistorico();
       hist.unshift({
         data: dataFmt,
+        iso: dataISO,
         presentes: vals.filter(v => v === 'presente').length,
         ausentes: vals.filter(v => v === 'ausente').length,
         justificados: vals.filter(v => v === 'justificado').length,
-        total: alunos.length
+        total: alunos.length,
+        detalhes: { ...chamada } // guarda quem faltou
       });
-      // Limita a 20 registros
       salvarHistorico(hist.slice(0, 20));
 
       renderHistorico();
@@ -826,6 +839,34 @@
     /* =========================================================
        HISTÓRICO
        ========================================================= */
+    function carregarHistorico() {
+      for (const key of FREQ_KEYS) {
+        try {
+          const raw = localStorage.getItem(key);
+          if (raw) {
+            const all = JSON.parse(raw);
+            if (all['6a']) return all['6a'];
+          }
+        } catch(e) {}
+      }
+      return [];
+    }
+
+    function salvarHistorico(hist) {
+      try {
+        let all = {};
+        for (const key of FREQ_KEYS) {
+          try {
+            const raw = localStorage.getItem(key);
+            if (raw) { all = JSON.parse(raw); break; }
+          } catch(e) {}
+        }
+        all['6a'] = hist;
+        const json = JSON.stringify(all);
+        FREQ_KEYS.forEach(k => localStorage.setItem(k, json));
+      } catch(e) { console.error('Erro ao salvar histórico:', e); }
+    }
+
     function renderHistorico() {
       const hist = carregarHistorico();
       const cont = document.getElementById('historico-list');
@@ -846,7 +887,7 @@
           </svg>
           <span class="data">${h.data}</span>
           <span class="detalhe">
-            ${h.presentes} presentes · ${h.ausentes} ausentes · ${h.justificados} justificados
+            ${h.presentes} pres. · ${h.ausentes} aus. · ${h.justificados} just.
           </span>
         </div>
       `).join('');
@@ -866,6 +907,16 @@
       clearTimeout(toastTimeout);
       toastTimeout = setTimeout(() => toastEl.classList.remove('show'), 2200);
     }
+
+    /* =========================================================
+       🔄 ESCUTA MUDANÇAS EM OUTRAS ABAS
+       ========================================================= */
+    window.addEventListener('storage', (e) => {
+      if (ALUNOS_KEYS.includes(e.key)) {
+        alunos = carregarAlunosSincronizados();
+        renderLista(document.getElementById('busca-aluno').value);
+      }
+    });
   </script>
 
 </body>
