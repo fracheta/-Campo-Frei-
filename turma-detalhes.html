@@ -183,7 +183,6 @@
     .btn-secondary:hover { background: var(--azul-bebe-50); border-color: var(--azul-bebe-300); }
     .btn-secondary svg { width: 16px; height: 16px; }
 
-    /* Botão Conselho de Classe (roxo) */
     .btn-conselho {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 12px 20px;
@@ -197,7 +196,7 @@
     .btn-conselho:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -8px rgba(139, 92, 246, 0.7); }
     .btn-conselho svg { width: 16px; height: 16px; }
 
-    /* BANNER DO CONSELHO DE CLASSE */
+    /* BANNER DO CONSELHO */
     .conselho-banner {
       display: flex; align-items: center; gap: 18px;
       padding: 20px 24px;
@@ -265,7 +264,7 @@
     }
     .conselho-arrow svg { width: 14px; height: 14px; }
 
-    /* ESTATÍSTICAS RÁPIDAS */
+    /* ESTATÍSTICAS */
     .quick-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
     .qstat {
       padding: 18px; background: rgba(255, 255, 255, 0.9);
@@ -382,7 +381,7 @@
     .aluno-status.atencao { background: #fef3c7; color: #b45309; }
     .aluno-status.risco { background: #fee2e2; color: #b91c1c; }
 
-    /* TABELA DE NOTAS */
+    /* TABELA */
     .table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--azul-bebe-100); }
     table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 600px; }
     thead { background: var(--azul-bebe-50); }
@@ -421,7 +420,7 @@
     }
     .freq-pct { font-size: 0.85rem; font-weight: 700; color: var(--azul-escuro); min-width: 48px; text-align: right; }
 
-    /* MODAL DO ALUNO */
+    /* MODAL */
     .modal-overlay {
       position: fixed; inset: 0;
       background: rgba(15, 30, 53, 0.55);
@@ -434,7 +433,6 @@
       transition: opacity 0.3s ease, visibility 0.3s ease;
     }
     .modal-overlay.open { opacity: 1; visibility: visible; }
-
     .modal {
       width: 100%; max-width: 620px;
       max-height: 90vh; overflow-y: auto;
@@ -447,13 +445,11 @@
       overflow: hidden;
     }
     .modal-overlay.open .modal { transform: translateY(0) scale(1); }
-
     .modal::before {
       content: ""; position: absolute; top: 0; left: 0; right: 0;
       height: 4px;
       background: linear-gradient(90deg, transparent, var(--azul-escuro), transparent);
     }
-
     .modal-head {
       padding: 28px 28px 20px;
       background: linear-gradient(135deg, var(--azul-bebe-50), var(--white));
@@ -488,7 +484,6 @@
     }
     .modal-user .meta span { display: inline-flex; align-items: center; gap: 5px; }
     .modal-user .meta svg { width: 13px; height: 13px; color: var(--azul-escuro); }
-
     .modal-close {
       position: absolute; top: 16px; right: 16px;
       width: 36px; height: 36px; border-radius: 50%;
@@ -503,7 +498,6 @@
       border-color: var(--vermelho); transform: rotate(90deg);
     }
     .modal-close svg { width: 16px; height: 16px; }
-
     .modal-stats {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 10px; padding: 20px 28px;
@@ -526,10 +520,7 @@
       font-weight: 600; letter-spacing: 0.04em;
       text-transform: uppercase;
     }
-
-    .modal-actions {
-      padding: 20px 28px 28px;
-    }
+    .modal-actions { padding: 20px 28px 28px; }
     .modal-section-title {
       font-size: 0.72rem; font-weight: 700;
       letter-spacing: 0.14em; text-transform: uppercase;
@@ -541,14 +532,12 @@
       content: ""; flex: 1; height: 1px;
       background: linear-gradient(90deg, var(--azul-bebe-200), transparent);
     }
-
     .actions-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
       margin-bottom: 20px;
     }
-
     .action-btn {
       display: flex; align-items: center; gap: 12px;
       padding: 14px 16px;
@@ -566,7 +555,6 @@
       transform: translateY(-2px);
       box-shadow: var(--shadow-md);
     }
-
     .action-btn .icon {
       width: 38px; height: 38px; border-radius: 10px;
       display: grid; place-items: center;
@@ -583,7 +571,6 @@
     .action-btn .icon.cyan { background: linear-gradient(135deg, #06b6d4, #0e7490); }
     .action-btn .icon.pink { background: linear-gradient(135deg, #ec4899, #be185d); }
     .action-btn .icon.slate { background: linear-gradient(135deg, #64748b, #334155); }
-
     .action-btn .text {
       display: flex; flex-direction: column; gap: 2px;
       min-width: 0; flex: 1;
@@ -596,11 +583,9 @@
       font-size: 0.72rem; color: var(--ink-soft);
       line-height: 1.3;
     }
-
     .action-btn.danger { border-color: #fecaca; }
     .action-btn.danger:hover { border-color: var(--vermelho); }
     .action-btn.danger .text .title { color: var(--vermelho); }
-
     .action-btn.primary {
       background: linear-gradient(135deg, var(--azul-escuro), var(--azul-escuro-2));
       border-color: var(--azul-escuro);
@@ -760,7 +745,7 @@
       </div>
     </section>
 
-    <!-- BANNER: CONSELHO DE CLASSE -->
+    <!-- BANNER CONSELHO -->
     <a href="conselho.html" class="conselho-banner" id="banner-conselho">
       <div class="conselho-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
@@ -844,7 +829,7 @@
       <button class="tab" data-tab="atividades" role="tab">Atividades</button>
     </div>
 
-    <!-- PAINEL: ALUNOS -->
+    <!-- PAINEL ALUNOS -->
     <section class="panel active" id="panel-alunos">
       <div class="panel-head">
         <h2>Lista de Alunos</h2>
@@ -859,7 +844,7 @@
       <div class="aluno-list" id="aluno-list"></div>
     </section>
 
-    <!-- PAINEL: NOTAS -->
+    <!-- PAINEL NOTAS -->
     <section class="panel" id="panel-notas">
       <div class="panel-head">
         <h2>Notas do Bimestre</h2>
@@ -881,7 +866,7 @@
       </div>
     </section>
 
-    <!-- PAINEL: FREQUÊNCIA -->
+    <!-- PAINEL FREQUÊNCIA -->
     <section class="panel" id="panel-frequencia">
       <div class="panel-head">
         <h2>Frequência da Turma</h2>
@@ -889,7 +874,7 @@
       <div class="freq-list" id="freq-list"></div>
     </section>
 
-    <!-- PAINEL: ATIVIDADES -->
+    <!-- PAINEL ATIVIDADES -->
     <section class="panel" id="panel-atividades">
       <div class="panel-head">
         <h2>Atividades da Turma</h2>
@@ -936,10 +921,9 @@
 
   </div>
 
-  <!-- MODAL DE AÇÕES DO ALUNO -->
+  <!-- MODAL -->
   <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-nome">
     <div class="modal" role="document">
-
       <button class="modal-close" id="modal-close" aria-label="Fechar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M18 6L6 18"/>
@@ -986,156 +970,53 @@
       </div>
 
       <div class="modal-actions">
-
         <div class="modal-section-title">Ações Rápidas</div>
-
         <div class="actions-grid">
-
           <button class="action-btn primary" data-action="perfil">
-            <span class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
-            </span>
-            <span class="text">
-              <span class="title">Ver Perfil Completo</span>
-              <span class="sub">Dados pessoais e histórico</span>
-            </span>
+            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+            <span class="text"><span class="title">Ver Perfil Completo</span><span class="sub">Dados pessoais e histórico</span></span>
           </button>
-
           <button class="action-btn" data-action="nota">
-            <span class="icon green">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 11H3v10h6z"/>
-                <path d="M15 3H9v18h6z"/>
-                <path d="M21 7h-6v14h6z"/>
-              </svg>
-            </span>
-            <span class="text">
-              <span class="title">Lançar Nota</span>
-              <span class="sub">Registrar nova avaliação</span>
-            </span>
+            <span class="icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11H3v10h6z"/><path d="M15 3H9v18h6z"/><path d="M21 7h-6v14h6z"/></svg></span>
+            <span class="text"><span class="title">Lançar Nota</span><span class="sub">Registrar nova avaliação</span></span>
           </button>
-
           <button class="action-btn" data-action="frequencia">
-            <span class="icon amber">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2"/>
-                <path d="M16 2v4M8 2v4M3 10h18"/>
-                <path d="M9 16l2 2 4-4"/>
-              </svg>
-            </span>
-            <span class="text">
-              <span class="title">Justificar Falta</span>
-              <span class="sub">Registrar justificativa</span>
-            </span>
+            <span class="icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 16l2 2 4-4"/></svg></span>
+            <span class="text"><span class="title">Justificar Falta</span><span class="sub">Registrar justificativa</span></span>
           </button>
-
           <button class="action-btn" data-action="historico">
-            <span class="icon purple">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 3v5h5"/>
-                <path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/>
-                <path d="M12 7v5l4 2"/>
-              </svg>
-            </span>
-            <span class="text">
-              <span class="title">Histórico Escolar</span>
-              <span class="sub">Notas e ocorrências anteriores</span>
-            </span>
+            <span class="icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/><path d="M12 7v5l4 2"/></svg></span>
+            <span class="text"><span class="title">Histórico Escolar</span><span class="sub">Notas e ocorrências anteriores</span></span>
           </button>
-
           <button class="action-btn" data-action="ocorrencia">
-            <span class="icon red">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 8v4"/>
-                <path d="M12 16h.01"/>
-              </svg>
-            </span>
-            <span class="text">
-              <span class="title">Registrar Ocorrência</span>
-              <span class="sub">Comportamento ou evento</span>
-            </span>
+            <span class="icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></span>
+            <span class="text"><span class="title">Registrar Ocorrência</span><span class="sub">Comportamento ou evento</span></span>
           </button>
-
           <button class="action-btn" data-action="mensagem">
-            <span class="icon cyan">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
-            </span>
-            <span class="text">
-              <span class="title">Enviar Mensagem</span>
-              <span class="sub">Contatar o aluno</span>
-            </span>
+            <span class="icon cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="text"><span class="title">Enviar Mensagem</span><span class="sub">Contatar o aluno</span></span>
           </button>
-
           <button class="action-btn" data-action="responsavel">
-            <span class="icon pink">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              </svg>
-            </span>
-            <span class="text">
-              <span class="title">Falar com Responsável</span>
-              <span class="sub">Contato da família</span>
-            </span>
+            <span class="icon pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></span>
+            <span class="text"><span class="title">Falar com Responsável</span><span class="sub">Contato da família</span></span>
           </button>
-
           <button class="action-btn" data-action="relatorio">
-            <span class="icon slate">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <path d="M14 2v6h6"/>
-                <path d="M9 15h6"/>
-              </svg>
-            </span>
-            <span class="text">
-              <span class="title">Gerar Relatório</span>
-              <span class="sub">PDF do desempenho</span>
-            </span>
+            <span class="icon slate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6"/></svg></span>
+            <span class="text"><span class="title">Gerar Relatório</span><span class="sub">PDF do desempenho</span></span>
           </button>
-
         </div>
 
         <div class="modal-section-title">Atenção</div>
-
         <div class="actions-grid">
           <button class="action-btn danger" data-action="advertencia">
-            <span class="icon red">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                <path d="M12 9v4"/>
-                <path d="M12 17h.01"/>
-              </svg>
-            </span>
-            <span class="text">
-              <span class="title">Aplicar Advertência</span>
-              <span class="sub">Registrar medida disciplinar</span>
-            </span>
+            <span class="icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span>
+            <span class="text"><span class="title">Aplicar Advertência</span><span class="sub">Registrar medida disciplinar</span></span>
           </button>
-
           <button class="action-btn danger" data-action="encaminhar">
-            <span class="icon red">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 3h5v5"/>
-                <path d="M4 20L21 3"/>
-                <path d="M21 16v5h-5"/>
-                <path d="M15 15l6 6"/>
-                <path d="M4 4l5 5"/>
-              </svg>
-            </span>
-            <span class="text">
-              <span class="title">Encaminhar à Pedagogia</span>
-              <span class="sub">Solicitar acompanhamento</span>
-            </span>
+            <span class="icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/></svg></span>
+            <span class="text"><span class="title">Encaminhar à Pedagogia</span><span class="sub">Solicitar acompanhamento</span></span>
           </button>
         </div>
-
       </div>
     </div>
   </div>
@@ -1145,7 +1026,7 @@
        PROTEÇÃO
        ========================================================= */
     const nomeProfessor = sessionStorage.getItem('professorLogado');
-    if (!nomeProfessor) window.location.href = 'professor.html';
+    if (!nomeProfessor) window.location.href = '2.html';
 
     const userAvatar = document.getElementById('user-avatar');
     const userName   = document.getElementById('user-name');
@@ -1155,25 +1036,34 @@
     }
 
     /* =========================================================
-       LÊ O ?id= DA URL E INTEGRA COM O localStorage DO turmas.html
+       🔗 CHAVES SINCRONIZADAS (mesma técnica do turmas.html)
        ========================================================= */
-    const STORAGE_KEY = 'turmasProfessor';
+    const TURMAS_KEYS = ['turmasProfessor', 'turmasDirecao', 'turmasPedagogo'];
+    const ALUNOS_KEYS = ['alunosProfessor', 'alunosDirecao', 'alunosPedagogo'];
+
+    /* =========================================================
+       LÊ O ?id= DA URL E INTEGRA COM AS 3 CHAVES
+       ========================================================= */
     const params = new URLSearchParams(window.location.search);
     const turmaId = params.get('id');
 
     let turmaAtual = null;
     try {
-      const lista = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-      turmaAtual = lista.find(t => t.id === turmaId) || null;
+      for (const key of TURMAS_KEYS) {
+        const raw = localStorage.getItem(key);
+        if (raw) {
+          const lista = JSON.parse(raw);
+          const encontrada = lista.find(t => t.id === turmaId);
+          if (encontrada) { turmaAtual = encontrada; break; }
+        }
+      }
     } catch (e) {
-      console.error('Erro ao ler turmas do localStorage:', e);
+      console.error('Erro ao ler turmas:', e);
     }
 
-    // Se veio ?id= e encontrou a turma, atualiza os textos do cabeçalho
     if (turmaAtual) {
       document.title = `${turmaAtual.nome} · ${turmaAtual.disciplina} · Frei Graciano Droessler`;
 
-      // Avatar com cor da turma
       const avatarEl = document.getElementById('class-avatar');
       avatarEl.textContent = turmaAtual.sigla;
       avatarEl.classList.add(turmaAtual.cor || 'c1');
@@ -1184,15 +1074,12 @@
       document.getElementById('class-horario').textContent = turmaAtual.turno;
       document.getElementById('class-dias').textContent = (turmaAtual.dias || []).join(' · ');
 
-      // Estatísticas
       document.getElementById('stat-alunos').textContent = turmaAtual.alunos;
       document.getElementById('stat-media').textContent = Number(turmaAtual.media).toFixed(1);
       document.getElementById('stat-freq').textContent = turmaAtual.freq + '%';
 
-      // Título do banner do Conselho
       document.getElementById('conselho-title').textContent = `Conselho de Classe · ${turmaAtual.nome}`;
 
-      // Links internos levam o ?turma= e ?id= para as próximas páginas
       const idQ = encodeURIComponent(turmaAtual.id);
       document.getElementById('btn-chamada').href = `frequencia.html?turma=${idQ}`;
       document.getElementById('btn-notas').href = `notas.html?turma=${idQ}`;
@@ -1201,24 +1088,50 @@
     }
 
     /* =========================================================
-       DADOS SIMULADOS DOS ALUNOS
+       ALUNOS — carrega da chave sincronizada (ou gera base)
        ========================================================= */
-    const alunos = [
-      { nome: 'Ana Beatriz Souza',   mat: '2025001', status: 'ok',      media: 8.5, freq: 96, faltas: 3 },
-      { nome: 'Bruno Carvalho Lima', mat: '2025002', status: 'ok',      media: 7.8, freq: 92, faltas: 6 },
-      { nome: 'Carla Mendes Rocha',  mat: '2025003', status: 'ok',      media: 9.2, freq: 98, faltas: 1 },
-      { nome: 'Daniel Oliveira',     mat: '2025004', status: 'atencao', media: 6.4, freq: 85, faltas: 12 },
-      { nome: 'Eduarda Santos',      mat: '2025005', status: 'ok',      media: 8.0, freq: 94, faltas: 5 },
-      { nome: 'Felipe Andrade',      mat: '2025006', status: 'risco',   media: 5.2, freq: 72, faltas: 22 },
-      { nome: 'Gabriela Nunes',      mat: '2025007', status: 'ok',      media: 7.5, freq: 91, faltas: 7 },
-      { nome: 'Henrique Costa',      mat: '2025008', status: 'ok',      media: 8.8, freq: 97, faltas: 2 },
-      { nome: 'Isabela Ferreira',    mat: '2025009', status: 'atencao', media: 6.8, freq: 88, faltas: 10 },
-      { nome: 'João Pedro Martins',  mat: '2025010', status: 'ok',      media: 7.9, freq: 93, faltas: 5 },
-      { nome: 'Karina Almeida',      mat: '2025011', status: 'ok',      media: 8.3, freq: 95, faltas: 4 },
-      { nome: 'Lucas Ribeiro',       mat: '2025012', status: 'risco',   media: 4.9, freq: 68, faltas: 25 }
-    ];
+    function carregarAlunos() {
+      // Tenta ler de qualquer uma das chaves sincronizadas
+      for (const key of ALUNOS_KEYS) {
+        try {
+          const raw = localStorage.getItem(key);
+          if (raw) return JSON.parse(raw);
+        } catch(e) {}
+      }
 
-    /* ---------- Lista de alunos ---------- */
+      // Se não existe ainda, gera base
+      const base = [
+        { nome: 'Ana Beatriz Souza',   mat: '2025001', status: 'ok',      media: 8.5, freq: 96, faltas: 3 },
+        { nome: 'Bruno Carvalho Lima', mat: '2025002', status: 'ok',      media: 7.8, freq: 92, faltas: 6 },
+        { nome: 'Carla Mendes Rocha',  mat: '2025003', status: 'ok',      media: 9.2, freq: 98, faltas: 1 },
+        { nome: 'Daniel Oliveira',     mat: '2025004', status: 'atencao', media: 6.4, freq: 85, faltas: 12 },
+        { nome: 'Eduarda Santos',      mat: '2025005', status: 'ok',      media: 8.0, freq: 94, faltas: 5 },
+        { nome: 'Felipe Andrade',      mat: '2025006', status: 'risco',   media: 5.2, freq: 72, faltas: 22 },
+        { nome: 'Gabriela Nunes',      mat: '2025007', status: 'ok',      media: 7.5, freq: 91, faltas: 7 },
+        { nome: 'Henrique Costa',      mat: '2025008', status: 'ok',      media: 8.8, freq: 97, faltas: 2 },
+        { nome: 'Isabela Ferreira',    mat: '2025009', status: 'atencao', media: 6.8, freq: 88, faltas: 10 },
+        { nome: 'João Pedro Martins',  mat: '2025010', status: 'ok',      media: 7.9, freq: 93, faltas: 5 },
+        { nome: 'Karina Almeida',      mat: '2025011', status: 'ok',      media: 8.3, freq: 95, faltas: 4 },
+        { nome: 'Lucas Ribeiro',       mat: '2025012', status: 'risco',   media: 4.9, freq: 68, faltas: 25 }
+      ];
+      // Semeia em todas as chaves
+      ALUNOS_KEYS.forEach(k => localStorage.setItem(k, JSON.stringify(base)));
+      return base;
+    }
+
+    /* 🔗 Salva os alunos nas 3 chaves (sincroniza com diretor e pedagogo) */
+    function salvarAlunos() {
+      try {
+        const json = JSON.stringify(alunos);
+        ALUNOS_KEYS.forEach(k => localStorage.setItem(k, json));
+      } catch(e) { console.error('Erro ao salvar alunos:', e); }
+    }
+
+    let alunos = carregarAlunos();
+
+    /* =========================================================
+       RENDER — Lista de alunos
+       ========================================================= */
     const alunoList = document.getElementById('aluno-list');
 
     function renderAlunos(filtro = '') {
@@ -1260,7 +1173,9 @@
     renderAlunos();
     document.getElementById('busca-aluno').addEventListener('input', e => renderAlunos(e.target.value));
 
-    /* ---------- Tabela de notas ---------- */
+    /* =========================================================
+       TABELA DE NOTAS
+       ========================================================= */
     const notasBody = document.getElementById('notas-body');
     notasBody.innerHTML = alunos.map(a => {
       const b1 = (a.media - 0.5 + Math.random() * 1).toFixed(1);
@@ -1279,7 +1194,9 @@
         </tr>`;
     }).join('');
 
-    /* ---------- Frequência ---------- */
+    /* =========================================================
+       FREQUÊNCIA
+       ========================================================= */
     const freqList = document.getElementById('freq-list');
     freqList.innerHTML = alunos.map((a, idx) => `
       <div class="freq-item" data-index="${idx}">
@@ -1302,7 +1219,9 @@
       });
     });
 
-    /* ---------- Abas ---------- */
+    /* =========================================================
+       ABAS
+       ========================================================= */
     document.querySelectorAll('.tab').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -1360,7 +1279,9 @@
       if (e.key === 'Escape' && modal.classList.contains('open')) fecharModal();
     });
 
-    /* ---------- Ações do modal ---------- */
+    /* =========================================================
+       AÇÕES DO MODAL
+       ========================================================= */
     const acoes = {
       perfil:       { label: 'Ver perfil completo de',       redirect: 'aluno-perfil.html' },
       nota:         { label: 'Lançar nota para',             redirect: 'notas.html' },
@@ -1388,6 +1309,18 @@
 
         fecharModal();
       });
+    });
+
+    /* =========================================================
+       🔄 ESCUTA MUDANÇAS EM OUTRAS ABAS
+       Se o diretor/pedagogo alterar, esta página atualiza sozinha
+       ========================================================= */
+    window.addEventListener('storage', (e) => {
+      if (TURMAS_KEYS.includes(e.key) || ALUNOS_KEYS.includes(e.key)) {
+        console.log('🔄 Dados atualizados em outro painel');
+        alunos = carregarAlunos();
+        renderAlunos();
+      }
     });
   </script>
 
