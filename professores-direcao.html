@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1565c0" />
+  <title>Professores · Direção · Frei Graciano Droessler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:#fff; --white-soft:#f7fbfe;
+      --azul-bebe-50:#eaf5fb; --azul-bebe-100:#d3ecf8; --azul-bebe-200:#b8e0f5; --azul-bebe-300:#8ecbee;
+      --azul-escuro:#1565c0; --azul-escuro-2:#0d47a1;
+      --ink:#0f1e35; --ink-soft:#475569; --ink-mute:#94a3b8;
+      --verde:#22c55e; --verde-2:#15803d; --amarelo:#f59e0b; --amarelo-2:#b45309;
+      --vermelho:#dc2626; --roxo:#8b5cf6; --roxo-2:#6d28d9; --ciano:#06b6d4; --rosa:#ec4899;
+      --shadow-sm:0 1px 2px rgba(15,30,53,.06); --shadow-md:0 10px 30px -10px rgba(21,101,192,.18);
+      --shadow-lg:0 30px 60px -20px rgba(21,101,192,.25); --shadow-xl:0 40px 80px -24px rgba(15,30,53,.2);
+      --ring:0 0 0 4px rgba(184,224,245,.55);
+      --radius:22px;
+      --font-sans:'Inter',system-ui,sans-serif;
+      --font-display:'Playfair Display',Georgia,serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height:100vh; font-family:var(--font-sans); font-size:16px; color:var(--ink);
+      background-color:var(--white-soft); padding:32px 20px 60px; overflow-x:hidden;
+      position:relative; -webkit-font-smoothing:antialiased;
+    }
+
+    /* FUNDO */
+    .bg-layer { position:fixed;inset:0;z-index:-1;overflow:hidden;
+      background: radial-gradient(1200px 600px at 15% 10%, #fff 0%, transparent 60%),
+                  radial-gradient(900px 500px at 85% 90%, var(--azul-bebe-50) 0%, transparent 55%),
+                  linear-gradient(160deg, #fff 0%, var(--azul-bebe-50) 55%, #eaf5fb 100%); }
+    .bg-glow { position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;pointer-events:none; }
+    .bg-glow-1 { width:480px;height:480px;top:-160px;left:-140px;background:radial-gradient(circle,var(--azul-bebe-200) 0%,transparent 70%);animation:float 14s ease-in-out infinite; }
+    .bg-glow-2 { width:560px;height:560px;bottom:-220px;right:-160px;background:radial-gradient(circle,var(--azul-bebe-100) 0%,transparent 70%);animation:float 18s ease-in-out infinite reverse; }
+    .bg-glow-3 { width:400px;height:400px;top:40%;right:20%;background:radial-gradient(circle,rgba(139,92,246,.1) 0%,transparent 70%);animation:float 22s ease-in-out infinite; }
+    .bg-grain { position:absolute;inset:0;background-image:radial-gradient(rgba(21,101,192,.05) 1px,transparent 1px);background-size:22px 22px;mask-image:radial-gradient(circle at center,black 40%,transparent 80%);-webkit-mask-image:radial-gradient(circle at center,black 40%,transparent 80%);opacity:.6; }
+    @keyframes float { 0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(20px,-20px) scale(1.05);} }
+
+    .container { width:100%;max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:20px;animation:fade-in .8s cubic-bezier(.22,1,.36,1); }
+    @keyframes fade-in { from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);} }
+
+    /* TOPBAR */
+    .topbar { display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 22px;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:var(--radius);box-shadow:var(--shadow-md); }
+    .brand { display:flex;align-items:center;gap:14px;min-width:0; }
+    .brand-logo { width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--azul-escuro),var(--azul-escuro-2));color:#fff;font-family:var(--font-display);font-weight:700;font-size:1.1rem;flex-shrink:0;box-shadow:0 8px 20px -6px rgba(21,101,192,.55); }
+    .brand-info .top { font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--azul-escuro);opacity:.85; }
+    .brand-info .main { font-size:.92rem;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .topbar-actions { display:flex;align-items:center;gap:10px;flex-wrap:wrap; }
+    .user-chip { display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;background:var(--azul-bebe-50);border:1px solid var(--azul-bebe-100);border-radius:999px; }
+    .user-chip .avatar { width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--azul-escuro),var(--azul-escuro-2));color:#fff;font-size:.85rem;font-weight:700;position:relative; }
+    .user-chip .avatar::after { content:"";position:absolute;bottom:-1px;right:-1px;width:10px;height:10px;border-radius:50%;background:var(--verde);border:2px solid #fff; }
+    .user-chip .name { font-size:.85rem;font-weight:600;color:var(--ink);max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .btn-top { display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:var(--white);border:1px solid var(--azul-bebe-100);border-radius:999px;color:var(--azul-escuro);font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .3s ease;white-space:nowrap; }
+    .btn-top:hover { background:var(--azul-escuro);color:#fff;border-color:var(--azul-escuro);transform:translateX(-3px); }
+    .btn-top svg { width:15px;height:15px; }
+
+    /* HERO */
+    .hero {
+      padding:34px 32px;
+      background:
+        radial-gradient(600px 300px at 100% 0%, rgba(34,197,94,.12) 0%, transparent 60%),
+        radial-gradient(600px 300px at 0% 100%, rgba(21,101,192,.08) 0%, transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.95), rgba(234,245,251,.9));
+      backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-lg);
+      position:relative; overflow:hidden;
+    }
+    .hero::before {
+      content:""; position:absolute; top:-40%; right:-10%;
+      width:420px; height:420px; border-radius:50%;
+      background: radial-gradient(circle, rgba(184,224,245,.5), transparent 70%);
+      pointer-events:none; animation: float 16s ease-in-out infinite;
+    }
+    .hero-content { position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+    .hero-text .eyebrow {
+      font-size:.72rem; font-weight:700; letter-spacing:.16em;
+      text-transform:uppercase; color:var(--verde-2);
+      margin-bottom:8px;
+      display:inline-flex; align-items:center; gap:10px;
+      padding:6px 14px;
+      background:rgba(255,255,255,.7);
+      border:1px solid rgba(34,197,94,.2);
+      border-radius:999px;
+    }
+    .hero-text .eyebrow::before {
+      content:""; width:7px;height:7px;border-radius:50%;
+      background:var(--verde);
+      box-shadow:0 0 0 4px rgba(34,197,94,.25);
+      animation:pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100%{ box-shadow:0 0 0 4px rgba(34,197,94,.25);}
+      50%{ box-shadow:0 0 0 8px rgba(34,197,94,.08);}
+    }
+    .hero-text h1 {
+      font-family:var(--font-display);
+      font-size:clamp(1.7rem,3.5vw,2.3rem);
+      font-weight:700; line-height:1.1;
+      letter-spacing:-.015em; color:var(--ink);
+      margin-bottom:8px;
+    }
+    .hero-text h1 .highlight {
+      background:linear-gradient(135deg,var(--azul-escuro),var(--verde-2));
+      -webkit-background-clip:text;background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .hero-text p { font-size:.92rem; color:var(--ink-soft); max-width:560px; line-height:1.5; }
+
+    .btn-hero-primary {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:13px 24px; border-radius:999px; border:none;
+      background:linear-gradient(135deg,var(--azul-escuro),var(--azul-escuro-2));
+      color:#fff; font-family:inherit; font-size:.85rem; font-weight:700;
+      cursor:pointer; text-decoration:none;
+      box-shadow:0 10px 24px -8px rgba(21,101,192,.55);
+      transition:all .25s ease;
+      white-space:nowrap;
+      position:relative; z-index:1;
+    }
+    .btn-hero-primary:hover { transform:translateY(-2px); box-shadow:0 14px 30px -8px rgba(21,101,192,.65); }
+    .btn-hero-primary svg { width:16px;height:16px; }
+
+    /* ESTATÍSTICAS */
+    .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; }
+    .stat {
+      padding:20px; background:rgba(255,255,255,.95);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:16px; box-shadow:var(--shadow-sm);
+      display:flex; flex-direction:column; gap:10px;
+      transition:transform .3s ease,box-shadow .3s ease;
+      position:relative; overflow:hidden;
+    }
+    .stat::before { content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent); }
+    .stat:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); }
+    .stat.blue { --accent:linear-gradient(90deg,#1565c0,#0d47a1); }
+    .stat.green { --accent:linear-gradient(90deg,#22c55e,#15803d); }
+    .stat.amber { --accent:linear-gradient(90deg,#f59e0b,#b45309); }
+    .stat.purple { --accent:linear-gradient(90deg,#8b5cf6,#6d28d9); }
+    .stat.red { --accent:linear-gradient(90deg,#dc2626,#991b1b); }
+    .stat-head { display:flex;align-items:center;justify-content:space-between;gap:10px; }
+    .stat-icon { width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:#fff;flex-shrink:0; }
+    .stat-icon svg { width:18px;height:18px; }
+    .stat-icon.blue { background:linear-gradient(135deg,#1565c0,#0d47a1); }
+    .stat-icon.green { background:linear-gradient(135deg,#22c55e,#15803d); }
+    .stat-icon.amber { background:linear-gradient(135deg,#f59e0b,#b45309); }
+    .stat-icon.purple { background:linear-gradient(135deg,#8b5cf6,#6d28d9); }
+    .stat-icon.red { background:linear-gradient(135deg,#dc2626,#991b1b); }
+    .stat-trend { font-size:.68rem;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--azul-bebe-50);color:var(--azul-escuro); }
+    .stat-value { font-family:var(--font-display);font-size:1.85rem;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-.02em; }
+    .stat-label { font-size:.75rem;color:var(--ink-soft);font-weight:500; }
+
+    /* FILTROS */
+    .filters {
+      display:flex; flex-direction:column; gap:12px;
+      padding:16px;
+      background:rgba(255,255,255,.9);
+      backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:18px;
+      box-shadow:var(--shadow-sm);
+    }
+    .filters-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    .search { position:relative; flex:1; min-width:240px; }
+    .search svg { position:absolute; left:16px; top:50%; transform:translateY(-50%); width:17px;height:17px;color:var(--ink-mute); pointer-events:none; }
+    .search input {
+      width:100%; padding:12px 16px 12px 44px;
+      font-family:inherit; font-size:.9rem;
+      background:var(--white);
+      border:1.5px solid var(--azul-bebe-100);
+      border-radius:999px; outline:none;
+      transition:border-color .25s ease, box-shadow .25s ease;
+    }
+    .search input:focus { border-color:var(--azul-escuro); box-shadow:var(--ring); }
+
+    .select-wrap { position:relative; min-width:170px; }
+    .select-wrap svg { position:absolute; right:14px; top:50%; transform:translateY(-50%); width:14px;height:14px;color:var(--ink-mute); pointer-events:none; }
+    .select-wrap select {
+      width:100%; padding:12px 38px 12px 16px;
+      font-family:inherit; font-size:.85rem; font-weight:500;
+      color:var(--ink); background:var(--white);
+      border:1.5px solid var(--azul-bebe-100);
+      border-radius:999px; outline:none;
+      appearance:none; -webkit-appearance:none;
+      cursor:pointer;
+      transition:border-color .25s ease, box-shadow .25s ease;
+    }
+    .select-wrap select:focus { border-color:var(--azul-escuro); box-shadow:var(--ring); }
+
+    .chip-group { display:flex; gap:6px; flex-wrap:wrap; }
+    .chip {
+      padding:9px 16px;
+      background:var(--white);
+      border:1.5px solid var(--azul-bebe-100);
+      border-radius:999px;
+      font-family:inherit; font-size:.8rem; font-weight:600;
+      color:var(--ink-soft); cursor:pointer;
+      transition:all .25s ease;
+      display:inline-flex; align-items:center; gap:6px;
+    }
+    .chip:hover { color:var(--azul-escuro); border-color:var(--azul-bebe-300); transform:translateY(-1px); }
+    .chip.active { background:var(--azul-escuro); color:#fff; border-color:var(--azul-escuro); box-shadow:0 6px 14px -4px rgba(21,101,192,.5); }
+    .chip .count { background:rgba(255,255,255,.25); padding:1px 8px; border-radius:999px; font-size:.7rem; font-weight:700; }
+    .chip:not(.active) .count { background:var(--azul-bebe-50); color:var(--azul-escuro); }
+    .chip.clear { color:var(--vermelho); border-color:#fecaca; margin-left:auto; }
+    .chip.clear:hover { background:var(--vermelho); color:#fff; border-color:var(--vermelho); }
+
+    /* GRID DE PROFESSORES */
+    .profs-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:16px; }
+
+    .prof-card {
+      padding:22px;
+      background:rgba(255,255,255,.95);
+      backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:20px;
+      box-shadow:var(--shadow-sm);
+      transition:all .35s cubic-bezier(.22,1,.36,1);
+      position:relative; overflow:hidden;
+      display:flex; flex-direction:column; gap:16px;
+    }
+    .prof-card::before {
+      content:""; position:absolute; top:0; left:0; right:0; height:4px;
+      background:linear-gradient(90deg,var(--roxo),var(--roxo-2));
+    }
+    .prof-card:hover {
+      transform:translateY(-5px);
+      box-shadow:var(--shadow-lg);
+      border-color:rgba(139,92,246,.15);
+    }
+
+    /* Topo do card */
+    .prof-top { display:flex; align-items:flex-start; gap:14px; }
+    .prof-avatar {
+      width:56px; height:56px; border-radius:16px;
+      display:grid; place-items:center;
+      background:linear-gradient(135deg,var(--roxo),var(--roxo-2));
+      color:#fff; font-family:var(--font-display);
+      font-size:1.2rem; font-weight:700;
+      flex-shrink:0;
+      box-shadow:0 10px 22px -8px rgba(139,92,246,.55);
+      position:relative;
+    }
+    .prof-avatar::after {
+      content:""; position:absolute; bottom:-2px; right:-2px;
+      width:16px;height:16px; border-radius:50%;
+      background:var(--verde); border:3px solid #fff;
+    }
+    .prof-avatar.inativo::after { background:var(--vermelho); }
+
+    .prof-info { flex:1; min-width:0; }
+    .prof-nome {
+      font-family:var(--font-display);
+      font-size:1.1rem; font-weight:700;
+      color:var(--ink); line-height:1.2;
+      letter-spacing:-.01em;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+      margin-bottom:3px;
+    }
+    .prof-disc {
+      font-size:.72rem; font-weight:700;
+      letter-spacing:.06em; text-transform:uppercase;
+      color:var(--roxo);
+      display:inline-flex; align-items:center; gap:5px;
+    }
+    .prof-disc::before { content:""; width:5px;height:5px;border-radius:50%;background:var(--roxo); }
+
+    /* Status badge */
+    .prof-badge {
+      padding:5px 11px; border-radius:999px;
+      font-size:.65rem; font-weight:700;
+      letter-spacing:.03em;
+      flex-shrink:0;
+      display:inline-flex; align-items:center; gap:5px;
+    }
+    .prof-badge::before { content:""; width:6px;height:6px;border-radius:50%;background:currentColor; }
+    .prof-badge.ativo { background:#dcfce7; color:#15803d; }
+    .prof-badge.licenca { background:#fef3c7; color:#b45309; }
+    .prof-badge.inativo { background:#fee2e2; color:#b91c1c; }
+
+    /* Info extra */
+    .prof-details {
+      display:flex; flex-direction:column; gap:8px;
+      padding:14px 0;
+      border-top:1px solid var(--azul-bebe-100);
+      border-bottom:1px solid var(--azul-bebe-100);
+    }
+    .detail-row {
+      display:flex; align-items:center; gap:8px;
+      font-size:.78rem; color:var(--ink-soft);
+    }
+    .detail-row svg { width:14px;height:14px;color:var(--azul-escuro); flex-shrink:0; }
+    .detail-row strong { color:var(--ink); font-weight:600; }
+    .detail-row span { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+    /* Stats do professor */
+    .prof-stats {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:8px;
+    }
+    .prof-stat { text-align:center; padding:6px; background:var(--white-soft); border-radius:10px; }
+    .prof-stat-value {
+      font-family:var(--font-display);
+      font-size:1.05rem; font-weight:700;
+      color:var(--ink); line-height:1;
+      margin-bottom:3px;
+    }
+    .prof-stat-label {
+      font-size:.6rem; font-weight:600;
+      letter-spacing:.04em; text-transform:uppercase;
+      color:var(--ink-soft);
+    }
+
+    /* Turmas tags */
+    .prof-turmas { display:flex; gap:5px; flex-wrap:wrap; }
+    .turma-tag {
+      padding:3px 9px; border-radius:6px;
+      background:var(--azul-bebe-50); color:var(--azul-escuro);
+      font-size:.68rem; font-weight:700;
+    }
+
+    /* Ações do card */
+    .prof-actions {
+      display:flex; gap:8px;
+      margin-top:auto;
+    }
+    .btn-mini {
+      flex:1; padding:9px 12px; border-radius:10px;
+      font-family:inherit; font-size:.74rem; font-weight:700;
+      cursor:pointer; text-decoration:none; border:none;
+      display:inline-flex; align-items:center; justify-content:center; gap:5px;
+      transition:all .25s ease;
+      white-space:nowrap;
+    }
+    .btn-mini svg { width:13px;height:13px; }
+    .btn-mini.primary { background:linear-gradient(135deg,var(--azul-escuro),var(--azul-escuro-2)); color:#fff; }
+    .btn-mini.primary:hover { transform:translateY(-2px); box-shadow:0 6px 14px -4px rgba(21,101,192,.5); }
+    .btn-mini.ghost { background:#fff; border:1.5px solid var(--azul-bebe-200); color:var(--azul-escuro); }
+    .btn-mini.ghost:hover { background:var(--azul-bebe-50); border-color:var(--azul-bebe-300); }
+    .btn-mini.danger { background:#fff; border:1.5px solid #fecaca; color:var(--vermelho); }
+    .btn-mini.danger:hover { background:var(--vermelho); color:#fff; border-color:var(--vermelho); }
+
+    /* EMPTY STATE */
+    .empty-box {
+      grid-column:1/-1;
+      text-align:center;
+      padding:70px 24px;
+      color:var(--ink-soft);
+      background:rgba(255,255,255,.7);
+      border:1.5px dashed var(--azul-bebe-200);
+      border-radius:22px;
+    }
+    .empty-box svg { width:56px;height:56px;color:var(--azul-bebe-300); margin-bottom:14px; }
+    .empty-box h3 { font-family:var(--font-display); font-size:1.2rem; color:var(--ink); margin-bottom:6px; }
+    .empty-box p { font-size:.92rem; }
+
+    /* MODAL */
+    .modal-overlay {
+      position:fixed; inset:0;
+      background:rgba(15,30,53,.55);
+      backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+      z-index:999;
+      display:flex; align-items:center; justify-content:center;
+      padding:20px;
+      opacity:0; visibility:hidden;
+      transition:opacity .3s ease, visibility .3s ease;
+    }
+    .modal-overlay.open { opacity:1; visibility:visible; }
+
+    .modal {
+      width:100%; max-width:560px;
+      max-height:92vh; overflow-y:auto;
+      background:var(--white);
+      border-radius:24px;
+      box-shadow:0 40px 80px -20px rgba(15,30,53,.4);
+      transform:translateY(30px) scale(.96);
+      transition:transform .4s cubic-bezier(.22,1,.36,1);
+      position:relative;
+    }
+    .modal-overlay.open .modal { transform:translateY(0) scale(1); }
+
+    .modal::before {
+      content:""; position:absolute; top:0; left:0; right:0; height:4px;
+      background:linear-gradient(90deg,transparent,var(--azul-escuro),transparent);
+      border-radius:24px 24px 0 0;
+    }
+
+    .modal-head {
+      padding:24px 26px 18px;
+      background:linear-gradient(135deg,var(--azul-bebe-50),#fff);
+      border-bottom:1px solid var(--azul-bebe-100);
+      border-radius:24px 24px 0 0;
+      position:relative;
+    }
+    .modal-head .eyebrow {
+      font-size:.68rem; font-weight:700;
+      letter-spacing:.14em; text-transform:uppercase;
+      color:var(--azul-escuro); opacity:.85;
+      margin-bottom:4px;
+    }
+    .modal-head h2 {
+      font-family:var(--font-display);
+      font-size:1.3rem; font-weight:700;
+      color:var(--ink); line-height:1.15;
+    }
+    .modal-close {
+      position:absolute; top:14px; right:14px;
+      width:34px;height:34px;border-radius:50%;
+      display:grid; place-items:center;
+      background:#fff; border:1px solid var(--azul-bebe-100);
+      color:var(--ink-soft); cursor:pointer;
+      transition:all .25s ease;
+    }
+    .modal-close:hover { background:var(--vermelho); color:#fff; border-color:var(--vermelho); transform:rotate(90deg); }
+    .modal-close svg { width:15px;height:15px; }
+
+    .modal-body {
+      padding:20px 26px 8px;
+      display:flex; flex-direction:column; gap:14px;
+    }
+
+    .field { display:flex; flex-direction:column; gap:6px; }
+    .field label {
+      font-size:.7rem; font-weight:700;
+      letter-spacing:.06em; text-transform:uppercase;
+      color:var(--ink-soft);
+    }
+    .field input, .field select {
+      padding:11px 14px;
+      font-family:inherit; font-size:.9rem;
+      color:var(--ink);
+      background:#fff;
+      border:1.5px solid var(--azul-bebe-100);
+      border-radius:11px;
+      outline:none;
+      transition:all .25s ease;
+    }
+    .field input:focus, .field select:focus {
+      border-color:var(--azul-escuro);
+      box-shadow:var(--ring);
+    }
+    .field input::placeholder { color:var(--ink-mute); }
+
+    .field-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+    .modal-actions {
+      padding:18px 26px 22px;
+      display:flex; gap:10px; justify-content:flex-end;
+      flex-wrap:wrap;
+    }
+    .btn-cancel {
+      padding:11px 20px;
+      background:#fff;
+      border:1.5px solid var(--azul-bebe-200);
+      border-radius:999px;
+      font-family:inherit; font-size:.82rem; font-weight:600;
+      color:var(--ink-soft); cursor:pointer;
+      transition:all .25s ease;
+    }
+    .btn-cancel:hover { background:var(--azul-bebe-50); color:var(--azul-escuro); }
+    .btn-save {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:11px 22px;
+      background:linear-gradient(135deg,var(--azul-escuro),var(--azul-escuro-2));
+      border:none; border-radius:999px;
+      font-family:inherit; font-size:.82rem; font-weight:700;
+      color:#fff; cursor:pointer;
+      box-shadow:0 8px 18px -6px rgba(21,101,192,.55);
+      transition:all .25s ease;
+    }
+    .btn-save:hover { transform:translateY(-2px); box-shadow:0 12px 24px -6px rgba(21,101,192,.65); }
+    .btn-save svg { width:14px;height:14px; }
+
+    /* RODAPÉ */
+    .footer { margin-top:12px;display:flex;align-items:center;justify-content:center;gap:10px;padding:20px 24px;background:rgba(255,255,255,.6);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:var(--shadow-sm); }
+    .footer .dot { width:6px;height:6px;border-radius:50%;background:var(--azul-escuro);opacity:.6; }
+    .footer p { font-size:.76rem;color:var(--ink-soft); }
+
+    /* TOAST */
+    .toast {
+      position:fixed; bottom:28px; left:50%; transform:translate(-50%, 120px);
+      padding:14px 24px;
+      background:linear-gradient(135deg,var(--verde),var(--verde-2));
+      color:#fff; border-radius:999px;
+      font-size:.85rem; font-weight:600;
+      box-shadow:0 20px 40px -10px rgba(34,197,94,.5);
+      z-index:2000;
+      display:inline-flex; align-items:center; gap:10px;
+      opacity:0;
+      transition:transform .4s cubic-bezier(.22,1,.36,1), opacity .3s ease;
+      pointer-events:none;
+    }
+    .toast.show { transform:translate(-50%, 0); opacity:1; }
+    .toast svg { width:18px;height:18px; }
+
+    /* RESPONSIVO */
+    @media (max-width:640px) {
+      body { padding:20px 14px 40px; }
+      .topbar { padding:14px 16px; }
+      .btn-top span { display:none; }
+      .user-chip .name { max-width:100px; }
+      .hero { padding:24px 20px; }
+      .hero-content { flex-direction:column; align-items:stretch; }
+      .hero-text h1 { font-size:1.5rem; }
+      .btn-hero-primary { width:100%; justify-content:center; }
+      .stats { grid-template-columns:repeat(2,1fr); gap:10px; }
+      .stat { padding:14px; }
+      .stat-value { font-size:1.4rem; }
+      .profs-grid { grid-template-columns:1fr; }
+      .filters-row { flex-direction:column; align-items:stretch; }
+      .select-wrap { min-width:100%; }
+      .chip.clear { margin-left:0; }
+      .field-row { grid-template-columns:1fr; }
+    }
+    @media (max-width:400px) {
+      .user-chip .name { display:none; }
+      .stats { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after {
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+    <div class="bg-grain"></div>
+  </div>
+
+  <div class="container">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">FG</div>
+        <div class="brand-info">
+          <div class="top">Painel da Direção</div>
+          <div class="main">Frei Graciano Droessler</div>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <div class="user-chip">
+          <div class="avatar" id="user-avatar">D</div>
+          <span class="name" id="user-name">Direção</span>
+        </div>
+        <a href="3.html" class="btn-top" id="btn-voltar" title="Voltar ao painel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5"/>
+            <path d="M12 19l-7-7 7-7"/>
+          </svg>
+          <span>Painel</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="eyebrow">Gestão de Pessoas · Docentes</div>
+          <h1>Gestão de <span class="highlight">Professores</span></h1>
+          <p>Cadastre, edite e gerencie o corpo docente da escola. Acompanhe turmas atribuídas, disciplinas, contatos e situação de cada professor.</p>
+        </div>
+        <button class="btn-hero-primary" id="btn-novo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          Novo Professor
+        </button>
+      </div>
+    </section>
+
+    <!-- ESTATÍSTICAS -->
+    <section class="stats">
+      <div class="stat blue">
+        <div class="stat-head">
+          <div class="stat-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 4h20v12H2z"/>
+              <path d="M12 16v5"/>
+              <path d="M8 21h8"/>
+            </svg>
+          </div>
+          <span class="stat-trend">Total</span>
+        </div>
+        <div class="stat-value" id="st-total">0</div>
+        <div class="stat-label">Professores cadastrados</div>
+      </div>
+
+      <div class="stat green">
+        <div class="stat-head">
+          <div class="stat-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <path d="M22 4L12 14.01l-3-3"/>
+            </svg>
+          </div>
+          <span class="stat-trend">Ativos</span>
+        </div>
+        <div class="stat-value" id="st-ativos">0</div>
+        <div class="stat-label">Em regência</div>
+      </div>
+
+      <div class="stat amber">
+        <div class="stat-head">
+          <div class="stat-icon amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <path d="M16 2v4M8 2v4M3 10h18"/>
+            </svg>
+          </div>
+          <span class="stat-trend">Licença</span>
+        </div>
+        <div class="stat-value" id="st-licenca">0</div>
+        <div class="stat-label">Afastados</div>
+      </div>
+
+      <div class="stat purple">
+        <div class="stat-head">
+          <div class="stat-icon purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+            </svg>
+          </div>
+          <span class="stat-trend">Turmas</span>
+        </div>
+        <div class="stat-value" id="st-turmas">0</div>
+        <div class="stat-label">Atribuições ativas</div>
+      </div>
+    </section>
+
+    <!-- FILTROS -->
+    <section class="filters">
+      <div class="filters-row">
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <input type="text" id="busca" placeholder="Buscar por nome, disciplina ou e-mail..." />
+        </div>
+
+        <div class="select-wrap">
+          <select id="f-disciplina">
+            <option value="">Todas as disciplinas</option>
+          </select>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="filters-row">
+        <div class="chip-group" id="chips-status">
+          <button class="chip active" data-status="">Todos <span class="count" id="count-todos">0</span></button>
+          <button class="chip" data-status="ativo">Ativos <span class="count" id="count-ativos">0</span></button>
+          <button class="chip" data-status="licenca">Licença <span class="count" id="count-licenca">0</span></button>
+          <button class="chip" data-status="inativo">Inativos <span class="count" id="count-inativos">0</span></button>
+        </div>
+
+        <button class="chip clear" id="btn-limpar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+          Limpar
+        </button>
+      </div>
+    </section>
+
+    <!-- GRID -->
+    <section class="profs-grid" id="profs-grid" aria-label="Lista de professores"></section>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+      <span class="dot" aria-hidden="true"></span>
+      <p>© 2025 · Escola Estadual do Campo Frei Graciano Droessler</p>
+    </footer>
+
+  </div>
+
+  <!-- MODAL NOVO/EDITAR -->
+  <div class="modal-overlay" id="modal" role="dialog" aria-modal="true">
+    <div class="modal">
+      <button class="modal-close" id="modal-close" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6L6 18"/>
+          <path d="M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <div class="modal-head">
+        <div class="eyebrow" id="modal-eyebrow">Cadastro</div>
+        <h2 id="modal-title">Novo Professor</h2>
+      </div>
+
+      <form id="form-prof">
+        <input type="hidden" id="f-id" />
+
+        <div class="modal-body">
+          <div class="field">
+            <label for="f-nome">Nome completo *</label>
+            <input type="text" id="f-nome" placeholder="Ex: Mariana Alves" required />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="f-disciplina-input">Disciplina *</label>
+              <input type="text" id="f-disciplina-input" placeholder="Ex: Matemática" required />
+            </div>
+            <div class="field">
+              <label for="f-status">Situação *</label>
+              <select id="f-status" required>
+                <option value="ativo">Ativo</option>
+                <option value="licenca">Licença</option>
+                <option value="inativo">Inativo</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="f-email">E-mail *</label>
+              <input type="email" id="f-email" placeholder="nome@escola.edu.br" required />
+            </div>
+            <div class="field">
+              <label for="f-telefone">Telefone *</label>
+              <input type="text" id="f-telefone" placeholder="(45) 99812-4433" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-turmas">Turmas atribuídas</label>
+            <input type="text" id="f-turmas" placeholder="Ex: 6ºA, 7ºA, 8ºA (separar por vírgula)" />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="f-formacao">Formação</label>
+              <input type="text" id="f-formacao" placeholder="Ex: Licenciatura em Matemática" />
+            </div>
+            <div class="field">
+              <label for="f-admissao">Admissão</label>
+              <input type="text" id="f-admissao" placeholder="Ex: 2020" />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="btn-cancelar">Cancelar</button>
+          <button type="submit" class="btn-save">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            <span id="btn-save-text">Salvar Professor</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6L9 17l-5-5"/>
+    </svg>
+    <span id="toast-text">Salvo</span>
+  </div>
+
+  <script>
+    /* =========================================================
+       PROTEÇÃO
+       ========================================================= */
+    const nomeDiretor = sessionStorage.getItem('diretorLogado');
+    if (!nomeDiretor) window.location.href = 'diretor.html';
+
+    document.getElementById('user-name').textContent = nomeDiretor || 'Direção';
+    document.getElementById('user-avatar').textContent = (nomeDiretor || 'D').trim().charAt(0).toUpperCase();
+
+    /* =========================================================
+       STORAGE
+       ========================================================= */
+    const STORAGE_KEY = 'professoresDirecao';
+
+    const professoresSeed = [
+      { id:'p1', nome:'Mariana Alves', disciplina:'Matemática', email:'mariana.alves@escola.edu.br', telefone:'(45) 99812-4433', turmas:['6ºA','7ºA','8ºA','9ºA'], status:'ativo', formacao:'Licenciatura em Matemática', admissao:'2018' },
+      { id:'p2', nome:'Rafael Costa', disciplina:'Matemática', email:'rafael.costa@escola.edu.br', telefone:'(45) 99812-4434', turmas:['6ºB','7ºB','8ºB','9ºB'], status:'ativo', formacao:'Licenciatura em Matemática', admissao:'2020' },
+      { id:'p3', nome:'Juliana Pereira', disciplina:'Português', email:'juliana.pereira@escola.edu.br', telefone:'(45) 99812-4435', turmas:['6ºA','6ºB','7ºA','7ºB'], status:'ativo', formacao:'Letras - Português', admissao:'2016' },
+      { id:'p4', nome:'André Souza', disciplina:'História', email:'andre.souza@escola.edu.br', telefone:'(45) 99812-4436', turmas:['8ºA','8ºB','9ºA','9ºB'], status:'ativo', formacao:'Licenciatura em História', admissao:'2015' },
+      { id:'p5', nome:'Patrícia Lima', disciplina:'Ciências', email:'patricia.lima@escola.edu.br', telefone:'(45) 99812-4437', turmas:['6ºA','6ºB','7ºA','7ºB'], status:'ativo', formacao:'Licenciatura em Biologia', admissao:'2019' },
+      { id:'p6', nome:'Carlos Eduardo', disciplina:'Geografia', email:'carlos.eduardo@escola.edu.br', telefone:'(45) 99812-4438', turmas:['8ºA','8ºB','9ºA','9ºB'], status:'licenca', formacao:'Licenciatura em Geografia', admissao:'2017' },
+      { id:'p7', nome:'Beatriz Nogueira', disciplina:'Arte', email:'beatriz.nogueira@escola.edu.br', telefone:'(45) 99812-4439', turmas:['6ºA','7ºA','8ºA','9ºA'], status:'ativo', formacao:'Licenciatura em Artes', admissao:'2021' },
+      { id:'p8', nome:'Fernando Rocha', disciplina:'Inglês', email:'fernando.rocha@escola.edu.br', telefone:'(45) 99812-4440', turmas:['6ºB','7ºB','8ºB','9ºB'], status:'ativo', formacao:'Letras - Inglês', admissao:'2022' },
+      { id:'p9', nome:'Camila Ferreira', disciplina:'Educação Física', email:'camila.ferreira@escola.edu.br', telefone:'(45) 99812-4441', turmas:['6ºA','6ºB','7ºA','7ºB'], status:'ativo', formacao:'Educação Física', admissao:'2019' },
+      { id:'p10', nome:'Roberto Almeida', disciplina:'Filosofia', email:'roberto.almeida@escola.edu.br', telefone:'(45) 99812-4442', turmas:['9ºA','9ºB'], status:'inativo', formacao:'Filosofia', admissao:'2014' }
+    ];
+
+    function carregar() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(professoresSeed));
+          return [...professoresSeed];
+        }
+        return JSON.parse(raw);
+      } catch(e) { return [...professoresSeed]; }
+    }
+
+    function salvar() {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(professores)); } catch(e){}
+    }
+
+    let professores = carregar();
+
+    /* =========================================================
+       HELPERS
+       ========================================================= */
+    function iniciais(nome) {
+      if (!nome) return '?';
+      return nome.split(' ').map(n => n[0]).slice(0,2).join('').toUpperCase();
+    }
+
+    function labelStatus(s) {
+      if (s === 'ativo') return 'Ativo';
+      if (s === 'licenca') return 'Licença';
+      return 'Inativo';
+    }
+
+    /* =========================================================
+       ESTATÍSTICAS
+       ========================================================= */
+    function atualizarStats() {
+      document.getElementById('st-total').textContent = professores.length;
+      document.getElementById('st-ativos').textContent = professores.filter(p => p.status === 'ativo').length;
+      document.getElementById('st-licenca').textContent = professores.filter(p => p.status === 'licenca').length;
+      document.getElementById('st-turmas').textContent = professores.reduce((s,p) => s + (p.turmas?.length || 0), 0);
+    }
+
+    /* =========================================================
+       POPULA SELECT DISCIPLINAS
+       ========================================================= */
+    function popularDisciplinas() {
+      const sel = document.getElementById('f-disciplina');
+      sel.innerHTML = '<option value="">Todas as disciplinas</option>';
+      const discs = [...new Set(professores.map(p => p.disciplina))].sort();
+      discs.forEach(d => {
+        const opt = document.createElement('option');
+        opt.value = d;
+        opt.textContent = d;
+        sel.appendChild(opt);
+      });
+    }
+
+    /* =========================================================
+       FILTROS
+       ========================================================= */
+    let filtros = { busca:'', disciplina:'', status:'' };
+    const grid = document.getElementById('profs-grid');
+
+    function render() {
+      const termo = filtros.busca.toLowerCase().trim();
+      let lista = professores.filter(p => {
+        if (termo) {
+          const hay = (p.nome + ' ' + p.disciplina + ' ' + p.email).toLowerCase();
+          if (!hay.includes(termo)) return false;
+        }
+        if (filtros.disciplina && p.disciplina !== filtros.disciplina) return false;
+        if (filtros.status && p.status !== filtros.status) return false;
+        return true;
+      });
+
+      // Ordena por nome
+      lista.sort((a,b) => a.nome.localeCompare(b.nome));
+
+      // Counts
+      document.getElementById('count-todos').textContent = professores.length;
+      document.getElementById('count-ativos').textContent = professores.filter(p => p.status === 'ativo').length;
+      document.getElementById('count-licenca').textContent = professores.filter(p => p.status === 'licenca').length;
+      document.getElementById('count-inativos').textContent = professores.filter(p => p.status === 'inativo').length;
+
+      if (lista.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="M21 21l-4.35-4.35"/>
+            </svg>
+            <h3>Nenhum professor encontrado</h3>
+            <p>${professores.length === 0 ? 'Clique em "Novo Professor" para começar.' : 'Ajuste os filtros para ver mais professores.'}</p>
+          </div>`;
+        return;
+      }
+
+      grid.innerHTML = lista.map(p => {
+        const ini = iniciais(p.nome);
+        const statusCls = p.status === 'ativo' ? 'ativo' : p.status === 'licenca' ? 'licenca' : 'inativo';
+        const statusLabel = labelStatus(p.status);
+        const turmasCount = p.turmas?.length || 0;
+
+        return `
+          <div class="prof-card">
+            <div class="prof-top">
+              <div class="prof-avatar ${p.status !== 'ativo' ? 'inativo' : ''}">${ini}</div>
+              <div class="prof-info">
+                <div class="prof-nome">${p.nome}</div>
+                <div class="prof-disc">${p.disciplina}</div>
+              </div>
+              <span class="prof-badge ${statusCls}">${statusLabel}</span>
+            </div>
+
+            <div class="prof-details">
+              <div class="detail-row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <span>${p.email}</span>
+              </div>
+              <div class="detail-row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <span>${p.telefone}</span>
+              </div>
+              ${p.formacao ? `
+                <div class="detail-row">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                  </svg>
+                  <span>${p.formacao}${p.admissao ? ' · ' + p.admissao : ''}</span>
+                </div>
+              ` : ''}
+            </div>
+
+            <div class="prof-stats">
+              <div class="prof-stat">
+                <div class="prof-stat-value">${turmasCount}</div>
+                <div class="prof-stat-label">Turmas</div>
+              </div>
+              <div class="prof-stat">
+                <div class="prof-stat-value">${p.status === 'ativo' ? '✓' : '—'}</div>
+                <div class="prof-stat-label">Ativo</div>
+              </div>
+              <div class="prof-stat">
+                <div class="prof-stat-value">${p.admissao || '—'}</div>
+                <div class="prof-stat-label">Admissão</div>
+              </div>
+            </div>
+
+            ${turmasCount > 0 ? `
+              <div class="prof-turmas">
+                ${p.turmas.map(t => `<span class="turma-tag">${t}</span>`).join('')}
+              </div>
+            ` : ''}
+
+            <div class="prof-actions">
+              <button class="btn-mini primary" data-edit="${p.id}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20h9"/>
+                  <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/>
+                </svg>
+                Editar
+              </button>
+              <button class="btn-mini ghost" data-mail="${p.id}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                Mensagem
+              </button>
+              <button class="btn-mini danger" data-del="${p.id}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 6h18"/>
+                  <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Binds
+      document.querySelectorAll('[data-edit]').forEach(btn => {
+        btn.addEventListener('click', () => abrirEdicao(btn.dataset.edit));
+      });
+      document.querySelectorAll('[data-del]').forEach(btn => {
+        btn.addEventListener('click', () => excluir(btn.dataset.del));
+      });
+      document.querySelectorAll('[data-mail]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const p = professores.find(x => x.id === btn.dataset.mail);
+          if (p) mostrarToast(`Mensagem para ${p.nome} (simulação)`);
+        });
+      });
+    }
+
+    /* =========================================================
+       EVENTOS DE FILTRO
+       ========================================================= */
+    document.getElementById('busca').addEventListener('input', e => {
+      filtros.busca = e.target.value;
+      render();
+    });
+
+    document.getElementById('f-disciplina').addEventListener('change', e => {
+      filtros.disciplina = e.target.value;
+      render();
+    });
+
+    document.querySelectorAll('#chips-status .chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#chips-status .chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        filtros.status = chip.dataset.status;
+        render();
+      });
+    });
+
+    document.getElementById('btn-limpar').addEventListener('click', () => {
+      filtros = { busca:'', disciplina:'', status:'' };
+      document.getElementById('busca').value = '';
+      document.getElementById('f-disciplina').value = '';
+      document.querySelectorAll('#chips-status .chip').forEach(c => c.classList.remove('active'));
+      document.querySelector('#chips-status .chip[data-status=""]').classList.add('active');
+      render();
+    });
+
+    /* =========================================================
+       MODAL
+       ========================================================= */
+    const modal       = document.getElementById('modal');
+    const modalClose  = document.getElementById('modal-close');
+    const modalEyebrow= document.getElementById('modal-eyebrow');
+    const modalTitle  = document.getElementById('modal-title');
+    const form        = document.getElementById('form-prof');
+    const btnNovo     = document.getElementById('btn-novo');
+    const btnCancelar = document.getElementById('btn-cancelar');
+    const btnSaveText = document.getElementById('btn-save-text');
+
+    function abrirNovo() {
+      form.reset();
+      document.getElementById('f-id').value = '';
+      modalEyebrow.textContent = 'Cadastro';
+      modalTitle.textContent   = 'Novo Professor';
+      btnSaveText.textContent  = 'Cadastrar Professor';
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => document.getElementById('f-nome').focus(), 100);
+    }
+
+    function abrirEdicao(id) {
+      const p = professores.find(x => x.id === id);
+      if (!p) return;
+      document.getElementById('f-id').value = p.id;
+      document.getElementById('f-nome').value = p.nome;
+      document.getElementById('f-disciplina-input').value = p.disciplina;
+      document.getElementById('f-status').value = p.status;
+      document.getElementById('f-email').value = p.email;
+      document.getElementById('f-telefone').value = p.telefone;
+      document.getElementById('f-turmas').value = (p.turmas || []).join(', ');
+      document.getElementById('f-formacao').value = p.formacao || '';
+      document.getElementById('f-admissao').value = p.admissao || '';
+
+      modalEyebrow.textContent = 'Edição';
+      modalTitle.textContent   = 'Editar Professor';
+      btnSaveText.textContent  = 'Salvar Alterações';
+
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function fecharModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    btnNovo.addEventListener('click', abrirNovo);
+    modalClose.addEventListener('click', fecharModal);
+    btnCancelar.addEventListener('click', fecharModal);
+    modal.addEventListener('click', e => { if (e.target === modal) fecharModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(); });
+
+    /* =========================================================
+       SALVAR
+       ========================================================= */
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const id     = document.getElementById('f-id').value;
+      const nome   = document.getElementById('f-nome').value.trim();
+      const disc   = document.getElementById('f-disciplina-input').value.trim();
+      const status = document.getElementById('f-status').value;
+      const email  = document.getElementById('f-email').value.trim();
+      const tel    = document.getElementById('f-telefone').value.trim();
+      const turmas = document.getElementById('f-turmas').value
+        .split(',').map(t => t.trim()).filter(t => t.length > 0);
+      const formacao = document.getElementById('f-formacao').value.trim();
+      const admissao = document.getElementById('f-admissao').value.trim();
+
+      if (id) {
+        // Editar
+        const idx = professores.findIndex(p => p.id === id);
+        if (idx >= 0) {
+          professores[idx] = { ...professores[idx], nome, disciplina: disc, status, email, telefone: tel, turmas, formacao, admissao };
+          mostrarToast(`Professor atualizado`);
+        }
+      } else {
+        // Novo
+        const novoId = 'p' + Date.now();
+        professores.push({ id: novoId, nome, disciplina: disc, status, email, telefone: tel, turmas, formacao, admissao });
+        mostrarToast(`Professor cadastrado`);
+      }
+
+      salvar();
+      atualizarStats();
+      popularDisciplinas();
+      render();
+      fecharModal();
+    });
+
+    /* =========================================================
+       EXCLUIR
+       ========================================================= */
+    function excluir(id) {
+      const p = professores.find(x => x.id === id);
+      if (!p) return;
+      if (!confirm(`Excluir o professor "${p.nome}"?\n\nEssa ação não pode ser desfeita.`)) return;
+
+      professores = professores.filter(x => x.id !== id);
+      salvar();
+      atualizarStats();
+      popularDisciplinas();
+      render();
+      mostrarToast('Professor excluído');
+    }
+
+    /* =========================================================
+       TOAST
+       ========================================================= */
+    const toastEl = document.getElementById('toast');
+    const toastText = document.getElementById('toast-text');
+    let toastTimeout = null;
+    function mostrarToast(msg) {
+      toastText.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toastEl.classList.remove('show'), 2400);
+    }
+
+    /* =========================================================
+       INIT
+       ========================================================= */
+    atualizarStats();
+    popularDisciplinas();
+    render();
+  </script>
+
+</body>
+</html>
