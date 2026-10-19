@@ -700,7 +700,6 @@
           <span class="name" id="user-name">Professor(a)</span>
         </div>
 
-        <!-- ✅ Voltar para 2.html -->
         <a href="2.html" class="btn-top btn-back" id="btn-voltar" title="Voltar à tela anterior">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5"/>
@@ -709,7 +708,6 @@
           <span>Voltar</span>
         </a>
 
-        <!-- Nova turma -->
         <button class="btn-top btn-new" id="btn-nova-turma">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 5v14M5 12h14"/>
@@ -717,7 +715,6 @@
           <span>Nova Turma</span>
         </button>
 
-        <!-- Logout -->
         <button class="btn-top btn-logout" id="btn-logout" title="Sair da conta">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
@@ -928,7 +925,7 @@
        PROTEÇÃO DE SESSÃO
        ========================================================= */
     const nomeProfessor = sessionStorage.getItem('professorLogado');
-    if (!nomeProfessor) window.location.href = '2.html'; // ✅ Redireciona para 2.html
+    if (!nomeProfessor) window.location.href = '2.html';
 
     const userAvatar = document.getElementById('user-avatar');
     const userName   = document.getElementById('user-name');
@@ -946,14 +943,15 @@
     document.getElementById('btn-logout').addEventListener('click', () => {
       if (confirm('Deseja sair da sua conta?')) {
         sessionStorage.removeItem('professorLogado');
-        window.location.href = '2.html'; // ✅ Volta para 2.html
+        window.location.href = '2.html';
       }
     });
 
     /* =========================================================
-       ARMAZENAMENTO
+       🔗 SINCRONIZAÇÃO ENTRE PAINÉIS
+       As 3 chaves sempre apontam para o mesmo conteúdo
        ========================================================= */
-    const STORAGE_KEY = 'turmasProfessor';
+    const STORAGE_KEYS = ['turmasProfessor', 'turmasDirecao', 'turmasPedagogo'];
 
     const turmasIniciais = [
       { id: '9a-mat', sigla: '9A', serie: '9º Ano', nome: '9º Ano A', disciplina: 'Matemática', periodo: 'manha', nivel: 'fundamental', turno: '07:30 às 09:10', dias: ['SEG','QUA','SEX'], alunos: 32, media: 7.8, freq: 92, cor: 'c1', status: 'ok' },
@@ -964,29 +962,46 @@
       { id: '3em-mat', sigla: '3M', serie: '3ª Série', nome: '3ª Série EM', disciplina: 'Matemática', periodo: 'manha', nivel: 'medio', turno: '09:20 às 11:00', dias: ['TER','QUI'], alunos: 26, media: 8.3, freq: 96, cor: 'c6', status: 'ok' }
     ];
 
+    // Lê de qualquer uma das 3 chaves (na ordem de prioridade)
     function carregarTurmas() {
       try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(turmasIniciais));
-          return [...turmasIniciais];
+        for (const key of STORAGE_KEYS) {
+          const raw = localStorage.getItem(key);
+          if (raw) return JSON.parse(raw);
         }
-        return JSON.parse(raw);
+        // Se nenhuma existe, semeia em todas
+        STORAGE_KEYS.forEach(k => localStorage.setItem(k, JSON.stringify(turmasIniciais)));
+        return [...turmasIniciais];
       } catch (e) {
         console.error('Erro ao carregar turmas:', e);
         return [...turmasIniciais];
       }
     }
 
+    // Salva em TODAS as chaves simultaneamente
     function salvarTurmas(lista) {
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(lista));
+        const json = JSON.stringify(lista);
+        STORAGE_KEYS.forEach(k => localStorage.setItem(k, json));
       } catch (e) {
         console.error('Erro ao salvar turmas:', e);
       }
     }
 
     let turmas = carregarTurmas();
+
+    /* =========================================================
+       🔄 ESCUTA MUDANÇAS EM OUTRAS ABAS/PAINÉIS
+       Se o diretor ou pedagogo alterar, o professor atualiza sozinho
+       ========================================================= */
+    window.addEventListener('storage', (e) => {
+      if (STORAGE_KEYS.includes(e.key)) {
+        console.log('🔄 Turmas atualizadas em outro painel');
+        turmas = carregarTurmas();
+        renderTurmas();
+        atualizarHeroStats();
+      }
+    });
 
     /* =========================================================
        RENDER
@@ -1241,7 +1256,7 @@
       };
 
       turmas.push(novaTurma);
-      salvarTurmas(turmas);
+      salvarTurmas(turmas); // 🔗 salva nas 3 chaves
       renderTurmas();
       atualizarHeroStats();
       fecharModal();
