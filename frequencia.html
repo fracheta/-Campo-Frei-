@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1565c0" />
+  <title>Fazer Chamada · Frei Graciano Droessler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --white-soft: #f7fbfe;
+      --azul-bebe-50: #eaf5fb;
+      --azul-bebe-100: #d3ecf8;
+      --azul-bebe-200: #b8e0f5;
+      --azul-bebe-300: #8ecbee;
+      --azul-escuro: #1565c0;
+      --azul-escuro-2: #0d47a1;
+      --ink: #0f1e35;
+      --ink-soft: #475569;
+      --ink-mute: #94a3b8;
+      --verde: #22c55e;
+      --verde-2: #15803d;
+      --amarelo: #f59e0b;
+      --amarelo-2: #b45309;
+      --vermelho: #dc2626;
+      --roxo: #8b5cf6;
+      --shadow-sm: 0 1px 2px rgba(15, 30, 53, 0.06);
+      --shadow-md: 0 10px 30px -10px rgba(21, 101, 192, 0.18);
+      --shadow-lg: 0 30px 60px -20px rgba(21, 101, 192, 0.25);
+      --ring: 0 0 0 4px rgba(184, 224, 245, 0.55);
+      --radius-card: 24px;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--ink);
+      background-color: var(--white-soft);
+      padding: 32px 20px 60px;
+      overflow-x: hidden;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .bg-layer {
+      position: fixed; inset: 0; z-index: -1; overflow: hidden;
+      background:
+        radial-gradient(1200px 600px at 15% 10%, #ffffff 0%, transparent 60%),
+        radial-gradient(900px 500px at 85% 90%, var(--azul-bebe-50) 0%, transparent 55%),
+        linear-gradient(160deg, #ffffff 0%, var(--azul-bebe-50) 55%, #eaf5fb 100%);
+    }
+    .bg-glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.55; pointer-events: none; }
+    .bg-glow-1 { width: 480px; height: 480px; top: -160px; left: -140px; background: radial-gradient(circle, var(--azul-bebe-200) 0%, transparent 70%); animation: float 14s ease-in-out infinite; }
+    .bg-glow-2 { width: 560px; height: 560px; bottom: -220px; right: -160px; background: radial-gradient(circle, var(--azul-bebe-100) 0%, transparent 70%); animation: float 18s ease-in-out infinite reverse; }
+    .bg-grain { position: absolute; inset: 0; background-image: radial-gradient(rgba(21, 101, 192, 0.05) 1px, transparent 1px); background-size: 22px 22px; mask-image: radial-gradient(circle at center, black 40%, transparent 80%); -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%); opacity: 0.6; }
+    @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(20px, -20px) scale(1.05); } }
+
+    .container {
+      width: 100%; max-width: 1180px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 24px;
+      animation: fade-in 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @keyframes fade-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap; padding: 18px 24px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-card); box-shadow: var(--shadow-md);
+    }
+    .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .brand-logo {
+      width: 46px; height: 46px; border-radius: 12px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--amarelo), var(--amarelo-2));
+      color: var(--white); font-family: var(--font-display);
+      font-weight: 700; font-size: 1.15rem; flex-shrink: 0;
+      box-shadow: 0 8px 20px -6px rgba(245, 158, 11, 0.55);
+    }
+    .brand-info .top { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amarelo-2); opacity: 0.85; }
+    .brand-info .main { font-size: 0.95rem; font-weight: 700; color: var(--ink); }
+    .topbar-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .user-chip {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 6px 14px 6px 6px;
+      background: var(--azul-bebe-50); border: 1px solid var(--azul-bebe-100);
+      border-radius: 999px;
+    }
+    .user-chip .avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--azul-escuro), var(--azul-escuro-2));
+      color: var(--white); font-size: 0.85rem; font-weight: 700; position: relative;
+    }
+    .user-chip .avatar::after {
+      content: ""; position: absolute; bottom: -1px; right: -1px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--verde); border: 2px solid var(--white);
+    }
+    .user-chip .name { font-size: 0.85rem; font-weight: 600; color: var(--ink); max-width: 140px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px; background: var(--white);
+      border: 1px solid var(--azul-bebe-100); border-radius: 999px;
+      color: var(--azul-escuro); font-family: inherit; font-size: 0.82rem;
+      font-weight: 600; cursor: pointer; text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .btn-back:hover { background: var(--azul-escuro); color: var(--white); border-color: var(--azul-escuro); transform: translateX(-3px); }
+    .btn-back svg { width: 15px; height: 15px; }
+
+    /* CABEÇALHO */
+    .head {
+      padding: 32px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(254, 243, 199, 0.85));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-md);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+    }
+    .head::before {
+      content: ""; position: absolute; top: -50%; right: -10%;
+      width: 340px; height: 340px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .head-content { position: relative; z-index: 1; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .head-icon {
+      width: 70px; height: 70px; border-radius: 18px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--amarelo), var(--amarelo-2));
+      color: var(--white); flex-shrink: 0;
+      box-shadow: 0 12px 28px -8px rgba(245, 158, 11, 0.6);
+    }
+    .head-icon svg { width: 34px; height: 34px; }
+    .head-text .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amarelo-2); margin-bottom: 4px; }
+    .head-text h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+      font-weight: 700; line-height: 1.15;
+      color: var(--ink); margin-bottom: 6px;
+    }
+    .head-text p { font-size: 0.88rem; color: var(--ink-soft); max-width: 500px; line-height: 1.5; }
+
+    /* DATA DA CHAMADA */
+    .data-box {
+      position: relative; z-index: 1;
+      padding: 14px 20px;
+      background: var(--white);
+      border: 1px solid var(--azul-bebe-100);
+      border-radius: 16px;
+      box-shadow: var(--shadow-sm);
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      min-width: 140px;
+    }
+    .data-box .label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amarelo-2); }
+    .data-box .value { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+
+    /* RESUMO */
+    .resumo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+    }
+    .resumo-card {
+      padding: 18px; background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 16px; box-shadow: var(--shadow-sm);
+      display: flex; align-items: center; gap: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .resumo-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .resumo-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: grid; place-items: center; color: var(--white); flex-shrink: 0;
+    }
+    .resumo-icon svg { width: 20px; height: 20px; }
+    .resumo-icon.verde { background: linear-gradient(135deg, #22c55e, #15803d); }
+    .resumo-icon.vermelho { background: linear-gradient(135deg, #dc2626, #991b1b); }
+    .resumo-icon.amarelo { background: linear-gradient(135deg, #f59e0b, #b45309); }
+    .resumo-icon.azul { background: linear-gradient(135deg, #1565c0, #0d47a1); }
+    .resumo-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .resumo-value { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--ink); line-height: 1; }
+    .resumo-label { font-size: 0.72rem; color: var(--ink-soft); font-weight: 500; }
+
+    /* AÇÕES EM MASSA */
+    .bulk-actions {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 18px;
+      box-shadow: var(--shadow-sm);
+      align-items: center;
+    }
+    .btn-mini {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 16px; border-radius: 999px;
+      font-family: inherit; font-size: 0.8rem; font-weight: 600;
+      cursor: pointer; border: none; transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+    .btn-mini svg { width: 14px; height: 14px; }
+    .btn-mini.ghost {
+      background: var(--white); color: var(--azul-escuro);
+      border: 1.5px solid var(--azul-bebe-200);
+    }
+    .btn-mini.ghost:hover { background: var(--azul-bebe-50); border-color: var(--azul-bebe-300); }
+    .btn-mini.success {
+      background: linear-gradient(135deg, var(--verde), var(--verde-2));
+      color: var(--white);
+      box-shadow: 0 8px 18px -6px rgba(34, 197, 94, 0.55);
+      margin-left: auto;
+    }
+    .btn-mini.success:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -6px rgba(34, 197, 94, 0.65); }
+
+    /* LISTA DE CHAMADA */
+    .chamada-panel {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 20px; padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .panel-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 14px; flex-wrap: wrap; margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--azul-bebe-100);
+    }
+    .panel-head h2 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--ink); }
+    .panel-head .search-mini { position: relative; min-width: 240px; }
+    .panel-head .search-mini svg {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      width: 16px; height: 16px; color: var(--ink-mute); pointer-events: none;
+    }
+    .panel-head .search-mini input {
+      width: 100%; padding: 10px 14px 10px 40px;
+      font-family: inherit; font-size: 0.85rem;
+      background: var(--white);
+      border: 1.5px solid var(--azul-bebe-100);
+      border-radius: 999px; outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .panel-head .search-mini input:focus { border-color: var(--amarelo-2); box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15); }
+
+    .aluno-list { display: flex; flex-direction: column; gap: 8px; }
+    .aluno-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 16px;
+      background: var(--white);
+      border: 1.5px solid var(--azul-bebe-100);
+      border-radius: 14px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .aluno-item:hover { border-color: var(--amarelo-2); box-shadow: var(--shadow-sm); }
+    .aluno-item.presente { background: rgba(34, 197, 94, 0.04); border-color: #86efac; }
+    .aluno-item.ausente { background: rgba(220, 38, 38, 0.04); border-color: #fca5a5; }
+    .aluno-item.justificado { background: rgba(245, 158, 11, 0.04); border-color: #fcd34d; }
+
+    .aluno-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--azul-bebe-100), var(--azul-bebe-200));
+      color: var(--azul-escuro); font-weight: 700; font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .aluno-info { flex: 1; min-width: 0; }
+    .aluno-info .nome { font-size: 0.92rem; font-weight: 600; color: var(--ink); }
+    .aluno-info .meta { font-size: 0.72rem; color: var(--ink-soft); margin-top: 2px; }
+
+    /* BOTÕES DE CHAMADA */
+    .chamada-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .chamada-btn {
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-family: inherit; font-size: 0.72rem; font-weight: 700;
+      cursor: pointer; border: 1.5px solid;
+      transition: all 0.25s ease;
+      display: inline-flex; align-items: center; gap: 5px;
+      letter-spacing: 0.02em;
+    }
+    .chamada-btn svg { width: 13px; height: 13px; }
+    .chamada-btn.presente {
+      background: var(--white); border-color: #86efac; color: var(--verde-2);
+    }
+    .chamada-btn.presente:hover, .chamada-btn.presente.active {
+      background: var(--verde); border-color: var(--verde); color: var(--white);
+    }
+    .chamada-btn.ausente {
+      background: var(--white); border-color: #fca5a5; color: var(--vermelho);
+    }
+    .chamada-btn.ausente:hover, .chamada-btn.ausente.active {
+      background: var(--vermelho); border-color: var(--vermelho); color: var(--white);
+    }
+    .chamada-btn.justificado {
+      background: var(--white); border-color: #fcd34d; color: var(--amarelo-2);
+    }
+    .chamada-btn.justificado:hover, .chamada-btn.justificado.active {
+      background: var(--amarelo); border-color: var(--amarelo); color: var(--white);
+    }
+
+    /* HISTÓRICO */
+    .historico-panel {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 20px; padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .historico-list { display: flex; flex-direction: column; gap: 8px; }
+    .hist-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 16px;
+      background: var(--white-soft);
+      border: 1px solid var(--azul-bebe-100);
+      border-radius: 12px;
+      font-size: 0.85rem;
+    }
+    .hist-item svg { width: 16px; height: 16px; color: var(--verde-2); flex-shrink: 0; }
+    .hist-item .data { font-weight: 700; color: var(--ink); }
+    .hist-item .detalhe { color: var(--ink-soft); margin-left: auto; }
+
+    /* TOAST */
+    .toast {
+      position: fixed; bottom: 28px; left: 50%; transform: translate(-50%, 100px);
+      padding: 14px 24px;
+      background: linear-gradient(135deg, var(--verde), var(--verde-2));
+      color: var(--white);
+      border-radius: 999px;
+      font-size: 0.85rem; font-weight: 600;
+      box-shadow: 0 20px 40px -10px rgba(34, 197, 94, 0.5);
+      z-index: 2000;
+      display: inline-flex; align-items: center; gap: 10px;
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+    .toast svg { width: 18px; height: 18px; }
+
+    /* RODAPÉ */
+    .footer {
+      margin-top: 12px; display: flex; align-items: center; justify-content: center;
+      gap: 10px; padding: 20px 24px;
+      background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--azul-escuro); opacity: 0.6; }
+    .footer p { font-size: 0.76rem; color: var(--ink-soft); }
+
+    @media (max-width: 640px) {
+      body { padding: 20px 14px 40px; }
+      .topbar { padding: 14px 16px; }
+      .head { padding: 24px 20px; }
+      .head-icon { width: 56px; height: 56px; border-radius: 14px; }
+      .head-icon svg { width: 28px; height: 28px; }
+      .head-text h1 { font-size: 1.3rem; }
+      .user-chip .name { max-width: 90px; }
+      .resumo { grid-template-columns: repeat(2, 1fr); }
+      .chamada-panel, .historico-panel { padding: 18px; }
+      .panel-head .search-mini { min-width: 100%; }
+      .aluno-item { flex-wrap: wrap; }
+      .chamada-btns { width: 100%; margin-top: 8px; }
+      .chamada-btn { flex: 1; justify-content: center; }
+    }
+    @media (max-width: 380px) {
+      .user-chip .name { display: none; }
+      .resumo { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-grain"></div>
+  </div>
+
+  <div class="container">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">FG</div>
+        <div class="brand-info">
+          <div class="top">Painel Docente</div>
+          <div class="main">Frei Graciano Droessler</div>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <div class="user-chip">
+          <div class="avatar" id="user-avatar">P</div>
+          <span class="name" id="user-name">Professor(a)</span>
+        </div>
+        <a href="turmas.html" class="btn-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5"/>
+            <path d="M12 19l-7-7 7-7"/>
+          </svg>
+          Voltar
+        </a>
+      </div>
+    </header>
+
+    <!-- CABEÇALHO -->
+    <section class="head">
+      <div class="head-content">
+        <div class="head-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M9 16l2 2 4-4"/>
+            <path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
+        </div>
+        <div class="head-text">
+          <div class="eyebrow">Fazer Chamada</div>
+          <h1 id="titulo-turma">6º Ano A · Matemática</h1>
+          <p>Marque a presença de cada aluno. A chamada é registrada automaticamente e atualizada em todos os painéis.</p>
+        </div>
+      </div>
+      <div class="data-box">
+        <span class="label">Hoje</span>
+        <span class="value" id="data-hoje">--/--/----</span>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="resumo">
+      <div class="resumo-card">
+        <div class="resumo-icon verde">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <path d="M22 4L12 14.01l-3-3"/>
+          </svg>
+        </div>
+        <div class="resumo-text">
+          <span class="resumo-value" id="cont-presentes">0</span>
+          <span class="resumo-label">Presentes</span>
+        </div>
+      </div>
+      <div class="resumo-card">
+        <div class="resumo-icon vermelho">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M15 9l-6 6M9 9l6 6"/>
+          </svg>
+        </div>
+        <div class="resumo-text">
+          <span class="resumo-value" id="cont-ausentes">0</span>
+          <span class="resumo-label">Ausentes</span>
+        </div>
+      </div>
+      <div class="resumo-card">
+        <div class="resumo-icon amarelo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <div class="resumo-text">
+          <span class="resumo-value" id="cont-justificados">0</span>
+          <span class="resumo-label">Justificados</span>
+        </div>
+      </div>
+      <div class="resumo-card">
+        <div class="resumo-icon azul">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div class="resumo-text">
+          <span class="resumo-value" id="cont-total">0</span>
+          <span class="resumo-label">Total</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- AÇÕES -->
+    <div class="bulk-actions">
+      <button class="btn-mini ghost" id="btn-todos-presentes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6L9 17l-5-5"/>
+        </svg>
+        Todos Presentes
+      </button>
+      <button class="btn-mini ghost" id="btn-limpar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+        Limpar
+      </button>
+      <button class="btn-mini success" id="btn-salvar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6L9 17l-5-5"/>
+        </svg>
+        Salvar Chamada
+      </button>
+    </div>
+
+    <!-- LISTA DE CHAMADA -->
+    <section class="chamada-panel">
+      <div class="panel-head">
+        <h2>Lista de Chamada</h2>
+        <div class="search-mini">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <input type="text" id="busca-aluno" placeholder="Buscar aluno..." />
+        </div>
+      </div>
+      <div class="aluno-list" id="aluno-list"></div>
+    </section>
+
+    <!-- HISTÓRICO -->
+    <section class="historico-panel">
+      <div class="panel-head">
+        <h2>Últimas Chamadas</h2>
+      </div>
+      <div class="historico-list" id="historico-list"></div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+      <span class="dot" aria-hidden="true"></span>
+      <p>© 2025 · Escola Estadual do Campo Frei Graciano Droessler</p>
+    </footer>
+
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6L9 17l-5-5"/>
+    </svg>
+    <span id="toast-text">Salvo</span>
+  </div>
+
+  <script>
+    /* =========================================================
+       PROTEÇÃO
+       ========================================================= */
+    const nomeProfessor = sessionStorage.getItem('professorLogado');
+    if (!nomeProfessor) window.location.href = '2.html';
+    document.getElementById('user-name').textContent = nomeProfessor;
+    document.getElementById('user-avatar').textContent = nomeProfessor.trim().charAt(0).toUpperCase();
+
+    /* =========================================================
+       DATA DE HOJE
+       ========================================================= */
+    const hoje = new Date();
+    const dataFmt = `${String(hoje.getDate()).padStart(2,'0')}/${String(hoje.getMonth()+1).padStart(2,'0')}/${hoje.getFullYear()}`;
+    document.getElementById('data-hoje').textContent = dataFmt;
+
+    /* =========================================================
+       🔗 CHAVES SINCRONIZADAS
+       ========================================================= */
+    const TURMAS_KEYS = ['turmasProfessor', 'turmasDirecao', 'turmasPedagogo'];
+    const ALUNOS_KEYS = ['alunosProfessor', 'alunosDirecao', 'alunosPedagogo'];
+    const FREQ_KEYS   = ['frequenciaProfessor', 'frequenciaDirecao', 'frequenciaPedagogo'];
+
+    /* =========================================================
+       TURMA DA URL
+       ========================================================= */
+    const params = new URLSearchParams(window.location.search);
+    const turmaId = params.get('turma') || params.get('id') || '6a';
+
+    let turmaAtual = null;
+    for (const key of TURMAS_KEYS) {
+      try {
+        const raw = localStorage.getItem(key);
+        if (raw) {
+          const lista = JSON.parse(raw);
+          const encontrada = lista.find(t => t.id === turmaId);
+          if (encontrada) { turmaAtual = encontrada; break; }
+        }
+      } catch(e) {}
+    }
+
+    if (turmaAtual) {
+      document.getElementById('titulo-turma').textContent = `${turmaAtual.nome} · ${turmaAtual.disciplina}`;
+      document.title = `Chamada · ${turmaAtual.nome} · Frei Graciano Droessler`;
+    }
+
+    /* =========================================================
+       CARREGA ALUNOS
+       ========================================================= */
+    function carregarAlunos() {
+      for (const key of ALUNOS_KEYS) {
+        try {
+          const raw = localStorage.getItem(key);
+          if (raw) {
+            const lista = JSON.parse(raw);
+            if (lista.length > 0) return lista;
+          }
+        } catch(e) {}
+      }
+      return [];
+    }
+
+    let alunos = carregarAlunos();
+
+    /* =========================================================
+       CARREGA HISTÓRICO DE CHAMADAS
+       ========================================================= */
+    function carregarHistorico() {
+      for (const key of FREQ_KEYS) {
+        try {
+          const raw = localStorage.getItem(key);
+          if (raw) {
+            const hist = JSON.parse(raw);
+            if (hist[turmaId]) return hist[turmaId];
+          }
+        } catch(e) {}
+      }
+      return [];
+    }
+
+    function salvarHistorico(hist) {
+      try {
+        let all = {};
+        for (const key of FREQ_KEYS) {
+          try {
+            const raw = localStorage.getItem(key);
+            if (raw) { all = JSON.parse(raw); break; }
+          } catch(e) {}
+        }
+        all[turmaId] = hist;
+        const json = JSON.stringify(all);
+        FREQ_KEYS.forEach(k => localStorage.setItem(k, json));
+      } catch(e) { console.error('Erro ao salvar histórico:', e); }
+    }
+
+    /* =========================================================
+       ESTADO DA CHAMADA ATUAL
+       ========================================================= */
+    let chamadaAtual = {}; // { mat: 'presente' | 'ausente' | 'justificado' }
+    alunos.forEach(a => {
+      chamadaAtual[a.mat] = null;
+    });
+
+    /* =========================================================
+       RENDER
+       ========================================================= */
+    const alunoList = document.getElementById('aluno-list');
+
+    function renderLista(filtro = '') {
+      const termo = filtro.toLowerCase().trim();
+      const lista = alunos.filter(a => a.nome.toLowerCase().includes(termo));
+
+      if (lista.length === 0) {
+        alunoList.innerHTML = `<div style="text-align:center; padding:30px; color:var(--ink-soft);">Nenhum aluno encontrado.</div>`;
+        return;
+      }
+
+      alunoList.innerHTML = lista.map(a => {
+        const st = chamadaAtual[a.mat];
+        const cls = st === 'presente' ? 'presente' : st === 'ausente' ? 'ausente' : st === 'justificado' ? 'justificado' : '';
+        const ini = a.nome.split(' ').map(n => n[0]).slice(0,2).join('');
+
+        return `
+          <div class="aluno-item ${cls}" data-mat="${a.mat}">
+            <div class="aluno-avatar">${ini}</div>
+            <div class="aluno-info">
+              <div class="nome">${a.nome}</div>
+              <div class="meta">Mat. ${a.mat}</div>
+            </div>
+            <div class="chamada-btns">
+              <button class="chamada-btn presente ${st === 'presente' ? 'active' : ''}" data-mat="${a.mat}" data-status="presente">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                Presente
+              </button>
+              <button class="chamada-btn ausente ${st === 'ausente' ? 'active' : ''}" data-mat="${a.mat}" data-status="ausente">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+                Ausente
+              </button>
+              <button class="chamada-btn justificado ${st === 'justificado' ? 'active' : ''}" data-mat="${a.mat}" data-status="justificado">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                Justif.
+              </button>
+            </div>
+          </div>`;
+      }).join('');
+
+      // Binds nos botões
+      document.querySelectorAll('.chamada-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const mat = btn.dataset.mat;
+          const status = btn.dataset.status;
+          chamadaAtual[mat] = (chamadaAtual[mat] === status) ? null : status;
+          renderLista(document.getElementById('busca-aluno').value);
+          atualizarResumo();
+        });
+      });
+
+      atualizarResumo();
+    }
+
+    function atualizarResumo() {
+      const vals = Object.values(chamadaAtual);
+      const presentes = vals.filter(v => v === 'presente').length;
+      const ausentes = vals.filter(v => v === 'ausente').length;
+      const justificados = vals.filter(v => v === 'justificado').length;
+
+      document.getElementById('cont-presentes').textContent = presentes;
+      document.getElementById('cont-ausentes').textContent = ausentes;
+      document.getElementById('cont-justificados').textContent = justificados;
+      document.getElementById('cont-total').textContent = alunos.length;
+    }
+
+    renderLista();
+
+    /* =========================================================
+       BUSCA
+       ========================================================= */
+    document.getElementById('busca-aluno').addEventListener('input', e => {
+      renderLista(e.target.value);
+    });
+
+    /* =========================================================
+       TODOS PRESENTES
+       ========================================================= */
+    document.getElementById('btn-todos-presentes').addEventListener('click', () => {
+      alunos.forEach(a => { chamadaAtual[a.mat] = 'presente'; });
+      renderLista(document.getElementById('busca-aluno').value);
+      mostrarToast('Todos marcados como presentes');
+    });
+
+    /* =========================================================
+       LIMPAR
+       ========================================================= */
+    document.getElementById('btn-limpar').addEventListener('click', () => {
+      if (!confirm('Limpar todas as marcações da chamada?')) return;
+      alunos.forEach(a => { chamadaAtual[a.mat] = null; });
+      renderLista(document.getElementById('busca-aluno').value);
+      mostrarToast('Chamada limpa');
+    });
+
+    /* =========================================================
+       SALVAR CHAMADA
+       ========================================================= */
+    document.getElementById('btn-salvar').addEventListener('click', () => {
+      // Conta presenças
+      const vals = Object.values(chamadaAtual);
+      const marcados = vals.filter(v => v !== null).length;
+
+      if (marcados === 0) {
+        alert('Marque pelo menos um aluno antes de salvar.');
+        return;
+      }
+
+      // Atualiza a frequência (%) de cada aluno
+      alunos.forEach(a => {
+        const st = chamadaAtual[a.mat];
+        if (st === 'presente') {
+          // Aumenta frequência levemente
+          a.freq = Math.min(100, (a.freq || 90) + 0.3);
+        } else if (st === 'ausente') {
+          // Diminui frequência
+          a.freq = Math.max(0, (a.freq || 90) - 1);
+          a.faltas = (a.faltas || 0) + 1;
+        }
+        // Justificado não altera
+      });
+
+      // Salva alunos atualizados
+      try {
+        const json = JSON.stringify(alunos);
+        ALUNOS_KEYS.forEach(k => localStorage.setItem(k, json));
+      } catch(e) {}
+
+      // Salva chamada no histórico
+      const hist = carregarHistorico();
+      hist.unshift({
+        data: dataFmt,
+        presentes: vals.filter(v => v === 'presente').length,
+        ausentes: vals.filter(v => v === 'ausente').length,
+        justificados: vals.filter(v => v === 'justificado').length,
+        total: alunos.length
+      });
+      // Limita a 20 registros
+      salvarHistorico(hist.slice(0, 20));
+
+      renderHistorico();
+      mostrarToast('Chamada salva e sincronizada!');
+    });
+
+    /* =========================================================
+       HISTÓRICO
+       ========================================================= */
+    function renderHistorico() {
+      const hist = carregarHistorico();
+      const cont = document.getElementById('historico-list');
+
+      if (hist.length === 0) {
+        cont.innerHTML = `
+          <div style="text-align:center; padding:24px; color:var(--ink-soft); font-size:0.88rem;">
+            Nenhuma chamada registrada ainda.
+          </div>`;
+        return;
+      }
+
+      cont.innerHTML = hist.map(h => `
+        <div class="hist-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <path d="M22 4L12 14.01l-3-3"/>
+          </svg>
+          <span class="data">${h.data}</span>
+          <span class="detalhe">
+            ${h.presentes} presentes · ${h.ausentes} ausentes · ${h.justificados} justificados
+          </span>
+        </div>
+      `).join('');
+    }
+
+    renderHistorico();
+
+    /* =========================================================
+       TOAST
+       ========================================================= */
+    const toastEl = document.getElementById('toast');
+    const toastText = document.getElementById('toast-text');
+    let toastTimeout = null;
+    function mostrarToast(msg) {
+      toastText.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toastEl.classList.remove('show'), 2200);
+    }
+  </script>
+
+</body>
+</html>
